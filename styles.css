@@ -1,0 +1,612 @@
+body{
+   
+    font-family: sans-serif;
+    
+    
+}
+body::after {
+    content: "";
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;   
+  }
+.navbar
+{
+    background-image: linear-gradient(to right, #56c596,#1f2f98);
+    
+}
+
+.navbar-brand{
+    color: white;
+    font-family: sans-serif;
+    font-size: 40%;
+}
+#navtabs{
+    padding-top: 10px;
+    padding-bottom: 1px; 
+    background-color: #ffffff;
+}
+
+#slider{
+    padding-top:1px;
+    padding-bottom:10px;
+    
+}
+
+#all{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+.nav-nav-pills{
+    background-color: deepskyblue!important;
+    
+}
+
+/*--------availabitlity--------f------*/
+
+#availability{
+   margin-top: 1px;
+   
+}
+
+.container{
+    margin: 0;
+}
+.vertical{
+border-left: 2px solid #030303;
+margin-right: 5px;
+}
+
+.form-control{
+max-width: 170px;
+}
+
+.form-control-num{
+max-width: 45px;
+}
+
+.col-auto{
+margin-left: 10px;
+margin-right: 5px;
+}
+
+/*--------location and num------------*/
+.containers{
+    
+    background-color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    
+
+}
+
+.location{
+    text-align: center;
+    padding-top: 15px;
+}
+
+.num{
+    text-align: center;
+}
+/*--------about------------*/
+#about{
+    content: "";
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    opacity: 1;
+    padding-bottom: 20px;
+}
+
+.hotelname{
+	
+	padding: 10px;
+	text-transform: uppercase;
+}
+.desc, h1{
+    color: white;
+}
+
+/*--------service------------*/
+.container1{
+    margin-top: 5%;
+    padding-bottom: 20px;
+}
+.card{
+    position: relative;
+    overflow: hidden;
+}
+.card:before{
+    position: absolute;
+    content: '';
+    width: 80%;
+    height: 220%;
+    background: rgb(0, 204, 204,0.7);
+    top: -50%;
+    left: -100%;
+    z-index: 1;
+    transform: rotate(25deg);
+    transform-origin: center top;
+    transition: .5s;
+}
+.card:hover:before{
+    left: 10%;
+}
+.card img{
+    width: 100%;
+    height: auto;
+}
+.card-text{
+    width: 100%;
+    padding: 0 20px;
+    position: absolute;
+    top: -70%;
+    color: #fff;
+    left: 0;
+    z-index: 2;
+    transition: 1.1s;
+}
+.card-text h4 h6{
+    font-family: poppins;
+}
+
+.card:hover .card-text{
+    top: 20px;
+}
+
+/*--------roomandsuites------------*/
+
+.container2{
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 35px;
+    margin-top: 25px;
+}
+.roomites{
+    color: black;
+    text-align: center;
+
+}
+.title::before {
+    content: '';
+    background: #1195b6;
+    height: 5px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 120px;
+    transform: translateY(63px);
+    display: block;
+  
+  }
+  
+ 
+/*--------special offers------------*/
+.container3{
+    background-color: white;
+    padding-bottom: 25px;
+}
+
+.special{
+    color: black;
+    text-align: center;   
+}
+
+.col-md-3{
+    margin-left: 65px;
+}
+
+#seeall{
+    margin-top: 50px;
+}
+
+/*--------room and suite page------------*/
+.container4{
+    background-color: white;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.container-sm{
+    background-color: black;
+    padding-top: 150px;
+    padding-left: 50px;
+    
+}
+
+.col-lg-2{
+    background-color:#56c596 ;
+    margin-left: 30px;
+    margin-bottom: 15px;
+    
+}
+.col-lg-3{
+    background-color:#56c596 ;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    
+    
+}
+
+.col{
+    margin-bottom: 35px;
+    margin-top: 5px ;
+    margin-left: 20px;
+}
+#roomcheck{
+    margin-top: 5px;
+    margin-left: 35px;
+}
+
+/*--------banner promo--------bonus----*/
+.terms{
+    border-left: 4px solid #7b1798;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#banner{
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    padding-top: 5%;
+    
+}
+.abouts{ 
+    margin-left: 30px;
+
+}
+.valid{ 
+    margin-left: 30px;
+    font-style: italic;
+    font-size: 12px;
+}
+#bonusbutton{
+    margin-left: 30px;
+}
+.earlytitle{
+    margin-left: 30px;
+}
+#earlypic{
+    margin-left: -20px;
+    margin-bottom: 30px;
+}
+.bonusinfo{ 
+    margin-left: 30px;
+
+}
+#otherpromotion{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.otherpromo{
+    text-align: center;
+    padding-bottom: 30px;
+}
+.term{
+    color: white;
+}
+
+/*--------promotab------------*/
+.promotiontab{
+    text-align: center;
+    color: black;
+}
+.titles::before {
+    content: '';
+    background: #1195b6;
+    height: 5px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -10px;
+    transform: translateY(63px);
+    display: block;
+  
+}
+  .promotionstitle{
+      color: black;
+      text-align: center;
+  }
+
+  .container-lg{
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    margin-top: 40px;
+    padding-top: 50px;
+}
+
+.title1::before {
+    content: '';
+    background: #ffffff;
+    height: 2px;
+    width: 250px;
+    margin-left: 140px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    transform: translateY(63px);
+    display: block;
+  
+}
+.abouts1{
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 60px;
+}
+.earlytitle{
+    text-align: center;
+}
+.promobonus{
+    margin-left: 140px;
+    margin-top: 50px;
+}
+#promobonus{
+    margin-left: 20px;
+}
+#promopic1{
+    height: 300px;
+    margin-top: -50px;
+    margin-left: 12px;
+}
+
+.containerss{
+    background-color: white;
+    padding-bottom: 50px;
+    padding-top: 5px;
+}
+#promopic2{
+    height: 300px;
+    margin-top: -50px;
+    margin-left: -12px;
+}
+
+.abouts2{
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.bonustitle{
+    text-align: center;
+    margin-left: 10px;
+}
+.bonusbonus{
+    margin-left: 100px;
+    margin-top: 50px;
+}
+#bonusbonus{
+    margin-left: 20px;
+}
+#availnow{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+   
+}
+
+#availnows{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+    margin-left: 30px;
+}
+#standstand{
+    margin-left: 100px;
+}
+
+.stanAmenities{
+    margin-top:50px;
+    
+}
+.titless{
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    text-align: center;
+}
+
+
+/*--------resrvation------------*/
+.containerrese{
+    padding-left: 10px;
+    margin-left: -10px;
+    
+}
+.titlecheck{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    
+}
+.reservetitle{
+    color: white;
+    text-align: center;
+}
+
+.roomrates{
+   
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+}
+
+.roomtxt{
+    color: white;
+    text-align: left;
+    margin-top: 10px;
+}
+.pandr{
+    color: white;
+    text-align: center;
+    margin-right: 90px ;
+}
+
+#vertical{
+    border-left: 2px solid #030303;
+    margin-right: 5px;
+}
+.containerish{
+    background-color:white ;
+    margin-top: 20px;
+}
+.roomeb{
+    color: black;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+#sliderish{
+    margin-top: -20px;
+}
+.policies{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.termss{
+    border-left: 4px solid #7b1798;
+    margin-top: 10px;
+    margin-bottom: 50px;   
+}
+
+.titlesa::before {
+    content: '';
+    background: #000000;
+    height: 1px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -10px;
+    transform: translateY(63px);
+    display: block;
+  
+}
+
+.containerearly{
+    background-color:white ;
+    margin-top: -50px;
+    padding-bottom: 20px;
+}
+.availroom{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+
+#avilnows{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.pricey{
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    line-height: 0.3em;
+    margin-top: 10px;
+}
+.sizey{
+    font-size: 12px;
+    line-height: 0.1em;
+}
+.sizeys{
+    font-size: 12px;
+    line-height: 0.1em;
+    text-align: center;
+    
+}
+.sizeyss{
+    font-size: 12px;
+    line-height: 0.1em;
+    text-decoration: none;
+}
+.none{
+    line-height: 0.5em;
+    text-decoration: none;
+}
+.btn{
+    padding-left: 10px;
+    text-align: center;
+}
+.cards{
+    padding-right: 40px;
+}
+
+#sliderishh{
+    margin-top: 20px;
+}
+.slider {
+    padding-right: 10px;
+    padding-left: 15px;
+
+}
+
+
+/*--------checkout------------*/
+.containercheck{
+    background-color:white ;
+}
+
+.form-group{
+    margin-left: 30px ;
+}
+
+.user{
+    margin-left: 20px ;
+}
+.titlecheck{
+    background-color:white ;
+}
+#whitey{
+    background-color:white ;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 30px;
+}
+.personals{
+    color: black;
+}
+.buttwo{
+    text-align: center;
+    padding-top: 20px;
+}
+
+/*---modifyresreve-------*/
+.modifhy{
+    text-align: left;
+}
+.containermodi{
+    background-color:white ;
+}
+.modifhye{
+    text-align: center;
+}
+.containernew{
+    background-color:rgb(141, 121, 121) ;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#bannerss{
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+#modifyone{
+    background-color: white;
+    padding-bottom: 100px;
+}
+
+#pindot{
+    text-align: center;
+}
+.containerchecks{
+    background-color:rgb(161, 255, 38) ;
+}
+
+.mid{
+    text-align: center;
+    color:white;
+}
+
