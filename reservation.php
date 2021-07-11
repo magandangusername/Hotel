@@ -10,43 +10,45 @@ include_once 'header.php';
                 <h1 class="reservetitle">Check Availability</h1>
             </div> 
             <div class="shadow-sm p-1 bg-body rounded">
-                <div class="row g-2 align-items-center">
-                    <div class="col-auto">
-                        <label for="inputCheckIn" class="col-form-label">Check-In</label>
+                <form action="" method="POST" onsubmit="">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-auto">
+                            <label for="inputCheckIn" class="col-form-label">Check-In</label>
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" type ="date" id="CheckIn" name="CheckIn"  type="text" onchange="checkcalendar()"/>
+                        </div>  
+                        
+                        <div class="col-auto">
+                            <label for="inputCheckOut" class="col-form-label">Check-Out</label>
+                        </div>
+
+                        <div class="col-auto">
+                            <input class="form-control" type ="date" id="CheckOut" name="CheckOut"  type="text" onchange="checkcalendar()"/>
+                        </div> 
+
+                        <div class="col-auto vertical">
+                            <label for="inputAdult" class="col-form-label">Adult</label>
+                        </div> 
+
+                        <div class="col-auto">
+                        <input class="form-control-num" type="number" name="guestcount" id ="adultcount" value="1" min="1">
+                        </div>
+
+
+                        <div class="col-auto">
+                            <label for="inputChild" class="col-form-label">Child</label>
+                        </div> 
+
+                        <div class="col-auto">
+                        <input class="form-control-num" type="number" name="guestcount" id ="childadult" value="0" min="0" max="3">
+                        </div>
+
+                        <div class="col-auto">
+                            <button type="submit" name="checkavail" class="btn btn-primary"> Check Availability </button>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <input class="form-control" type ="date" id="CheckIn" name="date"  type="text"/>
-                    </div>  
-                    
-                    <div class="col-auto">
-                        <label for="inputCheckOut" class="col-form-label">Check-Out</label>
-                    </div>
-
-                    <div class="col-auto">
-                        <input class="form-control" type ="date" id="CheckOut" name="date"  type="text"/>
-                    </div> 
-
-                    <div class="col-auto vertical">
-                        <label for="inputAdult" class="col-form-label">Adult</label>
-                    </div> 
-
-                    <div class="col-auto">
-                    <input class="form-control-num" type="number" name="guestcount" id ="adultcount" value="1" min="1">
-                    </div>
-
-
-                    <div class="col-auto">
-                        <label for="inputChild" class="col-form-label">Child</label>
-                    </div> 
-
-                    <div class="col-auto">
-                    <input class="form-control-num" type="number" name="guestcount" id ="childadult" value="1" min="0" max="3">
-                    </div>
-
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-primary"> Check Availability </button>
-                    </div>
-                 </div>
+                </form>
             </div>  
         </div>   
     </section>
@@ -92,6 +94,8 @@ include_once 'header.php';
         </div>
     </div>
     <!-------sliderish-------->
+
+    <!--     EARLY BIRD   -->
     <section id="sliderish">
         <div class="containerish">
             <div class="row">
@@ -278,7 +282,7 @@ include_once 'header.php';
         </div>
     </section>
 
-    
+    <!--     ONLINE EXCLUSIVE    -->
     <section id="sliderishh">
         <div class="containerish">
             <div class="row">
@@ -465,7 +469,7 @@ include_once 'header.php';
         </div>
     </section>
 
-
+<!--     BONUS STAY   -->
     <section id="sliderishh">
         <div class="containerish">
             <div class="row">

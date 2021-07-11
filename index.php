@@ -1,5 +1,6 @@
 <?php 
-include_once 'header.php';
+include_once('header.php');
+
 ?>
     
     <!---------------------------------slider------------------------------->
@@ -175,5 +176,6 @@ include_once 'header.php';
     </section> 
 
 </section>
+
 </body>
 </html>   

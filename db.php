@@ -2,7 +2,7 @@
   $servername = 'localhost';
   $username = 'root';
   $password = '';
-  $db = 'rsvp';
+  $db = 'mondstadt_hotel';
 
   $conn = new mysqli($servername, $username, $password, $db);
 

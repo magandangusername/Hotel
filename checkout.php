@@ -1,139 +1,139 @@
-<?php 
+<?php
 include_once 'header.php';
 ?>
-    <!--------------------------------checkout------------------------------>
-    <section id ="forms">
-        <div class="checkout">
-            <div class="titlecheck">
-                <button type="button" href="reservation.php" class="btn btn-primary"> Back </button>
-                <h1 class="reservetitle">Checkout</h1>
-            </div> 
+<!--------------------------------checkout------------------------------>
+<section id="forms">
+    <div class="checkout">
+        <div class="titlecheck">
+            <button type="button" href="reservation.php" class="btn btn-primary"> Back </button>
+            <h1 class="reservetitle">Checkout</h1>
+        </div>
+        <div class="containercheck">
+            <div class="row g-2 justify-content-center">
 
-            <div class="containercheck">
-                <div class="row g-2 justify-content-center">
-
-                    <div class="col-auto">
-                        <p class="label">Your Stay</p>
-                    </div>
-                    <div class="col-auto">
-                        <p class="label vertical" >adult</p>
-                    </div>
-                    <div class="col-auto">
-                        <p class="label">children</p>
-                    </div>
-                    <div class="col-auto">
-                        <p class="label">total rate</p>
-                    </div>
+                <div class="col-auto">
+                    <p class="label">Your Stay</p>
+                </div>
+                <div class="col-auto">
+                    <p class="label vertical">adult</p>
+                </div>
+                <div class="col-auto">
+                    <p class="label">children</p>
+                </div>
+                <div class="col-auto">
+                    <p class="label">total rate</p>
                 </div>
             </div>
+        </div>
         <div class="containercheck">
             <div class="titlecheck">
-                <form class="row g-3"  id="whitey" action="" method="post">
+                <form class="row g-3" id="whitey" action="" method="post">
                     <h1 class="personals">Personal Information</h1>
-                        <div class="form-group form-inline">
-                            <label>Title</label>
-                            <select name="name_with_initials" id="">
-                                        <option selected="selected" value="mister">Mr.</option>
-                                        <option value="misis">Mrs.</option>
-                                        <option value="miss">Miss.</option>
-                            </select>   
-                        </div>
-                            
+                    <div class="form-group form-inline">
+                        <label>Title</label>
+                        <select name="name_with_initials" id="">
+                            <option selected="selected" value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Miss">Miss.</option>
+                        </select>
+                    </div>
 
-                            <div class="col-md-6 ">
-                                <label for="first"> First Name:</label>
-                                <input type="text" class="form-control" id="first">
-                            </div>
-                            <div class="col-md-5 ">
-                                <label for="email">Email Address:</label>
-                                <input type="text" class="form-control" id="email">
-                            </div>
-                        
 
-                            <div class="col-md-6 ">
-                                <label for="last">Last Name:</label>
-                                <input type="text" class="form-control" id="last">
-                            </div>
-                            
-                            <div class="col-md-5 ">
-                                <label for="reemail">Re-Type Email Address:</label>
-                                <input type="text" class="form-control" id="reemail">
-                            </div>
+                    <div class="col-md-6 ">
+                        <label for="first"> First Name:</label>
+                        <input type="text" class="form-control" id="first" name='fn'>
+                    </div>
+                    <div class="col-md-5 ">
+                        <label for="email">Email Address:</label>
+                        <input type="text" class="form-control" id="email" name='email'>
+                    </div>
 
-                            <hr />
 
-                            <h1 class="personals">Address</h1>
-                            
-                                <div class="col-md-6  ">
-                                    <label for="first"> Address:</label>
-                                    <input type="text" class="form-control" id="first">
-                                </div>
-                                <div class="col-md-5  ">
-                                    <label for="email">City:</label>
-                                    <input type="text" class="form-control" id="email">
-                                </div>
-                            
-    
-                                <div class="col-md-6 ">
-                                    <label for="last">Mobile Number:</label>
-                                    <input type="text" class="form-control" id="last">
-                                </div>
+                    <div class="col-md-6 ">
+                        <label for="last">Last Name:</label>
+                        <input type="text" class="form-control" id="last" name='ln'>
+                    </div>
 
-                                <hr />
+                    <div class="col-md-5 ">
+                        <label for="reemail">Re-Type Email Address:</label>
+                        <input type="text" class="form-control" id="reemail" name='reemail'>
+                    </div>
 
-                            <h1 class="personals">Payment Information</h1>
-                            <div class="form-group form-inline">
-                                <label>Payment Type</label>
-                                <select name="name_with_initials" id="">
-                                            <option selected="selected" value="mister">Mr.</option>
-                                            <option value="misis">1.</option>
-                                            <option value="miss">2.</option>
-                                </select>   
-                            </div>
-                        
-                            <div class="col-md-6  ">
-                                <label for="first"> Cardholder Name:</label>
-                                <input type="text" class="form-control" id="first" disabled>
-                            </div>
-                            <div class="col-md-5  ">
-                                <label for="email">Cardholder Number:</label>
-                                <input type="text" class="form-control" id="email" disabled>
-                            </div>
-                        
-                            <div class="col-12"></div>
+                    <hr />
 
-                            <div class="col-2 ">
-                                <label>Expiration Date</label>
-                            </div>
+                    <h1 class="personals">Address</h1>
 
-                                <div class="col-2 ">            
-                                    <label for="last">M</label>
-                                    <input type="text" class="form-control" id="last" disabled>
-                                </div>
-                                <div class="col-2">
-                                    <label for="last">Y</label>
-                                    <input type="text" class="form-control" id="last"disabled >
-                                 </div>                             
+                    <div class="col-md-6  ">
+                        <label for="first"> Address:</label>
+                        <input type="text" class="form-control" id="first" name='address'>
+                    </div>
+                    <div class="col-md-5  ">
+                        <label for="email">City:</label>
+                        <input type="text" class="form-control" id="email" name='city'>
+                    </div>
+
+
+                    <div class="col-md-6 ">
+                        <label for="last">Mobile Number:</label>
+                        <input type="text" class="form-control" id="last" name='mobilenum'>
+                    </div>
+
+                    <hr />
+
+                    <h1 class="personals">Payment Information</h1>
+                    <div class="form-group form-inline">
+                        <label>Payment Type</label>
+                        <select name="name_with_initials_payment" id="">
+                            <option selected="selected" value="mister">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Miss">Ms.</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6  ">
+                        <label for="first"> Cardholder Name:</label>
+                        <input type="text" class="form-control" id="first" name='chname' disabled>
+                    </div>
+                    <div class="col-md-5  ">
+                        <label for="email">Cardholder Number:</label>
+                        <input type="text" class="form-control" id="email" name='chnum' disabled>
+                    </div>
+
+                    <div class="col-12"></div>
+
+                    <div class="col-2 ">
+                        <label>Expiration Date</label>
+                    </div>
+
+                    <div class="col-2 ">
+                        <label for="last">M</label>
+                        <input type="text" class="form-control" id="last" name='month' disabled>
+                    </div>
+                    <div class="col-2">
+                        <label for="last">Y</label>
+                        <input type="text" class="form-control" id="last" name='year' disabled>
+                    </div>
                 </form>
             </div>
-        </div>  
+        </div>
     </div>
 </section>
 
 
 
-                 <section id ="twobutt">
-                     <div class="row">
-                         <p class="privacy">ito ang privacy ni papi skye</p>
-                     </div>
+<section id="twobutt">
+    <div class="row">
+        <p class="privacy">ito ang privacy ni papi skye</p>
+    </div>
 
-                    <div class="row ">
-                        <div class="buttwo">
-                            <button type="button" class="btn btn-primary"> Review Reservation </button>
-                            <button type="button" class="btn btn-primary"> Confirm Reservation </button>
-                        </div>
-                    </div>
-                 </section>
+    <div class="row ">
+        <div class="buttwo">
+            <button type="button" class="btn btn-primary"> Review Reservation </button>
+            <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
+        </div>
+    </div>
 </section>
+</form>
 </body>
+
 </html>
