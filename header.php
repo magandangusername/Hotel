@@ -88,6 +88,12 @@
       
 
     }
+    if (isset($_POST['chooseroomeb'])) {
+      $roomtype;
+      if (isset($_POST['bed'])) {
+        $bed = $_POST['bed'];
+      }
+    }
   }
 
   ?>

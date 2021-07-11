@@ -123,32 +123,86 @@ include_once 'header.php';
         
 
             <div class="row slider">
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Standard Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
+
+                <?php 
+                $roomtype = "SELECT DISTINCT room_type FROM room_list";
+                $roomtype = $conn->query($roomtype);
+                while($result = $roomtype->fetch_assoc()) { ?>
+                
+                    <div class="col-md-12" id="avilnows">
+                        <div class="cards">
+                            <img src="photos/bonus stay.png" class="card-img-top">
+                            <form action="" method="POST">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $result['room_type']; ?> Room</h5>
+                                    <?php 
+                                        $type = $result['room_type'];
+                                        $roomprice = "SELECT total FROM calculated_rate WHERE rate_code LIKE '%EB' AND room_type LIKE '%$type%'";
+                                        $roomprice = $conn->query($roomprice);
+                                        $roomprice = $roomprice->fetch_row();
+                                        $roomprice = $roomprice[0];
+                                        $roomprice = number_format($roomprice, 2);
+                                    ?>
+                                    <p class="sizey">34-36 sqm</p>
+                                    <p class ="none">City View, Free Wifi</p>
+                                    <a href="#" class="none">Read More</a>
+                                    <p class="pricey"><?php echo $roomprice ?> PHP/Night</p>
+                                    <p class="sizeys">Excluding Taxes and Fee</p>
+                                    <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
+                                    <div class="radiobut">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="bed" value="Queen" checked>
+                                            <label class="form-check-label">Queen Bed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="bed" value="King">
+                                            <label class="form-check-label">King Bed</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" name="chooseroomeb" id="butbut" class="btn btn-primary">Select</button>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
+                            </form>
                         </div>
                     </div>
-                </div>
+                <?php
+                }
+                ?>
+                <?php 
+                $roomtype = "SELECT DISTINCT suite_type FROM suite_list";
+                $roomtype = $conn->query($roomtype);
+                while($result = $roomtype->fetch_assoc()) { ?>
+                
+                    <div class="col-md-12" id="avilnows">
+                        <div class="cards">
+                            <img src="photos/bonus stay.png" class="card-img-top">
+                            <form action="" method="POST">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $result['suite_type']; ?> Room</h5>
+                                    <?php 
+                                        $type = $result['suite_type'];
+                                        $roomprice = "SELECT total FROM calculated_rate WHERE rate_code LIKE '%EB' AND room_type LIKE '%$type%'";
+                                        $roomprice = $conn->query($roomprice);
+                                        $roomprice = $roomprice->fetch_row();
+                                        $roomprice = $roomprice[0];
+                                        $roomprice = number_format($roomprice, 2);
+                                    ?>
+                                    <p class="sizey">34-36 sqm</p>
+                                    <p class ="none">City View, Free Wifi</p>
+                                    <a href="#" class="none">Read More</a>
+                                    <p class="pricey"><?php echo $roomprice ?> PHP/Night</p>
+                                    <p class="sizeys">Excluding Taxes and Fee</p>
+                                    <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
+                                    
+                                    <button type="submit" name="chooseroomeb" id="butbut" class="btn btn-primary">Select</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
 
+                <!--
                 <div class="col-md-12" id="avilnows">
                     <div class="cards">
                         <img src="photos/bonus stay.png" class="card-img-top">
@@ -277,7 +331,7 @@ include_once 'header.php';
                             <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>
@@ -310,161 +364,68 @@ include_once 'header.php';
         
 
             <div class="row slider">
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Standard Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
+            <?php 
+                $roomtype = "SELECT DISTINCT room_type FROM room_list";
+                $roomtype = $conn->query($roomtype);
+                while($result = $roomtype->fetch_assoc()) { ?>
+                
+                    <div class="col-md-12" id="avilnows">
+                        <div class="cards">
+                            <img src="photos/bonus stay.png" class="card-img-top">
+                            <form action="" method="POST">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $result['room_type']; ?> Room</h5>
+                                    <p class="sizey">34-36 sqm</p>
+                                    <p class ="none">City View, Free Wifi</p>
+                                    <a href="#" class="none">Read More</a>
+                                    <p class="pricey">2,800 PHP/Night</p>
+                                    <p class="sizeys">Excluding Taxes and Fee</p>
+                                    <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
+                                    <div class="radiobut">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio">
+                                            <label class="form-check-label">Queen Bed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio">
+                                            <label class="form-check-label">King Bed</label>
+                                        </div>
+                                    </div>    
+                                    <!--<a href="checkout.php" input type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</a>-->
+                                    <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</button>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
+                            </form>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Joint Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
+                <?php
+                }
+                ?>
+                <?php 
+                $roomtype = "SELECT DISTINCT suite_type FROM suite_list";
+                $roomtype = $conn->query($roomtype);
+                while($result = $roomtype->fetch_assoc()) { ?>
+                
+                    <div class="col-md-12" id="avilnows">
+                        <div class="cards">
+                            <img src="photos/bonus stay.png" class="card-img-top">
+                            <form action="" method="POST">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $result['suite_type']; ?> Room</h5>
+                                    <p class="sizey">34-36 sqm</p>
+                                    <p class ="none">City View, Free Wifi</p>
+                                    <a href="#" class="none">Read More</a>
+                                    <p class="pricey">2,800 PHP/Night</p>
+                                    <p class="sizeys">Excluding Taxes and Fee</p>
+                                    <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
+                                    
+                                    <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</button>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
+                            </form>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Deluxe Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Junior Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Executive Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Presidential Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </section>
@@ -497,164 +458,68 @@ include_once 'header.php';
         
 
             <div class="row slider">
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Standard Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
+            <?php 
+                $roomtype = "SELECT DISTINCT room_type FROM room_list";
+                $roomtype = $conn->query($roomtype);
+                while($result = $roomtype->fetch_assoc()) { ?>
+                
+                    <div class="col-md-12" id="avilnows">
+                        <div class="cards">
+                            <img src="photos/bonus stay.png" class="card-img-top">
+                            <form action="" method="POST">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $result['room_type']; ?> Room</h5>
+                                    <p class="sizey">34-36 sqm</p>
+                                    <p class ="none">City View, Free Wifi</p>
+                                    <a href="#" class="none">Read More</a>
+                                    <p class="pricey">2,800 PHP/Night</p>
+                                    <p class="sizeys">Excluding Taxes and Fee</p>
+                                    <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
+                                    <div class="radiobut">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio">
+                                            <label class="form-check-label">Queen Bed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio">
+                                            <label class="form-check-label">King Bed</label>
+                                        </div>
+                                    </div>    
+                                    <!--<a href="checkout.php" input type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</a>-->
+                                    <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</button>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
+                            </form>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Joint Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
+                <?php
+                }
+                ?>
+                <?php 
+                $roomtype = "SELECT DISTINCT suite_type FROM suite_list";
+                $roomtype = $conn->query($roomtype);
+                while($result = $roomtype->fetch_assoc()) { ?>
+                
+                    <div class="col-md-12" id="avilnows">
+                        <div class="cards">
+                            <img src="photos/bonus stay.png" class="card-img-top">
+                            <form action="" method="POST">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $result['suite_type']; ?> Room</h5>
+                                    <p class="sizey">34-36 sqm</p>
+                                    <p class ="none">City View, Free Wifi</p>
+                                    <a href="#" class="none">Read More</a>
+                                    <p class="pricey">2,800 PHP/Night</p>
+                                    <p class="sizeys">Excluding Taxes and Fee</p>
+                                    <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
+                                    
+                                    <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</button>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
+                            </form>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Deluxe Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Junior Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Executive Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-                            <a href="#" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                            <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12" id="avilnows">
-                    <div class="cards">
-                        <img src="photos/bonus stay.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Presidential Room</h5>
-                            <p class="sizey">34-36 sqm</p>
-                            <p class ="none">City View, Free Wifi</p>
-                            <a href="#" class="none">Read More</a>
-                            <p class="pricey">2,800 PHP/Night</p>
-                            <p class="sizeys">Excluding Taxes and Fee</p>
-
-                            
-                            <a href="#" data-toggle="modal" data-target="#myModal" class="sizeyss"><p style="text-align:center">Price Breakdown</p></a>
-
-                            <div class="radiobut">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Queen Bed</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">King Bed</label>
-                                </div>
-                            </div>    
-                               <a href="checkout.php" input type="button"  id="butbut" class="btn btn-primary">Select</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </section>
