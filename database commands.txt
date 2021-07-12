@@ -1,4 +1,6 @@
+create database mondstadt_hotel;
 
+use mondstadt_hotel;
 
 CREATE TABLE data_store (
 confirmation_number varchar(255),
