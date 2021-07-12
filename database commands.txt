@@ -1,0 +1,158 @@
+
+
+CREATE TABLE data_store (
+confirmation_number varchar(255),
+guest_code varchar(255),
+room_code varchar(255),
+payment_code varchar(255)
+);
+
+CREATE TABLE reservation_table (
+confirmation_number varchar(255),
+arrival_date date,
+departure_date date,
+guest_code varchar(255),
+room_code varchar(266),
+PRIMARY KEY (confirmation_number)
+);
+
+CREATE TABLE suite_list (
+suite_number varchar(255),
+suite_type varchar(255),
+status tinyint(1),
+confirmation_number varchar(255),
+PRIMARY KEY (suite_number)
+);
+
+CREATE TABLE calculated_rate (
+rate_code varchar(255),
+room_type varchar(255),
+base_price float,
+service_charge float,
+tax float,
+vat float,
+total float,
+PRIMARY KEY (rate_code)
+);
+
+CREATE TABLE guest_information (
+guest_code varchar(255),
+title varchar(255),
+first_name varchar(255),
+last_name varchar(255),
+address varchar(255),
+city varchar(255),
+email_address varchar(255),
+payment_code varchar(255),
+PRIMARY KEY (guest_code)
+);
+
+CREATE TABLE payment_information (
+payment_code varchar(255),
+payment_type varchar(255),
+card_number varchar(255),
+card_holder_name varchar(255),
+expiration varchar(255),
+PRIMARY KEY (payment_code)
+);
+
+CREATE TABLE reserved_rooms (
+room_code varchar(255),
+room_number varchar(255),
+suite_number varchar(255),
+rate_code varchar(255),
+PRIMARY KEY (room_code)
+);
+
+CREATE TABLE room_list (
+room_number varchar(255),
+room_type varchar(255),
+bed varchar(255),
+status tinyint(1),
+confirmation_number varchar(255),
+PRIMARY KEY (room_number)
+);
+
+INSERT INTO calculated_rate (rate_code, room_type, base_price, service_charge, tax, vat, total)
+VALUES 
+('RDEB', 'DeluxeRoom', 3500, 175, 175, 105, 3955),
+('RDOE', 'DeluxeRoom', 3500, 125, 125, 75, 2825),
+('RJEB', 'JointRoom', 3850, 192.5, 192.5, 11.5, 4350.5),
+('RJOE', 'JointRoom', 2750, 137.5, 137.5, 82.5, 3107.5),
+('RSEB', 'StandardRoom', 2800, 140, 140, 224, 3248),
+('RSOE', 'StandardRoom', 2000, 100, 100, 60, 2260),
+('SEEB', 'ExecutiveSuite', 4900, 245, 245, 147, 5537),
+('SEOE', 'ExecutiveSuite', 3500, 175, 175, 105, 3955),
+('SJEB', 'JuniorSuite', 4550, 227.5, 227.5, 136.5, 5141.5),
+('SJOE', 'JuniorSuite', 4550, 227.5, 227.5, 136.5, 5141.5),
+('SPEB', 'PresidentialSuite', 5600, 280, 280, 168, 6328),
+('SPOE', 'PresidentialSuite', 4000, 200, 200, 120, 4520);
+
+INSERT INTO data_store (confirmation_number, guest_code, room_code, payment_code)
+VALUES 
+('20210121-1', 'GC-010', 'RC-011', 'PC-010'),
+('20210121-2', 'GC-010', 'RC-012', 'PC-010'),
+('20210121-3', 'GC-010', 'RC-013', 'PC-010'),
+('20212212-1', 'GC-020', 'RC-021', 'PC-010');
+
+INSERT INTO guest_information (guest_code, title, first_name, last_name, address, city, email_address, payment_code)
+VALUES 
+('GC-010', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Johnmark@gmail.com', 'PC-010'),
+('GC-020', 'Mr', 'Blu Andrei', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-020');
+
+INSERT INTO payment_information (payment_code, payment_type, card_number, card_holder_name, expiration)
+VALUES 
+('PC-010', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05/21'),
+('PC-020', 'Paymaya', '4111 1111 1111 1111', 'John Mark Scammaz Bordadora', '06/21');
+
+INSERT INTO reservation_table (confirmation_number, arrival_date, departure_date, guest_code, room_code)
+VALUES 
+('20210121-1', '2021-01-21', '2021-05-21', 'GC-010', 'RC-011'),
+('20210121-2', '2021-01-21', '2021-05-21', 'GC-010', 'RC-012'),
+('20210121-3', '2021-01-21', '2021-05-21', 'GC-010', 'RC-013'),
+('20212212-1', '2021-22-12', '2021-05-21', 'GC-020', 'RC-021');
+
+INSERT INTO reserved_rooms (room_code, room_number, rate_code)
+VALUES 
+('RC-011', 'R-01', 'RSEB'),
+('RC-012', 'R-02', 'RSEB'),
+('RC-013', 'R-03', 'RSEB'),
+('RC-021', 'R-04', 'RSEB');
+
+INSERT INTO room_list (room_number, room_type, bed, status, confirmation_number)
+VALUES 
+('R-01', 'Standard', 'Queen', 1, '20210121-1'),
+('R-02', 'Standard', 'Queen', 1, '20210121-2'),
+('R-03', 'Standard', 'King', 1, '20210121-3'),
+('R-04', 'Standard', 'King', 1, '20212212-1'),
+('R-05', 'Standard', 'King', 0, ''),
+('R-06', 'Deluxe', 'King', 0, ''),
+('R-07', 'Deluxe', 'King', 0, ''),
+('R-08', 'Deluxe', 'King', 0, ''),
+('R-09', 'Deluxe', 'King', 0, ''),
+('R-10', 'Deluxe', 'King', 0, ''),
+('R-11', 'Joint', 'Queen', 0, ''),
+('R-12', 'Joint', 'Queen', 0, ''),
+('R-13', 'Joint', 'King', 0, ''),
+('R-14', 'Joint', 'King', 0, ''),
+('R-15', 'Joint', 'King', 0, '');
+
+INSERT INTO suite_list (suite_number, suite_type, status, confirmation_number)
+VALUES 
+('S-01', 'Executive', 0, ''),
+('S-02', 'Executive', 0, ''),
+('S-03', 'Executive', 0, ''),
+('S-04', 'Executive', 0, ''),
+('S-05', 'Executive', 0, ''),
+('S-06', 'Presidential', 0, ''),
+('S-07', 'Presidential', 0, ''),
+('S-08', 'Presidential', 0, ''),
+('S-09', 'Presidential', 0, ''),
+('S-10', 'Presidential', 0, ''),
+('S-11', 'Junior', 0, ''),
+('S-12', 'Junior', 0, ''),
+('S-13', 'Junior', 0, ''),
+('S-14', 'Junior', 0, ''),
+('S-15', 'Junior', 0, '');
+
+
