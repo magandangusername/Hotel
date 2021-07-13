@@ -19,14 +19,21 @@ body::after {
 {
     background-image: linear-gradient(to right, #56c596,#1f2f98);
     
+    
+}
+
+.nav-item{
+    padding-left: -120px;
+   
 }
 
 .navbar-brand{
-    color: white;
+    color: rgb(255, 255, 255);
     font-family: sans-serif;
     font-size: 40%;
 }
 #navtabs{
+    margin-top: -20px;
     padding-top: 10px;
     padding-bottom: 1px; 
     background-color: #ffffff;
@@ -34,13 +41,18 @@ body::after {
 
 #slider{
     padding-top:1px;
-    padding-bottom:10px;
+    
     
 }
 
+#sliders{
+    padding-top:-20px;
+    padding-bottom:100px;
+    
+}
 #all{
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 .nav-nav-pills{
     background-color: deepskyblue!important;
@@ -50,7 +62,10 @@ body::after {
 /*--------availabitlity--------f------*/
 
 #availability{
-   margin-top: 1px;
+   
+   background-image: linear-gradient(to right, #56c596,#1f2f98);
+   padding-bottom: 10px;
+   padding-top: 20px;
    
 }
 
@@ -71,10 +86,41 @@ max-width: 45px;
 }
 
 .col-auto{
-margin-left: 10px;
+margin-left: 15px;
 margin-right: 5px;
+padding-top: 5px;
+
 }
 
+.form-control-nam{
+max-width: 45px;
+
+}
+
+
+.form-control-nam1{
+max-width: 45px;
+margin-left: 132px;
+
+}    
+.form-control-nam2{
+    max-width: 45px;
+    margin-left: 132px;
+    
+ } 
+.form-control-nam3{
+     max-width: 45px;
+     
+ } 
+#searching{
+    max-width: 235px;
+    
+    
+    
+} 
+#promotitle{
+    margin-left: 15px ;
+}
 /*--------location and num------------*/
 .containers{
     
@@ -112,9 +158,14 @@ margin-right: 5px;
 }
 
 /*--------service------------*/
+#service{
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    padding-top: 10px;
+}
 .container1{
     margin-top: 5%;
     padding-bottom: 20px;
+   
 }
 .card{
     position: relative;
@@ -156,6 +207,9 @@ margin-right: 5px;
 
 .card:hover .card-text{
     top: 20px;
+}
+.card-title{
+    font-weight: bold;
 }
 
 /*--------roomandsuites------------*/
@@ -314,13 +368,14 @@ margin-right: 5px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     margin-top: 40px;
     padding-top: 50px;
+    
 }
 
 .title1::before {
     content: '';
     background: #ffffff;
     height: 2px;
-    width: 250px;
+    width: 300px;
     margin-left: 140px;
     margin-right: auto;
     margin-bottom: 0px;
@@ -346,18 +401,34 @@ margin-right: 5px;
 #promopic1{
     height: 300px;
     margin-top: -50px;
-    margin-left: 12px;
+    margin-left: 17px;
 }
 
 .containerss{
     background-color: white;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-top: 25px;
+}
+.containersdeluxe{
+
     padding-top: 5px;
 }
+
+.containerssh{
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 8px;
+}
+
 #promopic2{
     height: 300px;
     margin-top: -50px;
-    margin-left: -12px;
+    margin-left: -18px;
+}
+.rightfix{
+    padding-right: 50px;
 }
 
 .abouts2{
@@ -368,10 +439,10 @@ margin-right: 5px;
 }
 .bonustitle{
     text-align: center;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 .bonusbonus{
-    margin-left: 100px;
+    margin-left: 140px;
     margin-top: 50px;
 }
 #bonusbonus{
@@ -401,6 +472,9 @@ margin-right: 5px;
 .titless{
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     text-align: center;
+    padding-top: 10px;
+    color: white;
+    padding-bottom: 20px;
 }
 
 
@@ -408,23 +482,51 @@ margin-right: 5px;
 .containerrese{
     padding-left: 10px;
     margin-left: -10px;
+    margin-top: -20px;
+    margin-bottom: -4px;
     
 }
 .titlecheck{
+    
+    margin-bottom: 5px;
+
+    padding-bottom: 10px;
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    color: white;
+    
+}
+.titlechecks{
     margin-top: 5px;
     margin-bottom: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    color: black;
     
 }
+#wowo{
+    margin-left: 50px;
+    padding-bottom: 20px;
+}
+#wowo1{
+    margin-left: 50px;
+    padding-bottom: 20px;
+}
+#wowo2{
+    margin-left: 50px;
+    padding-bottom: 20px;
+}
+
 .reservetitle{
     color: white;
-    text-align: center;
+    text-align: Left;
+    padding-top: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .roomrates{
-   
+    padding-top: 15px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
 }
 
@@ -432,6 +534,10 @@ margin-right: 5px;
     color: white;
     text-align: left;
     margin-top: 10px;
+}
+.col-md-12{
+    
+    padding-bottom: 5px;
 }
 .pandr{
     color: white;
@@ -538,13 +644,24 @@ margin-right: 5px;
 .slider {
     padding-right: 10px;
     padding-left: 15px;
-
+}
+.carousel{
+    margin-bottom: -10px;
 }
 
 
 /*--------checkout------------*/
 .containercheck{
-    background-color:white ;
+    background-color:rgb(175, 112, 112);
+    padding-bottom: 10px;
+
+}
+.containercheckuser{
+    padding-bottom: 5px;
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+}
+.label{
+    color: black;
 }
 
 .form-group{
@@ -565,21 +682,48 @@ margin-right: 5px;
 }
 .personals{
     color: black;
+    margin-left: 40px;
 }
 .buttwo{
     text-align: center;
     padding-top: 20px;
 }
+#twobutt{
+     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+     padding-top: 20px;
+     padding-bottom: 40px;
+}
 
 /*---modifyresreve-------*/
 .modifhy{
     text-align: left;
+    padding-left: 40px;
+}
+.containermod{
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    color: white;
+    padding-bottom: 10px;
+
+}
+#backmod{
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 0.9em;
 }
 .containermodi{
     background-color:white ;
 }
 .modifhye{
     text-align: center;
+    padding-bottom: 10px;
+    line-height: 0.5em;
+   
+}
+
+.userinfo{
+    padding-left: 100px;
 }
 .containernew{
     background-color:rgb(141, 121, 121) ;
@@ -592,17 +736,32 @@ margin-right: 5px;
     padding-right: 50px;
     margin-right: 50px;
     margin-left: 50px;
+    padding-bottom: 100px;
 }
 #modifyone{
     background-color: white;
-    padding-bottom: 100px;
+    padding-bottom: 10px;
+}
+#modify{
+    padding-top: -10px;
+}
+
+#modifytwo{
+    padding-bottom: 10px;
+    margin-left: 40px;
+}
+
+.modifhys{
+    text-align: left;
+    padding-left: 40px;
 }
 
 #pindot{
     text-align: center;
 }
 .containerchecks{
-    background-color:rgb(161, 255, 38) ;
+    background-color:rgb(109, 148, 59) ;
+    padding-bottom: 10px;
 }
 
 .mid{
@@ -610,3 +769,196 @@ margin-right: 5px;
     color:white;
 }
 
+.col-auto-first{
+    margin-left: 20px;
+   
+}
+
+/*-------availdate----*/
+
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.calendar {
+    background-color: #fff;
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin-bottom: 90px;
+
+}
+
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 40px 30px;
+    text-align: center;
+    background-color: #2ecc71;
+    color: #fff;
+}
+.monthh {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 40px 30px;
+    text-align: center;
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.weekdays {
+    background-color: #27ae60;
+    color: #fff;
+    padding: 7px 0;
+    display: flex;
+}
+.weekdayss {
+    background-color: #27ae60;
+    color: #fff;
+    padding: 7px 0;
+    display: flex;
+}
+
+.days {
+    font-weight: 300;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.dayss {
+    font-weight: 300;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.weekdays div,
+.days div {
+    text-align: center;
+    width: 14.28%;
+}
+.weekdayss div,
+.dayss div {
+    text-align: center;
+    width: 14.28%;
+}
+
+.days div {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    transition: all 0.4s;
+}
+.dayss div {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    transition: all 0.4s;
+}
+
+.prev_date {
+    color: #999;
+}
+.prevv_date {
+    color: #999;
+}
+
+
+.days div:hover {
+    cursor: pointer;
+    background-color: #dfe6e9
+}
+.dayss div:hover {
+    cursor: pointer;
+    background-color: #dfe6e9
+}
+
+.prev,
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 23px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.prevv,
+.nextt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 23px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.prev:hover,
+.next:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.prevv:hover,
+.nextt:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#month {
+    font-size: 30px;
+    font-weight: 500;
+}
+#monthhs {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+.availtitles{
+    text-align: center;
+}
+
+#footleg{
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+/*----searcj------*/
+
+.searchlabels{
+    font-weight: bold;
+    color: black;
+}
+
+
+.searchlabel{
+    
+    color: black;
+}
+
+#search{
+    background-color: white;
+    padding-bottom: 40px;
+}
+
+
+#buttsearch{
+    padding-left: 20px;
+    padding-right: 20px;
+}

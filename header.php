@@ -134,7 +134,7 @@
     <section id="navtabs">
       <div class="container">
 
-        <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3 nav-fill justify-content-center" id="pills-tab" role="tablist">
           <li class="nav-item">
             <a class="nav-link <?php
                                 if ($url === 'index.php') {
@@ -161,11 +161,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link <?php
-                                if ($url === 'reservation.php' || $url === 'search.php' || $url === 'modifyreservation.php' || $url === 'editUser.php' || $url === 'modifyroom.php' || $url === 'checkout.php' || $url === 'review.php') {
+                                if ($url === 'avail.php' || $url === 'search.php' || $url === 'modifyreservation.php' || $url === 'editUser.php' || $url === 'modifyroom.php' || $url === 'checkout.php' || $url === 'review.php') {
                                   echo 'active';
                                 }
 
-                                ?>" href="reservation.php">Reservation</a>
+                                ?>" href="avail.php">Reservation</a>
           </li>
 
         </ul>
@@ -201,7 +201,7 @@
                                     echo 'active';
                                   }
 
-                                  ?>" href="reservation.php">Booking </a>
+                                  ?>" href="avail.php">Booking </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?php
@@ -213,5 +213,7 @@
             </li>
           </ul>
         </div>
+      </section>  
+    </section>  
       <?php } ?>
-    </section>
+    

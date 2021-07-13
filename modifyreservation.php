@@ -5,10 +5,15 @@ include_once 'header.php';
          <!---------------------------------modify------------------------------->
          <section id="modify">
              <div class="containermod">
-                <a href="reservation.php" type="button"  class="btn btn-primary"> Back </a>
-                <h1 class="modifhye">Modify Reservation</h1>
+                
+                    <a href="reservation.php" type="button"  id ="backmod" class="btn btn-primary"> Back </a>
+                
+                    <h1 class="modifhye">Modify Reservation</h1>
+               
              </div>
         </section>
+
+        
 
         <section id ="modifyone">
             <div class="containermodi">
@@ -18,24 +23,27 @@ include_once 'header.php';
                 <div class="row lg-2 align-items-center">
 
                     <div class="col-md-6">
-                        <p>Name: John MArk SAga</p>
+                        <p class="userinfo">Name: John MArk SAga</p>
                     </div>
                     <div class="col-md-6">
                         <p>Email: JohnMArkSAga@gmail</p>
                     </div>
                     <div class="col-md-6">
-                        <p>Confirmation Number: 09184178294</p>
+                        <p class ="userinfo">Confirmation Number: 09184178294</p>
                     </div>    
                     <div class="col-md-6">
                         <a href="editUser.php" input type="button" class="btn btn-primary"> Edit Personal Information  </a>
                     </div>
-                
-                <hr/>
+        </section>        
 
+                    <hr/>
+
+        <section id ="modifytwo">
                     <div class="col-12"></div>
-                        <h2 class="modifhys">Room Information</h2>
+                        <h2 class="">Room Information</h2>
                 </div>        
         </div> 
+        </section>
         
         <section id ="bannerss">
             <div class="containernew">
@@ -63,12 +71,13 @@ include_once 'header.php';
 
                    <div class ="col-md-6 terms">
                        <h3 class="term">Description Baby</h3>
-                       <a href="modifyroom.php" input type="button" id ="pindot" class="btn btn-primary"> Edit Room </a>
+                       <button type="button" id ="pindot" class="btn btn-primary"> Delete Booking </button>
+                       <a href="modifyroom.php" input type="button" id ="pindot" class="btn btn-primary"> Edit Room </a>                       
                    </div>
 
                 </div>
             </div>
-        </section>   
+          
     </section>
 
     <div class="containerchecks">

@@ -4,12 +4,12 @@ include_once 'header.php';
          <!---------------------------------modify------------------------------->
          <section id="modify">
              <div class="containermod">
-                <a href="reservation.php" type="button"  class="btn btn-primary"> Back </a>
+             <a href="modifyreservation.php"  input type="button"  id="backmod" class="btn btn-primary"> Back </a>
                 <h1 class="modifhye">Review Reservation</h1>
              </div>
         </section>
 
-        <section id ="modifyone">
+        <section id ="wowo">
             <div class="containermodi">
                 
                     <h2 class="modifhy">Guest Information</h2>
@@ -28,14 +28,17 @@ include_once 'header.php';
                     <div class="col-md-6">
                         <p>Confirmation Number: 09184178294</p>
                     </div>    
-                
+        </section>       
+
                 <hr/>
 
+        <section id ="modifytwo">
                     <div class="col-12"></div>
                         <h2 class="modifhys">Room Information</h2>
                 </div>        
         </div> 
-        
+        </section>
+
         <section id ="bannerss">
             <div class="containernew">
                 <div class="row">
@@ -67,44 +70,48 @@ include_once 'header.php';
                 </div>         
             </div>
         </section>   
-            
-        <h1 class="personals">Payment Information</h1>
-        <div class="form-group form-inline">
-            <label>Payment Type</label>
-            <select name="name_with_initials" id="">
-                        <option selected="selected" value="mister">Mr.</option>
-                        <option value="misis">1.</option>
-                        <option value="miss">2.</option>
-            </select>   
-        </div>
-        <section>
-            <div class="row">
+        
+        <hr />
+                    <section id="wowo2">
+                            <h1 class="personals">Payment Information</h1>
+                            <div class="form-group form-inline">
+                                <label>Payment Type</label>
+                                <select name="name_with_initials" id="">
+                                            <option selected="selected" value="mister">Mr.</option>
+                                            <option value="misis">1.</option>
+                                            <option value="miss">2.</option>
+                                </select>   
+                            </div>
+                        
+                            <div class="col-md-6  ">
+                                <label for="first"> Cardholder Name:</label>
+                                <input type="text" class="form-control" id="first" disabled>
+                            </div>
+                            <div class="col-md-5  ">
+                                <label for="email">Cardholder Number:</label>
+                                <input type="text" class="form-control" id="email" disabled>
+                            </div>
+                            
+                       
 
-                <div class="col-md-6 ">
-                    <label for="first"> Cardholder Name:</label>
-                    <input type="text" class="form-control" id="first" disabled>
-                </div>
-                <div class="col-md-6  ">
-                    <label for="email">Cardholder Number:</label>
-                    <input type="text" class="form-control" id="email" disabled>
-                </div>
-            
+                            <div class="col-3 ">
+                                <label>Expiration Date</label>
+                            </div>
+                                <div class="col-3 ">            
+                                    <label for="last">M</label>
+                                    <input type="text" class="form-control" id="last" disabled>
+                                </div>
+                                <div class="col-3">
+                                    <label for="last">Y</label>
+                                    <input type="text" class="form-control" id="last"disabled >
+                                 </div>       
+                    </section>                                     
+                </form>
+            </div>
+        </div>  
+    
+                
 
-                <div class="col-md-2 ">
-                    <label>Expiration Date</label>
-                </div>
-
-                    <div class="col-md-2 ">            
-                        <label for="last">M</label>
-                        <input type="text" class="form-control" id="last" disabled>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="last">Y</label>
-                        <input type="text" class="form-control" id="last"disabled >
-                    </div>  
-            </div>     
-        </section>     
-    </section>
 
     <div class="containerchecks">
         <div class="row g-2 justify-content-center">

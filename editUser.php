@@ -5,11 +5,13 @@ include_once 'header.php';
     <section id ="forms">
         <div class="checkout">
             <div class="titlecheck">
-                <a href="modifyreservation.php"  input type="button" class="btn btn-primary"> Back </a>
-                <h1 class="reservetitle">Edit User Information</h1>
-            </div> 
-
-            <div class="containercheck">
+                <a href="modifyreservation.php"  input type="button"  id="backmod" class="btn btn-primary"> Back </a>
+                <h1 class="modifhye">Edit User Information</h1>
+            </div>
+        </div>             
+    </section>       
+    <section id="useredits">
+            <div class="containerchecks">
                 <div class="row g-2 justify-content-center">
 
                     <div class="col-auto">
@@ -26,10 +28,12 @@ include_once 'header.php';
                     </div>
                 </div>
             </div>
-        <div class="containercheck">
-            <div class="titlecheck">
+    </section>       
+        <div class="containercheckuser">
+            <div class="titlechecks">
                 <form class="row g-3"  id="whitey" action="" method="post">
                     <h1 class="personals">Personal Information</h1>
+                    <section id="wowo">
                         <div class="form-group form-inline">
                             <label>Title</label>
                             <select name="name_with_initials" id="">
@@ -39,7 +43,7 @@ include_once 'header.php';
                             </select>   
                         </div>
                             
-
+            
                             <div class="col-md-6 ">
                                 <label for="first"> First Name:</label>
                                 <input type="text" class="form-control" id="first">
@@ -59,9 +63,9 @@ include_once 'header.php';
                                 <label for="reemail">Re-Type Email Address:</label>
                                 <input type="text" class="form-control" id="reemail">
                             </div>
-
+                    </section>
                             <hr />
-
+                    <section id="wowo1">
                             <h1 class="personals">Address</h1>
                             
                                 <div class="col-md-6  ">
@@ -78,9 +82,11 @@ include_once 'header.php';
                                     <label for="last">Mobile Number:</label>
                                     <input type="text" class="form-control" id="last">
                                 </div>
+                        
+                    </section>
 
-                                <hr />
-
+                    <hr />
+                    <section id="wowo2">
                             <h1 class="personals">Payment Information</h1>
                             <div class="form-group form-inline">
                                 <label>Payment Type</label>
@@ -99,29 +105,26 @@ include_once 'header.php';
                                 <label for="email">Cardholder Number:</label>
                                 <input type="text" class="form-control" id="email" disabled>
                             </div>
-                        
-                            <div class="col-12"></div>
+                            
+                       
 
-                            <div class="col-2 ">
+                            <div class="col-3 ">
                                 <label>Expiration Date</label>
                             </div>
-
-                                <div class="col-2 ">            
+                                <div class="col-3 ">            
                                     <label for="last">M</label>
                                     <input type="text" class="form-control" id="last" disabled>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <label for="last">Y</label>
                                     <input type="text" class="form-control" id="last"disabled >
-                                 </div>                             
+                                 </div>  
+                                     
+                    </section>                                     
                 </form>
             </div>
         </div>  
-    </div>
-</section>
-
-
-
+    
                  <section id ="twobutt">
                      <div class="row">
                          <p class="privacy">ito ang privacy ni papi skye</p>
@@ -134,6 +137,8 @@ include_once 'header.php';
                         </div>
                     </div>
                  </section>
-</section>
+
+
+
 </body>
 </html>

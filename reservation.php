@@ -1,99 +1,40 @@
 <?php 
 include_once 'header.php';
 ?>
-    
+<section id ="all">
     <!-----------availability----------->
 
     <section id ="availabilityrese">
         <div class="containerrese">
             <div class="titlecheck">
-                <h1 class="reservetitle">Check Availability</h1>
+                <h1 class="reservetitle">Rooms & Rates</h1>
             </div> 
-            <div class="shadow-sm p-1 bg-body rounded">
-                <form action="" method="POST" onsubmit="">
-                    <div class="row g-2 align-items-center">
-                        <div class="col-auto">
-                            <label for="inputCheckIn" class="col-form-label">Check-In</label>
-                        </div>
-                        <div class="col-auto">
-                            <input class="form-control" type ="date" id="CheckIn" name="CheckIn"  type="text" onchange="checkcalendar()"/>
-                        </div>  
-                        
-                        <div class="col-auto">
-                            <label for="inputCheckOut" class="col-form-label">Check-Out</label>
-                        </div>
+    </section>            
 
-                        <div class="col-auto">
-                            <input class="form-control" type ="date" id="CheckOut" name="CheckOut"  type="text" onchange="checkcalendar()"/>
-                        </div> 
+    <section id="useredits">
+            <div class="containerchecks">
+                <div class="row g-2 justify-content-center">
 
-                        <div class="col-auto vertical">
-                            <label for="inputAdult" class="col-form-label">Adult</label>
-                        </div> 
-
-                        <div class="col-auto">
-                        <input class="form-control-num" type="number" name="guestcount" id ="adultcount" value="1" min="1">
-                        </div>
-
-
-                        <div class="col-auto">
-                            <label for="inputChild" class="col-form-label">Child</label>
-                        </div> 
-
-                        <div class="col-auto">
-                        <input class="form-control-num" type="number" name="guestcount" id ="childadult" value="0" min="0" max="3">
-                        </div>
-
-                        <div class="col-auto">
-                            <button type="submit" name="checkavail" class="btn btn-primary"> Check Availability </button>
-                        </div>
+                    <div class="col-auto">
+                        <p class="label">Your Stay</p>
                     </div>
-                </form>
-            </div>  
-        </div>   
-    </section>
+                    <div class="col-auto">
+                        <p class="label vertical" >room</p>
+                    </div>
+                    <div class="col-auto">
+                        <p class="label vertical" >adult</p>
+                    </div>
+                    <div class="col-auto">
+                        <p class="label">children</p>
+                    </div>
+                    <div class="col-auto">
+                        <p class="label">total rate</p>
+                    </div>
+                </div>
+            </div>
+    </section>       
 
-    <!---------------------------------slider------------------------------->
-    <section id ="slider">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="photos/place1.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="photos/place2.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="photos/place4.jpg" class="d-block w-100" alt="...">
-            </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </section>
-    <!-------promo and rates-------->
-    <div class="roomrates">
-        <div class="row">
-            <div class="col-md-3">
-                <h3 class="roomtxt">Room 1</h3>
-            </div> 
-            <div class="col-md-6">
-                <h1 class="pandr">Promotion and Rates</h1>
-            </div>
-        </div>
-    </div>
-    <!-------sliderish-------->
+
 
     <!--     EARLY BIRD   -->
     <section id="sliderish">

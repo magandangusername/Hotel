@@ -2,7 +2,7 @@
 include_once 'header.php';
 ?>
         <section id ="standroomtitle">
-            <div class="containerss">
+            <div class="containersdeluxe">
                 <div class="titless">
                   <h1 class="standardtitle">Executive Suite</h1>
               </div>

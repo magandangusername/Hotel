@@ -2,6 +2,7 @@
 include_once 'header.php';
 ?>
 
+<section id="all">
     <section id="search">
         <div class="container">
             <div class="row">
@@ -9,24 +10,30 @@ include_once 'header.php';
                     <h1>Modify Reservation</h1>
                 </div>
 
-                <div class="row mid">
-                    <div class="col-md-6 offset-md-3">
-                        <p>Search by confirmation  number</p>
-                        <p>Confirmation number:</p>
-                        <input type="number" class="form-control">
-                        <p>Email:</p>
-                        <input type ="text" class="form-control">
-                        <a href='modifyreservation.php'><button class="btn btn-light">Search</button></a>
-                        
-                    </div>    
+               
+            <div class="row">
+                <div class="col-md-6 col-md-offset-5">
+
+                        <p class="searchlabels">Search by confirmation  number</p>
+                        <p class="searchlabel"> Confirmation number:</p>
+                            <div class="col">
+                                <input type="text" id="searching" class="form-control ">
+                            </div>
+
+                        <p class="searchlabel">Email:</p>
+
+                            <div class="col">
+                                <input type ="text"  id="searching" class="form-control ">
+                            </div>    
+                            <div  class="col">
+                                <button class="btn btn-info" id ="buttsearch">Search</button>
+                            </div>
+                </div>
             </div>
             
 
         </div>
     </section>
-
-
-
 </section>
 </body>
 </html>    

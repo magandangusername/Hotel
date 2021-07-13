@@ -30,13 +30,13 @@ include_once 'header.php';
     </section>
 <!--------------------------------online exclusixe------------------------------>
     <section id ="promotiontitle">
-      <div class="containerss">
+      <div class="containerssh">
         <div class="container-lg">
           <div class="row">
             <div class ="col-md-6">
               <img src="photos/early bird1.png" id ="promopic2" class ="img-fluid">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 ">
                 <div class="title1">
                   <h1 class="bonustitle">Online Exclusive</h1>
                 </div>  

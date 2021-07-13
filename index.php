@@ -2,7 +2,7 @@
 include_once('header.php');
 
 ?>
-    
+
     <!---------------------------------slider------------------------------->
     <section id ="slider">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -10,6 +10,7 @@ include_once('header.php');
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
             <div class="carousel-inner">
             <div class="carousel-item active">
@@ -20,6 +21,9 @@ include_once('header.php');
             </div>
             <div class="carousel-item">
                 <img src="photos/place4.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="photos/place5.jpg" class="d-block w-100" alt="...">
             </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -120,14 +124,15 @@ include_once('header.php');
                         <div class="card text-center ">
                             <img src="photos/presidential.jpg" class="card-img-top">
                              <div class="card-body">
-                                <h5 class ="card-title">Suite room</h5>
+                                <h5 class ="card-title">Joint room</h5>
                                 <p class="card-text">King, Queen</p>
                                 <p class="card-texts">ito ay standard</p>
                              </div>
                         </div>
                     </div>
                         <div class="col text-center">
-                        <button type="button" id="seeall" class="btn btn-outline-info justify-content-center">See All Rooms & Suites</button>
+                        <a href="roomtab.php" input type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Rooms & Suites</a>
+                        
                     </div>
             </div>      
         </div>    
@@ -145,7 +150,7 @@ include_once('header.php');
                     <div class="card text-center">
                         <img src="photos/single.jpg" class="card-img-top">
                             <div class="card-body">
-                                <h5 class ="card-title">Standard room</h5>
+                                <h5 class ="card-title">Presidential Suite</h5>
                                 <p class="card-texts">ito ay standard</p>
                             </div>
                     </div>
@@ -154,7 +159,7 @@ include_once('header.php');
                     <div class="card text-center">
                         <img src="photos/single.jpg" class="card-img-top">
                             <div class="card-body">
-                                <h5 class ="card-title">Deluxe room</h5>
+                                <h5 class ="card-title">Executive Suite</h5>
                                 <p class="card-texts">ito ay standard</p>
                             </div>
                     </div>
@@ -163,19 +168,19 @@ include_once('header.php');
                         <div class="card text-center ">
                             <img src="photos/presidential.jpg" class="card-img-top">
                              <div class="card-body">
-                                <h5 class ="card-title">Suite room</h5>
+                                <h5 class ="card-title">Junior Suite</h5>
                                 <p class="card-texts">ito ay standard</p>
                              </div>
                         </div>
                     </div>
                         <div class="col text-center">
-                        <button type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Special Offers</button>
+                        <a href="promo.php" input type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Special Offers</a>
                     </div>
             </div>      
         </div>    
     </section> 
 
-</section>
+
 
 </body>
 </html>   

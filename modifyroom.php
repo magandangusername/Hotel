@@ -1,6 +1,8 @@
 <?php 
 include_once 'header.php';
 ?>
+
+<section id ="all">
     <!-----------availability----------->
 
     <section id ="availabilityrese">

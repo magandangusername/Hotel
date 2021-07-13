@@ -8,7 +8,7 @@
     <div class="container">
         <div class="shadow-sm p-1 bg-body rounded">
             <form action="" method="POST" onsubmit="">
-                <div class="row g-2 align-items-center">
+                <div class="row g-2 align-items-center ">
                     <div class="col-auto">
                         <label for="inputCheckIn" class="col-form-label">Check-In</label>
                     </div>
@@ -25,6 +25,14 @@
                     </div>
 
                     <div class="col-auto vertical">
+                        <label for="inputRoom" class="col-form-label">Room</label>
+                    </div> 
+
+                    <div class="col-auto">
+                        <input class="form-control-num" type="number" name="guestcount" id ="roomcount" value="1" min="1">
+                    </div>
+
+                    <div class="col-auto ">
                         <label for="inputAdult" class="col-form-label">Adult</label>
                     </div>
 

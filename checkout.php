@@ -4,11 +4,15 @@ include_once 'header.php';
 <!--------------------------------checkout------------------------------>
 <section id="forms">
     <div class="checkout">
-        <div class="titlecheck">
-            <button type="button" href="reservation.php" class="btn btn-primary"> Back </button>
-            <h1 class="reservetitle">Checkout</h1>
+         <div class="titlecheck">
+            <a href="modifyreservation.php"  input type="button"  id="backmod" class="btn btn-primary"> Back </a>
+            <h1 class="modifhye">Checkout</h1>
         </div>
-        <div class="containercheck">
+    </div>
+</section>
+
+    <section id="useredits">
+        <div class="containerchecks">
             <div class="row g-2 justify-content-center">
 
                 <div class="col-auto">
@@ -25,10 +29,13 @@ include_once 'header.php';
                 </div>
             </div>
         </div>
-        <div class="containercheck">
-            <div class="titlecheck">
+    </section>
+
+        <div class="containercheckuser">
+            <div class="titlechecks">
                 <form class="row g-3" id="whitey" action="" method="post">
                     <h1 class="personals">Personal Information</h1>
+                    <section id="wowo">
                     <div class="form-group form-inline">
                         <label>Title</label>
                         <select name="name_with_initials" id="">
@@ -58,9 +65,9 @@ include_once 'header.php';
                         <label for="reemail">Re-Type Email Address:</label>
                         <input type="text" class="form-control" id="reemail" name='reemail'>
                     </div>
-
+                </section>
                     <hr />
-
+                <section id="wowo1">
                     <h1 class="personals">Address</h1>
 
                     <div class="col-md-6  ">
@@ -77,9 +84,11 @@ include_once 'header.php';
                         <label for="last">Mobile Number:</label>
                         <input type="text" class="form-control" id="last" name='mobilenum'>
                     </div>
+                </section>
 
                     <hr />
 
+                <section id="wowo2">
                     <h1 class="personals">Payment Information</h1>
                     <div class="form-group form-inline">
                         <label>Payment Type</label>
@@ -99,8 +108,7 @@ include_once 'header.php';
                         <input type="text" class="form-control" id="email" name='chnum' disabled>
                     </div>
 
-                    <div class="col-12"></div>
-
+                  
                     <div class="col-2 ">
                         <label>Expiration Date</label>
                     </div>
@@ -113,27 +121,25 @@ include_once 'header.php';
                         <label for="last">Y</label>
                         <input type="text" class="form-control" id="last" name='year' disabled>
                     </div>
-                </form>
-            </div>
+                </section>  
+            </form>
         </div>
     </div>
-</section>
+    
 
+            <section id="twobutt">
+                <div class="row">
+                    <p class="privacy">ito ang privacy ni papi skye</p>
+                </div>
 
+                <div class="row ">
+                    <div class="buttwo">
+                        <button type="button" class="btn btn-primary"> Review Reservation </button>
+                        <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
+                    </div>
+                </div>
+            </section>
 
-<section id="twobutt">
-    <div class="row">
-        <p class="privacy">ito ang privacy ni papi skye</p>
-    </div>
-
-    <div class="row ">
-        <div class="buttwo">
-            <button type="button" class="btn btn-primary"> Review Reservation </button>
-            <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
-        </div>
-    </div>
-</section>
-</form>
 </body>
 
 </html>
