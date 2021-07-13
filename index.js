@@ -1,7 +1,7 @@
 const run = () => {
-    console.log("hello");
-}
-// this is test
+        console.log("hello");
+    }
+    // this is test
 function calendar() {
     var today = new Date();
     var dd = today.getDate();
@@ -26,10 +26,7 @@ function calendar() {
 
 
 
-function checkcalendar() {
-
-
-
+function checkcalendarin() {
     var checkin = document.getElementById("CheckIn");
     var checkout = document.getElementById("CheckOut");
     var checkinval = checkin.value;
@@ -41,5 +38,20 @@ function checkcalendar() {
         newDate.setDate(newDate.getUTCDate() + 1);
         var futureDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (newDate.getDate())).slice(-2);
         checkout.value = futureDate;
+    }
+}
+
+function checkcalendarout() {
+    var checkin = document.getElementById("CheckIn");
+    var checkout = document.getElementById("CheckOut");
+    var checkinval = checkin.value;
+    var checkoutval = checkout.value;
+
+
+    if (checkinval >= checkoutval) {
+        var newDate = new Date(checkoutval);
+        newDate.setDate(newDate.getUTCDate() - 1);
+        var futureDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (newDate.getDate())).slice(-2);
+        checkin.value = futureDate;
     }
 }

@@ -13,7 +13,7 @@
                         <label for="inputCheckIn" class="col-form-label">Check-In</label>
                     </div>
                     <div class="col-auto">
-                        <input class="form-control" type="date" id="CheckIn" name="CheckIn" type="text" onchange="checkcalendar()"/>
+                        <input class="form-control" type="date" id="CheckIn" name="CheckIn" type="text" onchange="checkcalendarin()"/>
                     </div>
 
                     <div class="col-auto">
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="col-auto">
-                        <input class="form-control" type="date" id="CheckOut" name="CheckOut" type="text" onchange="checkcalendar()"/>
+                        <input class="form-control" type="date" id="CheckOut" name="CheckOut" type="text" onchange="checkcalendarout()"/>
                     </div>
 
                     <div class="col-auto vertical">
@@ -70,7 +70,7 @@
                 <label for="inputCheckIn" class="col-form-label">Check-In</label>
             </div>
             <div class="col-auto">
-                <input class="form-control" type ="date" id="CheckIn" name="CheckIn"  type="text"/>
+                <input class="form-control" type ="date" id="CheckIn" name="CheckIn"  type="text" onchange="checkcalendarin()"/>
             </div>  
             
             <div class="col-auto">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="col-auto">
-                <input class="form-control" type ="date" id="CheckOut" name="CheckOut"  type="text"/>
+                <input class="form-control" type ="date" id="CheckOut" name="CheckOut"  type="text" onchange="checkcalendarout()"/>
             </div> 
 
             <div class="row row-cols-4">
@@ -111,7 +111,7 @@
                 <label for="inputCheckIn" class="col-form-label">Check-In</label>
             </div>
             <div class="col-auto">
-                <input class="form-control" type ="date" id="CheckIn" name="CheckIn"  type="text"/>
+                <input class="form-control" type ="date" id="CheckIn" name="CheckIn"  type="text" onchange="checkcalendarin()"/>
             </div>  
             
             <div class="col-auto">
@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-auto">
-                <input class="form-control" type ="date" id="CheckOut" name="CheckOut"  type="text"/>
+                <input class="form-control" type ="date" id="CheckOut" name="CheckOut"  type="text" onchange="checkcalendarout()"/>
             </div> 
 
             <div class="row row-cols-4">

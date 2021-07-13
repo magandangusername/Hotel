@@ -120,7 +120,7 @@ include_once 'header.php';
     </div>
 
     <div class="col-md-6">
-    <h4 class="checkingout"> Check-Out</h4>
+        <h4 class="checkingout"> Check-Out</h4>
         <div class="calendar">
             <div class="monthh">
                 <div class="prevv" onclick="moveDate('prev')">
