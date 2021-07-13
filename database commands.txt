@@ -2,159 +2,255 @@ create database mondstadt_hotel;
 
 use mondstadt_hotel;
 
-CREATE TABLE data_store (
-confirmation_number varchar(255),
-guest_code varchar(255),
-room_code varchar(255),
-payment_code varchar(255)
+CREATE TABLE amenities (
+    amenities_number varchar(255),
+    a1 varchar(255),
+    a2 varchar(255),
+    a3 varchar(255),
+    a4 varchar(255),
+    a5 varchar(255),
+    a6 varchar(255),
+    a7 varchar(255),
+    a8 varchar(255),
+    a9 varchar(255),
+    a10 varchar(255),
+    PRIMARY KEY (amenities_number)
 );
 
-CREATE TABLE reservation_table (
-confirmation_number varchar(255),
-arrival_date date,
-departure_date date,
-guest_code varchar(255),
-room_code varchar(266),
-PRIMARY KEY (confirmation_number)
+
+CREATE TABLE cancellation_requests (
+    crqc varchar(255),
+    confirmation_number varchar(255),
+    request_on datetime,
+    approval_status tinyint(1),
+    approved_on datetime,
+    PRIMARY KEY (crqc)
 );
 
-CREATE TABLE suite_list (
-suite_number varchar(255),
-suite_type varchar(255),
-status tinyint(1),
-confirmation_number varchar(255),
-PRIMARY KEY (suite_number)
+
+CREATE TABLE data_collection (
+    data_number varchar(255),
+    guest_code varchar(255),
+    payment_code varchar(255),
+    confirmation_number varchar(255),
+    PRIMARY KEY (data_number)
 );
 
-CREATE TABLE calculated_rate (
-rate_code varchar(255),
-room_type varchar(255),
-base_price float,
-service_charge float,
-tax float,
-vat float,
-total float,
-PRIMARY KEY (rate_code)
-);
 
 CREATE TABLE guest_information (
-guest_code varchar(255),
-title varchar(255),
-first_name varchar(255),
-last_name varchar(255),
-address varchar(255),
-city varchar(255),
-email_address varchar(255),
-payment_code varchar(255),
-PRIMARY KEY (guest_code)
+    guest_code varchar(255),
+    title varchar(255),
+    first_name varchar(255),
+    last_name varchar(255),
+    address varchar(255),
+    city varchar(255),
+    email_address varchar(255),
+    payment_code varchar(255),
+    PRIMARY KEY (guest_code)
 );
+
+
+CREATE TABLE modification_request (
+    midc varchar(255),
+    confirmation_number varchar(255),
+    request_on datetime,
+    approval_status tinyint(1),
+    approved_on varchar(255),
+    PRIMARY KEY (midc)
+);
+
 
 CREATE TABLE payment_information (
-payment_code varchar(255),
-payment_type varchar(255),
-card_number varchar(255),
-card_holder_name varchar(255),
-expiration varchar(255),
-PRIMARY KEY (payment_code)
+    payment_code varchar(255),
+    payment_type varchar(255),
+    card_number varchar(255),
+    card_holder_name varchar(255),
+    expiration varchar(255),
+    PRIMARY KEY (payment_code)
 );
+
+
+CREATE TABLE promotion_description (
+    promotion_code varchar(255),
+    promotion_name varchar(255),
+    promotion_short_description varchar(255),
+    promotion_long_description varchar(255),
+    terms_conditions1 varchar(255),
+    terms_conditions2 varchar(255),
+    terms_conditions3 varchar(255),
+    promotion_start datetime,
+    promotion_end datetime,
+    overall_cut float,
+    PRIMARY KEY (promotion_code)
+);
+
+
+CREATE TABLE rate_description (
+    rate_name varchar(255),
+    rate_offer1 varchar(255),
+    rate_offer2 varchar(255),
+    rate_offer3 varchar(255),
+    base_discount float,
+    service_rate float,
+    city_tax float,
+    vat float,
+    PRIMARY KEY (rate_name)
+);
+
+
+CREATE TABLE reservation_table (
+    confirmation_number varchar(255),
+    arrival_date date,
+    departure_date date,
+    guest_code varchar(255),
+    rr_code varchar(255),
+    promotion_code varchar(255),
+    modified_on datetime,
+    cancelled_on datetime,
+    PRIMARY KEY (confirmation_number)
+);
+
 
 CREATE TABLE reserved_rooms (
-room_code varchar(255),
-room_number varchar(255),
-suite_number varchar(255),
-rate_code varchar(255),
-PRIMARY KEY (room_code)
+    rr_code varchar(255),
+    r1 varchar(255),
+    r2 varchar(255),
+    r3 varchar(255),
+    rate1 varchar(255),
+    rate2 varchar(255),
+    rate3 varchar(255),
+    PRIMARY KEY (rr_code)
 );
 
-CREATE TABLE room_list (
-room_number varchar(255),
-room_type varchar(255),
-bed varchar(255),
-status tinyint(1),
-confirmation_number varchar(255),
-PRIMARY KEY (room_number)
+
+CREATE TABLE room_description (
+    room_name varchar(255),
+    room_short_description varchar(255),
+    room_long_description varchar(255),
+    amenities_number varchar(255),
+    room_size varchar(255),
+    base_price float,
+    bed_type varchar(255),
+    PRIMARY KEY (room_name)
 );
 
-INSERT INTO calculated_rate (rate_code, room_type, base_price, service_charge, tax, vat, total)
-VALUES 
-('RDEB', 'DeluxeRoom', 3500, 175, 175, 105, 3955),
-('RDOE', 'DeluxeRoom', 3500, 125, 125, 75, 2825),
-('RJEB', 'JointRoom', 3850, 192.5, 192.5, 11.5, 4350.5),
-('RJOE', 'JointRoom', 2750, 137.5, 137.5, 82.5, 3107.5),
-('RSEB', 'StandardRoom', 2800, 140, 140, 224, 3248),
-('RSOE', 'StandardRoom', 2000, 100, 100, 60, 2260),
-('SEEB', 'ExecutiveSuite', 4900, 245, 245, 147, 5537),
-('SEOE', 'ExecutiveSuite', 3500, 175, 175, 105, 3955),
-('SJEB', 'JuniorSuite', 4550, 227.5, 227.5, 136.5, 5141.5),
-('SJOE', 'JuniorSuite', 4550, 227.5, 227.5, 136.5, 5141.5),
-('SPEB', 'PresidentialSuite', 5600, 280, 280, 168, 6328),
-('SPOE', 'PresidentialSuite', 4000, 200, 200, 120, 4520);
 
-INSERT INTO data_store (confirmation_number, guest_code, room_code, payment_code)
-VALUES 
-('20210121-1', 'GC-010', 'RC-011', 'PC-010'),
-('20210121-2', 'GC-010', 'RC-012', 'PC-010'),
-('20210121-3', 'GC-010', 'RC-013', 'PC-010'),
-('20212212-1', 'GC-020', 'RC-021', 'PC-010');
+CREATE TABLE room_status (
+    room_number varchar(255),
+    status tinyint(1),
+    confirmation_number varchar(255),
+    room_suite_name varchar(255),
+    room_suite_bed varchar(255),
+    PRIMARY KEY (room_number)
+);
 
-INSERT INTO guest_information (guest_code, title, first_name, last_name, address, city, email_address, payment_code)
-VALUES 
-('GC-010', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Johnmark@gmail.com', 'PC-010'),
-('GC-020', 'Mr', 'Blu Andrei', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-020');
 
-INSERT INTO payment_information (payment_code, payment_type, card_number, card_holder_name, expiration)
-VALUES 
+CREATE TABLE suite_description (
+    suite_name varchar(255),
+    suite_short_description varchar(255),
+    suite_long_desription varchar(255),
+    amenities_number varchar(255),
+    suite_size varchar(255),
+    base_price float,
+    bed_type varchar(255),
+    PRIMARY KEY (suite_name)
+);
+
+
+INSERT INTO amenities(amenities_number, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+VALUES
+('DA-1', 'King-size bed or queen size bed', 'Free local landline calls', 'High-quality toiletries', 'Hairdryer', 'Coffee and tea-maker', 'Marble bathroom with bathtub and walk-in shower', '', '', '', ''),
+('DA-2', 'King-size bed or queen size bed', 'Large writing desk with media control panel', 'Complimentary WiFi broadband Internet access', 'Minibar', 'Coffee and tea-maker', 'Marble bathroom with bathtub and walk-in shower', '', '', '', ''),
+('DA-3', 'King-size bed or queen size bed', 'Walk-in closet', 'Free local landline calls', 'Writing desk with media control panel', 'Dining area with dining table for six people', 'Wine chiller', '', '', '', ''),
+('DA-4', 'King-size bed or queen size bed', 'Walk-in closet', 'Dining area with dining table for eight people', 'Powder room', 'Kitchenette', 'Large writing desk with media control panel', 'DVD player (upon request)', 'Flat screen TV with international channels', 'IDD phone with voice message box', 'Nespresso coffee machine');
+
+
+INSERT INTO guest_information(guest_code, title, first_name, last_name, address, city, email_address, payment_code)
+VALUES
+('GC-010', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Chumnatics@gmail.com', 'PC-010'),
+('GC-020', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-020');
+
+
+INSERT INTO payment_information(payment_code, payment_type, card_number, card_holder_name, expiration)
+VALUES
 ('PC-010', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05/21'),
-('PC-020', 'Paymaya', '4111 1111 1111 1111', 'John Mark Scammaz Bordadora', '06/21');
+('PC-020', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06/21');
 
-INSERT INTO reservation_table (confirmation_number, arrival_date, departure_date, guest_code, room_code)
-VALUES 
-('20210121-1', '2021-01-21', '2021-05-21', 'GC-010', 'RC-011'),
-('20210121-2', '2021-01-21', '2021-05-21', 'GC-010', 'RC-012'),
-('20210121-3', '2021-01-21', '2021-05-21', 'GC-010', 'RC-013'),
-('20212212-1', '2021-22-12', '2021-05-21', 'GC-020', 'RC-021');
 
-INSERT INTO reserved_rooms (room_code, room_number, rate_code)
-VALUES 
-('RC-011', 'R-01', 'RSEB'),
-('RC-012', 'R-02', 'RSEB'),
-('RC-013', 'R-03', 'RSEB'),
-('RC-021', 'R-04', 'RSEB');
+INSERT INTO promotion_description(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut)
+VALUES
+('123456', 'Direct Booking', 'Direct reservations made by our guests are given a 10% discount on their overall booking', 'Enjoy a 10% overall booking discount by booking reservations directly on our website with a free dinner meal on us.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-21', '0.10'),
+('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2021-08-31', ''),
+('123612', 'Summer Season', 'Exclusive only for the summer season, enjoy a 15% discount on overall booking this summer', 'A treat for the summer season, enjoy 15% discount on overall booking and cool off on our hotel and escape from the summer heat.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-31', '0.15');
 
-INSERT INTO room_list (room_number, room_type, bed, status, confirmation_number)
-VALUES 
-('R-01', 'Standard', 'Queen', 1, '20210121-1'),
-('R-02', 'Standard', 'Queen', 1, '20210121-2'),
-('R-03', 'Standard', 'King', 1, '20210121-3'),
-('R-04', 'Standard', 'King', 1, '20212212-1'),
-('R-05', 'Standard', 'King', 0, ''),
-('R-06', 'Deluxe', 'King', 0, ''),
-('R-07', 'Deluxe', 'King', 0, ''),
-('R-08', 'Deluxe', 'King', 0, ''),
-('R-09', 'Deluxe', 'King', 0, ''),
-('R-10', 'Deluxe', 'King', 0, ''),
-('R-11', 'Joint', 'Queen', 0, ''),
-('R-12', 'Joint', 'Queen', 0, ''),
-('R-13', 'Joint', 'King', 0, ''),
-('R-14', 'Joint', 'King', 0, ''),
-('R-15', 'Joint', 'King', 0, '');
 
-INSERT INTO suite_list (suite_number, suite_type, status, confirmation_number)
-VALUES 
-('S-01', 'Executive', 0, ''),
-('S-02', 'Executive', 0, ''),
-('S-03', 'Executive', 0, ''),
-('S-04', 'Executive', 0, ''),
-('S-05', 'Executive', 0, ''),
-('S-06', 'Presidential', 0, ''),
-('S-07', 'Presidential', 0, ''),
-('S-08', 'Presidential', 0, ''),
-('S-09', 'Presidential', 0, ''),
-('S-10', 'Presidential', 0, ''),
-('S-11', 'Junior', 0, ''),
-('S-12', 'Junior', 0, ''),
-('S-13', 'Junior', 0, ''),
-('S-14', 'Junior', 0, ''),
-('S-15', 'Junior', 0, '');
+INSERT INTO rate_description(rate_name, rate_offer1, rate_offer2, rate_offer3, base_discount, service_rate, city_tax, vat)
+VALUES
+('Best Available Rate', 'Free Wifi', '30% Discount on nightly charge', 'Breakfast Meal', 0.30, 0.05, 0.09, 0.04),
+('Bonus Stay', 'Free Wifi', 'One night on us after a three consecutive day of stay', '', '', 0.04, 0.10, 0.03),
+('Online Exclusive', 'Free Wifi', '50% Discount on nightly charge', '', 0.05, 0.06, 0.11, 0.05);
+
+
+INSERT INTO reservation_table(confirmation_number, arrival_date, departure_date, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
+VALUES
+('20210121', '2021-01-21', '2021-05-21', 'GC-010', 'RR-011', '123456', '2021-01-02', ''),
+('20212212', '2021-12-22', '2021-12-25', 'GC-020', 'RR-021', '123457', '', '2021-01-02');
+
+
+INSERT INTO reserved_rooms(rr_code, r1, r2, r3, rate1, rate2, rate3)
+VALUES
+('RR-011', 'R-01', 'R-02', 'R-03', 'Best Available Rate', 'Best Available Rate', 'Best Available Rate'),
+('RR-012', 'R-05', '', '', 'Bonus Stay', '', '');
+
+
+INSERT INTO room_description(room_name, room_short_description, room_long_description, amenities_number, room_size, base_price, bed_type)
+VALUES
+('Deluxe Room', 'A Deluxe experience like no other with a better amenities and deluxe space', 'Our deluxe room offers an a spacious room with an authentic interior that is stylish and comforting for our guests with a wonderful and plump pillow for a truly refreshing sleep', 'DA-2', '37', '5000', 'KQ'),
+('Joint Room', 'A room for a family or a group of friends with a queen or king bed', 'A room made for your family or group of friends with our joint rooms spacious interior with a multiple king or queen bed in place for a comforting sleep for the all of the guests', 'DA-1', '50', '5500', 'K'),
+('Standard Room', 'An affordable room for our guests that offers a wide range of amenities', "A spacious but affordable retreat, Standard rooms are designed with simplicity and comfort in mind, a sophisticated ambience that doesn't break the bank.", 'DA-1', '36', '4400', 'KQ');
+
+
+INSERT INTO room_status(room_number, status, confirmation_number, room_suite_name, room_suite_bed)
+VALUES
+('R-1', 1, '213451231', 'Standard Room', 'Queen Bed'),
+('R-2', 1, '213451223', 'Standard Room', 'King Bed'),
+('R-3', 0, '', 'Standard Room', 'Queen Bed'),
+('R-4', 0, '', 'Deluxe Room', 'Queen Bed'),
+('R-5', 0, '', 'Deluxe Room', 'King Bed'),
+('R-6', 0, '', 'Deluxe Room', 'King Bed'),
+('R-7', 0, '', 'Joint Room', 'King Bed'),
+('R-8', 0, '', 'Joint Room', 'King Bed'),
+('R-9', 0, '', 'Joint Room', 'Queen Bed'),
+('R-10', 0, '', 'Presidential Suite', 'King Bed'),
+('R-11', 0, '', 'Presidential Suite', 'King Bed'),
+('R-12', 0, '', 'Presidential Suite', 'Queen Bed'),
+('R-13', 0, '', 'Junior Suite', 'Queen Bed'),
+('R-14', 0, '', 'Junior Suite', 'Queen Bed'),
+('R-15', 0, '', 'Junior Suite', 'King Bed'),
+('R-16', 0, '', 'Executive Suite', 'King Bed'),
+('R-17', 0, '', 'Executive Suite', 'King Bed'),
+('R-18', 0, '', 'Executive Suite', 'Queen Bed');
+
+
+INSERT INTO suite_description(suite_name, suite_short_description, suite_long_desription, amenities_number, suite_size, base_price, bed_type)
+VALUES
+('Executive Suite', 'Mondstadt Executive Suite is a stylish one-bedroom suite with king or queen size bed decorated in neutral tones.', 'A stylish one bedroom suite with king or queen size bed, 60 square meeters in size with a separate living and dining area. Additional amenities are also included', 'DA-3', '60', 7000, 'KQ'),
+('Junior Suite', 'A single room with a bed and sitting area a simple but accomdating suite', 'A simple but sophisticated design inside the suite, with a sleeping area separate from living room. Good for business trips and such', 'DA-3', '60', 6000, 'KQ'),
+('Presidential Suite', 'A grand experience that is like of a president, presidential suite offers the best that mondstadt hotel has', 'Presidential suite offers the best of mondstadt hotel with multiple rooms, a grand design with an emphasis of grandeur, high-quality amenities a presidential experience', 'DA-4', '110', 6500, 'KQ');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
