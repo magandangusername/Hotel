@@ -28,4 +28,4 @@ if you have done the installation commands before and want to pull:
 HARD RESET: if everything messes up or displays error and you dont know what to do anymore, just reset everything and force pull from our repository (WARNING: this will reset all changes you have and follows what the repository contains)
 
 1. type: git fetch --all
-2. then type: git reset --hard origin/master
+2. then type: git reset --hard origin/main
