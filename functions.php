@@ -1,5 +1,5 @@
 <?php
-if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php' || $url === 'checkout.php') {
+//if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php' || $url === 'checkout.php') {
     /*
     my notes:
     - add validation function
@@ -81,10 +81,14 @@ if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php'
       
 
     }
-    if (isset($_POST['chooseroomeb'])) {
-      $roomtype;
-      if (isset($_POST['bed'])) {
+    if (isset($_POST['chooseroom'])) {
+      if (isset($_POST['room_type']) && isset($_POST['rate_type']) && isset($_POST['bed'])) {
+        $roomtype = $_POST['room_type'];
+        $ratetype = $_POST['rate_type'];
         $bed = $_POST['bed'];
+      } else {
+        echo "AN ERROR OCCURED TRYING TO SUBMIT";
       }
+      
     }
-  }
+  //}

@@ -1,5 +1,11 @@
 <?php 
 include_once 'header.php';
+
+/*
+reminder to the designer:
+- teach me senpai how this giant calendar works
+- im still a little confused
+*/
 ?>
 
 
@@ -13,7 +19,7 @@ include_once 'header.php';
                         <label for="inputCheckIn" class="col-form-label">Check-In</label>
                     </div>
                     <div class="col-auto">
-                        <input class="form-control" type="date" id="CheckIn" name="CheckIn" type="text" onchange="checkcalendar()"/>
+                        <input class="form-control" type="date" id="CheckIn" name="CheckIn" type="text" onchange="checkcalendarin()"/>
                     </div>
 
                     <div class="col-auto">
@@ -21,7 +27,7 @@ include_once 'header.php';
                     </div>
 
                     <div class="col-auto">
-                        <input class="form-control" type="date" id="CheckOut" name="CheckOut" type="text" onchange="checkcalendar()"/>
+                        <input class="form-control" type="date" id="CheckOut" name="CheckOut" type="text" onchange="checkcalendarout()"/>
                     </div>
                     <div class="col-auto ">
                         <label for="inputRoom" class="col-form-label">Room</label>
@@ -76,6 +82,7 @@ include_once 'header.php';
                     <div class="col-auto">
                         <input class="form-control-nam3" type="number" name="guestcountchild" id="childadult" value="0" min="0">
                     </div> 
+                    
             </div>
                 </div>
             </form>

@@ -73,7 +73,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link <?php
-                                if ($url === 'avail.php' || $url === 'search.php' || $url === 'modifyreservation.php' || $url === 'editUser.php' || $url === 'modifyroom.php' || $url === 'checkout.php' || $url === 'review.php') {
+                                if ($url === 'avail.php' || $url === 'search.php' || $url === 'modifyreservation.php' || $url === 'editUser.php' || $url === 'modifyroom.php' || $url === 'checkout.php' || $url === 'review.php' || $url === 'reservation.php') {
                                   echo 'active';
                                 }
 
