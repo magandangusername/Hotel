@@ -99,7 +99,7 @@ include_once 'header.php';
                                         }
                                         $base_discount = $base_price*$base_discount;
 
-                                        $totalprice = ($base_discount*$service_rate) + ($base_discount*$city_tax) + ($base_discount*$vat);
+                                        $totalprice = $base_discount + ($base_discount*$service_rate) + ($base_discount*$city_tax) + ($base_discount*$vat);
                                         $totalprice = number_format($totalprice, 2);
                                     ?>
                                     <p class="sizey">34-36 sqm</p>
