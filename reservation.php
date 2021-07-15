@@ -96,51 +96,57 @@ note to everyone:
                         <div class="col-md-12" id="avilnows">
                             <div class="cards">
                                 <?php
-                                
-                                
+                                    $type = $result['room_suite_name'];
+                                    $base_price = "SELECT room_size, base_price, image_name FROM room_description WHERE room_name LIKE '%$type%'";
+                                    
+                                    $base_price = $conn->query($base_price);
+                                    $base_price = $base_price->fetch_row();
+                                    
+                                    if ($base_price) {
+                                        $file_name = $base_price[2];
+                                        $room_size = $base_price[0];
+                                        $base_price = $base_price[1];
+                                        
+                                    } else {
+                                        $base_price = "SELECT suite_size, base_price, image_name FROM suite_description WHERE suite_name LIKE '%$type%'";
+                                        
+                                        $base_price = $conn->query($base_price);
+                                        $base_price = $base_price->fetch_row();
+                                        $file_name = $base_price[2];
+                                        $room_size = $base_price[0];
+                                        $base_price = $base_price[1];
+                                        
+                                    }
+
+                                    $rate_name = $ratesdescription['rate_name'];
+                                    $roomprice = "SELECT base_discount, service_rate, city_tax, vat FROM rate_description WHERE rate_name LIKE '%$rate_name%'";
+                                    $roomprice = $conn->query($roomprice);
+                                    $roomprice = $roomprice->fetch_row();
+
+                                    
+                                    
+                                    $base_discount = $roomprice[0];
+                                    $service_rate = $roomprice[1];
+                                    $city_tax = $roomprice[2];
+                                    $vat = $roomprice[3];
+
+                                    if($base_discount === 0){
+                                        $base_discount = $base_price;
+                                    }
+                                    $base_discount = $base_price*$base_discount;
+                                    $new_price = $base_price - $base_discount;
+
+                                    $totalprice = $new_price + ($new_price*$service_rate) + ($new_price*$city_tax) + ($new_price*$vat);
+                                    $totalprice = number_format($totalprice, 2);
+
                                 ?>
-                                <img src="photos/bonus stay.png" class="card-img-top">
+                                <img src="photos/<?php echo $file_name ?>" class="card-img-top">
                                 <form action="" method="POST">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $result['room_suite_name']; ?></h5>
-                                        <?php 
-                                            $type = $result['room_suite_name'];
-                                            $base_price = "SELECT room_size, base_price FROM room_description WHERE room_name LIKE '%$type%'";
-                                            $base_price = $conn->query($base_price);
-                                            $base_price = $base_price->fetch_row();
-                                            if ($base_price) {
-                                                $room_size = $base_price[0];
-                                                $base_price = $base_price[1];
-                                            } else {
-                                                $base_price = "SELECT suite_size, base_price FROM suite_description WHERE suite_name LIKE '%$type%'";
-                                                $base_price = $conn->query($base_price);
-                                                $base_price = $base_price->fetch_row();
-                                                $room_size = $base_price[0];
-                                                $base_price = $base_price[1];
-                                            }
-                                            
-                                            
-                                            $rate_name = $ratesdescription['rate_name'];
-                                            $roomprice = "SELECT base_discount, service_rate, city_tax, vat FROM rate_description WHERE rate_name LIKE '%$rate_name%'";
-                                            $roomprice = $conn->query($roomprice);
-                                            $roomprice = $roomprice->fetch_row();
+                                        
 
-                                            
-                                            
-                                            $base_discount = $roomprice[0];
-                                            $service_rate = $roomprice[1];
-                                            $city_tax = $roomprice[2];
-                                            $vat = $roomprice[3];
 
-                                            if($base_discount === 0){
-                                                $base_discount = $base_price;
-                                            }
-                                            $base_discount = $base_price*$base_discount;
-                                            $new_price = $base_price - $base_discount;
-
-                                            $totalprice = $new_price + ($new_price*$service_rate) + ($new_price*$city_tax) + ($new_price*$vat);
-                                            $totalprice = number_format($totalprice, 2);
-                                        ?>
                                         <p class="sizey"><?php echo $room_size ?> sqm</p>
                                         <p class ="none">City View, Free Wifi</p>
                                         <a href="#" class="none">Read More</a>
