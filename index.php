@@ -100,40 +100,66 @@ include_once('header.php');
             </div>
             
             <div class ="row">
-                <div class="col-md-3 ">
-                    <div class="card text-center">
-                        <img src="photos/single.jpg" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class ="card-title">Standard room</h5>
-                                <p class="card-text">King, Queen</p>
-                                <p class="card-texts">ito ay standard</p>
-                            </div>
-                    </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="card text-center">
-                        <img src="photos/single.jpg" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class ="card-title">Deluxe room</h5>
-                                <p class="card-text">King, Queen</p>
-                                <p class="card-texts">ito ay standard</p>
-                            </div>
-                    </div>
-                </div>
+                <?php 
+                    $roomtype = "SELECT DISTINCT room_suite_name FROM room_status LIMIT 3";
+                    $roomtype = $conn->query($roomtype);
+
+                    while($result = $roomtype->fetch_assoc()) {
+                        $type = $result['room_suite_name'];
+                        $base_price = "SELECT room_short_description, image_name, bed_type FROM room_description WHERE room_name LIKE '%$type%'";
+                        
+                        $base_price = $conn->query($base_price);
+                        $base_price = $base_price->fetch_row();
+                        
+                        $bed_type = '';
+                        
+
+                        if ($base_price) {
+                            $file_name = $base_price[1];
+                            $short_desc = $base_price[0];
+                            $bed_type = $base_price[2];
+                            
+                        } else {
+                            $base_price = "SELECT suite_short_description, image_name, bed_type FROM suite_description WHERE suite_name LIKE '%$type%'";
+                            
+                            $base_price = $conn->query($base_price);
+                            $base_price = $base_price->fetch_row();
+                            $file_name = $base_price[1];
+                            $short_desc = $base_price[0];
+                            $bed_type = $base_price[2];
+                        }
+                        
+                        $k = 'K';
+                        $q = 'Q';
+                        $kq = 'King Bed';
+                        $beds = '';
+                        if(preg_match("/{$k}/i", $bed_type)) {
+                            $beds = $beds.'King Bed';
+                        }
+                        
+                        if(preg_match("/{$q}/i", $bed_type)) {
+                            if(preg_match("/{$kq}/i", $beds)) {
+                                $beds = $beds.', ';
+                            }
+                            $beds = $beds.'Queen Bed';
+                        }
+
+                ?>
                     <div class="col-md-3 ">
-                        <div class="card text-center ">
-                            <img src="photos/presidential.jpg" class="card-img-top">
-                             <div class="card-body">
-                                <h5 class ="card-title">Joint room</h5>
-                                <p class="card-text">King, Queen</p>
-                                <p class="card-texts">ito ay standard</p>
-                             </div>
+                        <div class="card text-center">
+                            <img src="photos/<?php echo $file_name ?>" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class ="card-title"><?php echo $result['room_suite_name'] ?></h5>
+                                <p class="card-text"><?php echo $beds ?></p>
+                                <p class="card-texts"><?php echo $short_desc ?></p>
+                            </div>
                         </div>
                     </div>
-                        <div class="col text-center">
-                        <a href="roomtab.php" input type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Rooms & Suites</a>
-                        
-                    </div>
+                <?php } ?>
+                <div class="col text-center">
+                    <a href="roomtab.php" input type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Rooms & Suites</a>
+                    
+                </div>
             </div>      
         </div>    
     </section> 
@@ -146,36 +172,28 @@ include_once('header.php');
             </div>
             
             <div class ="row">
+            <?php 
+                $date = date("Y-m-d h:i:sa");
+                $promos = "SELECT * FROM promotion_description WHERE promotion_start <= '$date' AND promotion_end >= '$date' LIMIT 3";
+                $promos = $conn->query($promos);
+            
+                $rows = 0;
+            
+                while ($promo = $promos->fetch_assoc()) {
+            ?>
                 <div class="col-md-3 ">
                     <div class="card text-center">
-                        <img src="photos/single.jpg" class="card-img-top">
+                        <img src="photos/<?php echo $promo['image_name'] ?>" class="card-img-top">
                             <div class="card-body">
-                                <h5 class ="card-title">Presidential Suite</h5>
-                                <p class="card-texts">ito ay standard</p>
+                                <h5 class ="card-title"><?php echo $promo['promotion_name'] ?></h5>
+                                <p class="card-texts"><?php echo $promo['promotion_short_description'] ?></p>
                             </div>
                     </div>
                 </div>
-                <div class="col-md-3 ">
-                    <div class="card text-center">
-                        <img src="photos/single.jpg" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class ="card-title">Executive Suite</h5>
-                                <p class="card-texts">ito ay standard</p>
-                            </div>
-                    </div>
+            <?php } ?>
+                <div class="col text-center">
+                    <a href="promo.php" input type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Special Offers</a>
                 </div>
-                    <div class="col-md-3 ">
-                        <div class="card text-center ">
-                            <img src="photos/presidential.jpg" class="card-img-top">
-                             <div class="card-body">
-                                <h5 class ="card-title">Junior Suite</h5>
-                                <p class="card-texts">ito ay standard</p>
-                             </div>
-                        </div>
-                    </div>
-                        <div class="col text-center">
-                        <a href="promo.php" input type="button" id ="seeall" class="btn btn-outline-info justify-content-center">See All Special Offers</a>
-                    </div>
             </div>      
         </div>    
     </section> 

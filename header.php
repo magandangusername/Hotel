@@ -65,7 +65,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link <?php
-                                if ($url === 'promo.php' || $url === 'bonuspromo.php' || $url === 'onlinepromo.php' || $url === 'earlypromo.php') {
+                                if ($url === 'promo.php' || $url === 'bonuspromo.php' || $url === 'onlinepromo.php' || $url === 'earlypromo.php' || $url === 'promocontent.php') {
                                   echo 'active';
                                 }
 
