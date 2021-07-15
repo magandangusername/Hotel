@@ -95,6 +95,10 @@ note to everyone:
                     
                         <div class="col-md-12" id="avilnows">
                             <div class="cards">
+                                <?php
+                                
+                                
+                                ?>
                                 <img src="photos/bonus stay.png" class="card-img-top">
                                 <form action="" method="POST">
                                     <div class="card-body">

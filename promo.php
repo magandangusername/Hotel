@@ -1,81 +1,73 @@
-<?php 
+<?php
 include_once 'header.php';
+/*
+note to designer:
+- fix the design, i think it messed up a little from looping
+*/
 ?>
-    <!--------------------------------title------------------------------>
+<section id="promotiontitle">
+  <div class="containerss">
+    <div class="titles">
+      <h1 class="promotionstitle">Promotions</h1>
+    </div>
+  </div>
+</section>
 
-    <section id ="promotiontitle">
-        <div class="containerss">
-            <div class="titles">
-             <h1 class="promotionstitle">Promotions</h1>
-            </div> 
+<?php
 
-          <div class="container-lg">
-            <div class="row">
-              <div class="col-md-6">
-                  <div class="title1">
-                    <h1 class="earlytitle">Bonus Stay</h1>
-                  </div>  
-                    <p class ="abouts1"> Guest will enjoy the last night of stay their stay for free for three nights stay at Mondstadt. </p>
-                  <div class="promobonus">
-                    <button class ="btn btn-light" id ="promobonus"><a href="bonuspromo.php" class="text-decoration-none"> Learn More</a></button>
-                    <button class ="btn btn-light" id ="promobonus"><a href="bonuspromo.php" class="text-decoration-none"> Book Now</a></button>
-                  </div>   
-              </div>
-              <div class ="col-md-6">
-                <img src="photos/early bird1.png" id ="promopic1" class ="img-fluid">
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
-<!--------------------------------online exclusixe------------------------------>
-    <section id ="promotiontitle">
-      <div class="containerssh">
-        <div class="container-lg">
-          <div class="row">
-            <div class ="col-md-6">
-              <img src="photos/early bird1.png" id ="promopic2" class ="img-fluid">
-            </div>
-            <div class="col-md-6 ">
-                <div class="title1">
-                  <h1 class="bonustitle">Online Exclusive</h1>
-                </div>  
-                  <p class ="abouts2"> Available only for online reservation, guest will enjoy a breakfast and a dinner meal in their first full day of stay. </p>
-                <div class="bonusbonus">
-                  <button class ="btn btn-light" id ="bonusbonus"><a href="onlinepromo.php" class="text-decoration-none"> Learn More</a></button>
-                  <button class ="btn btn-light" id ="bonusbonus"><a href="onlinepromo.php" class="text-decoration-none"> Book Now</a></button>
-                </div>   
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<!--------------------------------early------------------------------>
-    <section id ="promotiontitle">
-      <div class="containerss">
-        <div class="container-lg">
-          <div class="row">
+$date = date("Y-m-d h:i:sa");
+$promos = "SELECT * FROM promotion_description WHERE promotion_start <= '$date' AND promotion_end >= '$date'";
+$promos = $conn->query($promos);
+
+$rows = 0;
+
+while ($promo = $promos->fetch_assoc()) {
+  $rows += 1;
+?>
+
+  <section id="promotiontitle">
+    <div class="containerss">
+      <div class="container-lg">
+        <div class="row">
+        <?php if($rows % 2 == 0) { ?>
             <div class="col-md-6">
-                <div class="title1">
-                  <h1 class="earlytitle">Early Bird</h1>
-                </div>  
-                  <p class ="abouts1"> Guest will enjoy the last night of stay their stay for free for three nights stay at Mondstadt. </p>
-                <div class="promobonus">
-                  <button class ="btn btn-light" id ="promobonus"><a href="earlypromo.php" class="text-decoration-none"> Learn More</a></button>
-                  <button class ="btn btn-light" id ="promobonus"><a href="earlypromo.php" class="text-decoration-none"> Book Now</a></button>
-                </div>   
+              <img src="photos/<?php echo $promo['image_name'] ?>" id="promopic2" class="img-fluid">
             </div>
-            <div class ="col-md-6">
-              <img src="photos/early bird1.png" id ="promopic1" class ="img-fluid">
+        <?php } ?>
+          <div class="col-md-6">
+            <div class="title1">
+              <h1 class="earlytitle"><?php echo $promo['promotion_name'] ?></h1>
+            </div>
+            <p class="abouts1"> <?php echo $promo['promotion_short_description'] ?> </p>
+            <div class="promobonus">
+              <form method="POST" action="">
+                <a href="<?php 
+                $page = strtolower(preg_replace('/\s+/', '', $promo['promotion_name']));
+                echo $page;?>.php" class="text-decoration-none btn btn-light">Learn More</a>
+                <!-- <a href="bonuspromo.php" class="text-decoration-none"><button class="btn btn-light" id="promobonus"> Book Now</button></a> -->
+                
+                <button class="btn btn-light" id="promobonus" name="booknow" type="submit"> Book Now</button>
+              </form>
             </div>
           </div>
+          <?php if($rows % 2 == 1) { ?>
+          <div class="col-md-6">
+            <img src="photos/<?php echo $promo['image_name'] ?>" id="promopic1" class="img-fluid">
+          </div>
+          <?php } ?>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+
+
+<?php } ?>
+
 
 
 
 </section>
 </body>
-</html>
 
+</html>
