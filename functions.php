@@ -138,7 +138,7 @@
               $_SESSION['command3'] = "";
               $submit3 = $_SESSION['command3'];
             }
-            header("Location: editUser.php");
+            header("Location: checkout.php");
             echo 'it works';
           }
           if($_SESSION['rooms'] > $_SESSION['room']) {
