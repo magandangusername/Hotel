@@ -29,7 +29,7 @@
                     </div> 
 
                     <div class="col-auto">
-                        <input class="form-control-num" type="number" name="guestcount" id ="roomcount" value="1" min="1">
+                        <input class="form-control-num" type="number" name="roomcount" id ="roomcount" value="1" min="1" max="3">
                     </div>
 
                     <div class="col-auto ">
