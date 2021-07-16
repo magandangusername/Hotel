@@ -1,5 +1,13 @@
 <?php 
 include_once 'header.php';
+/*
+notes to designer:
+- fix the design, u can notice whats wrong
+*/
+
+if(isset($_GET['room'])){
+    include_once 'room.php';
+} else {
 ?>
          <!---------------------------------slider------------------------------->
     <section id ="slider">
@@ -36,21 +44,30 @@ include_once 'header.php';
         <div class="container4">
             <div class="row row-cols-3 row-cols-lg-3">
 
-
-                <div class="col">
-                    <a href="standard.php"> <img src="photos/single.jpg"></a>
-                </div>
-                <div class="col">
-                    <h3>Standard Room</h3>
-                    <p>this is standard</p>
-                </div>
+                <?php
+                    $rooms = "SELECT room_name, room_short_description, image_name FROM room_description";
+                    $rooms = $conn->query($rooms);
+                    while($room = $rooms->fetch_assoc()) {
+                ?>
+                    <div class="col">
+                        <a href="roomtab.php?room=<?php echo $room['room_name'] ?>"> <img src="photos/<?php echo $room['image_name'] ?>"></a>
+                    </div>
+                    <div class="col">
+                        <h3><?php echo $room['room_name'] ?></h3>
+                        <p><?php echo $room['room_short_description'] ?></p>
+                    </div>
+                    
+                <?php
+                    }
+                ?>
                 <div class="col-lg-2" id="availnow">
                     <h3> Room</h3>
                     <p>this is standard</p>
                     <a href="">see latest room offers</a>
                 </div>
+                <?php include_once 'checkavailability.php'?>
 
-
+<!-- 
                 <div class="col">
                     <a href="deluxe.php"><img src="photos/single.jpg"></a>
                 </div>
@@ -59,15 +76,14 @@ include_once 'header.php';
                     <p>this is standard</p>
                    
                 </div>
-                <?php include_once 'checkavailability.php'?>
-
+                
                 <div class="col">
                     <a href="joint.php"><img src="photos/single.jpg"></a>
                 </div>
                 <div class="col">
                     <h3>Joint Room</h3>
                     <p>this is standard</p>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -84,3 +100,5 @@ include_once 'header.php';
 
 </body>
 </html>    
+
+<?php } ?>

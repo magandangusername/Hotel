@@ -62,7 +62,7 @@
 
 
 
-<?php if ($url === 'roomtab.php') { 
+<?php if ($url === 'roomtab.php' || $url === 'suitestab.php') { 
     if (isset($_SESSION['availabilityCheck'])) {
         if ($_SESSION['availabilityCheck'] === false) { ?>
             <div class="col-lg-3" id="availnow">

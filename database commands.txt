@@ -151,7 +151,7 @@ CREATE TABLE suite_description (
     suite_name varchar(255),
     image_name varchar(255) COLLATE utf8_unicode_ci,
     suite_short_description varchar(255),
-    suite_long_desription varchar(255),
+    suite_long_description varchar(255),
     amenities_number varchar(255),
     suite_size varchar(255),
     base_price float,
@@ -235,7 +235,7 @@ VALUES
 ('R-18', 0, '', 'Executive Suite', 'Queen Bed');
 
 
-INSERT INTO suite_description(suite_name, image_name, suite_short_description, suite_long_desription, amenities_number, suite_size, base_price, bed_type)
+INSERT INTO suite_description(suite_name, image_name, suite_short_description, suite_long_description, amenities_number, suite_size, base_price, bed_type)
 VALUES
 ('Executive Suite', 'presidential.jpg', 'Mondstadt Executive Suite is a stylish one-bedroom suite with king or queen size bed decorated in neutral tones.', 'A stylish one bedroom suite with king or queen size bed, 60 square meeters in size with a separate living and dining area. Additional amenities are also included', 'DA-3', '60', 7000, 'KQ'),
 ('Junior Suite', 'presidential.jpg', 'A single room with a bed and sitting area a simple but accomdating suite', 'A simple but sophisticated design inside the suite, with a sleeping area separate from living room. Good for business trips and such', 'DA-3', '60', 6000, 'KQ'),

@@ -1,5 +1,13 @@
 <?php 
 include_once 'header.php';
+/*
+notes to designer:
+- fix the design, u can notice whats wrong
+*/
+
+if(isset($_GET['suite'])){
+    include_once 'room.php';
+} else {
 ?>
          <!---------------------------------slider------------------------------->
     <section id ="slider">
@@ -37,71 +45,28 @@ include_once 'header.php';
             <div class="row row-cols-3 row-cols-lg-3">
 
 
-                <div class="col">
-                    <a href="executive.php"><img src="photos/single.jpg"></a>
-                </div>
-                <div class="col">
-                    <h3>Executive Suite </h3>
-                    <p>this is standard</p>
-                </div>
+            <?php
+                    $rooms = "SELECT suite_name, suite_short_description, image_name FROM suite_description";
+                    $rooms = $conn->query($rooms);
+                    while($room = $rooms->fetch_assoc()) {
+                ?>
+                    <div class="col">
+                        <a href="suitestab.php?suite=<?php echo $room['suite_name'] ?>"> <img src="photos/<?php echo $room['image_name'] ?>"></a>
+                    </div>
+                    <div class="col">
+                        <h3><?php echo $room['suite_name'] ?></h3>
+                        <p><?php echo $room['suite_short_description'] ?></p>
+                    </div>
+                    
+                <?php
+                    }
+                ?>
                 <div class="col-lg-2" id="availnow">
-                    <h3> Suites</h3>
+                    <h3> Room</h3>
                     <p>this is standard</p>
                     <a href="">see latest room offers</a>
                 </div>
-
-
-                <div class="col">
-                    <a href="junior.php"><img src="photos/single.jpg"></a>
-                </div>
-                <div class="col">
-                    <h3>Junior Suite</h3>
-                    <p>this is standard</p>
-                </div>
-                <div class="col-lg-3" id="availnow">
-                    <div class="col-auto">
-                        <label for="inputCheckIn" class="col-form-label">Check-In</label>
-                    </div>
-                    <div class="col-auto">
-                        <input class="form-control" type ="date" id="CheckIn" name="date"  type="text"/>
-                    </div>  
-                    
-                    <div class="col-auto">
-                        <label for="inputCheckOut" class="col-form-label">Check-Out</label>
-                    </div>
-
-                    <div class="col-auto">
-                        <input class="form-control" type ="date" id="CheckOut" name="date"  type="text"/>
-                    </div> 
-
-                    <div class="row row-cols-4">
-                        <div class="col">
-                            <label for="inputRoom" class="col-form-label">Room</label>          
-                            <input class="form-control-num" type="number" name="roomcount" id ="roomcount" value="1" min="1">
-                        </div>
-                   
-                        <div class="col">
-                            <label for="inputAdult" class="col-form-label">Adult</label>                       
-                            <input class="form-control-num" type="number" name="guestcount" id ="adultcount" value="1" min="1">
-                        </div>
-                     
-                        <div class="col">
-                            <label for="inputChild" class="col-form-label">Child</label>
-                            <input class="form-control-num" type="number" name="guestcount" id ="childadult" value="1" min="1">
-                        </div>
-                    </div>
-                        <div class="col-auto">
-                        <button type="button" id ="roomcheck" class="btn btn-primary"> Check Availability </button>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <a href="presidential.php"><img src="photos/single.jpg"></a>
-                </div>
-                <div class="col">
-                    <h3>Presidential Suite</h3>
-                    <p>this is standard</p>
-                </div>
+                <?php include_once 'checkavailability.php'?>
 
             </div>
         </div>
@@ -111,3 +76,5 @@ include_once 'header.php';
 </section>
 </body>
 </html>    
+
+<?php } ?>

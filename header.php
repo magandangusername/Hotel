@@ -25,9 +25,9 @@
 </head>
 
 <body <?php
-      if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php' || $url === 'avail.php') {
+      //if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php' || $url === 'avail.php') {
         echo "onLoad='calendar()'";
-      }
+      //}
       ?>>
   <!----title--->
   <section id="title">

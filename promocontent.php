@@ -10,7 +10,9 @@ $date = date("Y-m-d h:i:sa");
 $promotion = "SELECT * FROM promotion_description WHERE promotion_name = '$promo_name'";
 $promotion = $conn->query($promotion);
 $promotion = $promotion->fetch_row();
-
+// if(!$promotion) {
+//   $promotion = 'ERROR';
+// }
 
 ?>
 <!----------banner------------>
