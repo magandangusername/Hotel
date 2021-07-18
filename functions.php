@@ -51,8 +51,16 @@ if (isset($_POST['checkavail'])) {
 
   if (isset($_POST['promocode'])) {
     $promocode = $_POST['promode'];
+  } else {
+    $promocode = '';
   }
 
+  $promotioncheck = "SELECT * FROM promotion_description WHERE promotion_code = '$promocode'";
+  $promotioncheck = $conn->query($promotioncheck);
+  $promotioncheck = $promotioncheck->fetch_row();
+  if(!$promotioncheck){
+    echo "<h1>ERROR: Promotion code does not exists.</h1>";
+  }
 
   $totalrooms = "SELECT COUNT(room_number) AS total_rooms FROM room_status";
   $total = $conn->query($totalrooms);
