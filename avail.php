@@ -14,7 +14,7 @@ reminder to the designer:
     <div class="container">
         <div class="shadow-sm p-1 bg-body rounded">
             <form action="" method="POST" onsubmit="">
-                <div class="row g-2 align-items-center ">
+                <div class="row g-2 align-items-center justify-content-center ">
                     <div class="col-auto">
                         <label for="inputCheckIn" class="col-form-label">Check-In</label>
                     </div>
@@ -57,7 +57,7 @@ reminder to the designer:
                     
              <div class="row g-2 align-items-center">
                     
-
+                
                     <div class="col-auto">
                         <label for="inputpromo" id ="promotitle" class="col-form-label">Promotion Code</label>
                     </div>
@@ -65,25 +65,46 @@ reminder to the designer:
                     <div class="col-auto">
                         <input class="form-control" type="text" name="promocode" id="promopromo" >
                     </div>
+                
+                    <div class="col-auto ">
+                        <label for="inputAdult" id="newlabel" class="col-form-label">Adult</label>
+                    </div>
 
-                    <div class="col-md-3 ms-md-auto">
+                    <div class="col-auto">
                         <input class="form-control-nam1" type="number" name="guestcountchild" id="childadult" value="0" min="0">
                     </div>
 
                     <div class="col-auto">
+                        <label for="inputChild" class="col-form-label">Child</label>
+                    </div>
+                    
+                    <div class="col-auto">
                         <input class="form-control-nam" type="number" name="guestcountchild" id="childadult" value="0" min="0">
                     </div>
-                </div>                
-             <div class="row g-2 align-items-center">
-                <div class="col-md-3 ms-md-auto">
-                        <input class="form-control-nam2" type="number" name="guestcountchild" id="childadult" value="0" min="0">
-                    </div>
 
-                    <div class="col-auto">
-                        <input class="form-control-nam3" type="number" name="guestcountchild" id="childadult" value="0" min="0">
-                    </div> 
+                    <div class="row g-2 align-items-center">
                     
-            </div>
+                        <div class="col-auto">
+                            <label for="inputAdult" id="newlabel" class="col-form-label">Adult</label>
+                        </div>
+
+                        <div class="col-auto">
+                            <input class="form-control-nam1" type="number" name="guestcountchild" id="childadult" value="0" min="0">
+                        </div>
+
+                        <div class="col-auto">
+                            <label for="inputChild" class="col-form-label">Child</label>
+                        </div>
+                        
+                        <div class="col-auto">
+                            <input class="form-control-nam" type="number" name="guestcountchild" id="childadult" value="0" min="0">
+                        </div>
+
+                    </div>
+                </div>  
+             </div>    
+            </div>                
+             
                 </div>
             </form>
         </div>
@@ -91,6 +112,7 @@ reminder to the designer:
 </section>
 <!------calendar--------->
 <body onload="renderDate()">
+<section id="backcolor">
 <section id="availtitle">
     <h1 class="availtitles">Availability Calendar</h1>
 
@@ -162,7 +184,7 @@ reminder to the designer:
     <button type="sumbit" name="checkavail" id ="roomcheck" class="btn btn-primary"> Modify/Cancel</button>
     <a href ="reservation.php"  input type="sumbit" name="checkavail" id ="roomcheck" class="btn btn-primary"> Check Availability </a>
     </section>        
-
+</section>
     
     <script>
         var dt = new Date();

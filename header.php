@@ -31,22 +31,18 @@
       ?>>
   <!----title--->
   <section id="title">
-    <nav class="navbar ">
+    <nav class="navbar">
       <div class="container-fluid justify-content-center">
-        <a class="navbar-brand " href="#" font-size="40%">
+        <a class="navbar-brand " href="index.php" id="titulo" font-size="40%">
           Mondstadt Hotel
-          <img src="photos/leftarrow.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+          <img src="photos/logomondstadt.png" alt="" width="40" height="34" class="d-inline-block align-text-top">
         </a>
-      </div>
-    </nav>
-  </section>
-
-  <section id="all">
+   
     <!---------------------------------nav-bar------------------------------->
-    <section id="navtabs">
-      <div class="container">
+    
+      
 
-        <ul class="nav nav-pills mb-3 nav-fill justify-content-center" id="pills-tab" role="tablist">
+        <ul class="nav">
           <li class="nav-item">
             <a class="nav-link <?php
                                 if ($url === 'index.php') {
@@ -55,14 +51,17 @@
 
                                 ?>" href="index.php">Overview</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link <?php
-                                if ($url === 'roomtab.php' || $url === 'suitestab.php' || $url === 'standard.php' || $url === 'deluxe.php' || $url === 'joint.php' || $url === 'executive.php' || $url === 'junior.php' || $url === 'presidential.php') {
-                                  echo 'active';
-                                }
-
-                                ?>" href="roomtab.php">Room & Suites </a>
-          </li>
+          <li class="nav-item"> 
+            <div class="dropdown">
+              <a class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Rooms & Suites
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a class="dropdown-item" href="roomtab.php" type="button">Rooms</a></li>
+                <li><a class="dropdown-item" href="suitestab.php" type="button">Suites</a></li>
+              </ul>
+            </div>
+          </li>         
           <li class="nav-item">
             <a class="nav-link <?php
                                 if ($url === 'promo.php' || $url === 'bonuspromo.php' || $url === 'onlinepromo.php' || $url === 'earlypromo.php' || $url === 'promocontent.php') {
@@ -78,54 +77,16 @@
                                 }
 
                                 ?>" href="avail.php">Reservation</a>
-          </li>
-
+              </li>
         </ul>
       </div>
-      <?php if ($url === 'roomtab.php' || $url === 'suitestab.php' || $url === 'standard.php' || $url === 'deluxe.php' || $url === 'joint.php' || $url === 'executive.php' || $url === 'junior.php' || $url === 'presidential.php') { ?>
-        <div class="container">
-          <ul class="nav nav-pills justify-content-center " id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link <?php
-                                  if ($url === 'roomtab.php' || $url === 'standard.php' || $url === 'deluxe.php' || $url === 'joint.php') {
-                                    echo 'active';
-                                  }
-
-                                  ?>" href="roomtab.php">Room </a>
-            </li>
-            <li class="nav-item <?php
-                                if ($url === 'suitestab.php' || $url === 'executive.php' || $url === 'junior.php' || $url === 'presidential.php') {
-                                  echo 'active';
-                                }
-
-                                ?>">
-              <a class="nav-link " href="suitestab.php"> Suites </a>
-            </li>
-          </ul>
-        </div>
-      <?php } ?>
-      <?php if ($url === 'reservation.php' || $url === 'search.php'  || $url === 'modifyroom.php') { ?>
-        <div class="container">
-          <ul class="nav nav-pills justify-content-center " id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link <?php
-                                  if ($url === 'reservation.php') {
-                                    echo 'active';
-                                  }
-
-                                  ?>" href="avail.php">Booking </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link <?php
-                                  if ($url === 'search.php' || $url === 'modifyroom.php') {
-                                    echo 'active';
-                                  }
-
-                                  ?>" href="search.php"> Modify/Cancel Reservation </a>
-            </li>
-          </ul>
-        </div>
-      </section>  
+    </nav>
+     
+     
+        
     </section>  
-      <?php } ?>
+      
+
+
+  <section id ="all">
     

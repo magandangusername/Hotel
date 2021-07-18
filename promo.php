@@ -31,9 +31,9 @@ if(isset($_GET['promo'])){
     ?>
 
       <section id="promotiontitle">
-        <div class="containerss">
+        <div class="containerss ">
           <div class="container-lg">
-            <div class="row">
+            <div class="row ">
               <?php if($rows % 2 == 0) { ?>
                   <div class="col-md-6">
                     <img src="photos/<?php echo $promo['image_name'] ?>" id="promopic2" class="img-fluid">
@@ -60,6 +60,8 @@ if(isset($_GET['promo'])){
                 <div class="col-md-6">
                   <img src="photos/<?php echo $promo['image_name'] ?>" id="promopic1" class="img-fluid">
                 </div>
+
+                
               <?php } ?>
             </div>
           </div>

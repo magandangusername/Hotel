@@ -16,7 +16,7 @@ note to everyone:
 - the huge html comment here is just for reference, it will be deleted soon.
 */
 ?>
-<section id="all">
+
     <!-----------availability----------->
 
     <section id="availabilityrese">
@@ -37,7 +37,7 @@ note to everyone:
                     <p class="label vertical">room</p>
                 </div>
                 <div class="col-auto">
-                    <p class="label vertical">adult</p>
+                    <p class="label ">adult</p>
                 </div>
                 <div class="col-auto">
                     <p class="label">children</p>
@@ -155,19 +155,35 @@ note to everyone:
                                 ?>
                                 <img src="photos/<?php echo $file_name ?>" class="card-img-top">
                                 <form action="" method="POST">
-                                    <div class="card-body">
+                                    <div class="card-body text-muted">
                                         <h5 class="card-title"><?php echo $result['room_suite_name']; ?></h5>
 
 
 
                                         <p class="sizey"><?php echo $room_size ?> sqm</p>
                                         <p class="none">City View, Free Wifi</p>
-                                        <a href="#" class="none">Read More</a>
+                                        <a href="#" class="none"></a>
+                                        <a class="isDisabled" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                         Read More
+                                        </a>
+
+                                        <div class="collapse" id="collapseExample">
+                                            <div class="cards card-body">
+                                                this is where to put the pulling data from database.
+                                            </div>
+                                        </div>
                                         <p class="pricey"><?php echo $new_price ?> PHP/Night</p>
                                         <p class="sizeys">Excluding Taxes and Fee</p>
-                                        <a href="#" class="sizeyss">
-                                            <p style="text-align:center">Price Breakdown</p>
+                                        <a class="isDisabled" id="sizeyss" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" Disabled>
+                                        
+                                        <p style="text-align:center">Price Breakdown</p>
                                         </a>
+                                        
+                                        <div class="collapse" id="collapseExample">
+                                            <div class="cards card-body">
+                                                this is where to put the pulling data from database.
+                                            </div>
+                                        </div>
                                         <div class="radiobut">
                                             <?php
 
@@ -180,7 +196,7 @@ note to everyone:
 
                                             ?>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="bed" value="Queen Bed" checked>
+                                                    <input class="form-check-input" type="radio" name="bed" value="Queen Bed"  disabled>
                                                     <label class="form-check-label">Queen Bed</label>
                                                 </div>
                                             <?php }
@@ -211,7 +227,7 @@ note to everyone:
                                             echo "<h5>NO ROOMS AVAILABLE FOR THIS TYPE (Disabled kunwari)</h5>";
                                         } else {
                                         ?>
-                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select</button>
+                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary" disabled >Select</button>
                                         <?php } ?>
                                     </div>
                                 </form>
@@ -225,85 +241,8 @@ note to everyone:
         </section>
     <?php } ?>
 
-    <!-- <section id="sliderishh">
-        <div class="containerish">
-            <div class="row">
-                <div class="col-md-5 ">
-                    <h3 class="roomeb"> Online Exclusive</h3>
-                    <p class="roomeb">30% discount charge per night</p>
-                    <p class="roomeb">Free WiFi</p>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="termss"> 
-                        <h4 class="policies"> Policies </h4>
-                        <p class="policies">Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
-                        <p class="policies">Reservation must be guaranteed with credit card at time of booking. Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
-                    </div>
-                </div>          
-            </div>
-        </div>
-    </section>
+  
 
-    <section id="sliderearly">
-        <div class="containerearly">
-            <div class="titlesa">
-                <h4 class="availroom"> Available Rooms </h4>
-            </div>
-            <div class="row slider">
-            <p>sample text</p>
-
-
-            </div>
-        </div>
-    </section>
-
-
-    <section id="sliderishh">
-        <div class="containerish">
-            <div class="row">
-                <div class="col-md-5 ">
-                    <h3 class="roomeb"> Bonus Stay </h3>
-                    <p class="roomeb">30% discount charge per night</p>
-                    <p class="roomeb">Free WiFi</p>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="termss"> 
-                        <h4 class="policies"> Policies </h4>
-                        <p class="policies">Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
-                        <p class="policies">Reservation must be guaranteed with credit card at time of booking. Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
-                    </div>
-                </div>          
-            </div>
-        </div>
-    </section>
-
-    <section id="sliderearly">
-        <div class="containerearly">
-            <div class="titlesa">
-                <h4 class="availroom"> Available Rooms </h4>
-            </div>
-            <div class="row slider">
-            
-                <p>sample text</p>
-
-            </div>
-        </div>
-    </section> -->
-
-
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" data-dismiss="modal">X</button>
-                    <h3>Price Breakdown</h3>
-                </div>
-                <div class="modal-body">
-                    <h4>this is my body</h4>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

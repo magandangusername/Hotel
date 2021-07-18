@@ -2,7 +2,7 @@
 include_once 'header.php';
 ?>
 
-<section id ="all">
+
     <!-----------availability----------->
 
     <section id ="availabilityrese">
@@ -11,54 +11,67 @@ include_once 'header.php';
                 <h1 class="reservetitle">Modify Room</h1>
             </div> 
             <div class="shadow-sm p-1 bg-body rounded">
-                <div class="row g-2 align-items-center">
+            <form action="" method="POST" onsubmit="">
+                <div class="row g-2 align-items-center justify-content-center">
                     <div class="col-auto">
                         <label for="inputCheckIn" class="col-form-label">Check-In</label>
                     </div>
                     <div class="col-auto">
-                        <input class="form-control" type ="date" id="CheckIn" name="date"  type="text"/>
-                    </div>  
-                    
+                        <input class="form-control" type="date" id="CheckIn" name="CheckIn" type="text" onchange="checkcalendarin()"/>
+                    </div>
+
                     <div class="col-auto">
                         <label for="inputCheckOut" class="col-form-label">Check-Out</label>
                     </div>
 
                     <div class="col-auto">
-                        <input class="form-control" type ="date" id="CheckOut" name="date"  type="text"/>
-                    </div> 
+                        <input class="form-control" type="date" id="CheckOut" name="CheckOut" type="text" onchange="checkcalendarout()"/>
+                    </div>
 
                     <div class="col-auto vertical">
-                        <label for="inputAdult" class="col-form-label">Adult</label>
+                        <label for="inputRoom" class="col-form-label">Room</label>
                     </div> 
 
                     <div class="col-auto">
-                    <input class="form-control-num" type="number" name="guestcount" id ="adultcount" value="0" min="1">
+                        <input class="form-control-num" type="number" name="roomcount" id ="roomcount" value="1" min="1" max="3">
+                    </div>
+
+                    <div class="col-auto ">
+                        <label for="inputAdult" class="col-form-label">Adult</label>
+                    </div>
+
+                    <div class="col-auto">
+                        <input class="form-control-num" type="number" name="guestcount" id="adultcount" value="1" min="1">
                     </div>
 
 
                     <div class="col-auto">
                         <label for="inputChild" class="col-form-label">Child</label>
-                    </div> 
-
-                    <div class="col-auto">
-                    <input class="form-control-num" type="number" name="guestcount" id ="childadult" value="0" min="0" max="3">
                     </div>
 
                     <div class="col-auto">
-                        <button type="button" class="btn btn-primary"> Check Availability </button>
+                        <input class="form-control-num" type="number" name="guestcountchild" id="childadult" value="0" min="0">
                     </div>
-                 </div>
-            </div>  
+
+                    <div class="col-auto">
+                        <button type="submit" name="checkavail" class="btn btn-primary"> Check Availability </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+             
         </div>   
     </section>
 
     <!---------------------------------slider------------------------------->
     <section id ="slider">
+        <div class ="col-lg-11 mx-auto d-block"> 
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
             <div class="carousel-inner">
             <div class="carousel-item active">
@@ -70,6 +83,9 @@ include_once 'header.php';
             <div class="carousel-item">
                 <img src="photos/place4.jpg" class="d-block w-100" alt="...">
             </div>
+            <div class="carousel-item">
+                <img src="photos/place5.jpg" class="d-block w-100" alt="...">
+            </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -79,6 +95,7 @@ include_once 'header.php';
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
             </button>
+        </div>
         </div>
     </section>
     <!-------promo and rates-------->

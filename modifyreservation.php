@@ -13,7 +13,7 @@ include_once 'header.php';
              </div>
         </section>
 
-        
+    <section id="modifdif">
 
         <section id ="modifyone">
             <div class="containermodi">
@@ -41,9 +41,7 @@ include_once 'header.php';
         <section id ="modifytwo">
                     <div class="col-12"></div>
                         <h2 class="">Room Information</h2>
-                </div>        
-        </div> 
-        </section>
+                   
         
         <section id ="bannerss">
             <div class="containernew">
@@ -80,14 +78,16 @@ include_once 'header.php';
           
     </section>
 
+
+    <section id ="twobutt">
     <div class="containerchecks">
         <div class="row g-2 justify-content-center">
 
             <div class="col-auto">
-                <p class="label">Arrival DAte: july 10 1999</p>
+                <p class="label">Arrival Date: july 10 1999</p>
             </div>
             <div class="col-auto">
-                <p class="label " >departure DAte: july 10 1999</p>
+                <p class="label " >Departure Date: july 10 1999</p>
             </div>
             <div class="col-auto">
                 <p class="label vertical">overall price php 10,000</p>
@@ -97,17 +97,14 @@ include_once 'header.php';
     </div>
 
 
-    <section id ="twobutt">
+    
        <div class="row ">
            <div class="buttwo">
                <button type="button" class="btn btn-primary"> Cancel Reservation </button>
                <button type="button" class="btn btn-primary"> Submit Request </button>
            </div>
        </div>
-    </section>
-
-                
-                
+    </section>                           
 
 </section>
 </body>

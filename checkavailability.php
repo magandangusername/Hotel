@@ -8,7 +8,7 @@
     <div class="container">
         <div class="shadow-sm p-1 bg-body rounded">
             <form action="" method="POST" onsubmit="">
-                <div class="row g-2 align-items-center ">
+                <div class="row g-2 align-items-center justify-content-center">
                     <div class="col-auto">
                         <label for="inputCheckIn" class="col-form-label">Check-In</label>
                     </div>
