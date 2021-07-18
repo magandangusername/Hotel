@@ -10,6 +10,10 @@ $date = date("Y-m-d h:i:sa");
 $promotion = "SELECT * FROM promotion_description WHERE promotion_name = '$promo_name'";
 $promotion = $conn->query($promotion);
 $promotion = $promotion->fetch_row();
+if(!$promotion){
+  echo "<h1>This promo does not exist.</h1>";
+} else {
+
 // if(!$promotion) {
 //   $promotion = 'ERROR';
 // }
@@ -33,7 +37,7 @@ $promotion = $promotion->fetch_row();
                 ?>
                 <p class ="valid"> <?php echo $start_date ?> to <?php echo $end_date ?> </p>
                 <p class ="valid"> +639184168959 </p>
-                <button class ="btn btn-light" id ="bonusbutton"><a href="about.php" class="text-decoration-none"> Book Now</a></button>
+                <a href="avail.php?promocode=<?php echo $promotion[0] ?>" class="text-decoration-none"><button class ="btn btn-light" id ="bonusbutton"> Book Now</button></a>
             
       
             </div>
@@ -85,7 +89,9 @@ $promotion = $promotion->fetch_row();
                             <a href="promo.php?promo=<?php 
                               $page = $otherpromotion['promotion_name'];
                               echo $page;?>" class="text-decoration-none btn btn-light" id ="learnbutton">Learn More</a>
-                            <button class ="btn btn-light" id ="bonusbutton" type="submit" name='booknow'> Book Now</button>
+                            <!-- <button class ="btn btn-light" id ="bonusbutton" type="submit" name='booknow'> Book Now</button> -->
+                            <a href="avail.php?promocode=<?php 
+                              echo $otherpromotion['promotion_code'];?>" class="text-decoration-none btn btn-light" id ="learnbutton">Book Now</a>
                           </form>
                       </div>
                   </div>
@@ -100,3 +106,4 @@ $promotion = $promotion->fetch_row();
 </section>
 </body>
 </html>
+<?php } ?>

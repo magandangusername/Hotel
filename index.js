@@ -56,40 +56,75 @@ function checkcalendarout() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
     // make it as accordion for smaller screens
     if (window.innerWidth > 992) {
-    
-        document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem){
-    
-            everyitem.addEventListener('mouseover', function(e){
-    
+
+        document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem) {
+
+            everyitem.addEventListener('mouseover', function(e) {
+
                 let el_link = this.querySelector('a[data-bs-toggle]');
-    
-                if(el_link != null){
+
+                if (el_link != null) {
                     let nextEl = el_link.nextElementSibling;
                     el_link.classList.add('show');
                     nextEl.classList.add('show');
                 }
-    
+
             });
-            everyitem.addEventListener('mouseleave', function(e){
+            everyitem.addEventListener('mouseleave', function(e) {
                 let el_link = this.querySelector('a[data-bs-toggle]');
-    
-                if(el_link != null){
+
+                if (el_link != null) {
                     let nextEl = el_link.nextElementSibling;
                     el_link.classList.remove('show');
                     nextEl.classList.remove('show');
                 }
-    
-    
+
+
             })
         });
-    
+
     }
     // end if innerWidth
-    }); 
-    // DOMContentLoaded  end
+});
+// DOMContentLoaded  end
 
 
-   
+
+function rooms(n) {
+    var adult2l = document.getElementById("adultcount2l");
+    var adult2i = document.getElementById("adultcount2i");
+    var child2l = document.getElementById("childadult2l");
+    var child2i = document.getElementById("childadult2i");
+
+    var adult3l = document.getElementById("adultcount3l");
+    var adult3i = document.getElementById("adultcount3i");
+    var child3l = document.getElementById("childadult3l");
+    var child3i = document.getElementById("childadult3i");
+
+
+    if (n >= 2) {
+        adult2l.hidden = false;
+        adult2i.hidden = false;
+        child2l.hidden = false;
+        child2i.hidden = false;
+    } else {
+        adult2l.hidden = true;
+        adult2i.hidden = true;
+        child2l.hidden = true;
+        child2i.hidden = true;
+    }
+    if (n == 3) {
+        adult3l.hidden = false;
+        adult3i.hidden = false;
+        child3l.hidden = false;
+        child3i.hidden = false;
+    } else {
+        adult3l.hidden = true;
+        adult3i.hidden = true;
+        child3l.hidden = true;
+        child3i.hidden = true;
+    }
+}

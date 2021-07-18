@@ -6,6 +6,12 @@ reminder to the designer:
 - teach me senpai how this giant calendar works
 - im still a little confused
 */
+
+if (isset($_GET['promocode'])) {
+    $promocode = $_GET['promocode'];
+} else {
+    $promocode = '';
+}
 ?>
 
 
@@ -34,7 +40,7 @@ reminder to the designer:
                     </div>
 
                     <div class="col-auto">
-                        <input class="form-control-num" type="number" name="guestcount" id="roomcount" value="1" min="1">
+                        <input class="form-control-num" type="number" name="guestcount" id="roomcount" value="1" min="1" max="3" onchange="rooms(this.value)">
                     </div>
 
                     <div class="col-auto ">
@@ -63,42 +69,41 @@ reminder to the designer:
                     </div>
 
                     <div class="col-auto">
-                        <input class="form-control" type="text" name="promocode" id="promopromo" >
+                        <input class="form-control" type="text" name="promocode" id="promopromo" value="<?php echo $promocode ?>">
                     </div>
                 
-                    <div class="col-auto ">
-                        <label for="inputAdult" id="newlabel" class="col-form-label">Adult</label>
+                    <div class="col-auto " id="adultcount2l" hidden>
+                        <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
                     </div>
 
-                    <div class="col-auto">
-                        <input class="form-control-nam1" type="number" name="guestcountchild" id="childadult" value="0" min="0">
+                    <div class="col-auto" id="adultcount2i" hidden>
+                        <input class="form-control-nam1" type="number" name="guestcount2" id="adultcount2" value="0" min="0">
                     </div>
 
-                    <div class="col-auto">
+                    <div class="col-auto" id = "childadult2l" hidden>
                         <label for="inputChild" class="col-form-label">Child</label>
                     </div>
                     
-                    <div class="col-auto">
-                        <input class="form-control-nam" type="number" name="guestcountchild" id="childadult" value="0" min="0">
+                    <div class="col-auto" id = "childadult2i" hidden>
+                        <input class="form-control-nam" type="number" name="guestcountchild2" id="childadult2" value="0" min="0">
                     </div>
 
                     <div class="row g-2 align-items-center">
                     
-                        <div class="col-auto">
-                            <label for="inputAdult" id="newlabel" class="col-form-label">Adult</label>
-                        </div>
+                    <div class="col-auto " id="adultcount3l" hidden>
+                        <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
+                    </div>
 
-                        <div class="col-auto">
-                            <input class="form-control-nam1" type="number" name="guestcountchild" id="childadult" value="0" min="0">
-                        </div>
+                    <div class="col-auto" id="adultcount3i" hidden>
+                        <input class="form-control-nam1" type="number" name="guestcount3" id="adultcount3" value="0" min="0">
+                    </div>
 
-                        <div class="col-auto">
-                            <label for="inputChild" class="col-form-label">Child</label>
-                        </div>
-                        
-                        <div class="col-auto">
-                            <input class="form-control-nam" type="number" name="guestcountchild" id="childadult" value="0" min="0">
-                        </div>
+                    <div class="col-auto" id = "childadult3l" hidden>
+                        <label for="inputChild" class="col-form-label">Child</label>
+                    </div>
+                    
+                    <div class="col-auto" id = "childadult3i" hidden>
+                        <input class="form-control-nam" type="number" name="guestcountchild3" id="childadult3" value="0" min="0">
 
                     </div>
                 </div>  

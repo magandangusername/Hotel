@@ -34,7 +34,7 @@ note to everyone:
                     <p class="label">Your Stay</p>
                 </div>
                 <div class="col-auto">
-                    <p class="label vertical">room</p>
+                    <p class="label vertical">room <?php echo $_SESSION['rooms'] ?></p>
                 </div>
                 <div class="col-auto">
                     <p class="label ">adult</p>
@@ -196,7 +196,7 @@ note to everyone:
 
                                             ?>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="bed" value="Queen Bed"  disabled>
+                                                    <input class="form-check-input" type="radio" name="bed" value="Queen Bed" checked>
                                                     <label class="form-check-label">Queen Bed</label>
                                                 </div>
                                             <?php }
@@ -223,11 +223,11 @@ note to everyone:
                                         $available = $conn->query($available);
                                         $available = $available->fetch_row();
                                         $available = $available[0];
-                                        if ($available == 0) {
-                                            echo "<h5>NO ROOMS AVAILABLE FOR THIS TYPE (Disabled kunwari)</h5>";
-                                        } else {
+                                        if ($available == 0) { ?>
+                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary" disabled >ROOM UNAVAILABLE</button>
+                                        <?php } else {
                                         ?>
-                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary" disabled >Select</button>
+                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary" >Select</button>
                                         <?php } ?>
                                     </div>
                                 </form>

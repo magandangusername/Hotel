@@ -7,8 +7,8 @@
   include_once('db.php');
 
   include_once 'functions.php';
-
   ?>
+  
   <title>Mondstadt Hotel</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -26,7 +26,7 @@
 
 <body <?php
       //if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php' || $url === 'avail.php') {
-        echo "onLoad='calendar()'";
+      echo "onLoad='calendar()'";
       //}
       ?>>
   <!----title--->
@@ -37,11 +37,8 @@
           Mondstadt Hotel
           <img src="photos/logomondstadt.png" alt="" width="40" height="34" class="d-inline-block align-text-top">
         </a>
-   
-    <!---------------------------------nav-bar------------------------------->
-    
-      
 
+        <!---------------------------------nav-bar------------------------------->
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link <?php
@@ -51,7 +48,7 @@
 
                                 ?>" href="index.php">Overview</a>
           </li>
-          <li class="nav-item"> 
+          <li class="nav-item">
             <div class="dropdown">
               <a class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                 Rooms & Suites
@@ -61,7 +58,7 @@
                 <li><a class="dropdown-item" href="suitestab.php" type="button">Suites</a></li>
               </ul>
             </div>
-          </li>         
+          </li>
           <li class="nav-item">
             <a class="nav-link <?php
                                 if ($url === 'promo.php' || $url === 'bonuspromo.php' || $url === 'onlinepromo.php' || $url === 'earlypromo.php' || $url === 'promocontent.php') {
@@ -77,16 +74,13 @@
                                 }
 
                                 ?>" href="avail.php">Reservation</a>
-              </li>
+          </li>
         </ul>
       </div>
     </nav>
-     
-     
-        
-    </section>  
-      
 
 
-  <section id ="all">
-    
+
+  </section>
+
+  <section id="all">
