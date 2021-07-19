@@ -26,7 +26,7 @@
 
 <body <?php
       //if ($url === 'index.php' || $url === 'roomtab.php' || $url === 'reservation.php' || $url === 'avail.php') {
-      echo "onLoad='calendar()'";
+      echo "onLoad='calendar(), renderDate()'";
       //}
       ?>>
   <!----title--->

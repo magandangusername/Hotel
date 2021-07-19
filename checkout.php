@@ -1,47 +1,48 @@
 <?php
 include_once 'header.php';
 ?>
+
 <!--------------------------------checkout------------------------------>
 <section id="forms">
     <div class="checkout">
-         <div class="titlecheck">
-            <a href="modifyreservation.php"  input type="button"  id="backmod" class="btn btn-primary"> Back </a>
+        <div class="titlecheck">
+            <a href="modifyreservation.php" input type="button" id="backmod" class="btn btn-primary"> Back </a>
             <h1 class="modifhye">Checkout</h1>
         </div>
     </div>
 </section>
 
-    <section id="useredits">
-        <div class="containerchecks">
-            <div class="row g-2 justify-content-center">
+<section id="useredits">
+    <div class="containerchecks">
+        <div class="row g-2 justify-content-center">
 
-                <div class="col-auto">
-                    <p class="label">Your Stay</p>
-                </div>
-                <div class="col-auto">
-                    <p class="label vertical">adult</p>
-                </div>
-                <div class="col-auto">
-                    <p class="label">children</p>
-                </div>
-                <div class="col-auto">
-                    <p class="label">total rate</p>
-                </div>
+            <div class="col-auto">
+                <p class="label">Your Stay</p>
+            </div>
+            <div class="col-auto">
+                <p class="label vertical">adult</p>
+            </div>
+            <div class="col-auto">
+                <p class="label">children</p>
+            </div>
+            <div class="col-auto">
+                <p class="label">total rate</p>
             </div>
         </div>
-    </section>
-
-        <div class="containercheckuser">
-            <div class="titlechecks">
-                <form class="row g-3" id="whitey" action="" method="post">
-                    <h1 class="personals">Personal Information</h1>
-                    <section id="wowo">
+    </div>
+</section>
+<form action="" method="post">
+    <div class="containercheckuser">
+        <div class="titlechecks">
+            <div class="row g-3" id="whitey">
+                <h1 class="personals">Personal Information</h1>
+                <section id="wowo">
                     <div class="form-group form-inline">
                         <label>Title</label>
                         <select name="name_with_initials" id="">
                             <option selected="selected" value="Mr.">Mr.</option>
                             <option value="Mrs.">Mrs.</option>
-                            <option value="Miss">Miss.</option>
+                            <option value="Miss">Miss</option>
                         </select>
                     </div>
 
@@ -66,7 +67,7 @@ include_once 'header.php';
                         <input type="text" class="form-control" id="reemail" name='reemail'>
                     </div>
                 </section>
-                    <hr />
+                <hr />
                 <section id="wowo1">
                     <h1 class="personals">Address</h1>
 
@@ -86,13 +87,13 @@ include_once 'header.php';
                     </div>
                 </section>
 
-                    <hr />
+                <hr />
 
                 <section id="wowo2">
                     <h1 class="personals">Payment Information</h1>
                     <div class="form-group form-inline">
                         <label>Payment Type</label>
-                        <select name="name_with_initials_payment" id="">
+                        <select name="payment_type" id="">
                             <option selected="selected" value="PayPal">PayPal</option>
                             <option value="Debit Card">Debit Card</option>
                             <option value="Credit Card">Credit Card</option>
@@ -101,46 +102,47 @@ include_once 'header.php';
 
                     <div class="col-md-6  ">
                         <label for="first"> Cardholder Name:</label>
-                        <input type="text" class="form-control" id="first" name='chname' >
+                        <input type="text" class="form-control" id="first" name='chname'>
                     </div>
                     <div class="col-md-5  ">
                         <label for="email">Cardholder Number:</label>
-                        <input type="text" class="form-control" id="email" name='chnum' >
+                        <input type="text" class="form-control" id="email" name='chnum'>
                     </div>
 
-                  
+
                     <div class="col-2 ">
                         <label>Expiration Date</label>
                     </div>
 
                     <div class="col-2 ">
                         <label for="last">M</label>
-                        <input type="text" class="form-control" id="last" name='month' >
+                        <input type="text" class="form-control" id="last" name='month'>
                     </div>
                     <div class="col-2">
                         <label for="last">Y</label>
-                        <input type="text" class="form-control" id="last" name='year' >
+                        <input type="text" class="form-control" id="last" name='year'>
                     </div>
-                </section>  
-            <!-- </form> -->
+                </section>
+                <!-- </form> -->
+            </div>
         </div>
     </div>
-    
 
-            <section id="twobutt">
-                <div class="row">
-                    <p class="privacy">ito ang privacy ni papi skye</p>
-                </div>
 
-                <div class="row ">
-                    <div class="buttwo">
-                        <button type="button" class="btn btn-primary"> Review Reservation </button>
-                        <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
-                    </div>
-                </div>
-                </form>
-            </section>
+    <section id="twobutt">
+        <div class="row">
+            <p class="privacy">ito ang privacy ni papi skye</p>
+        </div>
 
+        <div class="row ">
+            <div class="buttwo">
+                <button type="button" class="btn btn-primary"> Review Reservation </button>
+                <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
+            </div>
+        </div>
+
+    </section>
+</form>
 </body>
 
 </html>

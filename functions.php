@@ -46,28 +46,37 @@ if (isset($_POST['checkavail'])) {
     if ($rooms == 3) {
       $adult3 = $_POST['guestcount3'];
       $child3 = $_POST['guestcountchild3'];
+    } else {
+      $adult3 = '';
+      $child3 = '';
     }
+  } else {
+    $adult2 = '';
+    $child2 = '';
   }
 
   if (isset($_POST['promocode'])) {
-    $promocode = $_POST['promode'];
+    $promocode = $_POST['promocode'];
   } else {
     $promocode = '';
   }
 
-  $promotioncheck = "SELECT * FROM promotion_description WHERE promotion_code = '$promocode'";
-  $promotioncheck = $conn->query($promotioncheck);
-  $promotioncheck = $promotioncheck->fetch_row();
-  if(!$promotioncheck){
-    echo "<h1>ERROR: Promotion code does not exists.</h1>";
+  if ($promocode != '') {
+    $promotioncheck = "SELECT * FROM promotion_description WHERE promotion_code = '$promocode'";
+    $promotioncheck = $conn->query($promotioncheck);
+    $promotioncheck = $promotioncheck->fetch_row();
+    if (!$promotioncheck) {
+      echo "<h1>ERROR: Promotion code does not exists.</h1>";
+      exit;
+    }
   }
 
   $totalrooms = "SELECT COUNT(room_number) AS total_rooms FROM room_status";
   $total = $conn->query($totalrooms);
   $total = $total->fetch_row();
+  $total = $total[0];
 
   $command = "SELECT COUNT(confirmation_number) AS rooms FROM reservation_table WHERE arrival_date < '$checkout' and departure_date > '$checkin'";
-
   $reservedrooms = $conn->query($command);
   $reservedrooms = $reservedrooms->fetch_row();
   $reservedrooms = $reservedrooms[0];
@@ -75,6 +84,11 @@ if (isset($_POST['checkavail'])) {
   //echo $reservedrooms;
 
   if ($reservedrooms < $total) {
+    $totalavailable =  $total - $reservedrooms;
+    if ($totalavailable <= $rooms) {
+      echo "$totalavailable >= $rooms \nRooms are already full. Please choose less than $rooms rooms.";
+      exit;
+    }
     $_SESSION['availabilityCheck'] = true;
     $_SESSION['checkin'] = $checkin;
     $_SESSION['checkout'] = $checkout;
@@ -105,6 +119,50 @@ if (isset($_POST['checkavail'])) {
   } else {
     $_SESSION['availabilityCheck'] = false;
     echo 'Sorry, all rooms and suites are already taken';
+    exit;
+  }
+}
+
+
+//CHOOSING ROOMS
+if (isset($_POST['chooseroom'])) {
+  if (isset($_POST['room_type']) && isset($_POST['rate_type']) && isset($_POST['bed'])) {
+    if (isset($_SESSION['room'])) {
+
+      if ($_SESSION['rooms'] >= $_SESSION['room']) {
+
+        if ($_SESSION['room'] == 1) {
+          $_SESSION['roomtype'] = $_POST['room_type'];
+          $_SESSION['ratetype'] = $_POST['rate_type'];
+          $_SESSION['bed'] = $_POST['bed'];
+          $_SESSION['command'] = "";
+          $submit = $_SESSION['command'];
+        }
+        if ($_SESSION['room'] == 2) {
+          $_SESSION['roomtype2'] = $_POST['room_type'];
+          $_SESSION['ratetype2'] = $_POST['rate_type'];
+          $_SESSION['bed2'] = $_POST['bed'];
+          $_SESSION['command2'] = "";
+          $submit2 = $_SESSION['command2'];
+        }
+        if ($_SESSION['room'] == 3) {
+          $_SESSION['roomtype3'] = $_POST['room_type'];
+          $_SESSION['ratetype3'] = $_POST['rate_type'];
+          $_SESSION['bed3'] = $_POST['bed'];
+          $_SESSION['command3'] = "";
+          $submit3 = $_SESSION['command3'];
+        }
+
+        if ($_SESSION['rooms'] == $_SESSION['room']) {
+          header("Location: checkout.php");
+        }
+      }
+      if ($_SESSION['rooms'] > $_SESSION['room']) {
+        $_SESSION['room'] += 1;
+      }
+    }
+  } else {
+    echo "AN ERROR OCCURED TRYING TO SUBMIT. PLEASE TRY AGAIN";
   }
 }
 
@@ -120,11 +178,12 @@ if (isset($_POST['confirmreserve'])) {
   $address = $_POST['address'];
   $city = $_POST['city'];
   $mobilenum = $_POST['mobilenum'];
-  $paymenttype = $_POST['name_with_initials_payment'];
+  $paymenttype = $_POST['payment_type'];
   $chname = $_POST['chname'];
   $chnum = $_POST['chnum'];
   $month = $_POST['month'];
   $year = $_POST['year'];
+  $expiration = $month . '/' . $year;
 
   $countguest = "SELECT COUNT(guest_code) FROM guest_information";
   $countguest = $conn->query($countguest);
@@ -133,7 +192,7 @@ if (isset($_POST['confirmreserve'])) {
 
   $guestcode = "GC-0" . strval($countguest);
   $paymentcode = "PC-0" . strval($countguest);
-  $expiration = $month . '/' . $year;
+  
 
 
 
@@ -165,22 +224,26 @@ if (isset($_POST['confirmreserve'])) {
   $rr_code = $rr_code->fetch_row();
   $rr_code = "RR-0" . strval($rr_code[0] + 1);
 
-
+  $ratetype = $_SESSION['ratetype'];
   $roomsuitename = $_SESSION['roomtype'];
   $roomsuitebed = $_SESSION['bed'];
-  if (isset($_SESSION['roomtype2']) && $_SESSION['roomtype2'] != '' && $_SESSION['bed2'] && $_SESSION['bed2'] != '') {
+  if ($_SESSION['rooms'] >= 2) {
     $roomsuitename2 = $_SESSION['roomtype2'];
-    $roomsuitebed2 = $_SESSION['roomtype2'];
+    $roomsuitebed2 = $_SESSION['bed2'];
+    $ratetype2 = $_SESSION['ratetype2'];
   } else {
     $roomsuitename2 = '';
     $roomsuitebed2 = '';
+    $ratetype2 = '';
   }
-  if (isset($_SESSION['roomtype3']) && $_SESSION['roomtype3'] != '' && $_SESSION['bed3'] && $_SESSION['bed3'] != '') {
+  if ($_SESSION['rooms'] == 3) {
     $roomsuitename3 = $_SESSION['roomtype3'];
-    $roomsuitebed3 = $_SESSION['roomtype3'];
+    $roomsuitebed3 = $_SESSION['bed3'];
+    $ratetype3 = $_SESSION['ratetype3'];
   } else {
     $roomsuitename3 = '';
     $roomsuitebed3 = '';
+    $ratetype3 = '';
   }
   $roomnum = "SELECT room_number FROM room_status 
 	  WHERE room_suite_name = '$roomsuitename' AND 
@@ -189,7 +252,7 @@ if (isset($_POST['confirmreserve'])) {
   $roomnum = $conn->query($roomnum);
   $roomnum = $roomnum->fetch_row();
   if (!$roomnum) {
-    echo "ERROR: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+    echo "ERROR1: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
     exit;
   } else {
     $roomnum = $roomnum[0];
@@ -203,11 +266,13 @@ if (isset($_POST['confirmreserve'])) {
     $roomnum2 = $conn->query($roomnum2);
     $roomnum2 = $roomnum2->fetch_row();
     if (!$roomnum2) {
-      echo "ERROR: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+      echo "ERROR2: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
       exit;
     } else {
       $roomnum2 = $roomnum2[0];
     }
+  } else {
+    $roomnum2 = '';
   }
 
   if ($roomsuitename3 != '') {
@@ -218,24 +283,26 @@ if (isset($_POST['confirmreserve'])) {
     $roomnum3 = $conn->query($roomnum3);
     $roomnum3 = $roomnum3->fetch_row();
     if (!$roomnum3) {
-      echo "ERROR: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+      echo "ERROR3: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
       exit;
     } else {
       $roomnum3 = $roomnum3[0];
     }
+  } else {
+    $roomnum3 = '';
   }
 
-  $ratetype = $_SESSION['ratetype'];
-  $ratetype2 = '';
-  $ratetype3 = '';
-  if(isset($_SESSION['ratetype2'])) {
-    $ratetype2 = $_SESSION['ratetype2'];
-  }
-  if(isset($_SESSION['ratetype3'])) {
-    $ratetype3 = $_SESSION['ratetype3'];
-  }
+  
+  // $ratetype2 = '';
+  // $ratetype3 = '';
+  // if (isset($_SESSION['ratetype2'])) {
+  //   $ratetype2 = $_SESSION['ratetype2'];
+  // }
+  // if (isset($_SESSION['ratetype3'])) {
+  //   $ratetype3 = $_SESSION['ratetype3'];
+  // }
 
-  if(isset($_SESSION['promocode'])) {
+  if (isset($_SESSION['promocode']) && $_SESSION['promocode'] != '') {
     $promocode = $_SESSION['promocode'];
   } else {
     $promocode = '';
@@ -301,7 +368,7 @@ if (isset($_POST['confirmreserve'])) {
 	  '$confirmation_number', 
 	  '$arrival', 
 	  '$departure', 
-	  '$guest_code', 
+	  '$guestcode', 
 	  '$rr_code', 
 	  '$promocode');
 	  ";
@@ -309,72 +376,20 @@ if (isset($_POST['confirmreserve'])) {
 
   $roomstatus = "UPDATE room_status
   SET status=1, confirmation_number='$confirmation_number'
-  WHERE some_column=some_value;";
+  WHERE room_number='$roomnum' OR room_number='$roomnum2' OR room_number='$roomnum3';";
 
-  $commands = $paymentinformation.$guestinformation.$reservedroomsinfo.$reservationinfo.$roomstatus;
+  $commands = $paymentinformation . $guestinformation . $reservedroomsinfo . $reservationinfo . $roomstatus;
 
-  if($conn->query($commands)) {
-    echo "may or may not worked";
+  if ($conn->query($paymentinformation) && $conn->query($guestinformation) && $conn->query($reservedroomsinfo) && $conn->query($reservationinfo) && $conn->query($roomstatus)) {
+    echo "Your confirmation number is: $confirmation_number";
   } else {
-    echo "it worked";
+    echo "ERROR OCCURED INSERTING TO DATABASE";
   }
 
-
-
-echo $commands;
-
-
-
-
-
-
-
-
-
+  //echo $commands;
 
   include_once 'destroysession.php';
 }
-
-//CHOOSING ROOMS
-if (isset($_POST['chooseroom'])) {
-  if (isset($_POST['room_type']) && isset($_POST['rate_type']) && isset($_POST['bed'])) {
-    if (isset($_SESSION['room'])) {
-
-      if ($_SESSION['rooms'] >= $_SESSION['room']) {
-
-        if (isset($_SESSION['room']) && $_SESSION['room'] == 1) {
-          $_SESSION['roomtype'] = $_POST['room_type'];
-          $_SESSION['ratetype'] = $_POST['rate_type'];
-          $_SESSION['bed'] = $_POST['bed'];
-          $_SESSION['command'] = "";
-          $submit = $_SESSION['command'];
-        }
-        if (isset($_SESSION['room']) && $_SESSION['room'] == 2) {
-          $_SESSION['roomtype2'] = $_POST['room_type'];
-          $_SESSION['ratetype2'] = $_POST['rate_type'];
-          $_SESSION['bed2'] = $_POST['bed'];
-          $_SESSION['command2'] = "";
-          $submit2 = $_SESSION['command2'];
-        }
-        if (isset($_SESSION['room']) && $_SESSION['room'] == 3) {
-          $_SESSION['roomtype3'] = $_POST['room_type'];
-          $_SESSION['ratetype3'] = $_POST['rate_type'];
-          $_SESSION['bed3'] = $_POST['bed'];
-          $_SESSION['command3'] = "";
-          $submit3 = $_SESSION['command3'];
-        }
-        header("Location: checkout.php");
-        echo 'it works';
-      }
-      if ($_SESSION['rooms'] > $_SESSION['room']) {
-        $_SESSION['room'] += 1;
-      }
-    }
-  } else {
-    echo "AN ERROR OCCURED TRYING TO SUBMIT. PLEASE TRY AGAIN";
-  }
-}
-
 
 
 if (isset($_POST['booknow'])) {
