@@ -120,6 +120,9 @@ CREATE TABLE reserved_rooms (
     rate1 varchar(255),
     rate2 varchar(255),
     rate3 varchar(255),
+	r1h varchar(255),
+	r2h varchar(255),
+	r3h varchar(255),
     PRIMARY KEY (rr_code)
 );
 
@@ -157,6 +160,14 @@ CREATE TABLE suite_description (
     base_price float,
     bed_type varchar(255),
     PRIMARY KEY (suite_name)
+);
+
+
+CREATE TABLE head_count (
+    head_count varchar(255),
+	adult int,
+	child int,
+    PRIMARY KEY (head_count)
 );
 
 
@@ -240,20 +251,4 @@ VALUES
 ('Executive Suite', 'presidential.jpg', 'Mondstadt Executive Suite is a stylish one-bedroom suite with king or queen size bed decorated in neutral tones.', 'A stylish one bedroom suite with king or queen size bed, 60 square meeters in size with a separate living and dining area. Additional amenities are also included', 'DA-3', '60', 7000, 'KQ'),
 ('Junior Suite', 'presidential.jpg', 'A single room with a bed and sitting area a simple but accomdating suite', 'A simple but sophisticated design inside the suite, with a sleeping area separate from living room. Good for business trips and such', 'DA-3', '60', 6000, 'KQ'),
 ('Presidential Suite', 'presidential.jpg', 'A grand experience that is like of a president, presidential suite offers the best that mondstadt hotel has', 'Presidential suite offers the best of mondstadt hotel with multiple rooms, a grand design with an emphasis of grandeur, high-quality amenities a presidential experience', 'DA-4', '110', 6500, 'KQ');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
