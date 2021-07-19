@@ -48,7 +48,7 @@ if (isset($_GET['promo'])) {
                     <a href="promo.php?promo=<?php
                                               $page = $promo['promotion_name'];
                                               echo $page; ?>" class="text-decoration-none btn btn-light">Learn More</a>
-                    <button class="btn btn-light" id="promobonus" name="booknow" type="submit"> Book Now</button>
+                    <a href="avail.php?promocode=<?php echo $promo['promotion_code'] ?>" class="btn btn-light" id="promobonus" name="booknow"> Book Now</a>
                   </form>
                 </div>
               </div>

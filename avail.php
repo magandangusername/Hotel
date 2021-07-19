@@ -115,11 +115,11 @@ if (isset($_GET['promocode'])) {
 
     <!-- <body onload="renderDate()"> -->
     <section id="backcolor">
-        <section id="availtitle">
+        <section id="availtitle" hidden>
             <h1 class="availtitles">Availability Calendar</h1>
 
         </section>
-        <div class="container">
+        <div class="container" hidden>
             <div class="col-md-6">
                 <h4 class="checkingin"> Check-In</h4>
                 <div class="calendar">

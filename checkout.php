@@ -17,16 +17,29 @@ include_once 'header.php';
         <div class="row g-2 justify-content-center">
 
             <div class="col-auto">
-                <p class="label">Your Stay</p>
+                <p class="label">Your Stay: <?php echo date('M d, Y', strtotime($_SESSION['checkin']))." - ".date('M d, Y', strtotime($_SESSION['checkout'])) ?></p>
             </div>
-            <div class="col-auto">
+            <div class="col-auto" hidden>
                 <p class="label vertical">adult</p>
             </div>
-            <div class="col-auto">
+            <div class="col-auto" hidden>
                 <p class="label">children</p>
             </div>
             <div class="col-auto">
-                <p class="label">total rate</p>
+                <p class="label">Total rate: <?php 
+                if ($_SESSION['rooms'] >= 1) {
+                    $totalrate = floatval($_SESSION['totalrate']);
+                    if ($_SESSION['rooms'] >= 2) {
+                        $totalrate += floatval($_SESSION['totalrate2']);
+                        if ($_SESSION['rooms'] == 3) {
+                            $totalrate += floatval($_SESSION['totalrate3']);
+                        }
+                    }
+                    
+                }
+                $_SESSION['overallprice'] = number_format($totalrate, 2);
+                echo $_SESSION['overallprice'];
+                ?></p>
             </div>
         </div>
     </div>
@@ -136,7 +149,7 @@ include_once 'header.php';
 
         <div class="row ">
             <div class="buttwo">
-                <button type="button" class="btn btn-primary"> Review Reservation </button>
+                <button type="submit" name="review" class="btn btn-primary"> Review Reservation </button>
                 <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
             </div>
         </div>

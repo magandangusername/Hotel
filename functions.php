@@ -86,7 +86,7 @@ if (isset($_POST['checkavail'])) {
   if ($reservedrooms < $total) {
     $totalavailable =  $total - $reservedrooms;
     if ($totalavailable <= $rooms) {
-      echo "$totalavailable >= $rooms \nRooms are already full. Please choose less than $rooms rooms.";
+      echo "$totalavailable >= $rooms \nRooms are almost full. Please choose less than $rooms rooms.";
       exit;
     }
     $_SESSION['availabilityCheck'] = true;
@@ -135,22 +135,96 @@ if (isset($_POST['chooseroom'])) {
           $_SESSION['roomtype'] = $_POST['room_type'];
           $_SESSION['ratetype'] = $_POST['rate_type'];
           $_SESSION['bed'] = $_POST['bed'];
+          $_SESSION['totalrate'] = $_POST['total_rate'];
           $_SESSION['command'] = "";
           $submit = $_SESSION['command'];
+
+          $checkavailable = "SELECT COUNT(room_number) FROM room_status 
+          WHERE room_suite_name = '" . $_SESSION['roomtype'] . "'AND room_suite_bed = '" . $_SESSION['bed'] . "' AND status = 0";
+          $checkavailable = $conn->query($checkavailable);
+          $checkavailable = $checkavailable->fetch_row();
+
+
+          if ($checkavailable) {
+            $checkavailable = $checkavailable[0];
+            if ($checkavailable < 2) {
+              $roomchecker = false;
+            } else {
+              $roomchecker = true;
+              //$_SESSION['room'] = 1;
+            }
+          } else {
+            $roomchecker = false;
+          }
+          $_SESSION['roomchecker'] = $roomchecker;
         }
         if ($_SESSION['room'] == 2) {
           $_SESSION['roomtype2'] = $_POST['room_type'];
           $_SESSION['ratetype2'] = $_POST['rate_type'];
           $_SESSION['bed2'] = $_POST['bed'];
+          $_SESSION['totalrate2'] = $_POST['total_rate'];
           $_SESSION['command2'] = "";
           $submit2 = $_SESSION['command2'];
+
+          //2nd choice is the same as the 1st one
+          if ($_POST['room_type'] == $_SESSION['roomtype']) {
+
+            $checkavailable = "SELECT COUNT(room_number) FROM room_status 
+          WHERE room_suite_name = '" . $_SESSION['roomtype'] . "'AND room_suite_bed = '" . $_SESSION['bed'] . "' AND status = 0";
+            // echo $checkavailable;
+            $checkavailable = $conn->query($checkavailable);
+            $checkavailable = $checkavailable->fetch_row();
+            // $_SESSION['room'] = 2;
+
+            if ($checkavailable) {
+              $checkavailable = $checkavailable[0];
+              //echo $checkavailable;
+              if ($checkavailable <= 2) {
+                $roomchecker2 = false;
+                //echo 'dis is da wei';
+              } else {
+                $roomchecker2 = true;
+                //echo 'dis is not da wei';
+              }
+            } else {
+              $roomchecker2 = false;
+            }
+          } else {
+            // echo 'this is not de wei';
+            $checkavailable = "SELECT COUNT(room_number) FROM room_status 
+          WHERE room_suite_name = '" . $_SESSION['roomtype2'] . "'AND room_suite_bed = '" . $_SESSION['bed2'] . "' AND status = 0";
+            $checkavailable = $conn->query($checkavailable);
+            $checkavailable = $checkavailable->fetch_row();
+            // $_SESSION['room'] = 2;
+
+            if ($checkavailable) {
+              $checkavailable = $checkavailable[0];
+              if ($checkavailable >= 2) {
+                $roomchecker = true;
+              } else {
+                $roomchecker = false;
+              }
+            } else {
+              $roomchecker = false;
+            }
+          }
         }
         if ($_SESSION['room'] == 3) {
+
+
           $_SESSION['roomtype3'] = $_POST['room_type'];
           $_SESSION['ratetype3'] = $_POST['rate_type'];
           $_SESSION['bed3'] = $_POST['bed'];
+          $_SESSION['totalrate3'] = $_POST['total_rate'];
           $_SESSION['command3'] = "";
           $submit3 = $_SESSION['command3'];
+        }
+        if (isset($roomchecker)) {
+          $_SESSION['roomchecker'] = $roomchecker;
+        }
+
+        if (isset($roomchecker2)) {
+          $_SESSION['roomchecker2'] = $roomchecker2;
         }
 
         if ($_SESSION['rooms'] == $_SESSION['room']) {
@@ -192,7 +266,7 @@ if (isset($_POST['confirmreserve'])) {
 
   $guestcode = "GC-0" . strval($countguest);
   $paymentcode = "PC-0" . strval($countguest);
-  
+
 
 
 
@@ -292,7 +366,7 @@ if (isset($_POST['confirmreserve'])) {
     $roomnum3 = '';
   }
 
-  
+
   // $ratetype2 = '';
   // $ratetype3 = '';
   // if (isset($_SESSION['ratetype2'])) {
@@ -392,5 +466,32 @@ if (isset($_POST['confirmreserve'])) {
 }
 
 
-if (isset($_POST['booknow'])) {
+if (isset($_POST['review'])) {
+  $title = $_POST['name_with_initials'];
+  $fn = $_POST['fn'];
+  $ln = $_POST['ln'];
+  $email = $_POST['email'];
+  $address = $_POST['address'];
+  $city = $_POST['city'];
+  $mobilenum = $_POST['mobilenum'];
+  $paymenttype = $_POST['payment_type'];
+  $chname = $_POST['chname'];
+  $chnum = $_POST['chnum'];
+  $month = $_POST['month'];
+  $year = $_POST['year'];
+  $expiration = $month . '/' . $year;
+
+  $_SESSION['title'] = $title;
+  $_SESSION['fn'] = $fn;
+  $_SESSION['ln'] = $ln;
+  $_SESSION['email'] = $email;
+  $_SESSION['address'] = $address;
+  $_SESSION['city'] = $city;
+  $_SESSION['mobilenum'] = $mobilenum;
+  $_SESSION['paymenttype'] = $paymenttype;
+  $_SESSION['chname'] = $chname;
+  $_SESSION['chnum'] = $chnum;
+  $_SESSION['expiration'] = $expiration;
+
+  header('Location: review.php');
 }
