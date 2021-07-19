@@ -17,7 +17,7 @@ body::after {
   }
 .navbar
 {
-    background-color: rgb(58, 124, 141);
+    background-color: rgb(56, 146, 168);
     
 }
 .nav-link {
@@ -417,14 +417,15 @@ max-width: 40px;
 #promopic1{
     height: 300px;
     margin-top: -50px;
-    margin-left: 17px;
+    margin-left: 8px;
 }
 
 .containerss{
     background-color: white;
     padding-bottom: 20px;
-    padding-right: 10px;
+    padding-right: 0px;
     padding-top: 25px;
+    margin-right: 10px;
 }
 #promotiontitle{
     margin-top: -20px;
@@ -444,7 +445,7 @@ max-width: 40px;
 #promopic2{
     height: 300px;
     margin-top: -50px;
-    margin-left: -18px;
+    margin-left: -8px;
 }
 .rightfix{
     padding-right: 50px;
@@ -1011,4 +1012,11 @@ body {
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
+  }
+
+  #adultcount2l{
+      margin-left: 41%;
+  }
+  #adultcount3l{
+      margin-left: 73%;
   }

@@ -72,37 +72,37 @@ if (isset($_GET['promocode'])) {
                             <input class="form-control" type="text" name="promocode" id="promopromo" value="<?php echo $promocode ?>">
                         </div>
 
-                        <div class="col-auto " id="adultcount2l" hidden>
+                        <div class="col-auto " id="adultcount2l" >
                             <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
                         </div>
 
-                        <div class="col-auto" id="adultcount2i" hidden>
+                        <div class="col-auto" id="adultcount2i" >
                             <input class="form-control-nam1" type="number" name="guestcount2" id="adultcount2" value="1" min="1">
                         </div>
 
-                        <div class="col-auto" id="childadult2l" hidden>
+                        <div class="col-auto" id="childadult2l" >
                             <label for="inputChild" class="col-form-label">Child</label>
                         </div>
 
-                        <div class="col-auto" id="childadult2i" hidden>
+                        <div class="col-auto" id="childadult2i" >
                             <input class="form-control-nam" type="number" name="guestcountchild2" id="childadult2" value="0" min="0">
                         </div>
 
                         <div class="row g-2 align-items-center">
 
-                            <div class="col-auto " id="adultcount3l" hidden>
+                            <div class="col-auto " id="adultcount3l" >
                                 <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
                             </div>
 
-                            <div class="col-auto" id="adultcount3i" hidden>
+                            <div class="col-auto" id="adultcount3i" >
                                 <input class="form-control-nam1" type="number" name="guestcount3" id="adultcount3" value="1" min="1">
                             </div>
 
-                            <div class="col-auto" id="childadult3l" hidden>
+                            <div class="col-auto" id="childadult3l" >
                                 <label for="inputChild" class="col-form-label">Child</label>
                             </div>
 
-                            <div class="col-auto" id="childadult3i" hidden>
+                            <div class="col-auto" id="childadult3i" >
                                 <input class="form-control-nam" type="number" name="guestcountchild3" id="childadult3" value="0" min="0">
 
                             </div>
