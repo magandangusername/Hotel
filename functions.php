@@ -321,7 +321,7 @@ if (isset($_POST['confirmreserve'])) {
 
 
 
-
+echo $commands;
 
 
 
@@ -340,7 +340,7 @@ if (isset($_POST['chooseroom'])) {
   if (isset($_POST['room_type']) && isset($_POST['rate_type']) && isset($_POST['bed'])) {
     if (isset($_SESSION['room'])) {
 
-      if ($_SESSION['rooms'] == $_SESSION['room']) {
+      if ($_SESSION['rooms'] >= $_SESSION['room']) {
 
         if (isset($_SESSION['room']) && $_SESSION['room'] == 1) {
           $_SESSION['roomtype'] = $_POST['room_type'];

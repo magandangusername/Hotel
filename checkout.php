@@ -93,19 +93,19 @@ include_once 'header.php';
                     <div class="form-group form-inline">
                         <label>Payment Type</label>
                         <select name="name_with_initials_payment" id="">
-                            <option selected="selected" value="mister">Mr.</option>
-                            <option value="Mrs.">Mrs.</option>
-                            <option value="Miss">Ms.</option>
+                            <option selected="selected" value="PayPal">PayPal</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Credit Card">Credit Card</option>
                         </select>
                     </div>
 
                     <div class="col-md-6  ">
                         <label for="first"> Cardholder Name:</label>
-                        <input type="text" class="form-control" id="first" name='chname' disabled>
+                        <input type="text" class="form-control" id="first" name='chname' >
                     </div>
                     <div class="col-md-5  ">
                         <label for="email">Cardholder Number:</label>
-                        <input type="text" class="form-control" id="email" name='chnum' disabled>
+                        <input type="text" class="form-control" id="email" name='chnum' >
                     </div>
 
                   
@@ -115,14 +115,14 @@ include_once 'header.php';
 
                     <div class="col-2 ">
                         <label for="last">M</label>
-                        <input type="text" class="form-control" id="last" name='month' disabled>
+                        <input type="text" class="form-control" id="last" name='month' >
                     </div>
                     <div class="col-2">
                         <label for="last">Y</label>
-                        <input type="text" class="form-control" id="last" name='year' disabled>
+                        <input type="text" class="form-control" id="last" name='year' >
                     </div>
                 </section>  
-            </form>
+            <!-- </form> -->
         </div>
     </div>
     
@@ -138,6 +138,7 @@ include_once 'header.php';
                         <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
                     </div>
                 </div>
+                </form>
             </section>
 
 </body>
