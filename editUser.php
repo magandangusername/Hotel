@@ -44,15 +44,12 @@ include_once 'header.php';
                         </div>
                             
             
-                            <div class="col-md-4 ">
+                            <div class="col-md-5 ">
                                 <label for="first"> First Name:</label>
                                 <input type="text" class="form-control" id="firstname">
                             </div>
-                            <div class="col-md-4 ">
-                                <label for="last">Middle Name:</label>
-                                <input type="text" class="form-control" id="firstname">
-                            </div>
-                            <div class="col-md-4 ">
+                            
+                            <div class="col-md-5 ">
                                 <label for="last">Last Name:</label>
                                 <input type="text" class="form-control" id="lastname">
                             </div>
@@ -132,17 +129,13 @@ include_once 'header.php';
                                         </div>  
                                 </div>       
                             </div>        
-                        </session>        
+                        </section>        
                                                         
                 </form>
             </div>
         </div>  
     
-                 <section id ="twobutt">
-                     <div class="row">
-                         <p class="privacy">ito ang privacy ni papi skye</p>
-                     </div>
-
+                 <section id ="twobutt">    
                     <div class="row ">
                         <div class="buttwo">
                             
@@ -150,7 +143,6 @@ include_once 'header.php';
                         </div>
                     </div>
                  </section>
-
 
 
 </body>

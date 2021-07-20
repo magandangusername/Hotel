@@ -12,7 +12,7 @@ include_once 'header.php';
     </div>
 </section>
 
-<section id="useredits">
+<section id="usereditss">
     <div class="containerchecks">
         <div class="row g-2 justify-content-center">
 
@@ -35,7 +35,6 @@ include_once 'header.php';
                             $totalrate += floatval($_SESSION['totalrate3']);
                         }
                     }
-                    $_SESSION['downpayment'] = $totalrate * 0.5;
                     
                 }
                 $_SESSION['overallprice'] = number_format($totalrate, 2);
@@ -61,25 +60,28 @@ include_once 'header.php';
                     </div>
 
 
-                    <div class="col-md-6 ">
+                    <div class="col-md-5 ">
                         <label for="first"> First Name:</label>
-                        <input type="text" class="form-control" id="first" name='fn'>
+                        <input type="text" class="form-control" id="firstname">
                     </div>
+                    
+                    <div class="col-md-5 ">
+                        <label for="last">Last Name:</label>
+                        <input type="text" class="form-control" id="lastname">
+                    </div>
+                    
+                    
                     <div class="col-md-5 ">
                         <label for="email">Email Address:</label>
-                        <input type="text" class="form-control" id="email" name='email'>
+                        <input type="text" class="form-control-plaintext" id="firste">
                     </div>
-
-
-                    <div class="col-md-6 ">
-                        <label for="last">Last Name:</label>
-                        <input type="text" class="form-control" id="last" name='ln'>
-                    </div>
+                    
 
                     <div class="col-md-5 ">
                         <label for="reemail">Re-Type Email Address:</label>
-                        <input type="text" class="form-control" id="reemail" name='reemail'>
+                        <input type="text" class="form-control-plaintext" id="firste">
                     </div>
+                            
                 </section>
                 <hr />
                 <section id="wowo1">
@@ -87,7 +89,7 @@ include_once 'header.php';
 
                     <div class="col-md-6  ">
                         <label for="first"> Address:</label>
-                        <input type="text" class="form-control" id="first" name='address'>
+                        <input type="text" class="form-control-plaintext" id="first" name='address'>
                     </div>
                     <div class="col-md-5  ">
                         <label for="email">City:</label>
@@ -99,59 +101,20 @@ include_once 'header.php';
                         <label for="last">Mobile Number:</label>
                         <input type="text" class="form-control" id="last" name='mobilenum'>
                     </div>
-                </section>
-
-                <hr />
-
-                <!-- <section id="wowo2">
-                    <h1 class="personals">Payment Information</h1>
-                    <div class="form-group form-inline">
-                        <label>Payment Type</label>
-                        <select name="payment_type" id="">
-                            <option selected="selected" value="PayPal">PayPal</option>
-                            <option value="Debit Card">Debit Card</option>
-                            <option value="Credit Card">Credit Card</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6  ">
-                        <label for="first"> Cardholder Name:</label>
-                        <input type="text" class="form-control" id="first" name='chname'>
-                    </div>
-                    <div class="col-md-5  ">
-                        <label for="email">Cardholder Number:</label>
-                        <input type="text" class="form-control" id="email" name='chnum'>
-                    </div>
-
-
-                    <div class="col-2 ">
-                        <label>Expiration Date</label>
-                    </div>
-
-                    <div class="col-2 ">
-                        <label for="last">M</label>
-                        <input type="text" class="form-control" id="last" name='month'>
-                    </div>
-                    <div class="col-2">
-                        <label for="last">Y</label>
-                        <input type="text" class="form-control" id="last" name='year'>
-                    </div>
-                </section> -->
-                <!-- </form> -->
+                </section> 
+                
             </div>
         </div>
     </div>
 
 
     <section id="twobutt">
-        <div class="row">
-            <p class="privacy">ito ang privacy ni papi skye</p>
-        </div>
+        
 
         <div class="row ">
             <div class="buttwo">
-                <button type="submit" name="review" class="btn btn-primary"> Review Reservation </button>
-                <button type="submit" name="checkout" class="btn btn-primary"> Proceed to payment </button>
+                <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
+                <button type="submit"  name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
             </div>
         </div>
 

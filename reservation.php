@@ -26,7 +26,7 @@ note to everyone:
         </div>
 </section>
 
-<section id="useredits">
+<section id="usereditsss">
     <div class="containerchecks">
         <div class="row g-2 justify-content-center">
 
@@ -233,27 +233,14 @@ while ($ratesdescription = $rates->fetch_assoc()) {
                                         // $table[$rt][$rs][$b] = $beds;
                                         $b += 1;
                                         //echo $beds;
-                                        $q = $k = true;
                                         if ($beds > 0) {
 
                                         ?>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bed" value="Queen Bed" <?php if($room == 1) {
-                                                                                                                                            $_SESSION['bedcheckerq'] = true;
-                                                                                                                                            //echo 'yes';
-                                                                                                                                        }
-                                                                                                                                        if ((isset($_SESSION['bedcheckerq']) && !$_SESSION['bedcheckerq']) &&
-                                                                                                                                        (($_SESSION['roomtype'] == $result['room_suite_name']) || (isset($_SESSION['roomtype2']) && $_SESSION['roomtype2'] == $result['room_suite_name'])) && 
-                                                                                                                                        ($_SESSION['bed2'] == 'Queen Bed' || $_SESSION['bed'] == 'Queen Bed')) {
-                                                                                                                                            echo "disabled";
-                                                                                                                                            $q = false;
-                                                                                                                                        } else {
-                                                                                                                                            echo 'checked';
-                                                                                                                                        }
-                                                                                                                                    ?>>
+                                                <input class="form-check-input" type="radio" name="bed" value="Queen Bed" checked>
                                                 <label class="form-check-label">Queen Bed</label>
                                             </div>
-                                        <?php } else { $q = false; } 
+                                        <?php }
 
                                         $beds = "SELECT COUNT(room_suite_bed) AS beds FROM room_status WHERE room_suite_bed = 'King Bed' AND room_suite_name = '$type' AND status = 0";
                                         $beds = $conn->query($beds);
@@ -265,23 +252,10 @@ while ($ratesdescription = $rates->fetch_assoc()) {
 
                                         ?>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bed" value="King Bed" <?php if($room <= 1) {
-                                                                                                                                            $_SESSION['bedcheckerk'] = true;
-                                                                                                                                            //echo 'yes';
-                                                                                                                                        }
-                                                
-                                                                                                                                        if ((isset($_SESSION['bedcheckerk']) && !$_SESSION['bedcheckerk']) &&
-                                                                                                                                        (($_SESSION['roomtype'] == $result['room_suite_name']) || (isset($_SESSION['roomtype2']) && $_SESSION['roomtype2'] == $result['room_suite_name'])) && 
-                                                                                                                                        ($_SESSION['bed2'] == 'King Bed' || $_SESSION['bed'] == 'King Bed')) {
-                                                                                                                                            echo "disabled";
-                                                                                                                                            $k = false;
-                                                                                                                                        } else {
-                                                                                                                                            echo 'checked';
-                                                                                                                                        }
-                                                                                                                                    ?>>
+                                                <input class="form-check-input" type="radio" name="bed" value="King Bed" checked>
                                                 <label class="form-check-label">King Bed</label>
                                             </div>
-                                        <?php } else { $k = false; } ?>
+                                        <?php } ?>
                                     </div>
                                     <input name="room_type" value="<?php echo $type ?>" hidden>
                                     <input name="rate_type" value="<?php echo $ratesdescription['rate_name'] ?>" hidden>
@@ -301,7 +275,7 @@ while ($ratesdescription = $rates->fetch_assoc()) {
                                     }
                                     if ($available == 0) { ?>
                                         <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary" disabled>ROOM UNAVAILABLE</button>
-                                    <?php } else if ((isset($roomchecker2) && !$roomchecker2 || isset($roomchecker) && !$roomchecker) && (!$q && !$k) && 
+                                    <?php } else if ((isset($roomchecker2) && !$roomchecker2 || isset($roomchecker) && !$roomchecker) &&
                                         (($_SESSION['roomtype'] == $result['room_suite_name']) || (isset($_SESSION['roomtype2']) && $_SESSION['roomtype2'] == $result['room_suite_name']))
                                     ) {
 

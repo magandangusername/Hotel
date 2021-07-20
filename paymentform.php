@@ -9,7 +9,6 @@ require_once 'config.php';
     <head>
        
         <meta charset = "utf-8">
-
         <script src="https://js.stripe.com/v3/"></script>
 
 </head>
@@ -61,11 +60,11 @@ require_once 'config.php';
     </div>
 </div>
 </div>
-            <section id ="twobutt">
+            <section id ="twobuttcheckout">
                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label class="form-check-label" id="terms"  >
-                        I certify that I have read and accept the  Terms of Use and Privacy Statement and I have read and understand the Rate Description and Rate Tules for my reservation..
+                    <label class="form-check-label" id="termsss"  >
+                        I certify that I have read and accept the  Terms of Use and Privacy Statement and I have read and understand the Rate Description and Rate Tules for my reservation.
                     </label>
                 </div>
             </section>
