@@ -82,6 +82,7 @@ CREATE TABLE promotion_description (
     promotion_end datetime,
     overall_cut float,
     image_name varchar(255) COLLATE utf8_unicode_ci,
+    album_id int,
     PRIMARY KEY (promotion_code)
 );
 
@@ -95,6 +96,7 @@ CREATE TABLE rate_description (
     service_rate float,
     city_tax float,
     vat float,
+    album_id int,
     PRIMARY KEY (rate_name)
 );
 
@@ -136,6 +138,7 @@ CREATE TABLE room_description (
     room_size varchar(255),
     base_price float,
     bed_type varchar(255),
+    album_id int,
     PRIMARY KEY (room_name)
 );
 
@@ -159,6 +162,7 @@ CREATE TABLE suite_description (
     suite_size varchar(255),
     base_price float,
     bed_type varchar(255),
+    album_id int,
     PRIMARY KEY (suite_name)
 );
 
@@ -168,6 +172,21 @@ CREATE TABLE head_count (
 	adult int,
 	child int,
     PRIMARY KEY (head_count)
+);
+
+
+CREATE TABLE gallery_albums (
+    album_id int AUTO_INCREMENT,
+	album_name varchar(255) UNIQUE, 
+    PRIMARY KEY (album_id)
+);
+
+
+CREATE TABLE gallery_photos (
+    photo_id int AUTO_INCREMENT,
+	photo_name varchar(255), 
+	album_id int,
+    PRIMARY KEY (photo_id)
 );
 
 
@@ -191,18 +210,18 @@ VALUES
 ('PC-020', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06/21');
 
 
-INSERT INTO promotion_description(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name)
+INSERT INTO promotion_description(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name, album_id)
 VALUES
-('123456', 'Direct Booking', 'Direct reservations made by our guests are given a 10% discount on their overall booking', 'Enjoy a 10% overall booking discount by booking reservations directly on our website with a free dinner meal on us.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-21', '0.10', 'directb.jpg'),
-('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2021-08-31', '', 'celebration.jpeg'),
-('123612', 'Summer Season', 'Exclusive only for the summer season, enjoy a 15% discount on overall booking this summer', 'A treat for the summer season, enjoy 15% discount on overall booking and cool off on our hotel and escape from the summer heat.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-31', '0.15', 'summers.jpg');
+('123456', 'Direct Booking', 'Direct reservations made by our guests are given a 10% discount on their overall booking', 'Enjoy a 10% overall booking discount by booking reservations directly on our website with a free dinner meal on us.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-21', '0.10', 'directb.jpg', 4),
+('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2021-08-31', '', 'celebration.jpeg', 5),
+('123612', 'Summer Season', 'Exclusive only for the summer season, enjoy a 15% discount on overall booking this summer', 'A treat for the summer season, enjoy 15% discount on overall booking and cool off on our hotel and escape from the summer heat.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-31', '0.15', 'summers.jpg', 6);
 
 
-INSERT INTO rate_description(rate_name, rate_offer1, rate_offer2, rate_offer3, base_discount, service_rate, city_tax, vat)
+INSERT INTO rate_description(rate_name, rate_offer1, rate_offer2, rate_offer3, base_discount, service_rate, city_tax, vat, album_id)
 VALUES
-('Best Available Rate', 'Free Wifi', '30% Discount on nightly charge', 'Breakfast Meal', 0.30, 0.05, 0.09, 0.04),
-('Bonus Stay', 'Free Wifi', 'One night on us after a three consecutive day of stay', '', '', 0.04, 0.10, 0.03),
-('Online Exclusive', 'Free Wifi', '50% Discount on nightly charge', '', 0.05, 0.06, 0.11, 0.05);
+('Best Available Rate', 'Free Wifi', '30% Discount on nightly charge', 'Breakfast Meal', 0.30, 0.05, 0.09, 0.04, 1),
+('Bonus Stay', 'Free Wifi', 'One night on us after a three consecutive day of stay', '', '', 0.04, 0.10, 0.03, 2),
+('Online Exclusive', 'Free Wifi', '50% Discount on nightly charge', '', 0.05, 0.06, 0.11, 0.05, 3);
 
 
 INSERT INTO reservation_table(confirmation_number, arrival_date, departure_date, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
@@ -217,11 +236,11 @@ VALUES
 ('RR-012', 'R-05', '', '', 'Bonus Stay', '', '');
 
 
-INSERT INTO room_description(room_name, image_name, room_short_description, room_long_description, amenities_number, room_size, base_price, bed_type)
+INSERT INTO room_description(room_name, image_name, room_short_description, room_long_description, amenities_number, room_size, base_price, bed_type, album_id)
 VALUES
-('Deluxe Room', 'deluxeee1.jpg', 'A Deluxe experience like no other with a better amenities and deluxe space', 'Our deluxe room offers an a spacious room with an authentic interior that is stylish and comforting for our guests with a wonderful and plump pillow for a truly refreshing sleep', 'DA-2', '37', '5000', 'KQ'),
-('Joint Room', 'jointtitle.jpg', 'A room for a family or a group of friends with a queen or king bed', 'A room made for your family or group of friends with our joint rooms spacious interior with a multiple king or queen bed in place for a comforting sleep for the all of the guests', 'DA-1', '50', '5500', 'K'),
-('Standard Room', 'stantitle.jpg', 'An affordable room for our guests that offers a wide range of amenities', "A spacious but affordable retreat, Standard rooms are designed with simplicity and comfort in mind, a sophisticated ambience that doesn't break the bank.", 'DA-1', '36', '4400', 'KQ');
+('Deluxe Room', 'deluxeee1.jpg', 'A Deluxe experience like no other with a better amenities and deluxe space', 'Our deluxe room offers an a spacious room with an authentic interior that is stylish and comforting for our guests with a wonderful and plump pillow for a truly refreshing sleep', 'DA-2', '37', '5000', 'KQ', 7),
+('Joint Room', 'jointtitle.jpg', 'A room for a family or a group of friends with a queen or king bed', 'A room made for your family or group of friends with our joint rooms spacious interior with a multiple king or queen bed in place for a comforting sleep for the all of the guests', 'DA-1', '50', '5500', 'K', 8),
+('Standard Room', 'stantitle.jpg', 'An affordable room for our guests that offers a wide range of amenities', "A spacious but affordable retreat, Standard rooms are designed with simplicity and comfort in mind, a sophisticated ambience that doesn't break the bank.", 'DA-1', '36', '4400', 'KQ', 9);
 
 
 INSERT INTO room_status(room_number, status, confirmation_number, room_suite_name, room_suite_bed)
@@ -246,9 +265,69 @@ VALUES
 ('R-18', 0, '', 'Executive Suite', 'Queen Bed');
 
 
-INSERT INTO suite_description(suite_name, image_name, suite_short_description, suite_long_description, amenities_number, suite_size, base_price, bed_type)
+INSERT INTO suite_description(suite_name, image_name, suite_short_description, suite_long_description, amenities_number, suite_size, base_price, bed_type, album_id)
 VALUES
-('Executive Suite', 'execute1.png', 'Mondstadt Executive Suite is a stylish one-bedroom suite with king or queen size bed decorated in neutral tones.', 'A stylish one bedroom suite with king or queen size bed, 60 square meeters in size with a separate living and dining area. Additional amenities are also included', 'DA-3', '60', 7000, 'KQ'),
-('Junior Suite', 'juniortitle.jpg', 'A single room with a bed and sitting area a simple but accomdating suite', 'A simple but sophisticated design inside the suite, with a sleeping area separate from living room. Good for business trips and such', 'DA-3', '60', 6000, 'KQ'),
-('Presidential Suite', 'prestitle.jpg', 'A grand experience that is like of a president, presidential suite offers the best that mondstadt hotel has', 'Presidential suite offers the best of mondstadt hotel with multiple rooms, a grand design with an emphasis of grandeur, high-quality amenities a presidential experience', 'DA-4', '110', 6500, 'KQ');
+('Executive Suite', 'execute1.png', 'Mondstadt Executive Suite is a stylish one-bedroom suite with king or queen size bed decorated in neutral tones.', 'A stylish one bedroom suite with king or queen size bed, 60 square meeters in size with a separate living and dining area. Additional amenities are also included', 'DA-3', '60', 7000, 'KQ', 10),
+('Junior Suite', 'juniortitle.jpg', 'A single room with a bed and sitting area a simple but accomdating suite', 'A simple but sophisticated design inside the suite, with a sleeping area separate from living room. Good for business trips and such', 'DA-3', '60', 6000, 'KQ', 11),
+('Presidential Suite', 'prestitle.jpg', 'A grand experience that is like of a president, presidential suite offers the best that mondstadt hotel has', 'Presidential suite offers the best of mondstadt hotel with multiple rooms, a grand design with an emphasis of grandeur, high-quality amenities a presidential experience', 'DA-4', '110', 6500, 'KQ', 12);
+
+
+
+
+INSERT INTO gallery_albums(album_name)
+SELECT DISTINCT(rate_name) FROM rate_description;
+
+INSERT INTO gallery_albums(album_name)
+SELECT DISTINCT(promotion_name) FROM promotion_description;
+
+INSERT INTO gallery_albums(album_name)
+SELECT DISTINCT(room_name) FROM room_description;
+
+INSERT INTO gallery_albums(album_name)
+SELECT DISTINCT(suite_name) FROM suite_description;
+
+
+
+-- YOU CAN EDIT THIS PART SHANTI, u can add or edit photos here, album_id can repeat since its an album
+INSERT INTO gallery_photos(photo_name, album_id)
+VALUES 
+('lokasi-logo-25358.png', 1),
+('lokasi-logo-25358.png', 2),
+('lokasi-logo-25358.png', 3),
+('lokasi-logo-25358.png', 4),
+('lokasi-logo-25358.png', 5),
+('lokasi-logo-25358.png', 6),
+('deluxee1.jpg', 7),
+('deluxee2.jpg', 7),
+('deluxee3.jpg', 7),
+('joint1.jpg', 8),
+('joint2.jpg', 8),
+('joint3.jpg', 8),
+('standee1.jpg', 9),
+('standee2.jpg', 9),
+('standee3.jpg', 9),
+('execute1.jpg', 10),
+('execute1.png', 10),
+('execute2.jpg', 10),
+('juniorr1.jpg', 11),
+('juniorr2.jpg', 11),
+('juniorr3.jpg', 11),
+('pres1.jpg', 12),
+('pres2.jpg', 12),
+('pres3.jpg', 12);
+
+
+-- album id references:
+-- 1 Best Available Rate
+-- 2 Bonus Stay
+-- 3 Online Exclusive
+-- 4 Direct Booking
+-- 5 Opening Celebration
+-- 6 Summer Season
+-- 7 Deluxe Room
+-- 8 Joint Room
+-- 9 Standard Room
+-- 10 Executive Suite
+-- 11 Junior Suite
+-- 12 Presidential Suite
 

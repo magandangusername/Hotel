@@ -5,6 +5,10 @@ notes to designer:
 - fix other promotions
 */
 
+if(!isset($_GET['promo'])) {
+  header('Location: promo.php');
+}
+
 $promo_name = $_GET['promo'];
 $date = date("Y-m-d h:i:sa");
 $promotion = "SELECT * FROM promotion_description WHERE promotion_name = '$promo_name'";
