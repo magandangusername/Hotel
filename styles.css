@@ -1,250 +1,239 @@
-body{
-   
+body {
     font-family: sans-serif;
-    
-    
 }
+
 body::after {
     content: "";
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     opacity: 0.9;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     position: fixed;
-    z-index: -1;   
-  }
-.navbar
-{
-    background-color: rgb(63, 165, 190);
-    
+    z-index: -1;
 }
+
+.navbar {
+    background-color: rgb(63, 165, 190);
+}
+
 .nav-link {
-color: rgb(255, 255, 255) !important;
-font-weight: 600;
-text-align: left;
+    color: rgb(255, 255, 255) !important;
+    font-weight: 600;
+    text-align: left;
 }
 
 .nav-link:hover {
-    background-color:black;
-    }
-
-.navbar-brand{
-    color: rgb(255, 255, 255);
-    font-family: sans-serif;
-    
+    background-color: black;
 }
 
-#titulo{
+.navbar-brand {
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+}
+
+#titulo {
     font-size: 25px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-#dropdownMenu2{
+
+#dropdownMenu2 {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    margin-top:3px;
+    margin-top: 3px;
 }
 
-#navtabs{
+#navtabs {
     margin-top: -20px;
     padding-top: 10px;
-    padding-bottom: 1px; 
+    padding-bottom: 1px;
     background-color: #ffffff;
 }
 
-#slider{
-    
-    background-image: linear-gradient(to right, #56c596,#1f2f98);
+#slider {
+    background-image: linear-gradient(to right, #56c596, #1f2f98);
     overflow: hidden;
     margin-top: 10px;
-    
-    
-    
 }
 
-#sliders{
-    padding-top:-20px;
-    padding-bottom:100px;
-    
+#sliders {
+    padding-top: -20px;
+    padding-bottom: 100px;
 }
-#all{
+
+#all {
     margin-left: 100px;
     margin-right: 100px;
 }
 
-    
+
 /*--------availabitlity--------f------*/
 
-#availability{
-   
-   background-image: linear-gradient(to right, #56c596,#1f2f98);
-   padding-bottom: 10px;
-   padding-top: 20px;
-   
+#availability {
+    background-image: linear-gradient(to right, #56c596, #1f2f98);
+    padding-bottom: 10px;
+    padding-top: 20px;
 }
 
-.container{
+.container {
     margin: 0;
 }
-.vertical{
-border-left: 2px solid #030303;
-margin-right: 5px;
+
+.vertical {
+    border-left: 2px solid #030303;
+    margin-right: 5px;
 }
 
-.form-control{
-max-width: 170px;
-
+.form-control {
+    max-width: 170px;
 }
+
 #firstname {
     max-width: 250px;
 }
 
-#lastname{
+#lastname {
     max-width: 250px;
 }
-.form-control-plaintext{
+
+.form-control-plaintext {
     max-width: 400px;
     border-width: 2px;
     border-color: #00eeff;
     border-color: rgb(218, 218, 218);
 }
 
-
-.form-control-plaintext:focus { 
+.form-control-plaintext:focus {
     box-shadow: inset 0 1px 1px rgb(58, 162, 223), 0 0 8px rgba(46, 162, 230, 0.6);
 }
 
-.form-control-text{
+.form-control-text {
     max-width: 50px;
 }
 
- #expdate{
+#expdate {
     text-align: left;
     margin-left: -140px;
- }
+}
 
-#first{
+#first {
     border-width: 1px;
     border-color: rgb(206, 206, 206);
     border-radius: 5px;
 }
 
-#firste{
+#firste {
     border-width: 1px;
     border-color: rgb(206, 206, 206);
     border-radius: 5px;
 }
-.form-control-num{
-max-width: 40px;
-}
 
-.col-auto{
-margin-left: 15px;
-margin-right: 5px;
-padding-top: 5px;
-
-}
-
-.form-control-nam{
-max-width: 40px;
-
-}
-
-
-.form-control-nam1{
-max-width: 40px;
-
-}
-.form-control-nam2{
+.form-control-num {
     max-width: 40px;
-   
-    
- } 
-.form-control-nam3{
-     max-width: 45px;
-     
- } 
-#searching{
-    max-width: 235px;
-    
-    
-    
-} 
-#promotitle{
-    margin-left: 15px ;
 }
+
+.col-auto {
+    margin-left: 15px;
+    margin-right: 5px;
+    padding-top: 5px;
+}
+
+.form-control-nam {
+    max-width: 40px;
+}
+
+.form-control-nam1 {
+    max-width: 40px;
+}
+
+.form-control-nam2 {
+    max-width: 40px;
+}
+
+.form-control-nam3 {
+    max-width: 45px;
+}
+
+#searching {
+    max-width: 235px;
+}
+
+#promotitle {
+    margin-left: 15px;
+}
+
+
 /*--------location and num------------*/
-.containers{
-    
+
+.containers {
     background-color: white;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-top: 10px;
-    
-
 }
 
-.location{
+.location {
     text-align: center;
     padding-top: 15px;
     font-family: 'Gill Sans', sans-serif;
     font-size: 16px;
 }
 
-
-.num{
+.num {
     text-align: center;
     font-family: 'Gill Sans', sans-serif;
     font-size: 16px;
 }
 
+
 /*--------about------------*/
-#about{
+
+#about {
     content: "";
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     opacity: 1;
     padding-bottom: 20px;
-   
-
 }
 
-.hotelname{
-	
-	padding: 10px;
-	text-transform: uppercase;
+.hotelname {
+    padding: 10px;
+    text-transform: uppercase;
     font-family: 'Gill Sans', sans-serif;
-    
 }
 
-.desc, h1{
+.desc,
+h1 {
     color: white;
     font-family: 'Gill Sans', sans-serif;
     font-size: 14px;
-
 }
+
 
 /*--------service------------*/
-#service{
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+
+#service {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     padding-top: 10px;
 }
-.container1{
+
+.container1 {
     margin-top: 5%;
     padding-bottom: 20px;
-   
 }
-.card{
+
+.card {
     position: relative;
     overflow: hidden;
 }
-.card:before{
+
+.card:before {
     position: absolute;
     content: '';
     width: 80%;
     height: 220%;
-    background: rgb(0, 204, 204,0.7);
+    background: rgb(0, 204, 204, 0.7);
     top: -50%;
     left: -100%;
     z-index: 1;
@@ -252,14 +241,17 @@ max-width: 40px;
     transform-origin: center top;
     transition: .5s;
 }
-.card:hover:before{
+
+.card:hover:before {
     left: 10%;
 }
-.card img{
+
+.card img {
     width: 100%;
     height: auto;
 }
-.card-text{
+
+.card-text {
     width: 100%;
     padding: 0 20px;
     position: absolute;
@@ -269,33 +261,36 @@ max-width: 40px;
     z-index: 2;
     transition: 1.1s;
     font-family: 'Gill Sans', sans-serif;
-    
 }
-.card-text h4 h6{
+
+.card-text h4 h6 {
     font-family: poppins;
     font-family: 'Gill Sans', sans-serif;
 }
 
-.card:hover .card-text{
+.card:hover .card-text {
     top: 20px;
 }
-.card-title{
+
+.card-title {
     font-weight: bold;
 }
 
+
 /*--------roomandsuites------------*/
 
-.container2{
+.container2 {
     background-color: white;
     padding-top: 15px;
     padding-bottom: 35px;
     margin-top: 25px;
 }
-.roomites{
+
+.roomites {
     color: black;
     text-align: center;
-
 }
+
 .title::before {
     content: '';
     background: #1195b6;
@@ -306,31 +301,33 @@ max-width: 40px;
     margin-bottom: 120px;
     transform: translateY(63px);
     display: block;
-  
-  }
-  
- 
+}
+
+
 /*--------special offers------------*/
-.container3{
+
+.container3 {
     background-color: white;
     padding-bottom: 25px;
 }
 
-.special{
+.special {
     color: black;
-    text-align: center;   
+    text-align: center;
 }
 
-.col-md-3{
+.col-md-3 {
     margin-left: 65px;
 }
 
-#seeall{
+#seeall {
     margin-top: 50px;
 }
 
+
 /*--------room and suite page------------*/
-.container4{
+
+.container4 {
     background-color: white;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -338,89 +335,98 @@ max-width: 40px;
     font-size: 16px;
 }
 
-.container-sm{
+.container-sm {
     background-color: black;
     padding-top: 150px;
     padding-left: 50px;
-    
 }
 
-.col-lg-2{
-    background-color:#56c596 ;
+.col-lg-2 {
+    background-color: #56c596;
     margin-left: 30px;
     margin-bottom: 15px;
-    
-}
-.col-lg-3{
-    background-color:#56c596 ;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    
-    
 }
 
-.col{
+.col-lg-3 {
+    background-color: #56c596;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.col {
     margin-bottom: 35px;
-    margin-top: 5px ;
+    margin-top: 5px;
     margin-left: 20px;
 }
-#roomcheck{
+
+#roomcheck {
     margin-top: 5px;
     margin-left: 35px;
 }
 
+
 /*--------banner promo--------bonus----*/
-.terms{
+
+.terms {
     border-left: 4px solid #7b1798;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-#banner{
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+#banner {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     padding-top: 5%;
-    
 }
-.abouts{ 
-    margin-left: 30px;
 
+.abouts {
+    margin-left: 30px;
 }
-.valid{ 
+
+.valid {
     margin-left: 30px;
     font-style: italic;
     font-size: 12px;
 }
-#bonusbutton{
+
+#bonusbutton {
     margin-left: 30px;
 }
-.earlytitle{
+
+.earlytitle {
     margin-left: 30px;
 }
-#earlypic{
+
+#earlypic {
     margin-left: -20px;
     margin-bottom: 30px;
 }
-.bonusinfo{ 
-    margin-left: 30px;
 
+.bonusinfo {
+    margin-left: 30px;
 }
-#otherpromotion{
+
+#otherpromotion {
     padding-top: 5%;
     padding-bottom: 5%;
 }
-.otherpromo{
+
+.otherpromo {
     text-align: center;
     padding-bottom: 30px;
 }
-.term{
+
+.term {
     color: white;
 }
 
+
 /*--------promotab------------*/
-.promotiontab{
+
+.promotiontab {
     text-align: center;
     color: black;
 }
+
 .titles::before {
     content: '';
     background: #1195b6;
@@ -431,18 +437,17 @@ max-width: 40px;
     margin-bottom: -10px;
     transform: translateY(63px);
     display: block;
-  
 }
-  .promotionstitle{
-      color: black;
-      text-align: center;
-  }
 
-  .container-lg{
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+.promotionstitle {
+    color: black;
+    text-align: center;
+}
+
+.container-lg {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     margin-top: 40px;
     padding-top: 50px;
-    
 }
 
 .title1::before {
@@ -455,7 +460,6 @@ max-width: 40px;
     margin-bottom: 0px;
     transform: translateY(63px);
     display: block;
-  
 }
 
 .title2::before {
@@ -468,177 +472,184 @@ max-width: 40px;
     margin-bottom: 0px;
     transform: translateY(63px);
     display: block;
-  
 }
-.abouts1{
+
+.abouts1 {
     text-align: center;
     margin-top: 30px;
     margin-left: 100px;
     font-family: 'Gill Sans', sans-serif;
     font-size: 16px;
 }
-.abouts3{
+
+.abouts3 {
     text-align: center;
     margin-top: 30px;
     margin-right: 100px;
     font-family: 'Gill Sans', sans-serif;
     font-size: 16px;
 }
-    
 
-.earlytitle{
+.earlytitle {
     text-align: center;
     margin-left: 100px;
 }
-.earlytitle1{
+
+.earlytitle1 {
     text-align: center;
     margin-right: 100px;
 }
 
-.promobonus{
+.promobonus {
     margin-left: 220px;
     margin-top: 50px;
-    
 }
-.promobonus1{
+
+.promobonus1 {
     margin-left: 120px;
     margin-top: 50px;
 }
-#promobonus{
+
+#promobonus {
     margin-left: 20px;
 }
-#promopic1{
+
+#promopic1 {
     height: 300px;
     margin-top: -50px;
     margin-left: 105px;
 }
 
-.containerss{
+.containerss {
     background-color: white;
     padding-bottom: 20px;
     padding-right: 0px;
     padding-top: 25px;
     margin-right: 10px;
 }
-#promotiontitle{
-    margin-top: -20px;
-}
-.containersdeluxe{
+
+#promotiontitle {
     margin-top: -20px;
 }
 
+.containersdeluxe {
+    margin-top: -20px;
+}
 
-.containerssh{
+.containerssh {
     background-color: white;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 8px;
 }
 
-#promopic2{
+#promopic2 {
     height: 300px;
     margin-top: -50px;
     margin-left: -8px;
 }
-.rightfix{
+
+.rightfix {
     padding-right: 50px;
 }
 
-.abouts2{
+.abouts2 {
     text-align: center;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
 }
-.bonustitle{
+
+.bonustitle {
     text-align: center;
     margin-left: 30px;
 }
-.bonusbonus{
+
+.bonusbonus {
     margin-left: 140px;
     margin-top: 50px;
 }
-#bonusbonus{
+
+#bonusbonus {
     margin-left: 20px;
 }
-#availnow{
+
+#availnow {
     border: 1px solid;
     box-shadow: 5px 10px #888888;
     margin-right: 20px;
-   
 }
 
-#availnows{
+#availnows {
     border: 1px solid;
     padding: 10px;
     box-shadow: 5px 10px #888888;
     margin-left: 30px;
 }
-#standstand{
+
+#standstand {
     margin-left: 100px;
 }
 
-.stanAmenities{
-    margin-top:50px;
-    
+.stanAmenities {
+    margin-top: 50px;
 }
-.titless{
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+
+.titless {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     padding-top: 10px;
     color: white;
-    padding-bottom:10px;
+    padding-bottom: 10px;
     margin-bottom: -20px;
 }
 
-#gitna{
+#gitna {
     color: white;
     text-align: center;
 }
 
+
 /*--------resrvation------------*/
-.containerrese{
+
+.containerrese {
     padding-left: 10px;
     padding-bottom: 6px;
     margin-left: -10px;
     margin-top: -20px;
     margin-bottom: -4px;
-    
 }
-.titlecheck{
-    
-    margin-bottom: 5px;
 
+.titlecheck {
+    margin-bottom: 5px;
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     color: white;
-    
 }
-.titlechecks{
-    
+
+.titlechecks {
     margin-bottom: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     color: black;
-    
 }
-#wowo{
-    margin-left: 50px;
-    padding-bottom: 20px;
-    
-    
 
-}
-#wowo1{
-    margin-left: 50px;
-    padding-bottom: 20px;
-}
-#wowo2{
+#wowo {
     margin-left: 50px;
     padding-bottom: 20px;
 }
 
-.reservetitle{
+#wowo1 {
+    margin-left: 50px;
+    padding-bottom: 20px;
+}
+
+#wowo2 {
+    margin-left: 50px;
+    padding-bottom: 20px;
+}
+
+.reservetitle {
     color: white;
     text-align: Left;
     padding-top: 20px;
@@ -646,74 +657,77 @@ max-width: 40px;
     margin-left: 20px;
 }
 
-.roomrates{
+.roomrates {
     padding-top: 15px;
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
 }
 
-.roomtxt{
+.roomtxt {
     color: white;
     text-align: left;
     margin-top: 10px;
 }
-.col-md-12{
-    
+
+.col-md-12 {
     padding-bottom: 5px;
 }
-.pandr{
+
+.pandr {
     color: white;
     text-align: center;
-    margin-right: 90px ;
+    margin-right: 90px;
 }
 
-#vertical{
+#vertical {
     border-left: 2px solid #030303;
     margin-right: 5px;
 }
-.containerish{
-    background-color:white ;
-    
+
+.containerish {
+    background-color: white;
     padding-top: 5px;
     font-family: 'Gill Sans', sans-serif;
+}
 
-}
-.roomeb{
-    color: black;
-    margin-left: 30px;
-    margin-top: 20px;
-    font-family: 'Gill Sans', sans-serif;
-}
-.roomeb1{
+.roomeb {
     color: black;
     margin-left: 30px;
     margin-top: 20px;
     font-family: 'Gill Sans', sans-serif;
 }
 
+.roomeb1 {
+    color: black;
+    margin-left: 30px;
+    margin-top: 20px;
+    font-family: 'Gill Sans', sans-serif;
+}
 
-#sliderish{
+#sliderish {
     margin-top: -20px;
 }
-.policies{
+
+.policies {
     margin-left: 30px;
     margin-top: 20px;
     font-family: 'Gill Sans', sans-serif;
 }
-.policies1{
+
+.policies1 {
     margin-left: 30px;
     margin-top: 20px;
     font-family: 'Gill Sans', sans-serif;
     font-weight: bold;
-
 }
-.bold{
+
+.bold {
     font-weight: bold;
 }
 
-.termss{
+.termss {
     border-left: 4px solid #7b1798;
     margin-top: 10px;
-    margin-bottom: 50px;   
+    margin-bottom: 50px;
 }
 
 .titlesa::before {
@@ -726,225 +740,242 @@ max-width: 40px;
     margin-bottom: -10px;
     transform: translateY(63px);
     display: block;
-  
 }
 
-.containerearly{
-    background-color:white ;
+.containerearly {
+    background-color: white;
     margin-top: -50px;
     padding-bottom: 20px;
 }
-.availroom{
+
+.availroom {
     margin-left: 50px;
     margin-top: 20px;
     font-weight: bold;
 }
 
-
-#avilnows{
+#avilnows {
     border: 1px solid;
     padding: 10px;
     box-shadow: 5px 10px #888888;
     margin-left: 30px;
     margin-top: 30px;
 }
-.pricey{
+
+.pricey {
     font-weight: bold;
     text-align: center;
     font-size: 20px;
     line-height: 1.3em;
     margin-top: 10px;
 }
-.sizey{
+
+.sizey {
     font-size: 12px;
     line-height: 0.1em;
 }
-.sizeys{
+
+.sizeys {
     font-size: 12px;
     line-height: 1em;
     text-align: center;
-    
 }
-.sizeyss{
+
+.sizeyss {
     font-size: 12px;
     line-height: 0.9em;
     text-decoration: none;
-    
 }
-.none{
+
+.none {
     line-height: 1em;
     text-decoration: none;
 }
-.btn{
+
+.btn {
     padding-left: 10px;
     text-align: center;
 }
-.cards{
+
+.cards {
     padding-right: 40px;
 }
 
-#sliderishh{
+#sliderishh {
     margin-top: 20px;
 }
+
 .slider {
     padding-right: 10px;
     padding-left: 15px;
-    
-    
 }
-.carousel{
+
+.carousel {
     margin-bottom: -10px;
-    margin: 0 0 0 90 ;
+    margin: 0 0 0 90;
     margin-top: -20px;
-    
-    
 }
 
 
 /*--------checkout------------*/
-.containercheck{
-    background-color:rgb(175, 112, 112);
-    padding-bottom: 10px;
 
+.containercheck {
+    background-color: rgb(175, 112, 112);
+    padding-bottom: 10px;
 }
-.containercheckuser{
+
+.containercheckuser {
     padding-bottom: 5px;
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
 }
-.label{
+
+.label {
     color: black;
     font-family: 'Gill Sans', sans-serif;
 }
 
-.form-group{
-    margin-left: 30px ;
+.form-group {
+    margin-left: 30px;
 }
 
-.user{
-    margin-left: 20px ;
+.user {
+    margin-left: 20px;
 }
-.titlecheck{
-    background-color:white ;
+
+.titlecheck {
+    background-color: white;
 }
-#whitey{
-    background-color:white ;
+
+#whitey {
+    background-color: white;
     margin-left: 0px;
     margin-right: 0px;
     padding-bottom: 30px;
 }
-.personals{
+
+.personals {
     color: black;
     margin-left: 40px;
 }
-.buttwo{
+
+.buttwo {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-#twobutt{
-     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
-     padding-bottom: 30px;
-     
-}
-#twobutts{
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
-    padding-bottom: 40px;
-    margin-left: -40px;
-    
+
+#twobutt {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    padding-bottom: 30px;
 }
 
+#twobutts {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    padding-bottom: 40px;
+    margin-left: -40px;
+}
+
+
 /*---modifyresreve-------*/
-.modifhy{
+
+.modifhy {
     text-align: left;
     padding-left: 40px;
     font-weight: bold;
 }
-.containermod{
-    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+
+.containermod {
+    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
     color: white;
     padding-bottom: 20px;
-
 }
-#backmod{
+
+#backmod {
     margin-left: 20px;
     margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     line-height: 0.9em;
 }
-.containermodi{
-    background-color:white ;
+
+.containermodi {
+    background-color: white;
     padding-top: 5px;
 }
-.modifhye{
+
+.modifhye {
     text-align: center;
     padding-bottom: 10px;
     line-height: 0.5em;
-   
 }
 
-.userinfo{
+.userinfo {
     padding-left: 100px;
 }
-.containernew{
-    background-color:rgb(141, 121, 121) ;
+
+.containernew {
+    background-color: rgb(141, 121, 121);
     padding-top: 15px;
     padding-right: 15px;
     padding-left: 15px;
 }
-#bannerss{
+
+#bannerss {
     padding-left: 50px;
     padding-right: 50px;
     margin-right: 50px;
     margin-left: 50px;
     padding-bottom: 100px;
-    
-   
 }
-.new{
+
+.new {
     font-family: 'Gill Sans', sans-serif;
 }
-#modifyone{
+
+#modifyone {
     background-color: white;
     padding-bottom: 10px;
 }
-#modify{
+
+#modify {
     padding-top: -10px;
 }
 
-#modifytwo{
-    
+#modifytwo {
     margin-left: 40px;
-    
 }
-#modifdif{
+
+#modifdif {
     background-color: white;
-    
 }
-.modifhys{
+
+.modifhys {
     text-align: left;
     padding-left: 40px;
 }
 
-#pindot{
+#pindot {
     text-align: center;
-}
-.containerchecks{
-    background-color:rgb(109, 148, 59) ;
-    padding-bottom: 10px;
-}
-#useredits{
-    padding-bottom: -50px;
-}
-.mid{
-    text-align: center;
-    color:white;
 }
 
-.col-auto-first{
-    margin-left: 20px;
-   
+.containerchecks {
+    background-color: rgb(109, 148, 59);
+    padding-bottom: 10px;
 }
+
+#useredits {
+    padding-bottom: -50px;
+}
+
+.mid {
+    text-align: center;
+    color: white;
+}
+
+.col-auto-first {
+    margin-left: 20px;
+}
+
 
 /*-------availdate----*/
 
@@ -965,9 +996,7 @@ body {
     box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
     margin-bottom: 90px;
-
 }
-
 
 .month {
     display: flex;
@@ -979,6 +1008,7 @@ body {
     background-color: #2ecc71;
     color: #fff;
 }
+
 .monthh {
     display: flex;
     justify-content: space-between;
@@ -996,6 +1026,7 @@ body {
     padding: 7px 0;
     display: flex;
 }
+
 .weekdayss {
     background-color: #27ae60;
     color: #fff;
@@ -1009,6 +1040,7 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
+
 .dayss {
     font-weight: 300;
     padding: 10px 0;
@@ -1021,6 +1053,7 @@ body {
     text-align: center;
     width: 14.28%;
 }
+
 .weekdayss div,
 .dayss div {
     text-align: center;
@@ -1032,6 +1065,7 @@ body {
     margin-bottom: 10px;
     transition: all 0.4s;
 }
+
 .dayss div {
     padding: 10px 0;
     margin-bottom: 10px;
@@ -1041,15 +1075,16 @@ body {
 .prev_date {
     color: #999;
 }
+
 .prevv_date {
     color: #999;
 }
-
 
 .days div:hover {
     cursor: pointer;
     background-color: #dfe6e9
 }
+
 .dayss div:hover {
     cursor: pointer;
     background-color: #dfe6e9
@@ -1086,6 +1121,7 @@ body {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.2);
 }
+
 .prevv:hover,
 .nextt:hover {
     cursor: pointer;
@@ -1096,47 +1132,48 @@ body {
     font-size: 30px;
     font-weight: 500;
 }
+
 #monthhs {
     font-size: 30px;
     font-weight: 500;
 }
 
-
-.availtitles{
+.availtitles {
     text-align: center;
-    
 }
-#backcolor{
+
+#backcolor {
     background-color: white;
     padding-top: 10px;
 }
-#footleg{
+
+#footleg {
     text-align: center;
     padding-bottom: 40px;
 }
-#sliderearly{
-    padding-bottom:50px;
+
+#sliderearly {
+    padding-bottom: 50px;
 }
+
+
 /*----searcj------*/
 
-.searchlabels{
+.searchlabels {
     font-weight: bold;
     color: black;
 }
 
-
-.searchlabel{
-    
+.searchlabel {
     color: black;
 }
 
-#search{
+#search {
     background-color: white;
     padding-bottom: 40px;
 }
 
-
-#buttsearch{
+#buttsearch {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -1146,11 +1183,12 @@ body {
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
-  }
+}
 
-  #adultcount2l{
-      margin-left: 41%;
-  }
-  #adultcount3l{
-      margin-left: 73%;
-  }
+#adultcount2l {
+    margin-left: 41%;
+}
+
+#adultcount3l {
+    margin-left: 73%;
+}

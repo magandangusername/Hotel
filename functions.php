@@ -296,11 +296,7 @@ if (isset($_POST['chooseroom'])) {
   }
 }
 
-
-//FINAL STEP OF RESERVATION
-if (isset($_POST['confirmreserve'])) {
-
-  //final form (custoemr and payment info)
+if (isset($_POST['checkout'])) {
   $title = $_POST['name_with_initials'];
   $fn = $_POST['fn'];
   $ln = $_POST['ln'];
@@ -314,7 +310,41 @@ if (isset($_POST['confirmreserve'])) {
   $month = $_POST['month'];
   $year = $_POST['year'];
   $expiration = $month . '/' . $year;
+  
+  $_SESSION['title'] = $title;
+  $_SESSION['fn'] = $fn;
+  $_SESSION['ln'] = $ln;
+  $_SESSION['email'] = $email;
+  $_SESSION['address'] = $address;
+  $_SESSION['city'] = $city;
+  $_SESSION['mobilenum'] = $mobilenum;
+  $_SESSION['paymenttype'] = $paymenttype;
+  $_SESSION['chname'] = $chname;
+  $_SESSION['chnum'] = $chnum;
+  $_SESSION['expiration'] = $expiration;
 
+  header('Location: paymentform.php');
+}
+
+
+//FINAL STEP OF RESERVATION
+if (isset($_GET['confirmreserve'])) {
+  // echo 'yes';
+  // exit;
+
+  //final form (custoemr and payment info)
+  $title = $_SESSION['title'];
+  $fn = $_SESSION['fn'];
+  $ln = $_SESSION['ln'];
+  $email = $_SESSION['email'];
+  $address = $_SESSION['address'];
+  $city = $_SESSION['city'];
+  $mobilenum = $_SESSION['mobilenum'];
+  $paymenttype =  $_SESSION['paymenttype'];
+  $chname =  $_SESSION['chname'];
+  $chnum =  $_SESSION['chnum'];
+  $expiration =  $_SESSION['expiration'];
+  
   $countguest = "SELECT COUNT(guest_code) FROM guest_information";
   $countguest = $conn->query($countguest);
   $countguest = $countguest->fetch_row();
@@ -438,19 +468,24 @@ if (isset($_POST['confirmreserve'])) {
     $promocode = '';
   }
 
+  $paymentcode = "SELECT MAX(id) FROM orders";
+  $paymentcode = $conn->query($paymentcode);
+  $paymentcode = $paymentcode->fetch_row();
+  $paymentcode = $paymentcode[0];
 
-  $paymentinformation = "INSERT INTO payment_information(
-	  payment_code, 
-	  payment_type, 
-	  card_number, 
-	  card_holder_name, 
-	  expiration) VALUES (
-	  '$paymentcode', 
-	  '$paymenttype', 
-	  '$chnum', 
-	  '$chname', 
-	  '$expiration'
-	  );";
+
+  // $paymentinformation = "INSERT INTO payment_information(
+	//   payment_code, 
+	//   payment_type, 
+	//   card_number, 
+	//   card_holder_name, 
+	//   expiration) VALUES (
+	//   '$paymentcode', 
+	//   '$paymenttype', 
+	//   '$chnum', 
+	//   '$chname', 
+	//   '$expiration'
+	//   );";
 
   $guestinformation = "INSERT INTO guest_information(
 	  guest_code, 
@@ -508,19 +543,20 @@ if (isset($_POST['confirmreserve'])) {
   SET status=1, confirmation_number='$confirmation_number'
   WHERE room_number='$roomnum' OR room_number='$roomnum2' OR room_number='$roomnum3';";
 
-  $commands = $paymentinformation . $guestinformation . $reservedroomsinfo . $reservationinfo . $roomstatus;
+  $commands = $guestinformation . $reservedroomsinfo . $reservationinfo . $roomstatus;
 
-  if ($conn->query($paymentinformation) && $conn->query($guestinformation) && $conn->query($reservedroomsinfo) && $conn->query($reservationinfo) && $conn->query($roomstatus)) {
-    echo "Your confirmation number is: $confirmation_number";
+  if ($conn->query($guestinformation) && $conn->query($reservedroomsinfo) && $conn->query($reservationinfo) && $conn->query($roomstatus)) {
+    // echo "Your confirmation number is: $confirmation_number";
+    $_SESSION['confirmation_number'] = $confirmation_number;
   } else {
     echo "ERROR OCCURED INSERTING TO DATABASE";
+    $_SESSION['confirmation_number'] = "ERROR OCCURED INSERTING TO DATABASE";
   }
 
   //echo $commands;
 
-  include_once 'destroysession.php';
+  // include_once 'destroysession.php';
 }
-
 
 if (isset($_POST['review'])) {
   $title = $_POST['name_with_initials'];

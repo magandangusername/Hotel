@@ -35,6 +35,7 @@ include_once 'header.php';
                             $totalrate += floatval($_SESSION['totalrate3']);
                         }
                     }
+                    $_SESSION['downpayment'] = $totalrate * 0.5;
                     
                 }
                 $_SESSION['overallprice'] = number_format($totalrate, 2);
@@ -102,7 +103,7 @@ include_once 'header.php';
 
                 <hr />
 
-                <section id="wowo2">
+                <!-- <section id="wowo2">
                     <h1 class="personals">Payment Information</h1>
                     <div class="form-group form-inline">
                         <label>Payment Type</label>
@@ -135,7 +136,7 @@ include_once 'header.php';
                         <label for="last">Y</label>
                         <input type="text" class="form-control" id="last" name='year'>
                     </div>
-                </section>
+                </section> -->
                 <!-- </form> -->
             </div>
         </div>
@@ -150,7 +151,7 @@ include_once 'header.php';
         <div class="row ">
             <div class="buttwo">
                 <button type="submit" name="review" class="btn btn-primary"> Review Reservation </button>
-                <button type="submit" name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
+                <button type="submit" name="checkout" class="btn btn-primary"> Proceed to payment </button>
             </div>
         </div>
 
