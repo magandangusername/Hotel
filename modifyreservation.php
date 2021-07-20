@@ -40,7 +40,7 @@ include_once 'header.php';
 
         <section id ="modifytwo">
                     <div class="col-12"></div>
-                        <h2 class="">Room Information</h2>
+                        <h2 class="bold">Room Information</h2>
                    
         
         <section id ="bannerss">
@@ -79,7 +79,7 @@ include_once 'header.php';
     </section>
 
 
-    <section id ="twobutt">
+    <section id ="twobutts">
     <div class="containerchecks">
         <div class="row g-2 justify-content-center">
 

@@ -99,14 +99,14 @@ while ($ratesdescription = $rates->fetch_assoc()) {
         <div class="containerish">
             <div class="row">
                 <div class="col-md-5 ">
-                    <h3 class="roomeb"> <?php echo $ratesdescription['rate_name'] ?> </h3>
+                    <h3 class="roomeb1"> <?php echo $ratesdescription['rate_name'] ?> </h3>
                     <p class="roomeb"><?php echo $ratesdescription['rate_offer1'] ?></p>
                     <p class="roomeb"><?php echo $ratesdescription['rate_offer2'] ?></p>
                     <p class="roomeb"><?php echo $ratesdescription['rate_offer3'] ?></p>
                 </div>
                 <div class="col-md-6 ">
                     <div class="termss">
-                        <h4 class="policies"> Policies </h4>
+                        <h4 class="policies1"> Policies </h4>
                         <p class="policies">Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
                         <p class="policies">Reservation must be guaranteed with credit card at time of booking. Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
                     </div>

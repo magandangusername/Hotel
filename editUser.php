@@ -39,38 +39,47 @@ include_once 'header.php';
                             <select name="name_with_initials" id="">
                                         <option selected="selected" value="mister">Mr.</option>
                                         <option value="misis">Mrs.</option>
-                                        <option value="miss">Miss.</option>
+                                        <option value="miss">Ms.</option>
                             </select>   
                         </div>
                             
             
-                            <div class="col-md-6 ">
+                            <div class="col-md-4 ">
                                 <label for="first"> First Name:</label>
-                                <input type="text" class="form-control" id="first">
+                                <input type="text" class="form-control" id="firstname">
                             </div>
-                            <div class="col-md-5 ">
-                                <label for="email">Email Address:</label>
-                                <input type="text" class="form-control" id="email">
+                            <div class="col-md-4 ">
+                                <label for="last">Middle Name:</label>
+                                <input type="text" class="form-control" id="firstname">
                             </div>
-                        
-
-                            <div class="col-md-6 ">
+                            <div class="col-md-4 ">
                                 <label for="last">Last Name:</label>
-                                <input type="text" class="form-control" id="last">
+                                <input type="text" class="form-control" id="lastname">
                             </div>
                             
+                            
+                            <div class="col-md-5 ">
+                                <label for="email">Email Address:</label>
+                                <input type="text" class="form-control-plaintext" id="firste">
+                            </div>
+                            
+
                             <div class="col-md-5 ">
                                 <label for="reemail">Re-Type Email Address:</label>
-                                <input type="text" class="form-control" id="reemail">
+                                <input type="text" class="form-control-plaintext" id="firste">
                             </div>
+                            
+
+                           
                     </section>
                             <hr />
                     <section id="wowo1">
                             <h1 class="personals">Address</h1>
                             
+                                
                                 <div class="col-md-6  ">
                                     <label for="first"> Address:</label>
-                                    <input type="text" class="form-control" id="first">
+                                    <input type="text" class="form-control-plaintext" id="first">
                                 </div>
                                 <div class="col-md-5  ">
                                     <label for="email">City:</label>
@@ -105,22 +114,26 @@ include_once 'header.php';
                                 <label for="email">Cardholder Number:</label>
                                 <input type="text" class="form-control" id="email" disabled>
                             </div>
-                            
+                    </section>         
                        
-
-                            <div class="col-3 ">
-                                <label>Expiration Date</label>
-                            </div>
-                                <div class="col-3 ">            
-                                    <label for="last">M</label>
-                                    <input type="text" class="form-control" id="last" disabled>
-                                </div>
-                                <div class="col-3">
-                                    <label for="last">Y</label>
-                                    <input type="text" class="form-control" id="last"disabled >
-                                 </div>  
-                                     
-                    </section>                                     
+                        <section id ="expiry">
+                            <div class="row g-2 justify-content-center">
+                                <div class ="col-9" id="expdate">
+                                    <div class="col-sm-2">
+                                        <label>Expiration Date</label>
+                                    </div>
+                                        <div class="col-sm-2">            
+                                            <label for="last">M</label>
+                                            <input type="text" class="form-control-text" id="last" disabled>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="last">Y</label>
+                                            <input type="text" class="form-control-text" id="last"disabled >
+                                        </div>  
+                                </div>       
+                            </div>        
+                        </session>        
+                                                        
                 </form>
             </div>
         </div>  

@@ -63,28 +63,28 @@ include_once('header.php');
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="card">
-                    <img src="photos/bonus stay.png" alt="">
+                    <img src="photos/experiences.png" alt="">
                     <div class="card-text">
                         <h4>Luxurious Experience</h4>
-                        <h6>infoss</h6>
+                        <h6>A level of experience like no other</h6>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="card">
-                    <img src="photos/early bird.png" alt="">
+                    <img src="photos/service.jpg" alt="">
                     <div class="card-text">
                         <h4>Top Notch Service</h4>
-                        <h6>A level service like no other</h6>
+                        <h6>A level of service like no other</h6>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="card">
-                    <img src="photos/bonus stay1.png" alt="">
+                    <img src="photos/maintains.png" alt="">
                     <div class="card-text">
-                        <h4>Well-Maintained</h>
-                            <h6>infoss</h6>
+                        <h4>Well-Maintained </h>
+                            <h6>A Well-Maintained place like no other</h6>
                     </div>
                 </div>
             </div>

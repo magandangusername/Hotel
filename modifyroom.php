@@ -114,13 +114,13 @@ include_once 'header.php';
         <div class="containerish">
             <div class="row">
                 <div class="col-md-5 ">
-                    <h3 class="roomeb"> Early Bird </h3>
+                    <h3 class="roomeb1"> Early Bird </h3>
                     <p class="roomeb">30% discount charge per night</p>
                     <p class="roomeb">Free WiFi</p>
                 </div>
                 <div class="col-md-6 ">
                     <div class="termss"> 
-                        <h4 class="policies"> Policies </h4>
+                        <h4 class="policies1"> Policies </h4>
                         <p class="policies">Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
                         <p class="policies">Reservation must be guaranteed with credit card at time of booking. Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
                     </div>
@@ -301,13 +301,13 @@ include_once 'header.php';
         <div class="containerish">
             <div class="row">
                 <div class="col-md-5 ">
-                    <h3 class="roomeb"> Online Exclusive</h3>
+                    <h3 class="roomeb1"> Online Exclusive</h3>
                     <p class="roomeb">30% discount charge per night</p>
                     <p class="roomeb">Free WiFi</p>
                 </div>
                 <div class="col-md-6 ">
                     <div class="termss"> 
-                        <h4 class="policies"> Policies </h4>
+                        <h4 class="policies1"> Policies </h4>
                         <p class="policies">Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
                         <p class="policies">Reservation must be guaranteed with credit card at time of booking. Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
                     </div>
@@ -488,13 +488,13 @@ include_once 'header.php';
         <div class="containerish">
             <div class="row">
                 <div class="col-md-5 ">
-                    <h3 class="roomeb"> Bonus Stay </h3>
+                    <h3 class="roomeb1"> Bonus Stay </h3>
                     <p class="roomeb">30% discount charge per night</p>
                     <p class="roomeb">Free WiFi</p>
                 </div>
                 <div class="col-md-6 ">
                     <div class="termss"> 
-                        <h4 class="policies"> Policies </h4>
+                        <h4 class="policies1"> Policies </h4>
                         <p class="policies">Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
                         <p class="policies">Reservation must be guaranteed with credit card at time of booking. Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
                     </div>

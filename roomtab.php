@@ -59,7 +59,7 @@ if(isset($_GET['room'])){
                         <a href="roomtab.php?room=<?php echo $room['room_name'] ?>"> <img src="photos/<?php echo $room['image_name'] ?>"></a>
                     </div>
                     <div class="col">
-                        <h3><?php echo $room['room_name'] ?></h3>
+                        <h4 class ="bold"><?php echo $room['room_name'] ?></h3>
                         <p><?php echo $room['room_short_description'] ?></p>
                     </div>
                     
@@ -68,7 +68,7 @@ if(isset($_GET['room'])){
                 ?>
                 <div class="col-12"></div>
                 <div class="col-lg-2" id="availnow">
-                    <h3> Room</h3>
+                    <h4 class="bold"> Room</h3>
                     <p>this is standard</p>
                     <a href="">see latest room offers</a>
                 </div>

@@ -17,7 +17,7 @@ body::after {
   }
 .navbar
 {
-    background-color: rgb(56, 146, 168);
+    background-color: rgb(63, 165, 190);
     
 }
 .nav-link {
@@ -58,7 +58,7 @@ text-align: left;
     
     background-image: linear-gradient(to right, #56c596,#1f2f98);
     overflow: hidden;
-    margin-top: -20px;
+    margin-top: 10px;
     
     
     
@@ -97,7 +97,45 @@ margin-right: 5px;
 max-width: 170px;
 
 }
+#firstname {
+    max-width: 250px;
+}
 
+#lastname{
+    max-width: 250px;
+}
+.form-control-plaintext{
+    max-width: 400px;
+    border-width: 2px;
+    border-color: #00eeff;
+    border-color: rgb(218, 218, 218);
+}
+
+
+.form-control-plaintext:focus { 
+    box-shadow: inset 0 1px 1px rgb(58, 162, 223), 0 0 8px rgba(46, 162, 230, 0.6);
+}
+
+.form-control-text{
+    max-width: 50px;
+}
+
+ #expdate{
+    text-align: left;
+    margin-left: -140px;
+ }
+
+#first{
+    border-width: 1px;
+    border-color: rgb(206, 206, 206);
+    border-radius: 5px;
+}
+
+#firste{
+    border-width: 1px;
+    border-color: rgb(206, 206, 206);
+    border-radius: 5px;
+}
 .form-control-num{
 max-width: 40px;
 }
@@ -151,26 +189,40 @@ max-width: 40px;
 .location{
     text-align: center;
     padding-top: 15px;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 16px;
 }
+
 
 .num{
     text-align: center;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 16px;
 }
+
 /*--------about------------*/
 #about{
     content: "";
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     opacity: 1;
     padding-bottom: 20px;
+   
+
 }
 
 .hotelname{
 	
 	padding: 10px;
 	text-transform: uppercase;
+    font-family: 'Gill Sans', sans-serif;
+    
 }
+
 .desc, h1{
     color: white;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 14px;
+
 }
 
 /*--------service------------*/
@@ -216,9 +268,12 @@ max-width: 40px;
     left: 0;
     z-index: 2;
     transition: 1.1s;
+    font-family: 'Gill Sans', sans-serif;
+    
 }
 .card-text h4 h6{
     font-family: poppins;
+    font-family: 'Gill Sans', sans-serif;
 }
 
 .card:hover .card-text{
@@ -279,7 +334,10 @@ max-width: 40px;
     background-color: white;
     padding-top: 25px;
     padding-bottom: 25px;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 16px;
 }
+
 .container-sm{
     background-color: black;
     padding-top: 150px;
@@ -392,7 +450,20 @@ max-width: 40px;
     background: #ffffff;
     height: 2px;
     width: 300px;
-    margin-left: 140px;
+    margin-left: 170px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    transform: translateY(63px);
+    display: block;
+  
+}
+
+.title2::before {
+    content: '';
+    background: #ffffff;
+    height: 2px;
+    width: 390px;
+    margin-left: 30px;
     margin-right: auto;
     margin-bottom: 0px;
     transform: translateY(63px);
@@ -402,13 +473,35 @@ max-width: 40px;
 .abouts1{
     text-align: center;
     margin-top: 30px;
-    margin-left: 60px;
+    margin-left: 100px;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 16px;
 }
+.abouts3{
+    text-align: center;
+    margin-top: 30px;
+    margin-right: 100px;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 16px;
+}
+    
+
 .earlytitle{
     text-align: center;
+    margin-left: 100px;
 }
+.earlytitle1{
+    text-align: center;
+    margin-right: 100px;
+}
+
 .promobonus{
-    margin-left: 140px;
+    margin-left: 220px;
+    margin-top: 50px;
+    
+}
+.promobonus1{
+    margin-left: 120px;
     margin-top: 50px;
 }
 #promobonus{
@@ -417,7 +510,7 @@ max-width: 40px;
 #promopic1{
     height: 300px;
     margin-top: -50px;
-    margin-left: 8px;
+    margin-left: 105px;
 }
 
 .containerss{
@@ -470,7 +563,6 @@ max-width: 40px;
 }
 #availnow{
     border: 1px solid;
-   
     box-shadow: 5px 10px #888888;
     margin-right: 20px;
    
@@ -492,12 +584,16 @@ max-width: 40px;
 }
 .titless{
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
-    text-align: center;
     padding-top: 10px;
     color: white;
-    padding-bottom: 20px;
+    padding-bottom:10px;
+    margin-bottom: -20px;
 }
 
+#gitna{
+    color: white;
+    text-align: center;
+}
 
 /*--------resrvation------------*/
 .containerrese{
@@ -518,7 +614,7 @@ max-width: 40px;
     
 }
 .titlechecks{
-    margin-top: 5px;
+    
     margin-bottom: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -529,6 +625,9 @@ max-width: 40px;
 #wowo{
     margin-left: 50px;
     padding-bottom: 20px;
+    
+    
+
 }
 #wowo1{
     margin-left: 50px;
@@ -573,13 +672,24 @@ max-width: 40px;
 }
 .containerish{
     background-color:white ;
-    margin-top: 20px;
+    
+    padding-top: 5px;
+    font-family: 'Gill Sans', sans-serif;
+
 }
 .roomeb{
     color: black;
     margin-left: 30px;
     margin-top: 20px;
+    font-family: 'Gill Sans', sans-serif;
 }
+.roomeb1{
+    color: black;
+    margin-left: 30px;
+    margin-top: 20px;
+    font-family: 'Gill Sans', sans-serif;
+}
+
 
 #sliderish{
     margin-top: -20px;
@@ -587,6 +697,17 @@ max-width: 40px;
 .policies{
     margin-left: 30px;
     margin-top: 20px;
+    font-family: 'Gill Sans', sans-serif;
+}
+.policies1{
+    margin-left: 30px;
+    margin-top: 20px;
+    font-family: 'Gill Sans', sans-serif;
+    font-weight: bold;
+
+}
+.bold{
+    font-weight: bold;
 }
 
 .termss{
@@ -692,6 +813,7 @@ max-width: 40px;
 }
 .label{
     color: black;
+    font-family: 'Gill Sans', sans-serif;
 }
 
 .form-group{
@@ -716,20 +838,26 @@ max-width: 40px;
 }
 .buttwo{
     text-align: center;
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
 }
 #twobutt{
      background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+     padding-bottom: 30px;
      
-     padding-bottom: 40px;
-     margin-left: -40px;
+}
+#twobutts{
+    background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
+    padding-bottom: 40px;
+    margin-left: -40px;
+    
 }
 
 /*---modifyresreve-------*/
 .modifhy{
     text-align: left;
     padding-left: 40px;
+    font-weight: bold;
 }
 .containermod{
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
@@ -770,7 +898,11 @@ max-width: 40px;
     margin-right: 50px;
     margin-left: 50px;
     padding-bottom: 100px;
+    
    
+}
+.new{
+    font-family: 'Gill Sans', sans-serif;
 }
 #modifyone{
     background-color: white;
@@ -801,7 +933,9 @@ max-width: 40px;
     background-color:rgb(109, 148, 59) ;
     padding-bottom: 10px;
 }
-
+#useredits{
+    padding-bottom: -50px;
+}
 .mid{
     text-align: center;
     color:white;

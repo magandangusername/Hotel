@@ -72,11 +72,11 @@ if (isset($_GET['promo'])) {
                 <img src="photos/<?php echo $promo['image_name'] ?>" id="promopic2" class="img-fluid">
               </div>
               <div class="col-md-6">
-                <div class="title1">
-                  <h1 class="earlytitle"><?php echo $promo['promotion_name'] ?></h1>
+                <div class="title2">
+                  <h1 class="earlytitle1"><?php echo $promo['promotion_name'] ?></h1>
                 </div>
-                <p class="abouts1"> <?php echo $promo['promotion_short_description'] ?> </p>
-                <div class="promobonus">
+                <p class="abouts3"> <?php echo $promo['promotion_short_description'] ?> </p>
+                <div class="promobonus1">
                   <form method="POST" action="">
                     <a href="promo.php?promo=<?php
                                               $page = $promo['promotion_name'];

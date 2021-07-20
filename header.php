@@ -68,12 +68,15 @@
                                 ?>" href="promo.php">Promotion</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?php
-                                if ($url === 'avail.php' || $url === 'search.php' || $url === 'modifyreservation.php' || $url === 'editUser.php' || $url === 'modifyroom.php' || $url === 'checkout.php' || $url === 'review.php' || $url === 'reservation.php') {
-                                  echo 'active';
-                                }
-
-                                ?>" href="avail.php">Reservation</a>
+            <div class="dropdown">
+              <a class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Reservation
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a class="dropdown-item" href="avail.php" type="button">Booking</a></li>
+                <li><a class="dropdown-item" href="modifyreservation.php" type="button">Modify/Cancel Reservation</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
