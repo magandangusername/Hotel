@@ -89,7 +89,7 @@ if (isset($_POST['checkavail'])) {
       echo "$totalavailable >= $rooms \nRooms are almost full. Please choose less than $rooms rooms.";
       exit;
     }
-    $_SESSION['availabilityCheck'] = true;
+    // $_SESSION['availabilityCheck'] = true;
     $_SESSION['checkin'] = $checkin;
     $_SESSION['checkout'] = $checkout;
     $_SESSION['adult'] = $adult;
@@ -117,7 +117,7 @@ if (isset($_POST['checkavail'])) {
 
     header("Location: reservation.php");
   } else {
-    $_SESSION['availabilityCheck'] = false;
+    // $_SESSION['availabilityCheck'] = false;
     echo 'Sorry, all rooms and suites are already taken';
     exit;
   }
