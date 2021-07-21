@@ -95,11 +95,11 @@ if(!empty($_POST['stripeToken'])){
     <div class="status">
         <?php if(!empty($payment_id)){ ?>
             <h1 class="<?php echo $ordStatus; ?>"><?php echo $statusMsg; ?></h1>
-			<h4><b> confirmation number: <?php echo $_SESSION['confirmation_number'] ?></b></h4>
+			<h4><b> Confirmation number: <?php echo $_SESSION['confirmation_number'] ?></b></h4>
             <h4>Payment Information</h4>
             <p><b>Reference Number:</b> <?php echo $payment_id; ?></p>
             <p><b>Transaction ID:</b> <?php echo $transactionID; ?></p>
-            <p><b>Paid Amount:</b> <?php echo $paidAmount.' '.$paidCurrency; ?></p>
+            <p><b>Paid Amount:</b> <?php echo number_format($paidAmount, 2).' '.$paidCurrency; ?></p>
             <p><b>Payment Status:</b> <?php echo $payment_status; ?></p>
 			
             

@@ -237,32 +237,34 @@ if (isset($_POST['chooseroom'])) {
 
             if ($checkavailable) {
               $checkavailable = $checkavailable[0];
-              if ($checkavailable >= 2) {
-                $roomchecker = true;
-                if($_SESSION['bed2'] == 'Queen Bed') {
-                  $_SESSION['bedcheckerq'] = true;
-                } else
-                if($_SESSION['bed2'] == 'King Bed') {
-                  $_SESSION['bedcheckerk'] = true;
-                }
-              } else {
+              if ($checkavailable < 2) {
                 $roomchecker = false;
-                if($_SESSION['bed2'] == 'Queen Bed') {
+                if($_SESSION['bed'] == 'Queen Bed') {
                   $_SESSION['bedcheckerq'] = false;
                 } else
-                if($_SESSION['bed2'] == 'King Bed') {
+                if($_SESSION['bed'] == 'King Bed') {
                   $_SESSION['bedcheckerk'] = false;
                 }
+              } else {
+                $roomchecker = true;
+                if($_SESSION['bed'] == 'Queen Bed') {
+                  $_SESSION['bedcheckerq'] = true;
+                } else
+                if($_SESSION['bed'] == 'King Bed') {
+                  $_SESSION['bedcheckerk'] = true;
+                }
+                //$_SESSION['room'] = 1;
               }
             } else {
               $roomchecker = false;
-              if($_SESSION['bed2'] == 'Queen Bed') {
+              if($_SESSION['bed'] == 'Queen Bed') {
                 $_SESSION['bedcheckerq'] = false;
               } else
-              if($_SESSION['bed2'] == 'King Bed') {
+              if($_SESSION['bed'] == 'King Bed') {
                 $_SESSION['bedcheckerk'] = false;
               }
             }
+            $_SESSION['roomchecker'] = $roomchecker;
           }
         }
         if ($_SESSION['room'] == 3) {
