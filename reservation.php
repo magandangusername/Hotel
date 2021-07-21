@@ -191,6 +191,7 @@ while ($ratesdescription = $rates->fetch_assoc()) {
                                 $totalrate = $totalprice;
                             }
 
+                            $_SESSION['downpayment'] = $totalrate * 0.5;
                             ?>
                             <img src="photos/<?php echo $file_name ?>" class="card-img-top">
                             <form action="" method="POST">

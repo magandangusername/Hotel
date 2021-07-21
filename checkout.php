@@ -114,7 +114,7 @@ include_once 'header.php';
         <div class="row ">
             <div class="buttwo">
                 <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
-                <button type="submit"  name="confirmreserve" class="btn btn-primary"> Confirm Reservation </button>
+                <button type="submit"  name="checkout" class="btn btn-primary"> Proceed to payment </button>
             </div>
         </div>
 
