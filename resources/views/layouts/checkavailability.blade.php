@@ -1,6 +1,4 @@
-@if ()
-    
-@endif
+
 <section id="availability">
     <div class="container">
         <div class="shadow-sm p-1 bg-body rounded">
@@ -23,7 +21,7 @@
 
                     <div class="col-auto vertical">
                         <label for="inputRoom" class="col-form-label">Room</label>
-                    </div> 
+                    </div>
 
                     <div class="col-auto">
                         <input class="form-control-num" type="number" name="roomcount" id ="roomcount" value="1" min="1" max="3">

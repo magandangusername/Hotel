@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\room_status;
+use App\Models\promotion_description;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $roomtype = room_status::distinct()->get();
-        return view('index')->with(compact('roomtype'));
+        $date = date("Y-m-d h:i:sa");
+        $roomtype = room_status::distinct('room_suite_name')->limit(3)->get();
+        $promos = promotion_description::where('promotion_start', '<=', $date)->where('promotion_end', '>=', $date)->limit(3)->get();
+        return view('index')->with(compact('roomtype','promos'));
     }
 
     /**

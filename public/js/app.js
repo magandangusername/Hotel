@@ -1847,7 +1847,7 @@ var run = function run() {
 }; // this is test
 
 
-function calendar() {
+calendar = function calendar() {
   var today = new Date();
   var dd = today.getDate();
   var dd2 = today.getDate() + 1;
@@ -1869,9 +1869,9 @@ function calendar() {
   today = yyyy + '-' + mm + '-' + dd2;
   document.getElementById("CheckOut").setAttribute("min", today);
   document.getElementById("CheckOut").setAttribute("value", today);
-}
+};
 
-function checkcalendarin() {
+checkcalendarin = function checkcalendarin() {
   var checkin = document.getElementById("CheckIn");
   var checkout = document.getElementById("CheckOut");
   var checkinval = checkin.value;
@@ -1883,9 +1883,9 @@ function checkcalendarin() {
     var futureDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + newDate.getDate()).slice(-2);
     checkout.value = futureDate;
   }
-}
+};
 
-function checkcalendarout() {
+checkcalendarout = function checkcalendarout() {
   var checkin = document.getElementById("CheckIn");
   var checkout = document.getElementById("CheckOut");
   var checkinval = checkin.value;
@@ -1897,7 +1897,7 @@ function checkcalendarout() {
     var futureDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + newDate.getDate()).slice(-2);
     checkin.value = futureDate;
   }
-}
+};
 
 document.addEventListener("DOMContentLoaded", function () {
   // make it as accordion for smaller screens
@@ -1926,7 +1926,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 }); // DOMContentLoaded  end
 
-function rooms(n) {
+rooms = function rooms(n) {
   var adult2l = document.getElementById("adultcount2l");
   var adult2i = document.getElementById("adultcount2i");
   var child2l = document.getElementById("childadult2l");
@@ -1959,7 +1959,7 @@ function rooms(n) {
     child3l.hidden = true;
     child3i.hidden = true;
   }
-}
+};
 
 /***/ }),
 

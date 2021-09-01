@@ -4,7 +4,7 @@ const run = () => {
         console.log("hello");
     }
     // this is test
-function calendar() {
+calendar = function() {
     var today = new Date();
     var dd = today.getDate();
     var dd2 = today.getDate() + 1;
@@ -28,7 +28,7 @@ function calendar() {
 
 
 
-function checkcalendarin() {
+checkcalendarin = function() {
     var checkin = document.getElementById("CheckIn");
     var checkout = document.getElementById("CheckOut");
     var checkinval = checkin.value;
@@ -43,7 +43,7 @@ function checkcalendarin() {
     }
 }
 
-function checkcalendarout() {
+checkcalendarout = function() {
     var checkin = document.getElementById("CheckIn");
     var checkout = document.getElementById("CheckOut");
     var checkinval = checkin.value;
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-function rooms(n) {
+rooms = function(n) {
     var adult2l = document.getElementById("adultcount2l");
     var adult2i = document.getElementById("adultcount2i");
     var child2l = document.getElementById("childadult2l");

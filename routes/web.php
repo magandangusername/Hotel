@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\PromotionController;
 /*
@@ -18,7 +19,7 @@ use App\Http\Controllers\PromotionController;
 //     return view('index');
 // });
 
-Route::get('/', [AmenitiesController::class, 'index'])->name('index');
+Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/promos', [PromotionController::class, 'promo'])->name('promo');
 Route::get('/promos/{name}', [PromotionController::class, 'show']);
 //Route::get('/promos/{code}', [PromotionController::class, 'promocode']);
