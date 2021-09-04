@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once 'header.php';
 /*
 notes to designer:
@@ -9,9 +9,9 @@ if(isset($_GET['room'])){
     include_once 'room.php';
 } else {
 ?>
-         <!---------------------------------slider------------------------------->
+    <!---------------------------------slider------------------------------->
     <section id ="slider">
-        <div class ="col-lg-11 mx-auto d-block"> 
+        <div class ="col-lg-11 mx-auto d-block">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -45,7 +45,7 @@ if(isset($_GET['room'])){
         </div>
     </section>
 
-     <!---------------------------------rooms-------------------------------> 
+     <!---------------------------------rooms------------------------------->
     <section id ="roomtab">
         <div class="container4">
             <div class="row row-cols-3 row-cols-lg-3">
@@ -62,7 +62,7 @@ if(isset($_GET['room'])){
                         <h4 class ="bold"><?php echo $room['room_name'] ?></h3>
                         <p><?php echo $room['room_short_description'] ?></p>
                     </div>
-                    
+
                 <?php
                     }
                 ?>
@@ -89,6 +89,6 @@ if(isset($_GET['room'])){
 
 
 </body>
-</html>    
+</html>
 
 <?php } ?>

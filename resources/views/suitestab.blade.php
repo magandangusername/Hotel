@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <!---------------------------------slider------------------------------->
     <section id="slider">
         <div class="col-lg-11 mx-auto d-block">
@@ -49,14 +48,13 @@
         <div class="container4">
             <div class="row row-cols-3 row-cols-lg-3">
 
-                @foreach ($rooms as $room)
+                @foreach ($suites as $suite)
                     <div class="col">
-                        <a href="{{ url('roomtab') }}/{{ $room->room_name }}"> <img
-                                src="{{ asset('images/' . $room->image_name) }}"></a>
+                        <a href="{{url('suitestab')}}/{{$suite->suite_name}}"> <img src="{{asset('images/'.$suite->image_name)}}"></a>
                     </div>
                     <div class="col">
-                        <h4 class="bold">{{ $room->room_name }}</h4>
-                        <p>{{ $room->room_short_description }}</p>
+                        <h4 class="bold">{{$suite->suite_name}}</h3>
+                            <p>{{$suite->suite_short_description}}</p>
                     </div>
                 @endforeach
 
@@ -66,6 +64,7 @@
                         <p>this is standard</p>
                         <a href="">see latest room offers</a>
                 </div>
+
                 @include('layouts.checkavailability2')
 
             </div>

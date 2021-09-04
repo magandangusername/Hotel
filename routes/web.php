@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AmenitiesController;
+use App\Http\Controllers\RoomSuiteController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +24,15 @@ use App\Http\Controllers\PromotionController;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/promos', [PromotionController::class, 'promo'])->name('promo');
 Route::get('/promos/{name}', [PromotionController::class, 'show']);
+Route::get('/roomtab', [RoomSuiteController::class, 'rooms'])->name('roomtab');
+Route::get('/suitestab', [RoomSuiteController::class, 'suites'])->name('suitestab');
+Route::get('/roomtab/{name}', [RoomSuiteController::class, 'roominfo']);
+Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
+Route::get('/book', [BookController::class, 'index'])->name('avail');
 //Route::get('/promos/{code}', [PromotionController::class, 'promocode']);
 
 
 
-Route::get('/roomtab', [AmenitiesController::class, 'index'])->name('roomtab');
-Route::get('/suitestab', [AmenitiesController::class, 'index'])->name('suitestab');
-Route::get('/avail', [AmenitiesController::class, 'index'])->name('avail');
+
+
 Route::get('/modify', [AmenitiesController::class, 'index'])->name('modifyreservation');
