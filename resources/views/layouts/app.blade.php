@@ -55,7 +55,7 @@
                     Reservation
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a class="dropdown-item" href="{{ route('avail') }}" type="button">Booking</a></li>
+                    <li><a class="dropdown-item" href="{{ route('book.index') }}" type="button">Booking</a></li>
                     <li><a class="dropdown-item" href="{{ route('modifyreservation') }}" type="button">Modify/Cancel Reservation</a></li>
                   </ul>
                 </div>

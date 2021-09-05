@@ -28,7 +28,8 @@ Route::get('/roomtab', [RoomSuiteController::class, 'rooms'])->name('roomtab');
 Route::get('/suitestab', [RoomSuiteController::class, 'suites'])->name('suitestab');
 Route::get('/roomtab/{name}', [RoomSuiteController::class, 'roominfo']);
 Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
-Route::get('/book', [BookController::class, 'index'])->name('avail');
+Route::resource('/book', BookController::class);
+//Route::get('/book', [BookController::class, 'index'])->name('avail');
 //Route::get('/promos/{code}', [PromotionController::class, 'promocode']);
 
 
