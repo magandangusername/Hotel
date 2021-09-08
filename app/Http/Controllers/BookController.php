@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('booking');
     }
 
     /**
@@ -42,21 +42,25 @@ class BookController extends Controller
 
         $message = "validation failed";
         $request->validate([
-            'CheckIn' => 'required|date|min:'.$date1,
-            'CheckOut' => 'required|date|min:'.$date2,
-            'roomcount' => 'required|integer|min:1|max:3',
+            'CheckIn' => "required|date|after:".$date1,
+            // 'CheckOut' => 'required|date|min:'.$date2,
+            // 'roomcount' => 'required|integer|min:1|max:3',
             'guestcount' => 'required|integer|min:1',
-            'guestcountchild' => 'required|integer|min:0',
-            'guestcount2' => 'required|integer|min:1',
-            'guestcountchild2' => 'required|integer|min:0',
-            'guestcount3' => 'required|integer|min:1',
-            'guestcountchild3' => 'required|integer|min:0'
+            // 'guestcountchild' => 'required|integer|min:0',
+            // 'guestcount2' => 'required|integer|min:1',
+            // 'guestcountchild2' => 'required|integer|min:0',
+            // 'guestcount3' => 'required|integer|min:1',
+            // 'guestcountchild3' => 'required|integer|min:0'
 
         ]);
 
+        // $data = $request->input();
+        // $request->session()->put($data);
+        //echo session('guestcount');
+        dd($date2);
         $message = "validation successful!";
 
-        return redirect('/book')->with('message');
+        return redirect('/book');
     }
 
     /**

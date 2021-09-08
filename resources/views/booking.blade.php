@@ -187,9 +187,11 @@
         @endif
         <section id="footleg">
 
-            <button type="sumbit" name="checkavail" id="roomcheck" class="btn btn-primary"> Modify/Cancel</button>
+            <button type="submit" name="checkavail" id="roomcheck" class="btn btn-primary"> Modify/Cancel</button>
             <!-- <a href="reservation.php" input type="sumbit" name="checkavail" id="roomcheck" class="btn btn-primary"> Check Availability </a> -->
-            <button type="sumbit" name="checkavail" id="roomcheck" class="btn btn-primary"> Check Availability</button>
+            {{-- <button type="submit" name="checkavail" id="roomcheck" class="btn btn-primary"> Check Availability</button> --}}
+            <input type="submit" name="checkavail" id="roomcheck" class="btn btn-primary" value="Check Availability">
+
         </section>
     </section>
 </form>

@@ -6,6 +6,8 @@ use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\RoomSuiteController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\BookController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +39,7 @@ Route::resource('/book', BookController::class);
 
 
 Route::get('/modify', [AmenitiesController::class, 'index'])->name('modifyreservation');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
