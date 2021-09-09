@@ -12,6 +12,8 @@ calendar = function() {
     var yyyy = today.getFullYear();
     if (dd < 10) {
         dd = '0' + dd
+    }
+    if (dd2 < 10) {
         dd2 = '0' + dd2
     }
     if (mm < 10) {

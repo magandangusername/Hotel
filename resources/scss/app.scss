@@ -1,10 +1,16 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
+@import 'variables';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 body {
     font-family: sans-serif;
 }
 
 body::after {
     content: "";
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     opacity: 0.9;
     top: 0;
     left: 0;
@@ -192,7 +198,7 @@ body::after {
 
 #about {
     content: "";
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     opacity: 1;
     padding-bottom: 20px;
 }
@@ -214,7 +220,7 @@ h1 {
 /*--------service------------*/
 
 #service {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     padding-top: 10px;
 }
 
@@ -374,7 +380,7 @@ h1 {
 }
 
 #banner {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     padding-top: 5%;
 }
 
@@ -445,7 +451,7 @@ h1 {
 }
 
 .container-lg {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     margin-top: 40px;
     padding-top: 50px;
 }
@@ -596,7 +602,7 @@ h1 {
 }
 
 .titless {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     padding-top: 10px;
     color: white;
     padding-bottom: 10px;
@@ -622,7 +628,7 @@ h1 {
 .titlecheck {
     margin-bottom: 5px;
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     color: white;
 }
 
@@ -630,7 +636,7 @@ h1 {
     margin-bottom: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     color: black;
 }
 
@@ -659,7 +665,7 @@ h1 {
 
 .roomrates {
     padding-top: 15px;
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
 }
 
 .roomtxt {
@@ -826,7 +832,7 @@ h1 {
 
 .containercheckuser {
     padding-bottom: 5px;
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
 }
 
 .label {
@@ -865,12 +871,12 @@ h1 {
 }
 
 #twobutt {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     padding-bottom: 30px;
 }
 
 #twobutts {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     padding-bottom: 40px;
     margin-left: -40px;
 }
@@ -889,7 +895,7 @@ h1 {
 }
 
 .containermod {
-    background-image: linear-gradient(to right, #56c596, #1f2f98)!important;
+    background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
     color: white;
     padding-bottom: 20px;
 }
