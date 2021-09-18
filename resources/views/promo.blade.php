@@ -30,7 +30,7 @@
                   <div class="promobonus">
                     <form method="POST" action="">
                       <a href="{{ route('promo') }}/{{ $promo->promotion_name }}" class="text-decoration-none btn btn-light">Learn More</a>
-                      <a href="{{ route('avail') }}?promocode={{ $promo->promotion_code }}" class="btn btn-light" id="promobonus" name="booknow"> Book Now</a>
+                      <a href="{{ route('book.index') }}?promocode={{ $promo->promotion_code }}" class="btn btn-light" id="promobonus" name="booknow"> Book Now</a>
                     </form>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                   <div class="promobonus1">
                     <form method="POST" action="">
                       <a href="{{ route('promo') }}/{{ $promo->promotion_name }}" class="text-decoration-none btn btn-light">Learn More</a>
-                      <a href="{{ route('avail') }}?promocode={{ $promo->promotion_code }}" class="btn btn-light" id="promobonus" name="booknow"> Book Now</a>
+                      <a href="{{ route('book.index') }}?promocode={{ $promo->promotion_code }}" class="btn btn-light" id="promobonus" name="booknow"> Book Now</a>
                     </form>
                   </div>
                 </div>

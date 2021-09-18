@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Rules\PromoValidDuration;
 
 class BookController extends Controller
 {
@@ -37,30 +39,67 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $date1 = date("Y-m-d", strtotime('now'));
-        $date2 = date("Y-m-d", strtotime('now'.'+ 1 days'));
+        $date1 = date("Y-m-d", strtotime('now'.'- 1 days'));
+        $date2 = date("Y-m-d", strtotime('now'));
 
         $message = "validation failed";
         $request->validate([
             'CheckIn' => "required|date|after:".$date1,
-            // 'CheckOut' => 'required|date|min:'.$date2,
-            // 'roomcount' => 'required|integer|min:1|max:3',
-            'guestcount' => 'required|integer|min:1',
-            // 'guestcountchild' => 'required|integer|min:0',
-            // 'guestcount2' => 'required|integer|min:1',
-            // 'guestcountchild2' => 'required|integer|min:0',
-            // 'guestcount3' => 'required|integer|min:1',
-            // 'guestcountchild3' => 'required|integer|min:0'
+            'CheckOut' => 'required|date|after:'.$date2,
+            'RoomCount' => 'required|integer|min:1|max:3',
+            'AdultCount' => 'required|integer|min:1',
+            'ChildCount' => 'required|integer|min:0',
+            'AdultCountRoom2' => 'required|integer|min:1',
+            'ChildCountRoom2' => 'required|integer|min:0',
+            'AdultCountRoom3' => 'required|integer|min:1',
+            'ChildCountRoom3' => 'required|integer|min:0',
+            'PromoCode' => ['nullable', new PromoValidDuration]
 
         ]);
 
-        // $data = $request->input();
-        // $request->session()->put($data);
-        //echo session('guestcount');
-        dd($date2);
-        $message = "validation successful!";
 
-        return redirect('/book');
+
+        $request->session()->forget([
+            'CheckIn',
+            'CheckOut',
+            'RoomCount',
+            'AdultCount',
+            'ChildCount',
+            'AdultCountRoom2',
+            'ChildCountRoom2',
+            'AdultCountRoom3',
+            'ChildCountRoom3',
+            'PromoCode'
+
+        ]);
+
+
+
+
+        $data = $request->input();
+        $request->session()->put('CheckIn', $data['CheckIn']);
+        $request->session()->put('CheckOut', $data['CheckOut']);
+        $request->session()->put('RoomCount', $data['RoomCount']);
+        if (session('RoomCount') >= 1) {
+            $request->session()->put('AdultCount', $data['AdultCount']);
+            $request->session()->put('ChildCount', $data['ChildCount']);
+            if (session('RoomCount') >= 2) {
+                $request->session()->put('AdultCountRoom2', $data['AdultCountRoom2']);
+                $request->session()->put('ChildCountRoom2', $data['ChildCountRoom2']);
+                if (session('RoomCount') >= 3) {
+                    $request->session()->put('AdultCountRoom3', $data['AdultCountRoom3']);
+                    $request->session()->put('ChildCountRoom3', $data['ChildCountRoom3']);
+                }
+            }
+        }
+        $request->session()->put('PromoCode', $data['PromoCode']);
+
+        // echo session('AdultCountRoom3');
+        // dd("GOOD");
+        echo "validation successful! ".session('AdultCountRoom3');
+
+        // return view('booking')->with('message', $message);
+        return redirect('/chooseroom');
     }
 
     /**

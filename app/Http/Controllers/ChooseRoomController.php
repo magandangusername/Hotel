@@ -3,25 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\promotion_description;
 use Illuminate\Support\Facades\DB;
 
-class PromotionController extends Controller
+class ChooseRoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function promo()
+    public function index()
     {
+        // $rates = DB::table('rate_descriptions')->get();
+        // $roomtype = DB::table('room_statuses')->distinct('room_suite_name')->get();
+        // // echo 'FUUUUUUU';
+        // return view('chooseroom')->with(compact('rates', 'roomtype'));
 
-        //$promos = promotion_description::all();
-        $date = date("Y-m-d h:i:sa");
-        $promos = DB::table('promotion_descriptions')->where('promotion_start', '<=', $date)->where('promotion_end', '>=', $date)->get();
-        //print_r($promos);
-        return view('promo')->with('promos', $promos);
-
+        return redirect('/book');
     }
 
     /**
@@ -43,6 +41,7 @@ class PromotionController extends Controller
     public function store(Request $request)
     {
         //
+        echo 'i hate this';
     }
 
     /**
@@ -51,18 +50,10 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
-        $content = promotion_description::where('promotion_name', '=', $name)->first();
-        //$otherpromos = promotion_description::whereNotIn('promotion_name', $name)->limit(2);
-        //dd($otherpromos);
-        $first = promotion_description::whereNull('promotion_name');
-
-        $otherpromos= promotion_description::where('promotion_name', '!=' , $name)
-                ->union($first)->limit(2)
-                ->get();
-        return view('promocontent')->with(compact('content', 'otherpromos', 'name'));
-
+        //
+        echo 'rip';
     }
 
     /**
@@ -86,6 +77,7 @@ class PromotionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        echo 'check mate';
     }
 
     /**

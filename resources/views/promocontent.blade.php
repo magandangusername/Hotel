@@ -15,7 +15,7 @@
                         <p class="valid"> {{ date('M d, Y h:ia', strtotime($content->promotion_start)) }} to
                             {{ date('M d, Y h:ia', strtotime($content->promotion_end)) }} </p>
                         <p class="valid"> +639184168959 </p>
-                        <a href="{{ route('avail') }}/{{ $content->promotion_code }}"
+                        <a href="{{ route('book.index') }}/{{ $content->promotion_code }}"
                             class="text-decoration-none"><button class="btn btn-light" id="bonusbutton"> Book
                                 Now</button></a>
 
@@ -68,7 +68,7 @@
                                     <a href="{{ route('promo') }}/{{ $promo->promotion_name }}"
                                         class="text-decoration-none btn btn-light" id="learnbutton">Learn More</a>
                                     <!-- <button class ="btn btn-light" id ="bonusbutton" type="submit" name='booknow'> Book Now</button> -->
-                                    <a href="{{ route('avail') }}/{{ $promo->promotion_code }}"
+                                    <a href="{{ route('book.index') }}/{{ $promo->promotion_code }}"
                                         class="text-decoration-none btn btn-light" id="learnbutton">Book Now</a>
                                 </form>
                             </div>
