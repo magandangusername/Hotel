@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ChooseRoomController extends Controller
 {
@@ -14,12 +15,12 @@ class ChooseRoomController extends Controller
      */
     public function index()
     {
-        // $rates = DB::table('rate_descriptions')->get();
-        // $roomtype = DB::table('room_statuses')->distinct('room_suite_name')->get();
-        // // echo 'FUUUUUUU';
-        // return view('chooseroom')->with(compact('rates', 'roomtype'));
+        $rates = DB::table('rate_descriptions')->get();
+        $roomtype = DB::table('room_statuses')->distinct('room_suite_name')->get();
+        // echo 'FUUUUUUU';
+        return view('chooseroom')->with(compact('rates', 'roomtype'));
 
-        return redirect('/book');
+        // return redirect('/book');
     }
 
     /**

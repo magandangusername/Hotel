@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="/chooseroom" method="POST">
+    <form action="/book" method="POST">
         @csrf
         <section id="availability">
             <div class="container">

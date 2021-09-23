@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rules\PromoValidDuration;
+use Illuminate\Support\Facades\Session;
 
 class BookController extends Controller
 {
@@ -96,7 +97,7 @@ class BookController extends Controller
 
         // echo session('AdultCountRoom3');
         // dd("GOOD");
-        echo "validation successful! ".session('AdultCountRoom3');
+        // echo "validation successful! ".session('AdultCountRoom3');
 
         // return view('booking')->with('message', $message);
         return redirect('/chooseroom');

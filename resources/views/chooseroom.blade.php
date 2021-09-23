@@ -29,20 +29,31 @@
                         @php
 
                         @endphp
-                        @if (session('room') > 1)
+                        @if (session('room') != null || session('room') > 1)
+                            @php
+                                $room = session('room');
+                            @endphp
+
+                        @else
                             @php
                                 $room = 1;
-                                session('room') = $room;
+                                // session('room') = $room;
+                                Session::put('room', $room);
                             @endphp
 
                         @endif
 
                         @if ($room == 1)
                             @php
-                                session('roomchecker') = true;
-                                session('roomchecker2') = true;
-                                session('roomtype2') = '';
-                                session('ratetyoe2') = '';
+                                // session('roomchecker') = true;
+                                // session('roomchecker2') = true;
+                                // session('roomtype2') = '';
+                                // session('ratetyoe2') = '';
+
+                                Session::put('roomchecker', true);
+                                Session::put('roomchecker2', true);
+                                Session::put('roomtype2', '');
+                                Session::put('ratetype2', '');
                             @endphp
                             {{ session('AdultCount') }}
 
@@ -117,17 +128,19 @@
                         <div class="col-md-12" id="avilnows">
                             <div class="cards">
                                 @php
-                                    $base_price = \App\Models\room_description::where('room_name', 'like', $room->room_suite_name)->first();
+                                    $base_price = \App\Models\room_description::where('room_name', 'like', $result->room_suite_name)->first();
 
                                     if ($base_price != null) {
                                         $short_desc = $base_price->room_short_description;
                                         $bed_type = $base_price->bed_type;
                                         $image_name = $base_price->image_name;
+                                        $room_size = $base_price->suite_size;
                                     } else {
-                                        $base_price = \App\Models\suite_description::where('suite_name', 'like', $room->room_suite_name)->first();
+                                        $base_price = \App\Models\suite_description::where('suite_name', 'like', $result->room_suite_name)->first();
                                         $short_desc = $base_price->suite_short_description;
                                         $bed_type = $base_price->bed_type;
                                         $image_name = $base_price->image_name;
+                                        $room_size = $base_price->suite_size;
                                     }
 
                                     $k = 'K';
@@ -193,10 +206,11 @@
                                                 <input class="form-check-input" type="radio" name="bed" value="Queen Bed"
                                                     @php
                                                         if ($room == 1) {
-                                                            session('bedcheckerq') = true;
+                                                            // session('bedcheckerq') = true;
+                                                            Session::put('bedcheckerq', true);
                                                             //echo 'yes';
                                                         }
-                                                        if (isset(session('bedcheckerq')) && !session('bedcheckerq') && ((isset(session('roomtype2')) && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
+                                                        if (session('bedcheckerq') !== null && !session('bedcheckerq') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
                                                             echo 'disabled';
                                                             $q = false;
                                                         } else {
@@ -224,11 +238,12 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="bed" value="King Bed"
                                                     @php if ($room <= 1) {
-                                                        session('bedcheckerk') = true;
+                                                        // session('bedcheckerk') = true;
+                                                        Session::put('bedcheckerk', true);
                                                         //echo 'yes';
                                                     }
 
-                                                    if (isset(session('bedcheckerk')) && !session('bedcheckerk') && ((isset(session('roomtype2')) && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'King Bed' || session('bed') == 'King Bed')) {
+                                                    if (session('bedcheckerk') !== null && !session('bedcheckerk') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'King Bed' || session('bed') == 'King Bed')) {
                                                         echo 'disabled';
                                                         $k = false;
                                                     } else {
@@ -255,10 +270,10 @@
                                     @php
                                         $available = \App\Models\room_status::where('room_suite_bed', 'like', 'Queen Bed')->count();
 
-                                        if (isset(session('roomchecker'))) {
+                                        if (session('roomchecker') !== null) {
                                             $roomchecker = session('roomchecker');
                                         }
-                                        if (isset(session('roomchecker2'))) {
+                                        if (session('roomchecker2') !== null) {
                                             $roomchecker2 = session('roomchecker2');
                                         }
 
@@ -271,7 +286,7 @@
                                     @elseif ((isset($roomchecker2) && !$roomchecker2 || isset($roomchecker) && !$roomchecker)
                                     && (!$q && !$k)
                                     && ((session('roomtype') == $result->room_suite_name)
-                                    || (isset(session('roomtype2')) && session('roomtype2') == $result->room_suite_name))
+                                    || (session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name))
                                     )
 
                                         <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary"
