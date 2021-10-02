@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomSuiteController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChooseRoomController;
+use App\Http\Controllers\BookInformationController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -34,6 +35,8 @@ Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
 
 Route::resource('/book', BookController::class);
 Route::resource('/chooseroom', ChooseRoomController::class);
+Route::resource('/bookinfo', BookInformationController::class);
+
 //Route::get('/book', [BookController::class, 'index'])->name('avail');
 //Route::get('/promos/{code}', [PromotionController::class, 'promocode']);
 

@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
+@php
+    $rates = DB::table('rate_descriptions')->get();
+    $roomtype = DB::table('room_statuses')->distinct()->get(['room_suite_name']);
+@endphp
 
     <!-----------availability----------->
 
@@ -79,7 +82,7 @@
 
     @if (session('RoomCount') > 1)
         <div class="containerish">
-            <h1>Room {{$room}} out of {{session('RoomCount')}}</h1>
+            <h1>Room {{ $room }} out of {{ session('RoomCount') }}</h1>
         </div>
     @endif
 
@@ -128,6 +131,7 @@
                         <div class="col-md-12" id="avilnows">
                             <div class="cards">
                                 @php
+                                    $type = $result->room_suite_name;
                                     $base_price = \App\Models\room_description::where('room_name', 'like', $result->room_suite_name)->first();
 
                                     if ($base_price != null) {
@@ -135,38 +139,80 @@
                                         $bed_type = $base_price->bed_type;
                                         $image_name = $base_price->image_name;
                                         $room_size = $base_price->suite_size;
+                                        // $base_price = $baseprice->base_price;
                                     } else {
                                         $base_price = \App\Models\suite_description::where('suite_name', 'like', $result->room_suite_name)->first();
                                         $short_desc = $base_price->suite_short_description;
                                         $bed_type = $base_price->bed_type;
                                         $image_name = $base_price->image_name;
                                         $room_size = $base_price->suite_size;
+                                        // $base_price = $baseprice->base_price;
                                     }
 
-                                    $k = 'K';
-                                    $q = 'Q';
-                                    $kq = 'King Bed';
-                                    $beds = '';
-                                    if (preg_match("/{$k}/i", $bed_type)) {
-                                        $beds = $beds . 'King Bed';
+                                    $roomprice = \App\Models\rate_description::where('rate_name', 'like', $rateinfo->rate_name)->first();
+
+                                    if (session('PromoCode') != '') {
+                                        $promodiscount = \App\Models\promotion_description::where('promotion_code', session('PromoCode'))->first();
+                                        $promodiscount = $promodiscount->overall_cut;
+                                    }
+                                    // else {
+                                    //     $promodiscount = 1;
+                                    // }
+
+                                    $base_discount = $roomprice->base_discount;
+                                    $service_rate = $roomprice->service_rate;
+                                    $city_tax = $roomprice->city_tax;
+                                    $vat = $roomprice->vat;
+
+                                    if ($base_discount === 0) {
+                                        $base_discount = $base_price->base_price;
                                     }
 
-                                    if (preg_match("/{$q}/i", $bed_type)) {
-                                        if (preg_match("/{$kq}/i", $beds)) {
-                                            $beds = $beds . ', ';
-                                        }
-                                        $beds = $beds . 'Queen Bed';
+                                    $base_discount = $base_price->base_price * $base_discount;
+                                    $new_price = $base_price->base_price - $base_discount;
+
+                                    $totalprice = $new_price + $new_price * $service_rate + $new_price * $city_tax + $new_price * $vat;
+
+                                    // $promodiscount = $promodiscount * $totalprice;
+
+                                    // $totalprice = $totalprice - $promodiscount;
+
+                                    if (isset($promodiscount)) {
+                                        $promototal = $totalprice * $promodiscount;
+                                        $newpromototal = $totalprice - $promototal;
                                     }
+
+                                    if (isset($newpromototal)) {
+                                        $totalrate = $newpromototal;
+                                    } else {
+                                        $totalrate = $totalprice;
+                                    }
+
+                                    // $k = 'K';
+                                    // $q = 'Q';
+                                    // $kq = 'King Bed';
+                                    // $beds = '';
+                                    // if (preg_match("/{$k}/i", $bed_type)) {
+                                    //     $beds = $beds . 'King Bed';
+                                    // }
+
+                                    // if (preg_match("/{$q}/i", $bed_type)) {
+                                    //     if (preg_match("/{$kq}/i", $beds)) {
+                                    //         $beds = $beds . ', ';
+                                    //     }
+                                    //     $beds = $beds . 'Queen Bed';
+                                    // }
                                 @endphp
 
-                                <img src="{{asset('images/'.$image_name)}}" class="card-img-top">
-                                <form action="" method="POST">
+                                <img src="{{ asset('images/' . $image_name) }}" class="card-img-top">
+                                <form action="/chooseroom" method="POST">
+                                    @csrf
                                     <div class="card-body text-muted">
-                                        <h5 class="card-title">{{$result->room_suite_name}}</h5>
+                                        <h5 class="card-title">{{ $result->room_suite_name }}</h5>
 
 
 
-                                        <p class="sizey">{{$room_size}} sqm</p>
+                                        <p class="sizey">{{ $room_size }} sqm</p>
                                         <p class="none">City View, Free Wifi</p>
                                         <a href="#" class="none"></a>
                                         <a class="isDisabled" data-bs-toggle="collapse" href="#collapseExample"
@@ -179,7 +225,7 @@
                                                 this is where to put the pulling data from database.
                                             </div>
                                         </div>
-                                        <p class="pricey">{{$new_price}} PHP/Night</p>
+                                        <p class="pricey">{{ $new_price }} PHP/Night</p>
                                         <p class="sizeys">Excluding Taxes and Fee</p>
                                         <a class="isDisabled" id="sizeyss" data-bs-toggle="collapse"
                                             href="#collapseExample" role="button" aria-expanded="false"
@@ -194,110 +240,116 @@
                                             </div>
                                         </div>
                                         <div class="radiobut">
-                                        @php
-                                            $beds = \App\Models\room_status::where('room_suite_bed', 'like', 'Queen Bed')->count();
-                                            $b += 1;
-                                            $q = $k = true;
-
-                                        @endphp
-
-                                        @if ($beds > 0)
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bed" value="Queen Bed"
-                                                    @php
-                                                        if ($room == 1) {
-                                                            // session('bedcheckerq') = true;
-                                                            Session::put('bedcheckerq', true);
-                                                            //echo 'yes';
-                                                        }
-                                                        if (session('bedcheckerq') !== null && !session('bedcheckerq') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
-                                                            echo 'disabled';
-                                                            $q = false;
-                                                        } else {
-                                                            echo 'checked';
-                                                        }
-                                                    @endphp
-                                                    >
-
-                                                <label class="form-check-label">Queen Bed</label>
-                                            </div>
-
-                                        @else
                                             @php
-                                                $q = false;
-                                            @endphp
-                                        @endif
+                                                $beds = \App\Models\room_status::where('room_suite_bed', 'like', 'Queen Bed')->where('room_suite_name', '=', $type)->where('status', '=', '0')->count();
+                                                // echo $beds;
+                                                $b += 1;
+                                                $q = $k = true;
 
-
-                                        @php
-                                            $beds = \App\Models\room_status::where('room_suite_bed', 'like', 'King Bed')->where('room_suite_name', '='. "'".$type."'")->where('status', '=', '0')->count();
-
-                                        @endphp
-
-                                        @if ($beds > 0)
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bed" value="King Bed"
-                                                    @php if ($room <= 1) {
-                                                        // session('bedcheckerk') = true;
-                                                        Session::put('bedcheckerk', true);
-                                                        //echo 'yes';
-                                                    }
-
-                                                    if (session('bedcheckerk') !== null && !session('bedcheckerk') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'King Bed' || session('bed') == 'King Bed')) {
-                                                        echo 'disabled';
-                                                        $k = false;
-                                                    } else {
-                                                        echo 'checked';
-                                                    }
-                                                    @endphp>
-                                                <label class="form-check-label">King Bed</label>
-                                            </div>
-
-                                        @else
-                                            @php
-                                                $k = false;
                                             @endphp
 
-                                        @endif
+                                            @if ($beds > 0)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="bed"
+                                                        value="Queen Bed" @php
+                                                            if ($room == 1) {
+                                                                // session('bedcheckerq') = true;
+                                                                Session::put('bedcheckerq', true);
+                                                                //echo 'yes';
+                                                            }
+                                                            if (session('bedcheckerq') !== null && !session('bedcheckerq') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
+                                                                echo 'disabled';
+                                                                $q = false;
+                                                            } else {
+                                                                echo 'checked';
+                                                            }
+                                                        @endphp>
+
+                                                    <label class="form-check-label">Queen Bed</label>
+                                                </div>
+
+                                            @else
+                                                @php
+                                                    $q = false;
+                                                @endphp
+                                            @endif
+
+
+                                            @php
+                                                $beds = \App\Models\room_status::where('room_suite_bed', 'like', 'King Bed')
+                                                    ->where('room_suite_name', '=', $type)
+                                                    ->where('status', '=', '0')
+                                                    ->count();
+                                                // echo $beds;
+                                            @endphp
+
+                                            @if ($beds > 0)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="bed" value="King Bed"
+                                                        @php
+                                                            if ($room <= 1) {
+                                                                // session('bedcheckerk') = true;
+                                                                Session::put('bedcheckerk', true);
+                                                                //echo 'yes';
+                                                            }
+
+                                                            if (session('bedcheckerk') !== null && !session('bedcheckerk') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'King Bed' || session('bed') == 'King Bed')) {
+                                                                echo 'disabled';
+                                                                $k = false;
+                                                            } else {
+                                                                echo 'checked';
+                                                            }
+                                                        @endphp>
+                                                    <label class="form-check-label">King Bed</label>
+                                                </div>
+
+                                            @else
+                                                @php
+                                                    $k = false;
+                                                @endphp
+
+                                            @endif
 
 
                                         </div>
-                                        <input name="room_type" value="{{$type}}" hidden>
-                                        <input name="rate_type" value="{{$rateinfo->rate_name}}" hidden>
-                                        <input name="total_rate" value={{$totalrate}} hidden>
+                                        <input name="room_type" value="{{ $type }}" hidden>
+                                        <input name="rate_type" value="{{ $rateinfo->rate_name }}" hidden>
+                                        <input name="total_rate" value={{ $totalrate }} hidden>
 
 
-                                    @php
-                                        $available = \App\Models\room_status::where('room_suite_bed', 'like', 'Queen Bed')->count();
+                                        @php
+                                            $available = \App\Models\room_status::where('room_suite_bed', 'like', 'Queen Bed')->count();
 
-                                        if (session('roomchecker') !== null) {
-                                            $roomchecker = session('roomchecker');
-                                        }
-                                        if (session('roomchecker2') !== null) {
-                                            $roomchecker2 = session('roomchecker2');
-                                        }
+                                            if (session('roomchecker') !== null) {
+                                                $roomchecker = session('roomchecker');
+                                            }
+                                            if (session('roomchecker2') !== null) {
+                                                $roomchecker2 = session('roomchecker2');
+                                            }
 
-                                    @endphp
+                                        @endphp
 
-                                    @if ($available == 0)
-                                        <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary"
-                                        disabled>ROOM
-                                        UNAVAILABLE</button>
-                                    @elseif ((isset($roomchecker2) && !$roomchecker2 || isset($roomchecker) && !$roomchecker)
-                                    && (!$q && !$k)
-                                    && ((session('roomtype') == $result->room_suite_name)
-                                    || (session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name))
-                                    )
+                                        @if ($available == 0)
+                                            <button id="butbut" class="btn btn-primary"
+                                                disabled>ROOM
+                                                UNAVAILABLE</button>
+                                        @elseif ((isset($roomchecker2) && !$roomchecker2 || isset($roomchecker) &&
+                                            !$roomchecker)
+                                            && (!$q && !$k)
+                                            && ((session('roomtype') == $result->room_suite_name)
+                                            || (session('roomtype2') !== null && session('roomtype2') ==
+                                            $result->room_suite_name))
+                                            )
 
-                                        <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary"
-                                        disabled>SELECTED THE LAST AVAILABLE</button>
+                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary"
+                                                disabled>SELECTED THE LAST AVAILABLE</button>
 
-                                    @else
+                                        @else
 
-                                    <button type="submit" name="chooseroom" id="butbut"
-                                            class="btn btn-primary">Select</button>
+                                            <button type="submit" name="chooseroom" id="butbut"
+                                                class="btn btn-primary">Select</button>
 
-                                    @endif
+                                        @endif
 
 
                                     </div>
@@ -311,9 +363,9 @@
         </section>
 
 
-@php
-   $rt += 1;
-@endphp
+        @php
+            $rt += 1;
+        @endphp
 
 
     @endforeach

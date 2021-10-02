@@ -177,14 +177,14 @@ CREATE TABLE head_count (
 
 CREATE TABLE gallery_albums (
     album_id int AUTO_INCREMENT,
-	album_name varchar(255) UNIQUE, 
+	album_name varchar(255) UNIQUE,
     PRIMARY KEY (album_id)
 );
 
 
 CREATE TABLE gallery_photos (
     photo_id int AUTO_INCREMENT,
-	photo_name varchar(255), 
+	photo_name varchar(255),
 	album_id int,
     PRIMARY KEY (photo_id)
 );
@@ -230,7 +230,7 @@ VALUES
 INSERT INTO promotion_description(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name, album_id)
 VALUES
 ('123456', 'Direct Booking', 'Direct reservations made by our guests are given a 10% discount on their overall booking', 'Enjoy a 10% overall booking discount by booking reservations directly on our website with a free dinner meal on us.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-21', '0.10', 'directb.jpg', 4),
-('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2021-08-31', '', 'celebration.jpeg', 5),
+('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2021-08-31', '0.20', 'celebration.jpeg', 5),
 ('123612', 'Summer Season', 'Exclusive only for the summer season, enjoy a 15% discount on overall booking this summer', 'A treat for the summer season, enjoy 15% discount on overall booking and cool off on our hotel and escape from the summer heat.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-31', '0.15', 'summers.jpg', 6);
 
 
@@ -307,7 +307,7 @@ SELECT DISTINCT(suite_name) FROM suite_description;
 
 -- YOU CAN EDIT THIS PART SHANTI, u can add or edit photos here, album_id can repeat since its an album
 INSERT INTO gallery_photos(photo_name, album_id)
-VALUES 
+VALUES
 ('lokasi-logo-25358.png', 1),
 ('lokasi-logo-25358.png', 2),
 ('lokasi-logo-25358.png', 3),

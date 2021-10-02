@@ -70,7 +70,9 @@ class BookController extends Controller
             'ChildCountRoom2',
             'AdultCountRoom3',
             'ChildCountRoom3',
-            'PromoCode'
+            'PromoCode',
+            'roomchecker',
+            'room'
 
         ]);
 
