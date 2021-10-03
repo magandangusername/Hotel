@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BookInformationController extends Controller
 {
@@ -34,7 +35,34 @@ class BookInformationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name_with_initials' => 'required',
+            'fn' => 'required',
+            'ln' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'mobilenum' => 'required'
+        ]);
+
+        $data = $request->input();
+        // $title = $data['name_with_initials'];
+        // $fn = $data['fn'];
+        // $ln = $data['ln'];
+        // $email = $data['email'];
+        // $address = $data['address'];
+        // $city = $data['city'];
+
+        Session::put('title', $data['name_with_initials']);
+        Session::put('fn', $data['fn']);
+        Session::put('ln', $data['ln']);
+        Session::put('email', $data['email']);
+        Session::put('address', $data['address']);
+        Session::put('city', $data['city']);
+
+        return redirect('/paymentinfo');
+
+
     }
 
     /**

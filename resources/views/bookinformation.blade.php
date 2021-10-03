@@ -44,6 +44,7 @@
     </div>
 </section>
 <form action="bookinformation" method="post">
+    @csrf
     <div class="containercheckuser">
         <div class="titlechecks">
             <div class="row g-3" id="whitey">
@@ -61,18 +62,18 @@
 
                     <div class="col-md-5 ">
                         <label for="first"> First Name:</label>
-                        <input type="text" class="form-control" id="firstname">
+                        <input type="text" class="form-control" id="firstname" name="fn">
                     </div>
 
                     <div class="col-md-5 ">
                         <label for="last">Last Name:</label>
-                        <input type="text" class="form-control" id="lastname">
+                        <input type="text" class="form-control" id="lastname" name="ln">
                     </div>
 
 
                     <div class="col-md-5 ">
                         <label for="email">Email Address:</label>
-                        <input type="text" class="form-control-plaintext" id="firste">
+                        <input type="text" class="form-control-plaintext" id="firste" name="email">
                     </div>
 
 
@@ -101,6 +102,8 @@
                         <input type="text" class="form-control" id="last" name='mobilenum'>
                     </div>
                 </section>
+
+
 
             </div>
         </div>
