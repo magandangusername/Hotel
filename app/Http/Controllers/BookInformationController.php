@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Stripe;
+
 
 class BookInformationController extends Controller
 {
@@ -60,7 +62,19 @@ class BookInformationController extends Controller
         Session::put('address', $data['address']);
         Session::put('city', $data['city']);
 
-        return redirect('/paymentinfo');
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => 100 * 1170,
+                "currency" => "php",
+                "source" => $request->stripeToken,
+                "description" => "Book down payment"
+        ]);
+
+        Session::flash('success', 'Payment successful!');
+
+        // return back();
+
+        return redirect('/bookinfo');
 
 
     }
