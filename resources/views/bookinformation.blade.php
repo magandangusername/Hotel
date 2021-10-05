@@ -73,7 +73,7 @@ id="payment-form">
                 <section id="wowo">
                     <div class="form-group form-inline">
                         <label>Title</label>
-                        <select name="name_with_initials" id="">
+                        <select name="name_with_initials" id="" required>
                             <option selected="selected" value="Mr.">Mr.</option>
                             <option value="Mrs.">Mrs.</option>
                             <option value="Miss">Miss</option>
@@ -83,24 +83,24 @@ id="payment-form">
 
                     <div class="col-md-5 ">
                         <label for="first"> First Name:</label>
-                        <input type="text" class="form-control" id="firstname" name="fn">
+                        <input type="text" class="form-control" id="firstname" name="fn" required>
                     </div>
 
                     <div class="col-md-5 ">
                         <label for="last">Last Name:</label>
-                        <input type="text" class="form-control" id="lastname" name="ln">
+                        <input type="text" class="form-control" id="lastname" name="ln" required>
                     </div>
 
 
                     <div class="col-md-5 ">
                         <label for="email">Email Address:</label>
-                        <input type="text" class="form-control-plaintext" id="firste" name="email">
+                        <input type="text" class="form-control-plaintext" id="firste" name="email" required>
                     </div>
 
 
                     <div class="col-md-5 ">
                         <label for="reemail">Re-Type Email Address:</label>
-                        <input type="text" class="form-control-plaintext" id="firste">
+                        <input type="text" class="form-control-plaintext" id="firste" required>
                     </div>
 
                 </section>
@@ -110,17 +110,17 @@ id="payment-form">
 
                     <div class="col-md-6  ">
                         <label for="first"> Address:</label>
-                        <input type="text" class="form-control-plaintext" id="first" name='address'>
+                        <input type="text" class="form-control-plaintext" id="first" name='address' required>
                     </div>
                     <div class="col-md-5  ">
                         <label for="email">City:</label>
-                        <input type="text" class="form-control" id="email" name='city'>
+                        <input type="text" class="form-control" id="email" name='city' required>
                     </div>
 
 
                     <div class="col-md-6 ">
                         <label for="last">Mobile Number:</label>
-                        <input type="text" class="form-control" id="last" name='mobilenum'>
+                        <input type="text" class="form-control" id="last" name='mobilenum' required>
                     </div>
                 </section>
 
@@ -225,6 +225,11 @@ id="payment-form">
 
     </div>
 
+    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
+    <label for="vehicle1"> I have a bike</label><br>
+    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" required>
+    <label for="vehicle2"> I have a car</label><br>
+
 
     <section id="twobutt">
 
@@ -232,7 +237,7 @@ id="payment-form">
         <div class="row ">
             <div class="buttwo">
                 <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
-                <button type="submit"  name="checkout" class="btn btn-primary"> Proceed to payment </button>
+                <button onclick="checkbox()" type="submit"  name="checkout" class="btn btn-primary"> Proceed to payment </button>
             </div>
         </div>
 
@@ -241,7 +246,10 @@ id="payment-form">
 
 
 
+<!--
+SKYE GAWA KA EMAIL RETYPE VALIDATION!!!!!!!!!!!!!!!!!!!!!!
 
+-->
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -292,6 +300,14 @@ id="payment-form">
      }
  }
 });
+
+function checkbox() {
+  var x = document.getElementById("vehicle1").required;
+  var y = document.getElementById("vehicle2").required;
+}
+
+
+
 </script>
 
 @endsection

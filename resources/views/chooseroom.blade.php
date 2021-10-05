@@ -188,6 +188,8 @@
                                         $totalrate = $totalprice;
                                     }
 
+                                    Session::put('downpayment', $totalrate * 0.5);
+
                                     // $k = 'K';
                                     // $q = 'Q';
                                     // $kq = 'King Bed';

@@ -162,6 +162,7 @@ class ChooseRoomController extends Controller
                     ->where('room_suite_bed', session('bed'))
                     ->where('status', '0')
                     ->count();
+                    $roomchecker = false;
 
                     if($checkavailable > 0) {
                         if($checkavailable < 2){

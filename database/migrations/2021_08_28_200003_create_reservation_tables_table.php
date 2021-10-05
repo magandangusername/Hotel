@@ -20,8 +20,9 @@ class CreateReservationTablesTable extends Migration
             $table->string('guest_code');
             $table->string('rr_code');
             $table->string('promotion_code');
-            $table->dateTime('modified_on');
-            $table->dateTime('cancelled_on');
+            $table->dateTime('Booked_at');
+            $table->dateTime('modified_on')->nullable();
+            $table->dateTime('cancelled_on')->nullable();
 
         });
     }
