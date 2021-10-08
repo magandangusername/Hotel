@@ -108,8 +108,10 @@ CREATE TABLE reservation_table (
     guest_code varchar(255),
     rr_code varchar(255),
     promotion_code varchar(255),
+    computed_price_id int,
     modified_on datetime,
     cancelled_on datetime,
+
     PRIMARY KEY (confirmation_number)
 );
 
@@ -206,6 +208,11 @@ CREATE TABLE orders (
  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE computed (
+    id int not null AUTO_INCREMENT
+    ctotal_price varchar(255),
+    PRIMARY KEY (id)
+);
 
 INSERT INTO amenities(amenities_number, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 VALUES

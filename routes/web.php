@@ -54,10 +54,11 @@ Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.pos
 
 Auth::routes(['verify' => true]);
 
-
+// Route::view('/complete', 'confdisplay');
 
 Route::get('/modify', [AmenitiesController::class, 'index'])->name('modifyreservation');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

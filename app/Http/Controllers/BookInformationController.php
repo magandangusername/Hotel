@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookCompleteMail;
 use Stripe;
 
 
@@ -235,15 +237,21 @@ class BookInformationController extends Controller
 
         ]);
 
+        $computed = DB::table('computeds')->insert([
+            'ctotal_price' => session('downpayment') * 2
+        ]);
 
+        $id = DB::table('computeds')->max('id');
 
         $reservationinfo = DB::table('reservation_tables')->insert([
             'confirmation_number' => $confirmation_number,
             'arrival_date' => $arrival,
             'departure_date' => $departure,
             'guest_code' => $guestcode,
+            'booked_at' => date('Y-m-d h:i:s'),
             'rr_code' => $rr_code,
-            'promotion_code' => $promocode
+            'promotion_code' => $promocode,
+            'computed_price_id' => $id
         ]);
 
 
@@ -264,32 +272,27 @@ class BookInformationController extends Controller
         //     $_SESSION['confirmation_number'] = "ERROR OCCURED INSERTING TO DATABASE";
         // }
 
+        Session::put('totalprice', session('downpayment') * 2);
+
         Session::put('confirmation_number', $confirmation_number);
 
 
 
 
+        $details = [
+            'title' => 'hallo',
+            'body' => 'im under the water'
+        ];
+
+        Mail::to($data['email'])->send(new BookCompleteMail($details));
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        echo 'FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUK';
-
-        return redirect('/bookinfo');
+        // return redirect('/bookinfo');
+        return view('confdisplay');
 
 
     }

@@ -69,6 +69,9 @@ id="payment-form">
     <div class="containercheckuser">
         <div class="titlechecks">
             <div class="row g-3" id="whitey">
+                @guest
+
+
                 <h1 class="personals">Personal Information</h1>
                 <section id="wowo">
                     <div class="form-group form-inline">
@@ -124,7 +127,7 @@ id="payment-form">
                     </div>
                 </section>
 
-
+                @endguest
 
 
 
@@ -226,9 +229,9 @@ id="payment-form">
     </div>
 
     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
-    <label for="vehicle1"> I have a bike</label><br>
+    <label for="vehicle1"> I have a pen</label><br>
     <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" required>
-    <label for="vehicle2"> I have a car</label><br>
+    <label for="vehicle2"> I have pineapple</label><br>
 
 
     <section id="twobutt">
