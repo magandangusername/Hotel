@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookCompleteMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Stripe;
 
 
@@ -19,6 +21,12 @@ class BookInformationController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
+            if (Auth::user()->hasVerifiedEmail() != true) {
+                return view('notverified');
+            }
+
+        }
         return view('bookinformation');
     }
 
@@ -40,32 +48,77 @@ class BookInformationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name_with_initials' => 'required',
-            'fn' => 'required',
-            'ln' => 'required',
-            'email' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'mobilenum' => 'required',
-            'vehicle1' => 'required',
-            'vehicle2' => 'required'
-        ]);
 
-        $data = $request->input();
-        // $title = $data['name_with_initials'];
-        // $fn = $data['fn'];
-        // $ln = $data['ln'];
-        // $email = $data['email'];
-        // $address = $data['address'];
-        // $city = $data['city'];
+        if(Auth::check() != true) {
+            $request->validate([
+                'name_with_initials' => 'required',
+                'fn' => 'required',
+                'ln' => 'required',
+                'email' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'mobilenum' => 'required',
+                'vehicle1' => 'required',
+                'vehicle2' => 'required'
+            ]);
 
-        Session::put('title', $data['name_with_initials']);
-        Session::put('fn', $data['fn']);
-        Session::put('ln', $data['ln']);
-        Session::put('email', $data['email']);
-        Session::put('address', $data['address']);
-        Session::put('city', $data['city']);
+            $data = $request->input();
+            // $title = $data['name_with_initials'];
+            // $fn = $data['fn'];
+            // $ln = $data['ln'];
+            // $email = $data['email'];
+            // $address = $data['address'];
+            // $city = $data['city'];
+
+            Session::put('title', $data['name_with_initials']);
+            Session::put('fn', $data['fn']);
+            Session::put('ln', $data['ln']);
+            Session::put('email', $data['email']);
+            Session::put('address', $data['address']);
+            Session::put('city', $data['city']);
+
+
+            $title = session('title');
+            $fn = session('fn');
+            $ln = session('ln');
+            $email = session('email');
+            $address = session('address');
+            $city = session('city');
+            $mobilenum = session('mobilenum');
+            $paymenttype =  session('paymenttype');
+            $chname =  session('chname');
+            $chnum =  session('chnum');
+            $expiration =  session('expiration');
+
+
+
+
+
+
+
+
+
+            $countguest = DB::table('guest_informations')->count();
+            $guestcode = "GC-0" . strval($countguest);
+            $paymentcode = "PC-0" . strval($countguest);
+
+            $guestinformation = DB::table('guest_informations')->insert([
+                'guest_code' => $guestcode,
+                'title' => $title,
+                'first_name' => $fn,
+                'last_name' => $ln,
+                'address' => $address,
+                'city' => $city,
+                'email_address' => $email,
+                'payment_code' => $paymentcode
+
+            ]);
+
+        }
+
+
+
+
 
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
@@ -83,22 +136,9 @@ class BookInformationController extends Controller
 
 
 
-        $title = session('title');
-        $fn = session('fn');
-        $ln = session('ln');
-        $email = session('email');
-        $address = session('address');
-        $city = session('city');
-        $mobilenum = session('mobilenum');
-        $paymenttype =  session('paymenttype');
-        $chname =  session('chname');
-        $chnum =  session('chnum');
-        $expiration =  session('expiration');
 
-        $countguest = DB::table('guest_informations')->count();
 
-        $guestcode = "GC-0" . strval($countguest);
-        $paymentcode = "PC-0" . strval($countguest);
+
 
         //reservation info
 
@@ -210,17 +250,7 @@ class BookInformationController extends Controller
 
 
 
-        $guestinformation = DB::table('guest_informations')->insert([
-            'guest_code' => $guestcode,
-            'title' => $title,
-            'first_name' => $fn,
-            'last_name' => $ln,
-            'address' => $address,
-            'city' => $city,
-            'email_address' => $email,
-            'payment_code' => $paymentcode
 
-        ]);
 
 
         $reservedroomsinfo = DB::table('reserved_rooms')->insert([
@@ -243,16 +273,34 @@ class BookInformationController extends Controller
 
         $id = DB::table('computeds')->max('id');
 
-        $reservationinfo = DB::table('reservation_tables')->insert([
-            'confirmation_number' => $confirmation_number,
-            'arrival_date' => $arrival,
-            'departure_date' => $departure,
-            'guest_code' => $guestcode,
-            'booked_at' => date('Y-m-d h:i:s'),
-            'rr_code' => $rr_code,
-            'promotion_code' => $promocode,
-            'computed_price_id' => $id
-        ]);
+
+        if(Auth::check()) {
+            $reservationinfo = DB::table('reservation_tables')->insert([
+                'confirmation_number' => $confirmation_number,
+                'arrival_date' => $arrival,
+                'departure_date' => $departure,
+                'user_id' => Auth::user()->id,
+                'booked_at' => date('Y-m-d h:i:s'),
+                'rr_code' => $rr_code,
+                'promotion_code' => $promocode,
+                'computed_price_id' => $id
+            ]);
+        }
+        else {
+            $reservationinfo = DB::table('reservation_tables')->insert([
+                'confirmation_number' => $confirmation_number,
+                'arrival_date' => $arrival,
+                'departure_date' => $departure,
+                'guest_code' => $guestcode,
+                'booked_at' => date('Y-m-d h:i:s'),
+                'rr_code' => $rr_code,
+                'promotion_code' => $promocode,
+                'computed_price_id' => $id
+            ]);
+        }
+
+
+
 
 
 
@@ -284,7 +332,13 @@ class BookInformationController extends Controller
             'body' => 'im under the water'
         ];
 
-        Mail::to($data['email'])->send(new BookCompleteMail($details));
+        if(Auth::check()) {
+            Mail::to(Auth::user()->email)->send(new BookCompleteMail($details));
+        } else {
+            Mail::to($data['email'])->send(new BookCompleteMail($details));
+        }
+
+
 
 
 

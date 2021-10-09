@@ -105,6 +105,7 @@ CREATE TABLE reservation_table (
     confirmation_number varchar(255),
     arrival_date date,
     departure_date date,
+    user_id int,
     guest_code varchar(255),
     rr_code varchar(255),
     promotion_code varchar(255),
@@ -248,10 +249,10 @@ VALUES
 ('Online Exclusive', 'Free Wifi', '50% Discount on nightly charge', '', 0.05, 0.06, 0.11, 0.05, 3);
 
 
-INSERT INTO reservation_table(confirmation_number, arrival_date, departure_date, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
+INSERT INTO reservation_table(confirmation_number, arrival_date, departure_date, user_id, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
 VALUES
-('20210121', '2021-01-21', '2021-05-21', 'GC-010', 'RR-011', '123456', '2021-01-02', ''),
-('20212212', '2021-12-22', '2021-12-25', 'GC-020', 'RR-021', '123457', '', '2021-01-02');
+('20210121', '2021-01-21', '2021-05-21', '', 'GC-010', 'RR-011', '123456', '2021-01-02', ''),
+('20212212', '2021-12-22', '2021-12-25', '', 'GC-020', 'RR-021', '123457', '', '2021-01-02');
 
 
 INSERT INTO reserved_rooms(rr_code, r1, r2, r3, rate1, rate2, rate3)
@@ -401,10 +402,10 @@ VALUES
 ('Online Exclusive', 'Free Wifi', '50% Discount on nightly charge', '', 0.05, 0.06, 0.11, 0.05, 3);
 
 
-INSERT INTO reservation_tables(confirmation_number, arrival_date, departure_date, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
+INSERT INTO reservation_tables(confirmation_number, arrival_date, departure_date, user_id, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
 VALUES
-('20210121', '2021-01-21', '2021-05-21', 'GC-010', 'RR-011', '123456', '2021-01-02', ''),
-('20212212', '2021-12-22', '2021-12-25', 'GC-020', 'RR-021', '123457', '', '2021-01-02');
+('20210121', '2021-01-21', '2021-05-21', '', 'GC-010', 'RR-011', '123456', '2021-01-02', ''),
+('20212212', '2021-12-22', '2021-12-25', '', 'GC-020', 'RR-021', '123457', '', '2021-01-02');
 
 
 INSERT INTO reserved_rooms(rr_code, r1, r2, r3, rate1, rate2, rate3)

@@ -30,6 +30,6 @@ class BookCompleteMail extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->subject('im confused');
+        return $this->subject('Booked Successfully!')->view('confdisplay');
     }
 }

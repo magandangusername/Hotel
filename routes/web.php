@@ -10,6 +10,7 @@ use App\Http\Controllers\ChooseRoomController;
 use App\Http\Controllers\BookInformationController;
 use App\Http\Controllers\StripeController;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -62,3 +63,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    echo 'email sent!';
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

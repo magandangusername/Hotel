@@ -17,7 +17,8 @@ class CreateReservationTablesTable extends Migration
             $table->string('confirmation_number')->primary();
             $table->date('arrival_date');
             $table->date('departure_date');
-            $table->string('guest_code');
+            $table->integer('user_id')->nullable();
+            $table->string('guest_code')->nullable();
             $table->string('rr_code');
             $table->string('promotion_code');
             $table->dateTime('Booked_at');
