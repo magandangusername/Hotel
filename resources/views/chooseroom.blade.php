@@ -21,7 +21,7 @@
 
                 <div class="col-auto">
                     <p class="label">Your Stay:
-                        {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckIn'))) }}
+                        {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckOut'))) }}
                     </p>
                 </div>
                 <div class="col-auto">

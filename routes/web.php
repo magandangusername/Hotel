@@ -9,6 +9,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChooseRoomController;
 use App\Http\Controllers\BookInformationController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\ModifyReservationController;
+use App\Http\Controllers\SearchModifyController;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +48,7 @@ Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
 Route::resource('/book', BookController::class);
 Route::resource('/chooseroom', ChooseRoomController::class);
 Route::resource('/bookinfo', BookInformationController::class);
+Route::resource('/search', SearchModifyController::class);
 
 Route::get('stripe', [StripeController::class, 'stripe'])->middleware('verified');
 Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post')->middleware('verified');
@@ -57,7 +60,7 @@ Auth::routes(['verify' => true]);
 
 // Route::view('/complete', 'confdisplay');
 
-Route::get('/modify', [AmenitiesController::class, 'index'])->name('modifyreservation');
+Route::get('/modify', [ModifyReservationController::class, 'index'])->name('modifyreservation');
 
 Auth::routes();
 

@@ -365,6 +365,39 @@ VALUES
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- INSERTS FOR LARAVEL DB
 
 
@@ -378,14 +411,14 @@ VALUES
 
 INSERT INTO guest_informations(guest_code, title, first_name, last_name, address, city, email_address, payment_code)
 VALUES
-('GC-010', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Chumnatics@gmail.com', 'PC-010'),
-('GC-020', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-020');
+('GC-01', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Chumnatics@gmail.com', 'PC-01'),
+('GC-02', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-02');
 
 
 INSERT INTO payment_informations(payment_code, payment_type, card_number, card_holder_name, expiration)
 VALUES
-('PC-010', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05/21'),
-('PC-020', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06/21');
+('PC-01', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05/21'),
+('PC-02', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06/21');
 
 
 INSERT INTO promotion_descriptions(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name, album_id)
@@ -404,14 +437,14 @@ VALUES
 
 INSERT INTO reservation_tables(confirmation_number, arrival_date, departure_date, user_id, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
 VALUES
-('20210121', '2021-01-21', '2021-05-21', '', 'GC-010', 'RR-011', '123456', '2021-01-02', ''),
-('20212212', '2021-12-22', '2021-12-25', '', 'GC-020', 'RR-021', '123457', '', '2021-01-02');
+('20210121', '2021-01-21', '2021-05-21', '', 'GC-01', 'RR-01', '123456', '2021-01-02', ''),
+('20212212', '2021-12-22', '2021-12-25', '', 'GC-02', 'RR-02', '123457', '', '2021-01-02');
 
 
 INSERT INTO reserved_rooms(rr_code, r1, r2, r3, rate1, rate2, rate3)
 VALUES
-('RR-011', 'R-01', 'R-02', 'R-03', 'Best Available Rate', 'Best Available Rate', 'Best Available Rate'),
-('RR-012', 'R-05', '', '', 'Bonus Stay', '', '');
+('RR-01', 'R-01', 'R-02', 'R-03', 'Best Available Rate', 'Best Available Rate', 'Best Available Rate'),
+('RR-02', 'R-05', '', '', 'Bonus Stay', '', '');
 
 
 INSERT INTO room_descriptions(room_name, image_name, room_short_description, room_long_description, amenities_number, room_size, base_price, bed_type, album_id)

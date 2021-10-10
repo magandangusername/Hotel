@@ -34,7 +34,7 @@
         <div class="row g-2 justify-content-center">
 
             <div class="col-auto">
-                <p class="label">Your Stay: {{date('M d, Y', strtotime(session('checkin')))}} - {{date('M d, Y', strtotime(session('checkout')))}}</p>
+                <p class="label">Your Stay: {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckOut'))) }}</p>
             </div>
             <div class="col-auto" hidden>
                 <p class="label vertical">adult</p>
