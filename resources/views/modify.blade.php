@@ -17,18 +17,18 @@
         <section id="modifyone">
             <div class="containermodi">
 
-                <h2 class="modifhy">Guest Information</h2>
+                <h2 class="modifhy">Guest Information </h2>
 
                 <div class="row lg-2 align-items-center">
 
                     <div class="col-md-6">
-                        <p class="userinfo">Name: John MArk SAga</p>
+                        <p class="userinfo">Name: {{$book->first_name}} {{$book->last_name}}</p>
                     </div>
                     <div class="col-md-6">
-                        <p>Email: JohnMArkSAga@gmail</p>
+                        <p>Email: {{$book->email}}</p>
                     </div>
                     <div class="col-md-6">
-                        <p class="userinfo">Confirmation Number: 09184178294</p>
+                        <p class="userinfo">Confirmation Number: {{$book->confirmation_number}}</p>
                     </div>
                     <div class="col-md-6">
                         <a href="editUser.php" input type="button" class="btn btn-primary"> Edit Personal Information </a>
@@ -49,23 +49,38 @@
                     <div class="row">
                         <div class="col-md-5" id="new">
                             <h3 class="new">Room 1</h3>
-                            <p class="new">Room type </p>
-                            <p class="new">Bed: King Bed</p>
-                            <p class="new">Rate type: Early Bird</p>
-                            <p class="new">room total php 2,800</p>
+                            <p class="new">{{$book->room_suite_name}}</p>
+                            <p class="new">Bed: {{$book->room_suite_bed}}</p>
+                            <p class="new">Rate type: {{$book->rate_name}}</p>
+                            <p class="new">room total @php
+                                $price = DB::table('room_descriptions')->where('room_name', $book->room_suite_name)->first();
+                                if($price !== null){
+                                    echo $price->base_price;
+                                } else {
+                                    $price = DB::table('suite_descriptions')->where('suite_name', $book->room_suite_name)->first();
+                                    echo $price->base_price;
+                                }
+                            @endphp</p>
                         </div>
 
                         <div class="col-md-6">
-                            <img src="photos/bonus stay.png" alt="" class="img-fluid">
+                            @php
+                                $image = DB::table('gallery_albums')
+                                ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                ->where('album_name', $book->room_suite_name)
+                                ->first();
+                                $image = $image->photo_name;
+                            @endphp
+                            <img src="{{asset('images/'.$image)}}" alt="" class="img-fluid">
                         </div>
 
 
                         <div class="col-md-5">
                             <h3 class="new"> Tax and fees </h3>
-                            <p class="new">vat: php 224 </p>
-                            <p class="new">service charge: php 140</p>
-                            <p class="new">city tax: php 84</p>
-                            <p class="new">total: php 3,248</p>
+                            <p class="new">vat: php {{number_format($vat = $price->base_price * $book->vat, 2)}}</p>
+                            <p class="new">service charge: php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}}</p>
+                            <p class="new">city tax: php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</p>
+                            <p class="new">total: php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}}</p>
                         </div>
 
                         <div class="col-md-6 terms">
@@ -85,13 +100,13 @@
                     <div class="row g-2 justify-content-center">
 
                         <div class="col-auto">
-                            <p class="label">Arrival Date: july 10 1999</p>
+                            <p class="label">Arrival Date: {{date('M d, Y', strtotime($book->arrival_date))}}</p>
                         </div>
                         <div class="col-auto">
-                            <p class="label ">Departure Date: july 10 1999</p>
+                            <p class="label ">Departure Date: {{date('M d, Y', strtotime($book->departure_date))}}</p>
                         </div>
                         <div class="col-auto">
-                            <p class="label vertical">overall price php 10,000</p>
+                            <p class="label vertical">overall price php {{number_format($book->ctotal_price, 2)}}</p>
                         </div>
 
                     </div>

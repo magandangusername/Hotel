@@ -44,7 +44,7 @@ CREATE TABLE guest_information (
     last_name varchar(255),
     address varchar(255),
     city varchar(255),
-    email_address varchar(255),
+    email varchar(255),
     payment_code varchar(255),
     PRIMARY KEY (guest_code)
 );
@@ -223,7 +223,7 @@ VALUES
 ('DA-4', 'King-size bed or queen size bed', 'Walk-in closet', 'Dining area with dining table for eight people', 'Powder room', 'Kitchenette', 'Large writing desk with media control panel', 'DVD player (upon request)', 'Flat screen TV with international channels', 'IDD phone with voice message box', 'Nespresso coffee machine');
 
 
-INSERT INTO guest_information(guest_code, title, first_name, last_name, address, city, email_address, payment_code)
+INSERT INTO guest_information(guest_code, title, first_name, last_name, address, city, email, payment_code)
 VALUES
 ('GC-010', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Chumnatics@gmail.com', 'PC-010'),
 ('GC-020', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-020');
@@ -409,10 +409,10 @@ VALUES
 ('DA-4', 'King-size bed or queen size bed', 'Walk-in closet', 'Dining area with dining table for eight people', 'Powder room', 'Kitchenette', 'Large writing desk with media control panel', 'DVD player (upon request)', 'Flat screen TV with international channels', 'IDD phone with voice message box', 'Nespresso coffee machine');
 
 
-INSERT INTO guest_informations(guest_code, title, first_name, last_name, address, city, email_address, payment_code)
-VALUES
-('GC-01', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Chumnatics@gmail.com', 'PC-01'),
-('GC-02', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-02');
+-- INSERT INTO guest_informations(guest_code, title, first_name, last_name, address, city, email, payment_code)
+-- VALUES
+-- ('GC-01', 'Mrs', 'John Mark', 'Bordadora', 'Brgy Talkshit, 420 Blk, 69 LT, Bootleg St', 'Pasig', 'Chumnatics@gmail.com', 'PC-01'),
+-- ('GC-02', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-02');
 
 
 INSERT INTO payment_informations(payment_code, payment_type, card_number, card_holder_name, expiration)
@@ -423,9 +423,9 @@ VALUES
 
 INSERT INTO promotion_descriptions(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name, album_id)
 VALUES
-('123456', 'Direct Booking', 'Direct reservations made by our guests are given a 10% discount on their overall booking', 'Enjoy a 10% overall booking discount by booking reservations directly on our website with a free dinner meal on us.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-21', '0.10', 'directb.jpg', 4),
-('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2021-08-31', '0.20', 'celebration.jpeg', 5),
-('123612', 'Summer Season', 'Exclusive only for the summer season, enjoy a 15% discount on overall booking this summer', 'A treat for the summer season, enjoy 15% discount on overall booking and cool off on our hotel and escape from the summer heat.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2021-07-31', '0.15', 'summers.jpg', 6);
+('123456', 'Direct Booking', 'Direct reservations made by our guests are given a 10% discount on their overall booking', 'Enjoy a 10% overall booking discount by booking reservations directly on our website with a free dinner meal on us.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2031-07-21', '0.10', 'directb.jpg', 4),
+('123567', 'Opening Celebration', 'A celebratory offer from mondstadt, enjoy a bottle of wine and a luxurious meal in celebration of our opening', 'A limited offer for the opening of mondstadt, a bottle of wine and a breakfast, lunch and dinner meal enjoy the celebratory offer on us.', 'Meals are only given based on time of the day a guest checked in', 'Only applies for the first day of stay', '', '2021-07-01', '2031-08-31', '0.20', 'celebration.jpeg', 5),
+('123612', 'Summer Season', 'Exclusive only for the summer season, enjoy a 15% discount on overall booking this summer', 'A treat for the summer season, enjoy 15% discount on overall booking and cool off on our hotel and escape from the summer heat.', 'Rooms are subject for availability', 'The offer cannot be used in conjunction with other room packages or promotions', '', '2021-07-01', '2031-07-31', '0.15', 'summers.jpg', 6);
 
 
 INSERT INTO rate_descriptions(rate_name, rate_offer1, rate_offer2, rate_offer3, base_discount, service_rate, city_tax, vat, album_id)
@@ -435,16 +435,16 @@ VALUES
 ('Online Exclusive', 'Free Wifi', '50% Discount on nightly charge', '', 0.05, 0.06, 0.11, 0.05, 3);
 
 
-INSERT INTO reservation_tables(confirmation_number, arrival_date, departure_date, user_id, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
-VALUES
-('20210121', '2021-01-21', '2021-05-21', '', 'GC-01', 'RR-01', '123456', '2021-01-02', ''),
-('20212212', '2021-12-22', '2021-12-25', '', 'GC-02', 'RR-02', '123457', '', '2021-01-02');
+-- INSERT INTO reservation_tables(confirmation_number, arrival_date, departure_date, user_id, guest_code, rr_code, promotion_code, modified_on,  cancelled_on)
+-- VALUES
+-- ('20210121', '2021-01-21', '2021-05-21', '', 'GC-01', 'RR-01', '123456', '2021-01-02', ''),
+-- ('20212212', '2021-12-22', '2021-12-25', '', 'GC-02', 'RR-02', '123457', '', '2021-01-02');
 
 
-INSERT INTO reserved_rooms(rr_code, r1, r2, r3, rate1, rate2, rate3)
-VALUES
-('RR-01', 'R-01', 'R-02', 'R-03', 'Best Available Rate', 'Best Available Rate', 'Best Available Rate'),
-('RR-02', 'R-05', '', '', 'Bonus Stay', '', '');
+-- INSERT INTO reserved_rooms(rr_code, r1, r2, r3, rate1, rate2, rate3)
+-- VALUES
+-- ('RR-01', 'R-01', 'R-02', 'R-03', 'Best Available Rate', 'Best Available Rate', 'Best Available Rate'),
+-- ('RR-02', 'R-05', '', '', 'Bonus Stay', '', '');
 
 
 INSERT INTO room_descriptions(room_name, image_name, room_short_description, room_long_description, amenities_number, room_size, base_price, bed_type, album_id)
@@ -456,8 +456,8 @@ VALUES
 
 INSERT INTO room_statuses(room_number, status, confirmation_number, room_suite_name, room_suite_bed)
 VALUES
-('R-1', 1, '213451231', 'Standard Room', 'Queen Bed'),
-('R-2', 1, '213451223', 'Standard Room', 'King Bed'),
+('R-1', 0, '', 'Standard Room', 'Queen Bed'),
+('R-2', 0, '', 'Standard Room', 'King Bed'),
 ('R-3', 0, '', 'Standard Room', 'Queen Bed'),
 ('R-4', 0, '', 'Deluxe Room', 'Queen Bed'),
 ('R-5', 0, '', 'Deluxe Room', 'King Bed'),

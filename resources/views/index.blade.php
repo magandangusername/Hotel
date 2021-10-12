@@ -44,7 +44,7 @@
     </section>
 
     <!---------------------------------availability------------------------------->
-    @include('layouts.checkavailability')
+    {{-- @include('layouts.checkavailability') --}}
     <div class="containers">
         <div class="col-md">
             <p class="location"> <a href="#">Justin Street, Brngy Anemo, Makati Avenue, Jean Kazama City 1299,

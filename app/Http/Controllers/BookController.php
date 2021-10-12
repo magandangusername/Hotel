@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Rules\PromoValidDuration;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class BookController extends Controller
 {
@@ -16,6 +18,12 @@ class BookController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
+            if (Auth::user()->hasVerifiedEmail() != true) {
+                return view('notverified');
+            }
+
+        }
         return view('booking');
     }
     public function book()

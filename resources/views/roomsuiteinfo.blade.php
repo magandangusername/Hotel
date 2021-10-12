@@ -112,7 +112,7 @@
 
                 </div>
 
-                @include('layouts.checkavailability2')
+                {{-- @include('layouts.checkavailability2') --}}
             </div>
         </div>
     </section>

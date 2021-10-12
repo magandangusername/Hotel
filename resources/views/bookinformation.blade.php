@@ -54,8 +54,8 @@
                     }
 
                 }
-                Session::put('overallprice', number_format($totalrate, 2));
-                echo session('overallprice');
+                Session::put('overallprice', $totalrate);
+                echo number_format(session('overallprice'), 2);
                 @endphp</p>
             </div>
         </div>

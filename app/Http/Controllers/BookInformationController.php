@@ -21,12 +21,12 @@ class BookInformationController extends Controller
      */
     public function index()
     {
-        if(Auth::check()){
-            if (Auth::user()->hasVerifiedEmail() != true) {
-                return view('notverified');
-            }
+        // if(Auth::check()){
+        //     if (Auth::user()->hasVerifiedEmail() != true) {
+        //         return view('notverified');
+        //     }
 
-        }
+        // }
         return view('bookinformation');
     }
 
@@ -102,27 +102,21 @@ class BookInformationController extends Controller
             $guestcode = "GC-0" . strval($countguest);
             $paymentcode = "PC-0" . strval($countguest);
 
-            $guestinformation = DB::table('guest_informations')->insert([
-                'guest_code' => $guestcode,
-                'title' => $title,
-                'first_name' => $fn,
-                'last_name' => $ln,
-                'address' => $address,
-                'city' => $city,
-                'email_address' => $email,
-                'payment_code' => $paymentcode
 
-            ]);
 
         }
 
 
 
+        // dd(number_format(session('downpayment'), 2, '.', ''));
+        // Session::put('downpayment', number_format(session('downpayment'), 2, '.', ''));
+        // Session::put('totalprice', session('downpayment') * 2);
+        // dd(number_format(session('overallprice') * 0.5, 2));
 
-
+        // dd(number_format(100 * session('downpayment'), 2, '.', ''));
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-            "amount" => 100 * session('downpayment'),
+            "amount" => 100 * (session('overallprice') * 0.5),
             "currency" => "php",
             "source" => $request->stripeToken,
             "description" => "Book down payment"
@@ -238,7 +232,7 @@ class BookInformationController extends Controller
 
 
 
-        if (session('promocode') != null && session('promocode') != '') {
+        if (session('promocode') !== null && session('promocode') != '') {
             $promocode = session('promocode');
         } else {
             $promocode = '';
@@ -248,8 +242,19 @@ class BookInformationController extends Controller
         // $paymentcode = DB::table('orders')->max('id');
 
 
+        if(Auth::check() != true) {
+            $guestinformation = DB::table('guest_informations')->insert([
+                'guest_code' => $guestcode,
+                'title' => $title,
+                'first_name' => $fn,
+                'last_name' => $ln,
+                'address' => $address,
+                'city' => $city,
+                'email' => $email,
+                'payment_code' => $paymentcode
 
-
+            ]);
+        }
 
 
 
@@ -268,7 +273,7 @@ class BookInformationController extends Controller
         ]);
 
         $computed = DB::table('computeds')->insert([
-            'ctotal_price' => session('downpayment') * 2
+            'ctotal_price' => session('overallprice')
         ]);
 
         $id = DB::table('computeds')->max('id');
@@ -320,7 +325,7 @@ class BookInformationController extends Controller
         //     $_SESSION['confirmation_number'] = "ERROR OCCURED INSERTING TO DATABASE";
         // }
 
-        Session::put('totalprice', session('downpayment') * 2);
+
 
         Session::put('confirmation_number', $confirmation_number);
 

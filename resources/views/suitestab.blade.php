@@ -58,14 +58,14 @@
                     </div>
                 @endforeach
 
-                <div class="col-12"></div>
+                {{-- <div class="col-12"></div>
                 <div class="col-lg-2" id="availnow">
                     <h4 class="bold"> Room</h3>
                         <p>this is standard</p>
                         <a href="">see latest room offers</a>
                 </div>
 
-                @include('layouts.checkavailability2')
+                @include('layouts.checkavailability2') --}}
 
             </div>
         </div>

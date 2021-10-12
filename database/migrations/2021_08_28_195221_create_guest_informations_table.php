@@ -20,7 +20,7 @@ class CreateGuestInformationsTable extends Migration
             $table->string('last_name');
             $table->string('address');
             $table->string('city');
-            $table->string('email_address');
+            $table->string('email');
             $table->string('payment_code');
             $table->timestamps();
         });

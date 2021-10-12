@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\guest_information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ModifyReservationController extends Controller
 {
@@ -13,16 +15,44 @@ class ModifyReservationController extends Controller
      */
     public function index()
     {
+        $message = '';
         if(session('uid') !== null){
-            dd('meron sa user');
-        } elseif (session('gid' !== null)){
-            dd('meron sa guest');
+            // dd('meron '.session('uid'));
+            $book = DB::table('reservation_tables')
+            // ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+            // ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+            // ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
+            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+
+            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+            ->where('reservation_tables.user_id', session('uid'))
+            ->orWhere('reservation_tables.guest_code', session('uid'))
+            ->first();
+
+            if($book->first_name === null) {
+                $book = DB::table('reservation_tables')
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+
+                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                ->where('reservation_tables.user_id', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->first();
+            }
+
         } else {
-            dd('gusto ko na matapos to');
+            $message = 'An error occured trying to fetch data.';
         }
 
 
-        return view('modify');
+        return view('modify')->with(compact('message', 'book'));
     }
 
     /**

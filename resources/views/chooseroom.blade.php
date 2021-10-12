@@ -32,7 +32,7 @@
                         @php
 
                         @endphp
-                        @if (session('room') != null || session('room') > 1)
+                        @if (session('room') !== null || session('room') > 1)
                             @php
                                 $room = session('room');
                             @endphp
@@ -188,7 +188,8 @@
                                         $totalrate = $totalprice;
                                     }
 
-                                    Session::put('downpayment', $totalrate * 0.5);
+                                    // Session::put('downpayment', session('downpayment') + ($totalrate * 0.5));
+                                    // Session::put('downpayment', number_format(session('downpayment'), 0, '.', ''));
 
                                     // $k = 'K';
                                     // $q = 'Q';
@@ -320,7 +321,7 @@
 
 
                                         @php
-                                            $available = \App\Models\room_status::where('room_suite_bed', 'like', 'Queen Bed')->count();
+                                            $available = \App\Models\room_status::where('status', 0)->where('room_suite_name', '=', $type)->count();
 
                                             if (session('roomchecker') !== null) {
                                                 $roomchecker = session('roomchecker');
