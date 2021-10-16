@@ -2,126 +2,235 @@
 
 @section('content')
 
-    <section id="modify">
-        <div class="containermod">
+<div class="container-fluid mt-4">
 
-            <a href="reservation.php" type="button" id="backmod" class="btn btn-primary"> Back </a>
+<div class="container pt-0 mb-3 text-center">
+    <h1 class="fw-bold"> Modify Reservation</h1>
+</div>
 
-            <h1 class="modifhye">Modify Reservation</h1>
+<div class="infotab px-1 py-3 text-dark ">
+  <div class="row mt-2">
 
+    <div class="col-3 text-center">
+      <h4 class="fw-bold">Reservation Number</h4>
+      <h5>21385670 </h5>
+    </div>
+
+    <div class="col">
+      <h4 class="fw-bold">Arrival/Departure</h4>
+      <h5>01/25/21 - 01/27/21 </h5>
+    </div>
+
+    <div class="col-1 text-center">
+      <h4 class="fw-bold">Adult</h4>
+      <h5>5</h5>
+    </div>
+
+    <div class="col-1 text-center">
+      <h4 class="fw-bold">Children</h4>
+      <h5>5</h5>
+    </div>
+
+    <div class="col  text-center">
+      <h4 class="fw-bold">Subtotal</h4>
+      <h5>$5,000</h5>
+    </div>
+
+    <div class="col ">
+      <div class="px-5">
+        <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">More Information</button>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+
+
+<div class="container p-4 my-5 bg-light">
+
+
+        <div class=" text-dark ">
+            <h2 class="px-5 py-3 fw-bold"> Guest Information</h2>
+              <div class="row px-5 py-3">
+
+                <div class="col-5">
+                  <h5><b>Name :</b> John Mark</h5>
+                  <h5><b>Email Address :</b> John Mark@email.com</h5>
+                  <h5><b>Mobile Number : </b> 09231523952</h5>
+                </div>
+
+
+                <div class="col-5">
+                  <h5><b>Address : </b> Blk9, U7 Mark St, Brgy Bordadora</h5>
+                  <h5><b>City : </b> Pasig City</h5>
+                </div>
+
+                <div class="col">
+                  <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Edit Guest Info</button>
+                </div>
+
+              </div>
         </div>
-    </section>
 
-    <section id="modifdif">
+    <hr class="mx-5 mt-3 mb-4 p-1">
 
-        <section id="modifyone">
-            <div class="containermodi">
+    <h3 class="px-5 py-0 fw-bold  text-dark "> Payment Information </h3>
+        <div class="row px-5 py-3  text-dark ">
 
-                <h2 class="modifhy">Guest Information </h2>
+          <div class="col-5">
+            <h5><b>Cardholder Name :</b> Jo*****</h5>
+            <h5><b>Card Number :</b> 4********</h5>
+          </div>
 
-                <div class="row lg-2 align-items-center">
+          <div class="col-5">
+            <h5><b>Expiry Date : </b> 21/02</h5>
+            <h5><b>CVV : </b> ***</h5>
+          </div>
 
-                    <div class="col-md-6">
-                        <p class="userinfo">Name: {{$book->first_name}} {{$book->last_name}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>Email: {{$book->email}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="userinfo">Confirmation Number: {{$book->confirmation_number}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="editUser.php" input type="button" class="btn btn-primary"> Edit Personal Information </a>
-                    </div>
-                </div>
+          <div class="col">
+            <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Edit Payment Info</button>
+          </div>
+        </div>
+
+
+    <hr class="mx-5 mt-4 mb-4 p-1">
+
+         <h2 class="px-5 py-3 fw-bold text-center  text-dark  "> Room Information </h2>
+
+         <div class="accordion" id="accordionid">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> Room 1</button>
+              </h5>
             </div>
-        </section>
 
-        <hr />
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionid">
+              <div class="card-body">
 
-        <section id="modifytwo">
-            <div class="col-12"></div>
-            <h2 class="bold">Room Information</h2>
+                <div class="row">
+                  <div class="col"><img src="../assets/abstract.jpg" class="img-thumbnail"></div>
+                  <div class="col mt-5">
 
+                    <h5><b>Room Name :</b> Standard Room</h5>
+                    <h5><b>Bed :</b> King Bed</h5>
+                    <h5><b>Rate Applied:</b> Bread and Breakfast </h5>
+                    <h5><b>Promo Applied:</b> N/A </h5>
+                  </div>
 
-            <section id="bannerss">
-                <div class="containernew">
-                    <div class="row">
-                        <div class="col-md-5" id="new">
-                            <h3 class="new">Room 1</h3>
-                            <p class="new">{{$book->room_suite_name}}</p>
-                            <p class="new">Bed: {{$book->room_suite_bed}}</p>
-                            <p class="new">Rate type: {{$book->rate_name}}</p>
-                            <p class="new">room total @php
-                                $price = DB::table('room_descriptions')->where('room_name', $book->room_suite_name)->first();
-                                if($price !== null){
-                                    echo $price->base_price;
-                                } else {
-                                    $price = DB::table('suite_descriptions')->where('suite_name', $book->room_suite_name)->first();
-                                    echo $price->base_price;
-                                }
-                            @endphp</p>
-                        </div>
+                  <div class="col mt-5">
+                    <h5><b>Base Price :</b> 10,000</h5>
+                    <h5><b>City Tax :</b> 20</h5>
+                    <h5><b>Vat:</b> 10 </h5>
+                    <h5><b>Service Charge:</b> 30 </h5>
+                    <h5><b>Total:</b> 10,060 </h5>
 
-                        <div class="col-md-6">
-                            @php
-                                $image = DB::table('gallery_albums')
-                                ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
-                                ->where('album_name', $book->room_suite_name)
-                                ->first();
-                                $image = $image->photo_name;
-                            @endphp
-                            <img src="{{asset('images/'.$image)}}" alt="" class="img-fluid">
-                        </div>
+                  </div>
 
+                  <div class="col mt-5">
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room Info</button>
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
+                  </div>
 
-                        <div class="col-md-5">
-                            <h3 class="new"> Tax and fees </h3>
-                            <p class="new">vat: php {{number_format($vat = $price->base_price * $book->vat, 2)}}</p>
-                            <p class="new">service charge: php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}}</p>
-                            <p class="new">city tax: php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</p>
-                            <p class="new">total: php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}}</p>
-                        </div>
-
-                        <div class="col-md-6 terms">
-                            <h3 class="term">Description Baby</h3>
-                            <button type="button" id="pindot" class="btn btn-primary"> Delete Booking </button>
-                            <a href="modifyroom.php" input type="button" id="pindot" class="btn btn-primary"> Edit Room </a>
-                        </div>
-
-                    </div>
                 </div>
 
-            </section>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  Room 2
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionid">
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col"><img src="../assets/abstract.jpg" class="img-thumbnail"></div>
 
 
-            <section id="twobutts">
-                <div class="containerchecks">
-                    <div class="row g-2 justify-content-center">
+                    <div class="col mt-5">
 
-                        <div class="col-auto">
-                            <p class="label">Arrival Date: {{date('M d, Y', strtotime($book->arrival_date))}}</p>
-                        </div>
-                        <div class="col-auto">
-                            <p class="label ">Departure Date: {{date('M d, Y', strtotime($book->departure_date))}}</p>
-                        </div>
-                        <div class="col-auto">
-                            <p class="label vertical">overall price php {{number_format($book->ctotal_price, 2)}}</p>
-                        </div>
+                      <h5><b>Room Name :</b> Standard Room</h5>
+                      <h5><b>Bed :</b> King Bed</h5>
+                      <h5><b>Rate Applied:</b> Bread and Breakfast </h5>
+                      <h5><b>Promo Applied:</b> N/A </h5>
+                    </div>
+
+                    <div class="col mt-5">
+                      <h5><b>Base Price :</b> 10,000</h5>
+                      <h5><b>City Tax :</b> 20</h5>
+                      <h5><b>Vat:</b> 10 </h5>
+                      <h5><b>Service Charge:</b> 30 </h5>
+                      <h5><b>Total:</b> 10,060 </h5>
 
                     </div>
-                </div>
 
-
-
-                <div class="row ">
-                    <div class="buttwo">
-                        <button type="button" class="btn btn-primary"> Cancel Reservation </button>
-                        <button type="button" class="btn btn-primary"> Submit Request </button>
+                    <div class="col mt-5">
+                      <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room Info</button>
+                      <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
                     </div>
-                </div>
-            </section>
 
-        </section>
-    </section>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                   Room 3
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionid">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col"><img src="../assets/abstract.jpg" class="img-thumbnail"></div>
+
+
+                  <div class="col mt-5">
+
+                    <h5><b>Room Name :</b> Standard Room</h5>
+                    <h5><b>Bed :</b> King Bed</h5>
+                    <h5><b>Rate Applied:</b> Bread and Breakfast </h5>
+                    <h5><b>Promo Applied:</b> N/A </h5>
+                  </div>
+
+                  <div class="col mt-5">
+                    <h5><b>Base Price :</b> 10,000</h5>
+                    <h5><b>City Tax :</b> 20</h5>
+                    <h5><b>Vat:</b> 10 </h5>
+                    <h5><b>Service Charge:</b> 30 </h5>
+                    <h5><b>Total:</b> 10,060 </h5>
+
+                  </div>
+
+                  <div class="col mt-5">
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room Info</button>
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+                  <div class="col">
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Cancel Reservation</button>
+                  </div>
+                  <div class="col">
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Submit Modification</button>
+                  </div>
+                </div>
+
+</div>
+
 @endsection

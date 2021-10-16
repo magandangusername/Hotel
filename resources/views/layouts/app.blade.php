@@ -4,6 +4,7 @@
 <head>
 
     <title>Mondstadt Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap" rel="stylesheet">
 
     <link rel="icon" href="{{ asset('images/logomondstadt.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -12,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
         integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
         integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,6 +32,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <meta charset="utf-8">
     <script src="https://js.stripe.com/v3/"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body onLoad='calendar(), renderDate()'>
@@ -118,6 +122,53 @@
 
 
     </section>
+
+
+
+    <footer class="container-fluid footnote mt-5">
+            <div class="container p-5">
+
+                <div class="row">
+
+                  <div class="col-6 mt-md-3">
+                    <h5 class="text-uppercase">Mondstadt Hotel</h5>
+                    <p>Providing guests with a top class accomodation like no other.</p>
+                  </div>
+
+                  <div class="col-3 ">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled mb-0">
+                      <li>
+                        <a href="#!" class="text-dark">About Us</a>
+                      </li>
+                      <li>
+                        <a href="#!" class="text-dark">Privacy and Cancellation Policies</a>
+                      </li>
+                      <li>
+                        <a href="#!" class="text-dark">Contact Us</a>
+                      </li>
+                      <li>
+                        <a href="#!" class="text-dark ">Frequently Asked Questions </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="col-3">
+                      <img src="public/images/anemo.png" class="footnote_img">
+                  </div>
+
+                </div>
+            </div>
+
+
+            <div class="text-center p-3 ml-0" style="background-color: rgba(5, 142, 255, 0.199)">
+              © 2021 Copyright All rights reserve to:
+              <a class="text-light" href="#">Monstadt Corporation</a>
+            </div>
+
+        </footer>
+
+
 </body>
 
 </html>

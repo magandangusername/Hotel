@@ -1223,3 +1223,30 @@ body {
     margin-right: 50px;
     padding-bottom: 50px;
 }
+
+
+/* Padua Design */
+
+
+/* Global Css*/
+.container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+    width: 100%;
+     padding-right: var(--bs-gutter-x, 0rem);
+     padding-left: var(--bs-gutter-x, 0rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*Footnote*/
+.footnote{
+    background: #2d97eeb0
+}
+
+.footnote_img{
+    height: 100px;
+    width: 100px;
+}
+
+.infotab{
+    background-color:white;
+}

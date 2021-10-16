@@ -49,7 +49,7 @@ class SearchModifyController extends Controller
         if ($user != null) {
             $id = $user->id;
         } else {
-            $guest = DB::table('guest_informations')->where('email_address', $data['email'])->first();
+            $guest = DB::table('guest_informations')->where('email', $data['email'])->first();
             if ($guest != null) {
                 $id = $guest->guest_code;
             }
