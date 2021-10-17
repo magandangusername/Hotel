@@ -154,7 +154,7 @@
                   </div>
 
                   <div class="col-3">
-                      <img src="public/images/anemo.png" class="footnote_img">
+                      <img src="{{asset('images/anemo.png')}}" class="footnote_img">
                   </div>
 
                 </div>
