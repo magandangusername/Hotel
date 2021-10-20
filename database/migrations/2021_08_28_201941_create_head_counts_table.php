@@ -14,7 +14,7 @@ class CreateHeadCountsTable extends Migration
     public function up()
     {
         Schema::create('head_counts', function (Blueprint $table) {
-            $table->string('head_count')->primary();
+            $table->id();
             $table->integer('adult');
             $table->integer('child');
             $table->timestamps();

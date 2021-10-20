@@ -24,6 +24,9 @@ class CreateReservedRoomsTable extends Migration
             $table->string('r1h');
             $table->string('r2h');
             $table->string('r3h');
+            $table->integer('head_count_id1');
+            $table->integer('head_count_id2')->nullable();
+            $table->integer('head_count_id3')->nullable();
             $table->timestamps();
         });
     }

@@ -29,15 +29,19 @@ class RoomSuiteController extends Controller
     public function roominfo($name)
     {
         $roominfo = room_description::join('amenities as am', 'room_descriptions.amenities_number', '=', 'am.amenities_number')->where('room_descriptions.room_name', '=', $name)->first();
+        if(!isset($roominfo)){
+            $roominfo = suite_description::join('amenities as am', 'suite_descriptions.amenities_number', '=', 'am.amenities_number')->where('suite_descriptions.suite_name', '=', $name)->first();
+        }
+
         $photos = gallery_photos::join('gallery_albums as a', 'gallery_photos.album_id', '=', 'a.album_id')->where('a.album_name', '=', $name)->get();
         return view('roomsuiteinfo')->with(compact('roominfo', 'photos'));
     }
 
     public function suiteinfo($name)
-    {   
+    {
         $roominfo = suite_description::join('amenities as am', 'suite_descriptions.amenities_number', '=', 'am.amenities_number')->where('suite_descriptions.suite_name', '=', $name)->first();
         $photos = gallery_photos::join('gallery_albums as a', 'gallery_photos.album_id', '=', 'a.album_id')->where('a.album_name', '=', $name)->get();
-        
+
         return view('roomsuiteinfo')->with(compact('roominfo', 'photos'));
     }
 

@@ -21,50 +21,62 @@
 
                 <div class="col-auto">
                     <p class="label">Your Stay:
-                        {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckOut'))) }}
+                        @if (isset($book) && $book !== null)
+                            {{ date('M d, Y', strtotime($book->arrival_date)) . ' - ' . date('M d, Y', strtotime($book->departure_date)) }}
+                        @else
+                            {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckOut'))) }}
+                        @endif
+
                     </p>
                 </div>
                 <div class="col-auto">
-                    <p class="label vertical">room(s): {{ session('RoomCount') }}</p>
+                    @if (isset($book) && $book === null)
+                        <p class="label vertical">room(s): {{ session('RoomCount') }}</p>
+                    @endif
+
                 </div>
                 <div class="col-auto">
                     <p class="label ">adult:
-                        @php
-
-                        @endphp
-                        @if (session('room') !== null || session('room') > 1)
-                            @php
-                                $room = session('room');
-                            @endphp
-
+                        @if (isset($book) && $book !== null)
+                            {{$book->adult}}
                         @else
-                            @php
-                                $room = 1;
-                                // session('room') = $room;
-                                Session::put('room', $room);
-                            @endphp
+                            @if (session('room') !== null || session('room') > 1)
+                                @php
+                                    $room = session('room');
+                                @endphp
+
+                            @else
+                                @php
+                                    $room = 1;
+                                    // session('room') = $room;
+                                    Session::put('room', $room);
+                                @endphp
+
+                            @endif
+
+                            @if ($room == 1)
+                                @php
+                                    // session('roomchecker') = true;
+                                    // session('roomchecker2') = true;
+                                    // session('roomtype2') = '';
+                                    // session('ratetyoe2') = '';
+
+                                    Session::put('roomchecker', true);
+                                    Session::put('roomchecker2', true);
+                                    Session::put('roomtype2', '');
+                                    Session::put('ratetype2', '');
+
+                                @endphp
+                                {{ session('AdultCount') }}
+
+                            @elseif ($room == 2)
+                                {{ session('AdultCount2') }}
+                            @elseif ($room == 3)
+                                {{ session('AdultCount3') }}
+                            @endif
 
                         @endif
 
-                        @if ($room == 1)
-                            @php
-                                // session('roomchecker') = true;
-                                // session('roomchecker2') = true;
-                                // session('roomtype2') = '';
-                                // session('ratetyoe2') = '';
-
-                                Session::put('roomchecker', true);
-                                Session::put('roomchecker2', true);
-                                Session::put('roomtype2', '');
-                                Session::put('ratetype2', '');
-                            @endphp
-                            {{ session('AdultCount') }}
-
-                        @elseif ($room == 2)
-                            {{ session('AdultCountRoom2') }}
-                        @elseif ($room == 3)
-                            {{ session('AdultCountRoom3') }}
-                        @endif
                     </p>
                 </div>
                 <div class="col-auto" hidden>
@@ -79,12 +91,14 @@
         </div>
     </section>
 
-
-    @if (session('RoomCount') > 1)
-        <div class="containerish">
-            <h1>Room {{ $room }} out of {{ session('RoomCount') }}</h1>
-        </div>
+    @if (isset($book) && $book === null)
+        @if (session('RoomCount') > 1)
+            <div class="containerish">
+                <h1>Room {{ $room }} out of {{ session('RoomCount') }}</h1>
+            </div>
+        @endif
     @endif
+
 
     @php
     $rt = 0;
@@ -208,7 +222,13 @@
                                 @endphp
 
                                 <img src="{{ asset('images/' . $image_name) }}" class="card-img-top">
-                                <form action="/chooseroom" method="POST">
+                                <form action="@php
+                                    if(isset($book) && $book !== null){
+                                        echo '/modify';
+                                    } else {
+                                        echo '/chooseroom';
+                                    }
+                                @endphp" method="POST">
                                     @csrf
                                     <div class="card-body text-muted">
                                         <h5 class="card-title">{{ $result->room_suite_name }}</h5>
@@ -255,15 +275,18 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bed"
                                                         value="Queen Bed" @php
-                                                            if ($room == 1) {
+                                                            if (isset($room) && $room == 1) {
                                                                 // session('bedcheckerq') = true;
                                                                 Session::put('bedcheckerq', true);
                                                                 //echo 'yes';
                                                             }
-                                                            if (session('bedcheckerq') !== null && !session('bedcheckerq') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
+                                                            if (isset($book) && $book !== null) {
+                                                                echo 'checked';
+                                                            }
+                                                            elseif (session('bedcheckerq') !== null && !session('bedcheckerq') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
                                                                 echo 'disabled';
                                                                 $q = false;
-                                                            } else {
+                                                            }else {
                                                                 echo 'checked';
                                                             }
                                                         @endphp>
@@ -290,7 +313,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bed" value="King Bed"
                                                         @php
-                                                            if ($room <= 1) {
+                                                            if (isset($room) && $room <= 1) {
                                                                 // session('bedcheckerk') = true;
                                                                 Session::put('bedcheckerk', true);
                                                                 //echo 'yes';
@@ -330,12 +353,17 @@
                                                 $roomchecker2 = session('roomchecker2');
                                             }
 
+
+
                                         @endphp
 
                                         @if ($available == 0)
                                             <button id="butbut" class="btn btn-primary"
                                                 disabled>ROOM
                                                 UNAVAILABLE</button>
+                                        @elseif (isset($book) && $book !== null)
+                                            <button type="submit" name="chooseroom" id="butbut"
+                                            class="btn btn-primary">Select</button>
                                         @elseif ((isset($roomchecker2) && !$roomchecker2 || isset($roomchecker) &&
                                             !$roomchecker)
                                             && (!$q && !$k)
@@ -344,7 +372,7 @@
                                             $result->room_suite_name))
                                             )
 
-                                            <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary"
+                                            <button name="chooseroom" id="butbut" class="btn btn-primary"
                                                 disabled>SELECTED THE LAST AVAILABLE</button>
 
                                         @else

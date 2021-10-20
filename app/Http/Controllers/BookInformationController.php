@@ -112,11 +112,11 @@ class BookInformationController extends Controller
         // Session::put('downpayment', number_format(session('downpayment'), 2, '.', ''));
         // Session::put('totalprice', session('downpayment') * 2);
         // dd(number_format(session('overallprice') * 0.5, 2));
-
+// dd(number_format(session('overallprice') / 2, 2, '.', '') * 100);
         // dd(number_format(100 * session('downpayment'), 2, '.', ''));
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-            "amount" => 100 * (session('overallprice') * 0.5),
+            "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
             "currency" => "php",
             "source" => $request->stripeToken,
             "description" => "Book down payment"
@@ -133,7 +133,6 @@ class BookInformationController extends Controller
 
 
 
-
         //reservation info
 
         $totalc = DB::table('reservation_tables')->select('confirmation_number')->count();
@@ -142,10 +141,17 @@ class BookInformationController extends Controller
         $departure = session('CheckOut');
         $adult = session('AdultCount');
         $child = session('ChildCount');
+
+        $adult2 = '';
+        $child2 = '';
+        $adult3 = '';
+        $child3 = '';
+
+
         if (session('RoomCount') >= 2) {
             $adult2 = session('AdultCount2');
             $child2 = session('ChildCount2');
-            if (session('rooms') == 3) {
+            if (session('RoomCount') == 3) {
             $adult3 = session('AdultCount3');
             $child3 = session('ChildCount3');
             }
@@ -186,6 +192,10 @@ class BookInformationController extends Controller
         if ($roomnum != null) {
             $roomnum = $roomnum->room_number;
 
+            $roomstatus = DB::table('room_statuses')
+                ->where('room_number', $roomnum)
+                ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
+
         } else {
             echo "ERROR1: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
             exit;
@@ -208,6 +218,10 @@ class BookInformationController extends Controller
                 exit;
             }
 
+            $roomstatus = DB::table('room_statuses')
+                ->where('room_number', $roomnum2)
+                ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
+
         } else {
             $roomnum2 = '';
         }
@@ -226,6 +240,9 @@ class BookInformationController extends Controller
                 echo "ERROR1: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
                 exit;
             }
+            $roomstatus = DB::table('room_statuses')
+                ->where('room_number', $roomnum3)
+                ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
         } else {
             $roomnum3 = '';
         }
@@ -256,7 +273,34 @@ class BookInformationController extends Controller
             ]);
         }
 
+        $headcount = DB::table('head_counts')->insert([
+            'adult' => $adult,
+            'child' => $child
+        ]);
 
+        $headcount = DB::table('head_counts')->max('id');
+        // $headcount = $headcount->id;
+        // dd($headcount);
+        $headcount2 = null;
+        $headcount3 = null;
+        if(session('RoomCount') >= 2){
+            $headcount2 = DB::table('head_counts')->insert([
+                'adult' => $adult2,
+                'child' => $child2
+            ]);
+
+            $headcount2 = DB::table('head_counts')->max('id');
+            // $headcount2 = $headcount->id;
+        }
+        if(session('RoomCount') >= 3){
+            $headcount3 = DB::table('head_counts')->insert([
+                'adult' => $adult3,
+                'child' => $child3
+            ]);
+
+            $headcount3 = DB::table('head_counts')->max('id');
+            // $headcount3 = $headcount->id;
+        }
 
         $reservedroomsinfo = DB::table('reserved_rooms')->insert([
             'rr_code' => $rr_code,
@@ -268,8 +312,10 @@ class BookInformationController extends Controller
             'rate3' => $ratetype3,
             'r1h' => '',
             'r2h' => '',
-            'r3h' => ''
-
+            'r3h' => '',
+            'head_count_id1' => $headcount,
+            'head_count_id2' => $headcount2,
+            'head_count_id3' => $headcount3
         ]);
 
         $computed = DB::table('computeds')->insert([
@@ -309,11 +355,15 @@ class BookInformationController extends Controller
 
 
 
-        $roomstatus = DB::table('room_statuses')
-        ->where('room_number', $roomnum)
-        ->orWhere('room_number', $roomnum2)
-        ->orWhere('room_number', $roomnum3)
-        ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
+        // $roomstatus = DB::table('room_statuses')
+        // ->where('room_number', $roomnum)
+        // ->orWhere('room_number', $roomnum2)
+        // ->orWhere('room_number', $roomnum3)
+        // ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
+
+
+
+
 
         // $commands = $guestinformation . $reservedroomsinfo . $reservationinfo . $roomstatus;
 
@@ -346,9 +396,30 @@ class BookInformationController extends Controller
 
 
 
+        // Session::forget([
+        //     'CheckIn',
+        //     'CheckOut',
+        //     'RoomCount',
+        //     'AdultCount',
+        //     'ChildCount',
+        //     'PromoCode',
+        //     'room',
+        //     'roomchecker',
+        //     'roomchecker2',
+        //     'roomtype2',
+        //     'ratetype2',
+        //     'bedcheckerq',
+        //     'bedcheckerk',
+        //     'roomtype',
+        //     'ratetype',
+        //     'bed',
+        //     'totalrate',
+        //     'overallprice',
+        //     'success',
+        //     'confirmation_number'
+        // ]);
 
-
-
+        // dd(session()->all());
 
         // return redirect('/bookinfo');
         return view('confdisplay');

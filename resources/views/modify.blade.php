@@ -125,26 +125,47 @@
                             <div class="col"><img src="{{asset('images/'.$image)}}" class="img-thumbnail"></div>
                             <div class="col mt-5">
 
-                                <h5><b>Room Name :</b> Standard Room</h5>
-                                <h5><b>Bed :</b> King Bed</h5>
-                                <h5><b>Rate Applied:</b> Bread and Breakfast </h5>
-                                <h5><b>Promo Applied:</b> N/A </h5>
+                                <h5><b>Room Name : </b>{{$book->room_suite_name}}</h5>
+                                <h5><b>Bed :</b> {{$book->room_suite_bed}}</h5>
+                                <h5><b>Rate Applied:</b> {{$book->rate_name}} </h5>
+                                <h5><b>Promo Applied:</b> @php
+                                    if($book->promotion_code === null || $book->promotion_code == '') {
+                                        echo 'N/A';
+                                    } else {
+                                        echo $book->promotion_code;
+                                    }
+                                @endphp </h5>
                             </div>
 
                             <div class="col mt-5">
-                                <h5><b>Base Price :</b> 10,000</h5>
-                                <h5><b>City Tax :</b> 20</h5>
-                                <h5><b>Vat:</b> 10 </h5>
-                                <h5><b>Service Charge:</b> 30 </h5>
-                                <h5><b>Total:</b> 10,060 </h5>
+                                <h5><b>Base Price :</b> @php
+                                    $price = DB::table('room_descriptions')->where('room_name', $book->room_suite_name)->first();
+                                    if($price !== null){
+                                        echo $price->base_price;
+                                    } else {
+                                        $price = DB::table('suite_descriptions')->where('suite_name', $book->room_suite_name)->first();
+                                        echo $price->base_price;
+                                    }
+                                @endphp</h5>
+                                <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</h5>
+                                <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $book->vat, 2)}} </h5>
+                                <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
 
                             <div class="col mt-5">
-                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
-                                    Info</button>
-                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change
-                                    Room</button>
+                                {{-- PS: FIX THE FREAKIN BACK BUTTON!!! --}}
+                                <a href="{{'roomtab/'.$book->room_suite_name}}"><button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
+                                    Info</button></a>
+                                <form action="" method="POST">
+                                    @csrf
+                                    <input name="confirmation_number" type="text" value="{{$book->confirmation_number}}" hidden>
+                                    <input name="room_num" type="text" value="r1" hidden>
+                                    <input name="rr_code" type="text" value="{{$book->rr_code}}" hidden>
+                                    <input name="rate_name" type="text" value="{{$book->rate_name}}" hidden>
+                                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
+                                </form>
                             </div>
 
                         </div>
@@ -152,6 +173,9 @@
                     </div>
                 </div>
             </div>
+
+            @if ($bookinfo2->room_suite_name !== null || $bookinfo2->room_suite_name != '')
+
 
             <div class="card">
                 <div class="card-header" id="headingTwo">
@@ -165,31 +189,58 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionid">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col"><img src="../assets/abstract.jpg" class="img-thumbnail"></div>
+                            @php
+                                $image = DB::table('gallery_albums')
+                                ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                ->where('album_name', $bookinfo2->room_suite_name)
+                                ->first();
+                                $image = $image->photo_name;
+                            @endphp
+                            <div class="col"><img src="{{asset('images/'.$image)}}" class="img-thumbnail"></div>
 
 
                             <div class="col mt-5">
 
-                                <h5><b>Room Name :</b> Standard Room</h5>
-                                <h5><b>Bed :</b> King Bed</h5>
-                                <h5><b>Rate Applied:</b> Bread and Breakfast </h5>
-                                <h5><b>Promo Applied:</b> N/A </h5>
+                                <h5><b>Room Name :</b> {{$bookinfo2->room_suite_name}}</h5>
+                                <h5><b>Bed :</b> {{$bookinfo2->room_suite_bed}}</h5>
+                                <h5><b>Rate Applied:</b> {{$bookinfo2->rate_name}} </h5>
+                                <h5><b>Promo Applied:</b> @php
+                                    if($bookinfo2->promotion_code === null || $bookinfo2->promotion_code == '') {
+                                        echo 'N/A';
+                                    } else {
+                                        echo $bookinfo2->promotion_code;
+                                    }
+                                @endphp </h5>
                             </div>
 
                             <div class="col mt-5">
-                                <h5><b>Base Price :</b> 10,000</h5>
-                                <h5><b>City Tax :</b> 20</h5>
-                                <h5><b>Vat:</b> 10 </h5>
-                                <h5><b>Service Charge:</b> 30 </h5>
-                                <h5><b>Total:</b> 10,060 </h5>
+                                <h5><b>Base Price :</b> @php
+                                    $price = DB::table('room_descriptions')->where('room_name', $bookinfo2->room_suite_name)->first();
+                                    if($price !== null){
+                                        echo $price->base_price;
+                                    } else {
+                                        $price = DB::table('suite_descriptions')->where('suite_name', $bookinfo2->room_suite_name)->first();
+                                        echo $price->base_price;
+                                    }
+                                @endphp</h5>
+                                <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $bookinfo2->city_tax, 2)}}</h5>
+                                <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $bookinfo2->vat, 2)}} </h5>
+                                <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $bookinfo2->service_rate, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
 
                             <div class="col mt-5">
-                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
-                                    Info</button>
-                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change
-                                    Room</button>
+                                <a href="{{'roomtab/'.$book->room_suite_name}}"><button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
+                                    Info</button></a>
+                                <form action="" method="POST">
+                                    @csrf
+                                    <input name="confirmation_number" type="text" value="{{$book->confirmation_number}}" hidden>
+                                    <input name="room_num" type="text" value="r2" hidden>
+                                    <input name="rr_code" type="text" value="{{$book->rr_code}}" hidden>
+                                    <input name="rate_name" type="text" value="{{$book->rate_name}}" hidden>
+                                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
+                                </form>
                             </div>
 
                         </div>
@@ -197,6 +248,10 @@
                     </div>
                 </div>
             </div>
+
+            @endif
+
+            @if ($bookinfo3->room_suite_name !== null || $bookinfo3->room_suite_name != '')
             <div class="card">
                 <div class="card-header" id="headingThree">
                     <h5 class="mb-0">
@@ -209,37 +264,65 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionid">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col"><img src="../assets/abstract.jpg" class="img-thumbnail"></div>
+                            @php
+                                $image = DB::table('gallery_albums')
+                                ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                ->where('album_name', $bookinfo3->room_suite_name)
+                                ->first();
+                                $image = $image->photo_name;
+                            @endphp
+                            <div class="col"><img src="{{asset('images/'.$image)}}" class="img-thumbnail"></div>
 
 
                             <div class="col mt-5">
 
-                                <h5><b>Room Name :</b> Standard Room</h5>
-                                <h5><b>Bed :</b> King Bed</h5>
-                                <h5><b>Rate Applied:</b> Bread and Breakfast </h5>
-                                <h5><b>Promo Applied:</b> N/A </h5>
+                                <h5><b>Room Name :</b> {{$bookinfo3->room_suite_name}}</h5>
+                                <h5><b>Bed :</b> {{$bookinfo3->room_suite_bed}}</h5>
+                                <h5><b>Rate Applied:</b> {{$bookinfo3->rate_name}} </h5>
+                                <h5><b>Promo Applied:</b> @php
+                                    if($bookinfo3->promotion_code === null || $bookinfo3->promotion_code == '') {
+                                        echo 'N/A';
+                                    } else {
+                                        echo $book->promotion_code;
+                                    }
+                                @endphp </h5>
                             </div>
 
                             <div class="col mt-5">
-                                <h5><b>Base Price :</b> 10,000</h5>
-                                <h5><b>City Tax :</b> 20</h5>
-                                <h5><b>Vat:</b> 10 </h5>
-                                <h5><b>Service Charge:</b> 30 </h5>
-                                <h5><b>Total:</b> 10,060 </h5>
+                                <h5><b>Base Price :</b> @php
+                                    $price = DB::table('room_descriptions')->where('room_name', $bookinfo3->room_suite_name)->first();
+                                    if($price !== null){
+                                        echo $price->base_price;
+                                    } else {
+                                        $price = DB::table('suite_descriptions')->where('suite_name', $bookinfo3->room_suite_name)->first();
+                                        echo $price->base_price;
+                                    }
+                                @endphp</h5>
+                                <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $bookinfo3->city_tax, 2)}}</h5>
+                                <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $bookinfo3->vat, 2)}} </h5>
+                                <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $bookinfo3->service_rate, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
 
                             <div class="col mt-5">
-                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
-                                    Info</button>
-                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change
-                                    Room</button>
+                                <a href="{{'roomtab/'.$book->room_suite_name}}"><button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
+                                    Info</button></a>
+                                <form action="" method="POST">
+                                    @csrf
+                                    <input name="confirmation_number" type="text" value="{{$book->confirmation_number}}" hidden>
+                                    <input name="room_num" type="text" value="r3" hidden>
+                                    <input name="rr_code" type="text" value="{{$book->rr_code}}" hidden>
+                                    <input name="rate_name" type="text" value="{{$book->rate_name}}" hidden>
+                                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
+                                </form>
                             </div>
 
                         </div>
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <div class="row">
             <div class="col">

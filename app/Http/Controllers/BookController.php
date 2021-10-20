@@ -58,10 +58,10 @@ class BookController extends Controller
             'RoomCount' => 'required|integer|min:1|max:3',
             'AdultCount' => 'required|integer|min:1',
             'ChildCount' => 'required|integer|min:0',
-            'AdultCountRoom2' => 'required|integer|min:1',
-            'ChildCountRoom2' => 'required|integer|min:0',
-            'AdultCountRoom3' => 'required|integer|min:1',
-            'ChildCountRoom3' => 'required|integer|min:0',
+            'AdultCount2' => 'required|integer|min:1',
+            'ChildCount2' => 'required|integer|min:0',
+            'AdultCount3' => 'required|integer|min:1',
+            'ChildCount3' => 'required|integer|min:0',
             'PromoCode' => ['nullable', new PromoValidDuration]
 
         ]);
@@ -74,10 +74,10 @@ class BookController extends Controller
             'RoomCount',
             'AdultCount',
             'ChildCount',
-            'AdultCountRoom2',
-            'ChildCountRoom2',
-            'AdultCountRoom3',
-            'ChildCountRoom3',
+            'AdultCount2',
+            'ChildCount2',
+            'AdultCount3',
+            'ChildCount3',
             'PromoCode',
             'roomchecker',
             'room'
@@ -95,11 +95,11 @@ class BookController extends Controller
             $request->session()->put('AdultCount', $data['AdultCount']);
             $request->session()->put('ChildCount', $data['ChildCount']);
             if (session('RoomCount') >= 2) {
-                $request->session()->put('AdultCountRoom2', $data['AdultCountRoom2']);
-                $request->session()->put('ChildCountRoom2', $data['ChildCountRoom2']);
+                $request->session()->put('AdultCount2', $data['AdultCount2']);
+                $request->session()->put('ChildCount2', $data['ChildCount2']);
                 if (session('RoomCount') >= 3) {
-                    $request->session()->put('AdultCountRoom3', $data['AdultCountRoom3']);
-                    $request->session()->put('ChildCountRoom3', $data['ChildCountRoom3']);
+                    $request->session()->put('AdultCount3', $data['AdultCount3']);
+                    $request->session()->put('ChildCount3', $data['ChildCount3']);
                 }
             }
         }

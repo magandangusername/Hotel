@@ -60,7 +60,8 @@ Auth::routes(['verify' => true]);
 
 // Route::view('/complete', 'confdisplay');
 
-Route::get('/modify', [ModifyReservationController::class, 'index'])->name('modifyreservation');
+// Route::get('/modify', [ModifyReservationController::class, 'index'])->name('modifyreservation');
+Route::resource('/modify', ModifyReservationController::class);
 
 Auth::routes();
 
