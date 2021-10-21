@@ -19,7 +19,7 @@ class ModifyReservationController extends Controller
     {
 
         $message = '';
-        if(session('uid') !== null){
+        if(session('uid') !== null && session('gid') !== null){
             // dd('meron '.session('uid'));
             $book = DB::table('reservation_tables')
             // ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
@@ -33,7 +33,7 @@ class ModifyReservationController extends Controller
 
             ->where('reservation_tables.confirmation_number', session('confirmation_number'))
             ->where('reservation_tables.user_id', session('uid'))
-            ->orWhere('reservation_tables.guest_code', session('uid'))
+            ->orWhere('reservation_tables.guest_code', session('gid'))
             ->first();
 
             if($book->first_name === null) {
@@ -47,7 +47,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->first();
             }
 
@@ -82,7 +82,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
@@ -98,7 +98,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
@@ -114,7 +114,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
@@ -176,7 +176,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
 
                 //updates the new room
@@ -211,7 +211,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
 
                 //updates the new room
@@ -246,7 +246,7 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
 
                 //updates the new room
@@ -298,7 +298,7 @@ class ModifyReservationController extends Controller
                 ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->first();
 
                 if($book->first_name === null) {
@@ -312,7 +312,7 @@ class ModifyReservationController extends Controller
                     ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
-                    ->orWhere('reservation_tables.guest_code', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->first();
                 }
 
@@ -327,7 +327,7 @@ class ModifyReservationController extends Controller
 
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
-                    ->orWhere('reservation_tables.guest_code', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                     ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                     ->first();
@@ -343,7 +343,7 @@ class ModifyReservationController extends Controller
 
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
-                    ->orWhere('reservation_tables.guest_code', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                     ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                     ->first();

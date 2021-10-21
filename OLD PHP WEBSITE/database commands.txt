@@ -45,6 +45,7 @@ CREATE TABLE guest_information (
     address varchar(255),
     city varchar(255),
     email varchar(255),
+    mobile_num varchar(255),
     payment_code varchar(255),
     PRIMARY KEY (guest_code)
 );
@@ -529,3 +530,7 @@ VALUES
 ('pres1.jpg', 12),
 ('pres2.jpg', 12),
 ('pres3.jpg', 12);
+
+INSERT INTO users(first_name, last_name, email, email_verified_at, password, address, city, mobile_num, created_at, updated_at)
+VALUES
+('matt', 'perez', 'perez_johnmatthewleonard@plpasig.edu.ph', '2021-10-18 02:02:46', '$2y$10$/qdaMKK6jWfQp4A4Wd4.nObTGPacZLSGcf0hYx3d7koli5YW7xfeq', 'inazuka', 'of wind', 'legends', '2021-10-18 02:02:34', '2021-10-18 02:02:46');

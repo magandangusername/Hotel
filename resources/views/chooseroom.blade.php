@@ -30,7 +30,7 @@
                     </p>
                 </div>
                 <div class="col-auto">
-                    @if (isset($book) && $book === null)
+                    @if (!isset($book) || $book === null)
                         <p class="label vertical">room(s): {{ session('RoomCount') }}</p>
                     @endif
 
@@ -40,7 +40,7 @@
                         @if (isset($book) && $book !== null)
                             {{$book->adult}}
                         @else
-                            @if (session('room') !== null || session('room') > 1)
+                            @if (session('room') !== null && session('room') > 1)
                                 @php
                                     $room = session('room');
                                 @endphp
@@ -83,15 +83,12 @@
                     <p class="label">children</p>
                 </div>
                 <div class="col-auto" hidden>
-                    <p class="label">Total rate: <?php
-
-?></p>
+                    <p class="label">Total rate: </p>
                 </div>
             </div>
         </div>
     </section>
-
-    @if (isset($book) && $book === null)
+    @if (!isset($book))
         @if (session('RoomCount') > 1)
             <div class="containerish">
                 <h1>Room {{ $room }} out of {{ session('RoomCount') }}</h1>
@@ -201,6 +198,11 @@
                                     } else {
                                         $totalrate = $totalprice;
                                     }
+
+                                    $nights = (new DateTime(date('Y-m-d', strtotime(session('CheckIn')))))->diff(new DateTime(date('Y-m-d', strtotime(session('CheckOut')))))->days;
+
+                                    $totalrate *= $nights;
+
 
                                     // Session::put('downpayment', session('downpayment') + ($totalrate * 0.5));
                                     // Session::put('downpayment', number_format(session('downpayment'), 0, '.', ''));

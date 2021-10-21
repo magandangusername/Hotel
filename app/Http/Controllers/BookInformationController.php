@@ -76,6 +76,7 @@ class BookInformationController extends Controller
             Session::put('email', $data['email']);
             Session::put('address', $data['address']);
             Session::put('city', $data['city']);
+            Session::put('mobilenum', $data['mobilenum']);
 
 
             $title = session('title');
@@ -268,6 +269,7 @@ class BookInformationController extends Controller
                 'address' => $address,
                 'city' => $city,
                 'email' => $email,
+                'mobile_num' => $mobilenum,
                 'payment_code' => $paymentcode
 
             ]);

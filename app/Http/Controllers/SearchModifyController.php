@@ -45,19 +45,23 @@ class SearchModifyController extends Controller
 
         $user = DB::table('users')->where('email', $data['email'])->first();
 
-        $id = '';
-        if ($user != null) {
-            $id = $user->id;
-        } else {
+
+        // $id = '';
+        // if ($user != null) {
+        //     $id = $user->id;
+        // } else {
             $guest = DB::table('guest_informations')->where('email', $data['email'])->first();
-            if ($guest != null) {
-                $id = $guest->guest_code;
-            }
-        }
+        //     if ($guest != null) {
+        //         $id = $guest->guest_code;
+
+        //     }
+        // }
+        $uid = $user->id;
+        $gid = $guest->guest_code;
 
 
 
-        $book = DB::table('reservation_tables')->where('confirmation_number', $data['confirmation_number'])->where('user_id', $id)->orWhere('guest_code', $id)->count();
+        $book = DB::table('reservation_tables')->where('confirmation_number', $data['confirmation_number'])->where('user_id', $uid)->orWhere('guest_code', $gid)->count();
 
 
 
@@ -65,13 +69,13 @@ class SearchModifyController extends Controller
         // $gbook = DB::table('reservation_tables')->where('guest_code', $gid)->where('confirmation_number', $data['confirmation_number'])->count();
         if ($book >= 1) {
             Session::put('confirmation_number', $data['confirmation_number']);
-            Session::put('uid', $id);
+            Session::put('uid', $uid);
+            Session::put('gid', $gid);
 
             return redirect('modify');
             dd('congrats');
 
         } else {
-            // dd('BOBO mo! wala kang kwenta! di ka mahal ng nanay mo! lampa! inutil! hampas lupa! wag ka na magcode! maggenshin ka nalang! wala kang future! para kang si skye!');
 
             dd('INVALID CONFIRMATION OR EMAIL');
         }
