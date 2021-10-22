@@ -11274,20 +11274,9 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body {
-  font-family: sans-serif;
-}
-
-body::after {
-  content: "";
-  background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
-  opacity: 0.9;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: fixed;
-  z-index: -1;
+.footnote_img {
+  height: 100px;
+  width: 100px;
 }
 
 .navbar {
@@ -11326,6 +11315,22 @@ body::after {
   padding-top: 10px;
   padding-bottom: 1px;
   background-color: #ffffff;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+body::after {
+  content: "";
+  background-image: linear-gradient(to right, #56c596, #1f2f98) !important;
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
 }
 
 #slider {
@@ -11476,7 +11481,6 @@ body::after {
 .desc,
 h1,
 .h1 {
-  color: white;
   font-family: "Gill Sans", sans-serif;
   font-size: 14px;
 }
@@ -11814,7 +11818,7 @@ h1,
   text-align: center;
 }
 
-/*--------resrvation------------*/
+/*--------reservation------------*/
 .containerrese {
   padding-left: 10px;
   padding-bottom: 6px;
@@ -12182,184 +12186,6 @@ h1,
 
 .col-auto-first {
   margin-left: 20px;
-}
-
-/*-------availdate----*/
-* {
-  box-sizing: border-box;
-}
-
-ul {
-  list-style-type: none;
-}
-
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.calendar {
-  background-color: #fff;
-  box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-  margin-bottom: 90px;
-}
-
-.month {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 40px 30px;
-  text-align: center;
-  background-color: #2ecc71;
-  color: #fff;
-}
-
-.monthh {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 40px 30px;
-  text-align: center;
-  background-color: #2ecc71;
-  color: #fff;
-}
-
-.weekdays {
-  background-color: #27ae60;
-  color: #fff;
-  padding: 7px 0;
-  display: flex;
-}
-
-.weekdayss {
-  background-color: #27ae60;
-  color: #fff;
-  padding: 7px 0;
-  display: flex;
-}
-
-.days {
-  font-weight: 300;
-  padding: 10px 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.dayss {
-  font-weight: 300;
-  padding: 10px 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.weekdays div,
-.days div {
-  text-align: center;
-  width: 14.28%;
-}
-
-.weekdayss div,
-.dayss div {
-  text-align: center;
-  width: 14.28%;
-}
-
-.days div {
-  padding: 10px 0;
-  margin-bottom: 10px;
-  transition: all 0.4s;
-}
-
-.dayss div {
-  padding: 10px 0;
-  margin-bottom: 10px;
-  transition: all 0.4s;
-}
-
-.prev_date {
-  color: #999;
-}
-
-.prevv_date {
-  color: #999;
-}
-
-.days div:hover {
-  cursor: pointer;
-  background-color: #dfe6e9;
-}
-
-.dayss div:hover {
-  cursor: pointer;
-  background-color: #dfe6e9;
-}
-
-.prev,
-.next {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 23px;
-  background-color: rgba(0, 0, 0, 0.1);
-  transition: all 0.4s;
-}
-
-.prevv,
-.nextt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 23px;
-  background-color: rgba(0, 0, 0, 0.1);
-  transition: all 0.4s;
-}
-
-.prev:hover,
-.next:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.prevv:hover,
-.nextt:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-#month {
-  font-size: 30px;
-  font-weight: 500;
-}
-
-#monthhs {
-  font-size: 30px;
-  font-weight: 500;
-}
-
-.availtitles {
-  text-align: center;
-}
-
-#backcolor {
-  background-color: white;
-  padding-top: 10px;
-}
-
-#footleg {
-  text-align: center;
-  padding-bottom: 40px;
-}
-
-#sliderearly {
-  padding-bottom: 50px;
 }
 
 /*----searcj------*/

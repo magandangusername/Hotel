@@ -9,6 +9,8 @@
 <p>Reservation Number: {{session('confirmation_number')}}</p>
 <p>total price: PHP {{number_format(session('overallprice'), 2)}}</p>
 <p>downpayment: PHP {{number_format(session('overallprice') * 0.5, 2)}}</p>
+<p>Follow Up Payment: PHP {{number_format(session('overallprice') * 0.5, 2)}}</p>
+
 <hr>
 
 <p>- Proceed to the desk after arrival</p>
