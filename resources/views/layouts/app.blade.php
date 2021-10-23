@@ -8,40 +8,94 @@
 
     <link rel="icon" href="{{ asset('images/logomondstadt.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
         integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9
+        G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
         integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous">
     </script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
         integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
     </script>
-    <script src="https://kit.fontawesome.com/c7c1afa5a2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <meta charset="utf-8">
-    <script src="https://js.stripe.com/v3/"></script>
 
+    <script src="https://kit.fontawesome.com/c7c1afa5a2.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+    <meta charset="utf-8">
+
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body onLoad='calendar(), renderDate()'>
-    <!----title--->
-    <section id="title">
-        <nav class="navbar">
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light  bg-primary px-5 py-3">
+      <a class="navbar-brand fw-bold" href="#">Mondstadt Hotel <span class=""><img src="{{ asset('images/logomondstadt.png') }}" alt="" width="30" height="24"></span></a>
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="justify-content-center collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ route('index') }}">Overview</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Room/Suites
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ route('roomtab') }}">Room</a>
+              <a class="dropdown-item" href="{{ route('suitestab') }}">Suites</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{ route('promo') }}">Promotion</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Reservation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ route('book.index') }}">Booking</a>
+              <a class="dropdown-item" href="/search">Modify/Cancel Booking</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+    <nav class="navbar">
             <div class="container-fluid justify-content-center">
                 <a class="navbar-brand " href="{{ route('index') }}" id="titulo" font-size="40%">
                     Mondstadt Hotel
@@ -114,6 +168,7 @@
 
 
     </section>
+
 
     <section id="all">
 
