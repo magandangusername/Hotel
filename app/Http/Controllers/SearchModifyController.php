@@ -56,8 +56,16 @@ class SearchModifyController extends Controller
 
         //     }
         // }
-        $uid = $user->id;
-        $gid = $guest->guest_code;
+
+        $uid = "";
+        $gid = "";
+        if($user !== null){
+            $uid = $user->id;
+        }
+
+        if($guest !== null){
+            $gid = $guest->guest_code;
+        }
 
 
 
