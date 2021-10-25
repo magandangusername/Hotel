@@ -3,8 +3,9 @@
 @section('content')
 
     <!---------------------------------slider------------------------------->
+    <div class="container p-0 m-0">
     <section id="slider">
-        <div class="col-lg-11 mx-auto d-block">
+        <div class="col mx-auto d-block">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -43,32 +44,34 @@
             </div>
         </div>
     </section>
-
+</div>
     <!---------------------------------rooms------------------------------->
-    <section id="roomtab">
-        <div class="container4">
-            <div class="row row-cols-3 row-cols-lg-3">
 
+        <div class="container">
+            <div class="row m-0 p-5">
                 @foreach ($rooms as $room)
                     <div class="col">
                         <a href="{{ url('roomtab') }}/{{ $room->room_name }}"> <img
                                 src="{{ asset('images/' . $room->image_name) }}"></a>
+                                <h4 class="bold">{{ $room->room_name }}</h4>
+                        <p>{{ $room->room_short_description }}</p>
                     </div>
                     <div class="col">
-                        <h4 class="bold">{{ $room->room_name }}</h4>
-                        <p>{{ $room->room_short_description }}</p>
+
                     </div>
                 @endforeach
 
-                {{-- <div class="col-12"></div>
-                <div class="col-lg-2" id="availnow">
+
+                <!-- idk what this does -->
+                <!-- {{-- <div class="col"></div>
+                <div class="col" id="availnow">
                     <h4 class="bold"> Room</h3>
                         <p>this is standard</p>
                         <a href="">see latest room offers</a>
                 </div>
                 @include('layouts.checkavailability2') --}}
-
+                         -->
             </div>
         </div>
-    </section>
+
 @endsection

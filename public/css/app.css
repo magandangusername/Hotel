@@ -11285,6 +11285,23 @@ textarea.form-control-lg {
     padding-left: 2.5rem;
   }
 }
-html, body {
-  background-color: pink;
+body {
+  background-image: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635);
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.bodyback {
+  background-color: rgba(255, 254, 254, 0.349);
+}
+
+.preffer {
+  background: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635);
+}
+
+.jumbotron-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
