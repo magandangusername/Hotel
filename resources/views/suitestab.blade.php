@@ -3,7 +3,7 @@
 @section('content')
     <!---------------------------------slider------------------------------->
     <section id="slider">
-        <div class="col-lg-11 mx-auto d-block">
+        <div class="col mx-auto d-block">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -44,30 +44,29 @@
     </section>
 
     <!---------------------------------rooms------------------------------->
-    <section id="roomtab">
-        <div class="container4">
-            <div class="row row-cols-3 row-cols-lg-3">
+        <div class="container">
+            <div class="row p-5">
 
                 @foreach ($suites as $suite)
                     <div class="col">
                         <a href="{{url('suitestab')}}/{{$suite->suite_name}}"> <img src="{{asset('images/'.$suite->image_name)}}"></a>
-                    </div>
-                    <div class="col">
                         <h4 class="bold">{{$suite->suite_name}}</h3>
                             <p>{{$suite->suite_short_description}}</p>
                     </div>
+                    <div class="col">
+
+                    </div>
                 @endforeach
 
-                {{-- <div class="col-12"></div>
+                <!-- {{-- <div class="col"></div>
                 <div class="col-lg-2" id="availnow">
                     <h4 class="bold"> Room</h3>
                         <p>this is standard</p>
                         <a href="">see latest room offers</a>
                 </div>
 
-                @include('layouts.checkavailability2') --}}
+                @include('layouts.checkavailability2') --}} -->
 
             </div>
         </div>
-    </section>
 @endsection

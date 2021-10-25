@@ -22,8 +22,9 @@
 
 
     <!---------------------------------slider------------------------------->
+    <div class="container">
     <section id="slider">
-        <div class="col-lg-11 mx-auto d-block">
+        <div class="col mx-auto d-block">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -45,7 +46,7 @@
                         <div class="carousel-item @if ($counter == 1)
                     active
                     @endif">
-                            <img src="{{ asset('images/' . $photo['photo_name']) }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/' . $photo['photo_name']) }}" class="d-block " alt="...">
                         </div>
                     @endforeach
 
@@ -63,14 +64,13 @@
             </div>
         </div>
     </section>
-
+</div>
     <!---------------------------------description------------------------------->
 
     <section id="roomtab">
-        <div class="container4">
-            <div class="row row-cols-2 row-cols-lg-2">
-
-                <div class="col-md-6" id="standstand">
+        <div class="container">
+            <div class="row">
+                <div class="col" id="standstand">
                     <h3 class="standesc">Description</h3>
                     <p class="standesc">
                         @if (isset($roominfo->suite_short_description))

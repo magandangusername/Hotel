@@ -1,8 +1,8 @@
 body{
-   
+
     font-family: sans-serif;
-    
-    
+
+
 }
 body::after {
     content: "";
@@ -13,12 +13,12 @@ body::after {
     bottom: 0;
     right: 0;
     position: fixed;
-    z-index: -1;   
+    z-index: -1;
   }
 .navbar
 {
     background-color: rgb(63, 165, 190);
-    
+
 }
 .nav-link {
 color: rgb(255, 255, 255) !important;
@@ -33,7 +33,7 @@ text-align: left;
 .navbar-brand{
     color: rgb(255, 255, 255);
     font-family: sans-serif;
-    
+
 }
 
 #titulo{
@@ -50,39 +50,39 @@ text-align: left;
 #navtabs{
     margin-top: -20px;
     padding-top: 10px;
-    padding-bottom: 1px; 
+    padding-bottom: 1px;
     background-color: #ffffff;
 }
 
 #slider{
-    
+
     background-image: linear-gradient(to right, #56c596,#1f2f98);
     overflow: hidden;
     margin-top: 10px;
-    
-    
-    
+
+
+
 }
 
 #sliders{
     padding-top:-20px;
     padding-bottom:100px;
-    
+
 }
 #all{
     margin-left: 100px;
     margin-right: 100px;
 }
 
-    
+
 /*--------availabitlity--------f------*/
 
 #availability{
-   
+
    background-image: linear-gradient(to right, #56c596,#1f2f98);
    padding-bottom: 10px;
    padding-top: 20px;
-   
+
 }
 
 .container{
@@ -112,7 +112,7 @@ max-width: 170px;
 }
 
 
-.form-control-plaintext:focus { 
+.form-control-plaintext:focus {
     box-shadow: inset 0 1px 1px rgb(58, 162, 223), 0 0 8px rgba(46, 162, 230, 0.6);
 }
 
@@ -159,30 +159,30 @@ max-width: 40px;
 }
 .form-control-nam2{
     max-width: 40px;
-   
-    
- } 
+
+
+ }
 .form-control-nam3{
      max-width: 45px;
-     
- } 
+
+ }
 #searching{
     max-width: 235px;
-    
-    
-    
-} 
+
+
+
+}
 #promotitle{
     margin-left: 15px ;
 }
 /*--------location and num------------*/
 .containers{
-    
+
     background-color: white;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-top: 10px;
-    
+
 
 }
 
@@ -206,16 +206,16 @@ max-width: 40px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     opacity: 1;
     padding-bottom: 20px;
-   
+
 
 }
 
 .hotelname{
-	
+
 	padding: 10px;
 	text-transform: uppercase;
     font-family: 'Gill Sans', sans-serif;
-    
+
 }
 
 .desc, h1{
@@ -233,7 +233,7 @@ max-width: 40px;
 .container1{
     margin-top: 5%;
     padding-bottom: 20px;
-   
+
 }
 .card{
     position: relative;
@@ -269,7 +269,7 @@ max-width: 40px;
     z-index: 2;
     transition: 1.1s;
     font-family: 'Gill Sans', sans-serif;
-    
+
 }
 .card-text h4 h6{
     font-family: poppins;
@@ -306,10 +306,10 @@ max-width: 40px;
     margin-bottom: 120px;
     transform: translateY(63px);
     display: block;
-  
+
   }
-  
- 
+
+
 /*--------special offers------------*/
 .container3{
     background-color: white;
@@ -318,7 +318,7 @@ max-width: 40px;
 
 .special{
     color: black;
-    text-align: center;   
+    text-align: center;
 }
 
 .col-md-3{
@@ -342,21 +342,21 @@ max-width: 40px;
     background-color: black;
     padding-top: 150px;
     padding-left: 50px;
-    
+
 }
 
 .col-lg-2{
     background-color:#56c596 ;
     margin-left: 30px;
     margin-bottom: 15px;
-    
+
 }
 .col-lg-3{
     background-color:#56c596 ;
     margin-bottom: 15px;
     padding-bottom: 5px;
-    
-    
+
+
 }
 
 .col{
@@ -379,13 +379,13 @@ max-width: 40px;
 #banner{
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     padding-top: 5%;
-    
+
 }
-.abouts{ 
+.abouts{
     margin-left: 30px;
 
 }
-.valid{ 
+.valid{
     margin-left: 30px;
     font-style: italic;
     font-size: 12px;
@@ -400,7 +400,7 @@ max-width: 40px;
     margin-left: -20px;
     margin-bottom: 30px;
 }
-.bonusinfo{ 
+.bonusinfo{
     margin-left: 30px;
 
 }
@@ -431,7 +431,7 @@ max-width: 40px;
     margin-bottom: -10px;
     transform: translateY(63px);
     display: block;
-  
+
 }
   .promotionstitle{
       color: black;
@@ -442,7 +442,7 @@ max-width: 40px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     margin-top: 40px;
     padding-top: 50px;
-    
+
 }
 
 .title1::before {
@@ -455,7 +455,7 @@ max-width: 40px;
     margin-bottom: 0px;
     transform: translateY(63px);
     display: block;
-  
+
 }
 
 .title2::before {
@@ -468,7 +468,7 @@ max-width: 40px;
     margin-bottom: 0px;
     transform: translateY(63px);
     display: block;
-  
+
 }
 .abouts1{
     text-align: center;
@@ -484,7 +484,7 @@ max-width: 40px;
     font-family: 'Gill Sans', sans-serif;
     font-size: 16px;
 }
-    
+
 
 .earlytitle{
     text-align: center;
@@ -498,7 +498,7 @@ max-width: 40px;
 .promobonus{
     margin-left: 220px;
     margin-top: 50px;
-    
+
 }
 .promobonus1{
     margin-left: 120px;
@@ -565,7 +565,7 @@ max-width: 40px;
     border: 1px solid;
     box-shadow: 5px 10px #888888;
     margin-right: 20px;
-   
+
 }
 
 #availnows{
@@ -580,7 +580,7 @@ max-width: 40px;
 
 .stanAmenities{
     margin-top:50px;
-    
+
 }
 .titless{
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
@@ -602,31 +602,31 @@ max-width: 40px;
     margin-left: -10px;
     margin-top: -20px;
     margin-bottom: -4px;
-    
+
 }
 .titlecheck{
-    
+
     margin-bottom: 5px;
 
     padding-bottom: 10px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     color: white;
-    
+
 }
 .titlechecks{
-    
+
     margin-bottom: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     color: black;
-    
+
 }
 #wowo{
     margin-left: 50px;
     padding-bottom: 20px;
-    
-    
+
+
 
 }
 #wowo1{
@@ -657,7 +657,7 @@ max-width: 40px;
     margin-top: 10px;
 }
 .col-md-12{
-    
+
     padding-bottom: 5px;
 }
 .pandr{
@@ -672,7 +672,7 @@ max-width: 40px;
 }
 .containerish{
     background-color:white ;
-    
+
     padding-top: 5px;
     font-family: 'Gill Sans', sans-serif;
 
@@ -689,7 +689,6 @@ max-width: 40px;
     margin-top: 20px;
     font-family: 'Gill Sans', sans-serif;
 }
-
 
 #sliderish{
     margin-top: -20px;
@@ -713,7 +712,7 @@ max-width: 40px;
 .termss{
     border-left: 4px solid #7b1798;
     margin-top: 10px;
-    margin-bottom: 50px;   
+    margin-bottom: 50px;
 }
 
 .titlesa::before {
@@ -726,7 +725,7 @@ max-width: 40px;
     margin-bottom: -10px;
     transform: translateY(63px);
     display: block;
-  
+
 }
 
 .containerearly{
@@ -763,13 +762,13 @@ max-width: 40px;
     font-size: 12px;
     line-height: 1em;
     text-align: center;
-    
+
 }
 .sizeyss{
     font-size: 12px;
     line-height: 0.9em;
     text-decoration: none;
-    
+
 }
 .none{
     line-height: 1em;
@@ -789,15 +788,15 @@ max-width: 40px;
 .slider {
     padding-right: 10px;
     padding-left: 15px;
-    
-    
+
+
 }
 .carousel{
     margin-bottom: -10px;
     margin: 0 0 0 90 ;
     margin-top: -20px;
-    
-    
+
+
 }
 
 
@@ -844,13 +843,13 @@ max-width: 40px;
 #twobutt{
      background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
      padding-bottom: 30px;
-     
+
 }
 #twobutts{
     background-image: linear-gradient(to right, #56c596,#1f2f98)!important;
     padding-bottom: 40px;
     margin-left: -40px;
-    
+
 }
 #twobuttt{
     margin-left: -40px;
@@ -883,7 +882,7 @@ max-width: 40px;
     text-align: center;
     padding-bottom: 10px;
     line-height: 0.5em;
-   
+
 }
 
 .userinfo{
@@ -901,8 +900,8 @@ max-width: 40px;
     margin-right: 50px;
     margin-left: 50px;
     padding-bottom: 100px;
-    
-   
+
+
 }
 .new{
     font-family: 'Gill Sans', sans-serif;
@@ -916,13 +915,13 @@ max-width: 40px;
 }
 
 #modifytwo{
-    
+
     margin-left: 40px;
-    
+
 }
 #modifdif{
     background-color: white;
-    
+
 }
 .modifhys{
     text-align: left;
@@ -949,7 +948,7 @@ max-width: 40px;
 
 .col-auto-first{
     margin-left: 20px;
-   
+
 }
 
 /*-------availdate----*/
@@ -1110,7 +1109,7 @@ body {
 
 .availtitles{
     text-align: center;
-    
+
 }
 
 #backcolor{
@@ -1135,7 +1134,7 @@ body {
 
 
 .searchlabel{
-    
+
     color: black;
 }
 

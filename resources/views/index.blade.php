@@ -2,8 +2,9 @@
 
 @section('content')
     <!--------------------------------slider------------------------------->
+    <div class="container-fluid m-0 p-0">
     <section id="slider">
-        <div class="col-lg-11 mx-auto d-block">
+        <div class="col mx-auto d-block">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -42,10 +43,9 @@
             </div>
         </div>
     </section>
-
+    </div>
     <!---------------------------------availability------------------------------->
-    {{-- @include('layouts.checkavailability') --}}
-    <div class="containers">
+    <div class="container text-center my-5">
         <div class="col-md">
             <p class="location"> <a href="#">Justin Street, Brngy Anemo, Makati Avenue, Jean Kazama City 1299,
                     Philippines. </a> <i class="fas fa-map-pin"></i></p>
@@ -53,62 +53,71 @@
         </div>
     </div>
     <!-----About------>
-    <section id="about">
-        <div class="container text-center">
-            <h1 class="hotelname"> Mondstadt Hotel</h1>
+
+        <div class="container text-center p-5 bg-info">
+            <h1 class="fw-bold"> Mondstadt Hotel</h1>
             <div class="row text-center">
                 <p class="desc">A one of a kind experience in hotel service and rooms. Mondstadt hotel has been
                     serving travelers and such since 1990, with over 3 awards and a billion satisfied customers we guarantee
                     and premium service like no other hotels can offer.</p>
             </div>
-        </div>
-    </section>
+
+
+
+
+
+
 
     <!-----service------>
-    <section id="service">
-        <div class="container1">
+        <div class="container">
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="{{ asset('images/experiences.png') }}" alt="">
-                        <div class="card-text">
-                            <h4>Luxurious Experience</h4>
-                            <h6>A level of experience like no other</h6>
+                <div class="col">
+                    <div class="card text-dark">
+                        <img src="{{ asset('images/experiences.png') }}" class="card-img" alt="...">
+                        <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
+                            <h5 class="card-title fw-bold">Cancellation and Privacy Policy</h5>
+                            <p class="card-text">A disclosure on our Cancellation and Privacy Policy</p>
+                            <a href="#!" class="btn btn-outline-dark">See More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="{{ asset('images/service.jpg') }}" alt="">
-                        <div class="card-text">
-                            <h4>Top Notch Service</h4>
-                            <h6>A level of service like no other</h6>
+
+                <div class="col">
+                    <div class="card bg-dark text-dark">
+                            <img src="{{ asset('images/service.jpg') }}" class="card-img" alt="...">
+                        <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
+                            <h5 class="card-title fw-bold mb-4">Careers</h5>
+                            <p class="card-text">We're hiring! See our open positions and contact us for an interview</p>
+                            <a href="#!" class="btn btn-outline-dark">See More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="{{ asset('images/maintains.png') }}" alt="">
-                        <div class="card-text">
-                            <h4>Well-Maintained </h4>
-                            <h6>A Well-Maintained place like no other</h6>
+
+                <div class="col">
+                <div class="card bg-dark text-dark">
+                        <img src="{{ asset('images/maintains.png') }}" class="card-img" alt="...">
+                        <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
+                            <h5 class="card-title fw-bold">Frequently Asked Questions</h5>
+                            <p class="card-text">List of frequently asked questions by our guests</p>
+                            <a href="#!" class="btn btn-outline-dark">See More</a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </section>
+    </div>
 
 
 
     <!-----roomandsuites------>
-    <section id="roomandsuites">
-        <div class="container2">
+        <div class="container p-5">
             <div class="title">
-                <h1 class="roomites">Room and Suites</h1>
+                <h1 class="text-center fw-bold">Room and Suites</h1>
             </div>
+            <hr class="mx-5 mt-4 mb-3 p-1">
 
-            <div class="row">
+            <div class="row my-5">
                 @foreach ($roomtype as $room)
                     @php
                         $base_price = \App\Models\room_description::where('room_name', 'like', $room->room_suite_name)->first();
@@ -140,7 +149,7 @@
                         }
                     @endphp
 
-                    <div class="col-md-3 ">
+                    <div class="col">
                         <a href="@php
                             $roomsuite = \App\Models\room_description::where('room_name', 'like', $room->room_suite_name)->first();
                             if ($roomsuite != null) {
@@ -153,54 +162,63 @@
                             <div class="card text-center">
                                 <img src="{{ asset('images/' . $image_name) }}" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $room->room_suite_name }}</h5>
+                                    <h5 class="card-title fw-bold">{{ $room->room_suite_name }}</h5>
                                     <p class="card-text">{{ $beds }}</p>
                                     <p class="card-texts">{{ $short_desc }}</p>
+                                    <button type="button" class="btn btn-outline-dark fw-bold">View More</button>
+
                                 </div>
                             </div>
                         </a>
                     </div>
                 @endforeach
-                <div class="col text-center">
-                    <a href="{{ route('roomtab') }}" input type="button" id="seeall"
-                        class="btn btn-outline-info justify-content-center">See All Rooms & Suites</a>
-                </div>
+
             </div>
+
+            <div class="row text-center">
+                <div class="col"></div>
+                <div class="col">
+                <a href="{{ route('roomtab') }}" input type="button" class="btn btn-primary fw-bold">See All Rooms & Suites</a>
+                </div>
+                <div class="col"></div>
+            </div>
+
         </div>
-    </section>
 
     <!-----special offer------>
-    <section id="roomandsuites">
-        <div class="container3">
-            <div class="title">
-                <h1 class="special">Special Offers</h1>
+        <div class="container p-5 bg-info">
+            <div class="text-center">
+                <h1 class="fw-bold">Special Offers</h1>
             </div>
+            <hr class="mx-5 mt-4 mb-3 p-1">
 
-            <div class="row">
+            <div class="row my-5">
                 @foreach ($promos as $promo)
-                    <div class="col-md-3 ">
+                    <div class="col">
                         <a href="{{ route('promo') }}/{{ $promo->promotion_name }}"
                             class="text-decoration-none link-dark">
                             <div class="card text-center">
                                 <img src="{{ asset('images/' . $promo->image_name) }}" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $promo->promotion_name }}</h5>
-                                    <div class="card-text" style="text-align: left">
-                                        <h4>Click to view promo.</h4>
-                                    </div>
+                                    <h5 class="card-title fw-bold">{{ $promo->promotion_name }}</h5>
                                     <p class="card-texts">{{ $promo->promotion_short_description }}</p>
+                                    <button type="button" class="btn btn-outline-dark fw-bold">View Promo</button>
+
                                 </div>
                             </div>
                         </a>
                     </div>
                 @endforeach
-                <div class="col text-center">
-                    <a href="{{ route('promo') }}" input type="button" id="seeall"
-                        class="btn btn-outline-info justify-content-center">See All Special Offers</a>
-                </div>
+
             </div>
+                <div class="row text-center">
+                    <div class="col"></div>
+                    <div class="col">
+                    <a href="{{ route('promo') }}" input type="button" class="btn btn-primary fw-bold">See Special Offers</a>
+                    </div>
+                    <div class="col"></div>
+                </div>
         </div>
-    </section>
 
 
 @endsection
