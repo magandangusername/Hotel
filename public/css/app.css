@@ -11286,8 +11286,9 @@ textarea.form-control-lg {
   }
 }
 body {
-  background-image: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635);
+  background: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635) no-repeat center center fixed;
   background-size: cover;
+  height: 100%;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
 }
@@ -11304,4 +11305,192 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#gallery img {
+  height: 75vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 576px) {
+  #gallery img {
+    height: 35vw;
+  }
+}
+@media (min-width: 992px) {
+  #gallery img {
+    height: 18vw;
+  }
+}
+
+.carousel-item img {
+  height: 60vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 576px) {
+  .carousel-item img {
+    height: 350px;
+  }
+}
+
+crop images * {
+  transition: 0.3s;
+}
+
+#gallery.custom {
+  padding: 0 15px;
+}
+#gallery.custom img {
+  display: block;
+  margin: 15px 0;
+  border-radius: 300px 30px 300px 300px;
+}
+#gallery.custom img:hover {
+  border-radius: 30px 90px 30px 30px;
+}
+
+#RoomModalGallery.custom .modal-content {
+  background: none;
+  border: none;
+}
+#RoomModalGallery.custom .modal-header {
+  border: none;
+}
+#RoomModalGallery.custom .modal-header button {
+  background: none;
+  border-radius: 100px 100px 0 0;
+  padding: 5px 10px;
+  opacity: 1;
+  position: relative;
+  top: 3px;
+  border: solid 2px white;
+}
+@media (min-width: 992px) {
+  #RoomModalGallery.custom .modal-header button {
+    top: 15px;
+  }
+}
+#RoomModalGallery.custom .modal-header button:hover {
+  top: 3px;
+}
+#RoomModalGallery.custom .modal-header span {
+  color: white;
+}
+#RoomModalGallery.custom .modal-body {
+  padding: 0;
+  border: none;
+  position: relative;
+}
+#RoomModalGallery.custom .modal-body::before, #RoomModalGallery.custom .modal-body::after {
+  content: "";
+  height: 50px;
+  width: 50px;
+  display: block;
+  position: absolute;
+  background: white;
+  border-radius: 3px 10px;
+}
+@media (min-width: 768px) {
+  #RoomModalGallery.custom .modal-body::before, #RoomModalGallery.custom .modal-body::after {
+    border-radius: 3px 30px;
+    height: 100px;
+    width: 100px;
+  }
+}
+#RoomModalGallery.custom .modal-body::before {
+  top: -5px;
+  left: -5px;
+}
+@media (min-width: 768px) {
+  #RoomModalGallery.custom .modal-body::before {
+    top: -15px;
+    left: -15px;
+  }
+}
+#RoomModalGallery.custom .modal-body::after {
+  bottom: -5px;
+  right: -5px;
+  z-index: -1;
+}
+@media (min-width: 768px) {
+  #RoomModalGallery.custom .modal-body::after {
+    bottom: -15px;
+    right: -15px;
+  }
+}
+#RoomModalGallery.custom .modal-footer {
+  border: none;
+  margin-top: 60px;
+}
+@media (min-width: 992px) {
+  #RoomModalGallery.custom .modal-footer {
+    margin-top: 40px;
+  }
+}
+#RoomModalGallery.custom .modal-footer .btn {
+  margin: auto;
+  border: solid 2px white;
+  background: none;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  padding: 0.2em 0.7em;
+}
+#RoomModalGallery.custom .modal-footer .btn:hover {
+  background: white;
+  color: black;
+}
+#RoomModalGallery.custom .carousel-control-prev, #RoomModalGallery.custom .carousel-control-next {
+  font-size: 2em;
+  top: auto;
+  opacity: 1;
+  bottom: -52px;
+}
+@media (min-width: 768px) {
+  #RoomModalGallery.custom .carousel-control-prev, #RoomModalGallery.custom .carousel-control-next {
+    top: 0;
+    opacity: 0.5;
+    bottom: 0;
+  }
+}
+#RoomModalGallery.custom .carousel-control-next-icon, #RoomModalGallery.custom .carousel-control-prev-icon {
+  height: 30px;
+  width: 30px;
+}
+@media (min-width: 768px) {
+  #RoomModalGallery.custom .carousel-control-prev {
+    left: -90px;
+  }
+}
+@media (min-width: 768px) {
+  #RoomModalGallery.custom .carousel-control-next {
+    right: -90px;
+  }
+}
+#RoomModalGallery.custom .carousel-indicators {
+  bottom: -60px;
+}
+@media (min-width: 992px) {
+  #RoomModalGallery.custom .carousel-indicators {
+    bottom: -30px;
+  }
+}
+#RoomModalGallery.custom .carousel-indicators li {
+  height: 30px;
+  border-radius: 100px;
+  background: none;
+  border: solid 2px white;
+}
+@media (min-width: 992px) {
+  #RoomModalGallery.custom .carousel-indicators li {
+    height: 10px;
+  }
+}
+#RoomModalGallery.custom .carousel-indicators li:hover {
+  background: white;
+}
+#RoomModalGallery.custom .carousel-indicators li.active {
+  background: white;
 }

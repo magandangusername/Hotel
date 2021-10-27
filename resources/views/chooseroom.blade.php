@@ -6,9 +6,892 @@
     $roomtype = DB::table('room_statuses')->distinct()->get(['room_suite_name']);
 @endphp
 
-    <!-----------availability----------->
+<div class="container m-0 p-0">
+    <h1 class="fw-bold ps-5 pt-5">Rooms & Rates</h1>
+    <hr class="mx-5 mb-2 p-1">
 
-    <section id="availabilityrese">
+    <div class="container m-0 p-0">
+        <div class="infotab py-3 text-dark ">
+            <div class="row">
+                <div class="col-3 text-center">
+                    <h4 class="fw-bold">Reservation Number</h4>
+                    <h5>21313112313</h5>
+                </div>
+
+                <div class="col">
+                    <h4 class="fw-bold">Arrival/Departure</h4>
+                    <h5>09/10/21-10/10/21 </h5>
+                </div>
+
+                <div class="col-1 text-center">
+                    <h4 class="fw-bold">Adult</h4>
+                    <h5>5</h5>
+                </div>
+
+                <div class="col-1 text-center">
+                    <h4 class="fw-bold">Children</h4>
+                    <h5>5</h5>
+                </div>
+
+
+
+                <div class=" ms-5 col">
+                    <div class="px-5">
+                        <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">More Information</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5 bg-success">
+        <div class="row mx-3 p-5">
+            <div class="col">
+                <h2 class="fw-bold"> Standard Rate </h2>
+                <p>Free Wifi</p>
+                <p>Breakfast</p>
+                <p>30% Discount on nightly charge </p>
+            </div>
+            <div class="col">
+                <h2 class="fw-bold"> Policies </h2>
+                <p>Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus surcharge. </p>
+                <p class="policies">Reservation must be guaranteed with credit card at time of booking.Room will be held until 12 midnight on the day of the arrival (hotel local time).</p>
+            </div>
+        </div>
+
+    <div class="container">
+        <div class="row">
+                <div class="col">
+
+                    <div class="accordion" id="RRlist">
+
+                        <div class="accordion-item ">
+                        <h2 class="accordion-header" id="heading-1">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#room-1" aria-expanded="true" aria-controls="room-1">
+                            Deluxe Room
+                            </button>
+                        </h2>
+                        <div id="room-1" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#RRlist">
+                            <div class="accordion-body">
+
+                            <div class="row text-center">
+                                <div class="col col-sm-6" data-toggle="modal" data-target="#DeluxeImgModal">
+                                    <img class="w-100" src="{{asset('images/deluxee1.jpg')}}"alt="First slide">
+                                </div>
+                                <div class="col mt-2 col-sm6 ">
+                                    <h3 class="fw-bold">Deluxe Room</h3>
+                                    <p class="my-3"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, culpa eaque ducimus est incidunt architecto ipsa delectus. Architecto cumque libero explicabo reiciendis eligendi eum excepturi voluptas, iste sapiente. Assumenda, sint.</p>
+                                    <div class="row mx-5 px-5">
+                                        <div class="col">
+                                            <li>Amenity 1</li>
+                                            <li>Amenity 2</li>
+                                            <li>Amenity 3</li>
+                                        </div>
+                                        <div class="col">
+                                            <li>Amenity 4</li>
+                                            <li>Amenity 5</li>
+                                            <li>Amenity 6</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 px-5">
+                                        <div class="col">
+                                                <h2 class="fw-bold">$1,000<h2>
+                                                <h5><a href="" data-toggle="modal" data-target="#PBDeluxe">Price Breakdown</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mx-5 mb-2 p-1">
+
+                                    <div class="row mx-5 mt-1 px-5">
+                                        <div class="col">
+                                                <!-- radio button -->
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">King Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Queen Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                                                <label class="form-check-label" for="inlineRadio3">Disabled Sample</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary fw-bold">Select Room</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <!-- Gallery Modal -->
+
+                                <div class="modal fade" id="DeluxeImgModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="DeluxeModalGallery" class="carousel slide" data-ride="carousel">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                            <img class="d-block w-100" src="{{asset('images/deluxee1.jpg')}}" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/deluxee2.jpg')}}" alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/deluxee3.jpg')}}" alt="Third slide">
+                                            </div>
+
+                                        </div>
+                                        <a class="carousel-control-prev" href="#DeluxeModalGallery" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#DeluxeModalGallery" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--Price Breakdown Modal -->
+
+                                <div class="modal fade" id="PBDeluxe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h5>Room Type: Room</h5>
+                                            <h5>Rate Type: Rate</h5>
+                                            <h5>Room Total: 2,500</h5>
+                                            <h5>Vat: 1,000</h5>
+                                            <h5>Service: 1,000</h5>
+                                            <h5>City Tax: 1,000</h5>
+                                            <h5>Total: 1,000</h5>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-2">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#room-2" aria-expanded="true" aria-controls="room-2">
+                            Joint Room
+                            </button>
+                        </h2>
+                        <div id="room-2" class="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#RRlist">
+                            <div class="accordion-body">
+
+
+                            <div class="row text-center">
+                                <div class="col col-sm-6" data-toggle="modal" data-target="#JointImgModal">
+                                    <img class="w-100" src="{{asset('images/joint1.jpg')}}"alt="First slide">
+                                </div>
+                                <div class="col mt-2 col-sm6 ">
+                                    <h3 class="fw-bold">Joint Room</h3>
+                                    <p class="my-3"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, culpa eaque ducimus est incidunt architecto ipsa delectus. Architecto cumque libero explicabo reiciendis eligendi eum excepturi voluptas, iste sapiente. Assumenda, sint.</p>
+                                    <div class="row mx-5 px-5">
+                                        <div class="col">
+                                            <li>Amenity 1</li>
+                                            <li>Amenity 2</li>
+                                            <li>Amenity 3</li>
+                                        </div>
+                                        <div class="col">
+                                            <li>Amenity 4</li>
+                                            <li>Amenity 5</li>
+                                            <li>Amenity 6</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 px-5">
+                                        <div class="col">
+                                                <h2 class="fw-bold">$1,000<h2>
+                                                <h5><a href="" data-toggle="modal" data-target="#PBJoint">Price Breakdown</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mx-5 mb-2 p-1">
+
+                                    <div class="row mx-5 mt-1 px-5">
+                                        <div class="col">
+                                                <!-- radio button -->
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">King Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Queen Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                                                <label class="form-check-label" for="inlineRadio3">Disabled Sample</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary fw-bold">Select Room</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <!-- Gallery Modal -->
+
+                                <div class="modal fade" id="JointImgModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="JointModalGallery" class="carousel slide" data-ride="carousel">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                            <img class="d-block w-100" src="{{asset('images/joint1.jpg')}}" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/joint2.jpg')}}" alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/joint3.jpg')}}" alt="Third slide">
+                                            </div>
+
+                                        </div>
+                                        <a class="carousel-control-prev" href="#JointModalGallery" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#JointModalGallery" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--Price Breakdown Modal -->
+
+                                <div class="modal fade" id="PBJoint" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h5>Room Type: Room</h5>
+                                            <h5>Rate Type: Rate</h5>
+                                            <h5>Room Total: 2,500</h5>
+                                            <h5>Vat: 1,000</h5>
+                                            <h5>Service: 1,000</h5>
+                                            <h5>City Tax: 1,000</h5>
+                                            <h5>Total: 1,000</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+
+
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-3">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#room-3" aria-expanded="true" aria-controls="room-3">
+                            Standard Room
+                            </button>
+                        </h2>
+                        <div id="room-3" class="accordion-collapse collapse" aria-labelledby="heading-3" data-bs-parent="#RRlist">
+                            <div class="accordion-body">
+
+                            <div class="row text-center">
+                                <div class="col col-sm-6" data-toggle="modal" data-target="#StandardImgModal">
+                                    <img class="w-100" src="{{asset('images/standee2.jpg')}}"alt="First slide">
+                                </div>
+                                <div class="col mt-2 col-sm6 ">
+                                    <h3 class="fw-bold">Standard Room</h3>
+                                    <p class="my-3"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, culpa eaque ducimus est incidunt architecto ipsa delectus. Architecto cumque libero explicabo reiciendis eligendi eum excepturi voluptas, iste sapiente. Assumenda, sint.</p>
+                                    <div class="row mx-5 px-5">
+                                        <div class="col">
+                                            <li>Amenity 1</li>
+                                            <li>Amenity 2</li>
+                                            <li>Amenity 3</li>
+                                        </div>
+                                        <div class="col">
+                                            <li>Amenity 4</li>
+                                            <li>Amenity 5</li>
+                                            <li>Amenity 6</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 px-5">
+                                        <div class="col">
+                                                <h2 class="fw-bold">$1,000<h2>
+                                                <h5><a href="" data-toggle="modal" data-target="#PBStandard">Price Breakdown</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mx-5 mb-2 p-1">
+
+                                    <div class="row mx-5 mt-1 px-5">
+                                        <div class="col">
+                                                <!-- radio button -->
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">King Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Queen Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                                                <label class="form-check-label" for="inlineRadio3">Disabled Sample</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary fw-bold">Select Room</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <!-- Gallery Modal -->
+
+                                <div class="modal fade" id="StandardImgModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="StandardModalGallery" class="carousel slide" data-ride="carousel">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                            <img class="d-block w-100" src="{{asset('images/standee2.jpg')}}" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/standee3.jpg')}}" alt="Second slide">
+                                            </div>
+
+
+                                        </div>
+                                        <a class="carousel-control-prev" href="#StandardModalGallery" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#StandardModalGallery" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--Price Breakdown Modal -->
+
+                                <div class="modal fade" id="PBStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h5>Room Type: Room</h5>
+                                            <h5>Rate Type: Rate</h5>
+                                            <h5>Room Total: 2,500</h5>
+                                            <h5>Vat: 1,000</h5>
+                                            <h5>Service: 1,000</h5>
+                                            <h5>City Tax: 1,000</h5>
+                                            <h5>Total: 1,000</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-4">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#room-4" aria-expanded="true" aria-controls="room-4">
+                            Executive Suite
+                            </button>
+                        </h2>
+                        <div id="room-4" class="accordion-collapse collapse" aria-labelledby="heading-4" data-bs-parent="#RRlist">
+                            <div class="accordion-body">
+
+
+                            <div class="row text-center">
+                                <div class="col col-sm-6" data-toggle="modal" data-target="#ExecutiveImgModal">
+                                    <img class="w-100" src="{{asset('images/execute1.jpg')}}"alt="First slide">
+                                </div>
+                                <div class="col mt-2 col-sm6 ">
+                                    <h3 class="fw-bold">Executive Room</h3>
+                                    <p class="my-3"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, culpa eaque ducimus est incidunt architecto ipsa delectus. Architecto cumque libero explicabo reiciendis eligendi eum excepturi voluptas, iste sapiente. Assumenda, sint.</p>
+                                    <div class="row mx-5 px-5">
+                                        <div class="col">
+                                            <li>Amenity 1</li>
+                                            <li>Amenity 2</li>
+                                            <li>Amenity 3</li>
+                                        </div>
+                                        <div class="col">
+                                            <li>Amenity 4</li>
+                                            <li>Amenity 5</li>
+                                            <li>Amenity 6</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 px-5">
+                                        <div class="col">
+                                                <h2 class="fw-bold">$1,000<h2>
+                                                <h5><a href="" data-toggle="modal" data-target="#PBExecutive">Price Breakdown</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mx-5 mb-2 p-1">
+
+                                    <div class="row mx-5 mt-1 px-5">
+                                        <div class="col">
+                                                <!-- radio button -->
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">King Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Queen Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                                                <label class="form-check-label" for="inlineRadio3">Disabled Sample</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary fw-bold">Select Room</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <!-- Gallery Modal -->
+
+                                <div class="modal fade" id="ExecutiveImgModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="ExecutiveModalGallery" class="carousel slide" data-ride="carousel">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                            <img class="d-block w-100" src="{{asset('images/execute1.jpg')}}" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/execute2.jpg')}}" alt="Second slide">
+                                            </div>
+
+                                        </div>
+                                        <a class="carousel-control-prev" href="#ExecutiveModalGallery" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#ExecutiveModalGallery" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--Price Breakdown Modal -->
+
+                                <div class="modal fade" id="PBExecutive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h5>Room Type: Room</h5>
+                                            <h5>Rate Type: Rate</h5>
+                                            <h5>Room Total: 2,500</h5>
+                                            <h5>Vat: 1,000</h5>
+                                            <h5>Service: 1,000</h5>
+                                            <h5>City Tax: 1,000</h5>
+                                            <h5>Total: 1,000</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-5">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#room-5" aria-expanded="true" aria-controls="room-5">
+                            Junior Suite
+                            </button>
+                        </h2>
+                        <div id="room-5" class="accordion-collapse collapse" aria-labelledby="heading-5" data-bs-parent="#RRlist">
+                            <div class="accordion-body">
+
+                            <div class="row text-center">
+                                <div class="col col-sm-6" data-toggle="modal" data-target="#JuniorImgModal">
+                                    <img class="w-100" src="{{asset('images/juniorr1.jpg')}}"alt="First slide">
+                                </div>
+                                <div class="col mt-2 col-sm6 ">
+                                    <h3 class="fw-bold">Junior Suite</h3>
+                                    <p class="my-3"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, culpa eaque ducimus est incidunt architecto ipsa delectus. Architecto cumque libero explicabo reiciendis eligendi eum excepturi voluptas, iste sapiente. Assumenda, sint.</p>
+                                    <div class="row mx-5 px-5">
+                                        <div class="col">
+                                            <li>Amenity 1</li>
+                                            <li>Amenity 2</li>
+                                            <li>Amenity 3</li>
+                                        </div>
+                                        <div class="col">
+                                            <li>Amenity 4</li>
+                                            <li>Amenity 5</li>
+                                            <li>Amenity 6</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 px-5">
+                                        <div class="col">
+                                                <h2 class="fw-bold">$1,000<h2>
+                                                <h5><a href="" data-toggle="modal" data-target="#PBJunior">Price Breakdown</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mx-5 mb-2 p-1">
+
+                                    <div class="row mx-5 mt-1 px-5">
+                                        <div class="col">
+                                                <!-- radio button -->
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">King Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Queen Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                                                <label class="form-check-label" for="inlineRadio3">Disabled Sample</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary fw-bold">Select Room</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <!-- Gallery Modal -->
+
+                                <div class="modal fade" id="JuniorImgModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="JuniorModalGallery" class="carousel slide" data-ride="carousel">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                            <img class="d-block w-100" src="{{asset('images/juniorr1.jpg')}}" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/juniorr2.jpg')}}" alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                            <img class="d-block w-100" src="{{asset('images/juniorr3.jpg')}}" alt="Second slide">
+                                            </div>
+
+                                        </div>
+                                        <a class="carousel-control-prev" href="#JuniorModalGallery" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#JuniorModalGallery" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--Price Breakdown Modal -->
+
+                                <div class="modal fade" id="PBJunior" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h5>Room Type: Room</h5>
+                                            <h5>Rate Type: Rate</h5>
+                                            <h5>Room Total: 2,500</h5>
+                                            <h5>Vat: 1,000</h5>
+                                            <h5>Service: 1,000</h5>
+                                            <h5>City Tax: 1,000</h5>
+                                            <h5>Total: 1,000</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-6">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#room-6" aria-expanded="true" aria-controls="room-6">
+                            Presidential Suite
+                            </button>
+                        </h2>
+                        <div id="room-6" class="accordion-collapse collapse" aria-labelledby="heading-6" data-bs-parent="#RRlist">
+                            <div class="accordion-body">
+
+                            <div class="row text-center">
+                                <div class="col col-sm-6" data-toggle="modal" data-target="#PresidentialImgModal">
+                                    <img class="w-100" src="{{asset('images/presidential1 (1).jpg')}}"alt="First slide">
+                                </div>
+                                <div class="col mt-2 col-sm6 ">
+                                    <h3 class="fw-bold">Presidential Suite</h3>
+                                    <p class="my-3"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, culpa eaque ducimus est incidunt architecto ipsa delectus. Architecto cumque libero explicabo reiciendis eligendi eum excepturi voluptas, iste sapiente. Assumenda, sint.</p>
+                                    <div class="row mx-5 px-5">
+                                        <div class="col">
+                                            <li>Amenity 1</li>
+                                            <li>Amenity 2</li>
+                                            <li>Amenity 3</li>
+                                        </div>
+                                        <div class="col">
+                                            <li>Amenity 4</li>
+                                            <li>Amenity 5</li>
+                                            <li>Amenity 6</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 px-5">
+                                        <div class="col">
+                                                <h2 class="fw-bold">$1,000<h2>
+                                                <h5><a href="" data-toggle="modal" data-target="#PBPresidential">Price Breakdown</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mx-5 mb-2 p-1">
+
+                                    <div class="row mx-5 mt-1 px-5">
+                                        <div class="col">
+                                                <!-- radio button -->
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">King Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Queen Bed</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                                                <label class="form-check-label" for="inlineRadio3">Disabled Sample</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary fw-bold">Select Room</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <!-- Gallery Modal -->
+
+                                <div class="modal fade" id="PresidentialImgModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="JuniorModalGallery" class="carousel slide" data-ride="carousel">
+
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <img class="d-block w-100" src="{{asset('images/presidential1 (1).jpg')}}" alt="First slide">
+                                                </div>
+                                            </div>
+
+                                            <a class="carousel-control-prev" href="#PresidentialModalGallery" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+
+                                            <a class="carousel-control-next" href="#PresidentialModalGallery" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--Price Breakdown Modal -->
+
+                                <div class="modal fade" id="PBPresidential" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h5>Room Type: Room</h5>
+                                            <h5>Rate Type: Rate</h5>
+                                            <h5>Room Total: 2,500</h5>
+                                            <h5>Vat: 1,000</h5>
+                                            <h5>Service: 1,000</h5>
+                                            <h5>City Tax: 1,000</h5>
+                                            <h5>Total: 1,000</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+ </div>
+
+
+
+</div>
+    <!-- <section id="availabilityrese">
         <div class="containerrese">
             <div class="titlecheck">
                 <h1 class="reservetitle">Rooms & Rates</h1>
@@ -425,7 +1308,7 @@
             centerPadding: 5,
             infinite: false,
         });
-    </script>
+    </script> -->
 
 
 
