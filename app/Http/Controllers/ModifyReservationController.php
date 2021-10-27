@@ -35,7 +35,7 @@ class ModifyReservationController extends Controller
             ->where('reservation_tables.user_id', session('uid'))
             ->orWhere('reservation_tables.guest_code', session('gid'))
             ->first();
-
+            dd('FUUUUK '.$book->first_name );
             if($book->first_name === null) {
                 $book = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')

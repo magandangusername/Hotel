@@ -79,7 +79,6 @@ class SearchModifyController extends Controller
             Session::put('confirmation_number', $data['confirmation_number']);
             Session::put('uid', $uid);
             Session::put('gid', $gid);
-
             return redirect('modify');
             dd('congrats');
 
