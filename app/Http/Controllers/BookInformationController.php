@@ -215,7 +215,7 @@ class BookInformationController extends Controller
                 $roomnum2 = $roomnum2->room_number;
 
             } else {
-                echo "ERROR1: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+                echo "ERROR2: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
                 exit;
             }
 
@@ -238,7 +238,7 @@ class BookInformationController extends Controller
                 $roomnum3 = $roomnum3->room_number;
 
             } else {
-                echo "ERROR1: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+                echo "ERROR3: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
                 exit;
             }
             $roomstatus = DB::table('room_statuses')

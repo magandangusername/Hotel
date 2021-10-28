@@ -356,7 +356,7 @@
             @endphp
             @if ($beds > 0)
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="bed" id="inlineRadio2" value="option2"
+                    <input class="form-check-input" type="radio" name="bed" id="inlineRadio2" value="Queen Bed"
                         @php
                             if (isset($room) && $room == 1) {
                                 // session('bedcheckerq') = true;

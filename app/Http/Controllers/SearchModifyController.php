@@ -43,42 +43,69 @@ class SearchModifyController extends Controller
 
         $data = $request->input();
 
-        $user = DB::table('users')->where('email', $data['email'])->first();
+        // $user = DB::table('users')->where('email', $data['email'])->first();
 
 
         // $id = '';
         // if ($user != null) {
         //     $id = $user->id;
         // } else {
-            $guest = DB::table('guest_informations')->where('email', $data['email'])->first();
+            // $guest = DB::table('guest_informations')->where('email', $data['email'])->first();
         //     if ($guest != null) {
         //         $id = $guest->guest_code;
 
         //     }
         // }
 
-        $uid = "";
-        $gid = "";
-        if($user !== null){
-            $uid = $user->id;
-        }
+        // $uid = "";
+        // $gid = "";
+        // if($user !== null){
+        //     $uid = $user->id;
+        // }
 
-        if($guest !== null){
-            $gid = $guest->guest_code;
-        }
-
-
-
-        $book = DB::table('reservation_tables')->where('confirmation_number', $data['confirmation_number'])->where('user_id', $uid)->orWhere('guest_code', $gid)->count();
+        // if($guest !== null){
+        //     $gid = $guest->guest_code;
+        // }
 
 
+
+        // $book = DB::table('reservation_tables')->where('confirmation_number', $data['confirmation_number'])->where('user_id', $uid)->orWhere('guest_code', $gid)->count();
+
+            $book = DB::table('reservation_tables')
+            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+
+            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+
+            // ->where('reservation_tables.user_id', session('uid'))
+            ->where('guest_informations.email', $data['email'])
+
+            ->first();
+            if($book === null) {
+                $book = DB::table('reservation_tables')
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
+
+                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                // ->where('reservation_tables.user_id', session('uid'))
+                // ->orWhere('reservation_tables.guest_code', session('gid'))
+                ->where('users.email', $data['email'])
+                ->first();
+            }
 
 
         // $gbook = DB::table('reservation_tables')->where('guest_code', $gid)->where('confirmation_number', $data['confirmation_number'])->count();
-        if ($book >= 1) {
+        if($book->confirmation_number !== null) {
             Session::put('confirmation_number', $data['confirmation_number']);
-            Session::put('uid', $uid);
-            Session::put('gid', $gid);
+            Session::put('uid', $book->user_id);
+            Session::put('gid', $book->guest_code);
             return redirect('modify');
             dd('congrats');
 

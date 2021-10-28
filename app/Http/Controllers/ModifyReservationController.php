@@ -19,7 +19,11 @@ class ModifyReservationController extends Controller
     {
 
         $message = '';
-        if(session('uid') !== null && session('gid') !== null){
+        $book = '';
+        $bookinfo = '';
+        $bookinfo2 = '';
+        $bookinfo3 = '';
+        if(session('uid') !== null || session('gid') !== null){
             // dd('meron '.session('uid'));
             $book = DB::table('reservation_tables')
             // ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
@@ -32,11 +36,12 @@ class ModifyReservationController extends Controller
             ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
 
             ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-            ->where('reservation_tables.user_id', session('uid'))
-            ->orWhere('reservation_tables.guest_code', session('gid'))
+
+            // ->where('reservation_tables.user_id', session('uid'))
+            ->where('reservation_tables.guest_code', session('gid'))
+
             ->first();
-            dd('FUUUUK '.$book->first_name );
-            if($book->first_name === null) {
+            if($book === null) {
                 $book = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -47,7 +52,6 @@ class ModifyReservationController extends Controller
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                 ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->first();
             }
 
@@ -288,7 +292,7 @@ class ModifyReservationController extends Controller
             $request->session()->put('rr_code', $request->input('rr_code'));
             $request->session()->put('rate_name', $request->input('rr_code'));
 
-            if(session('uid') !== null){
+            if(session('uid') !== null || session('gid')){
                 $book = DB::table('reservation_tables')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -351,7 +355,7 @@ class ModifyReservationController extends Controller
 
 
             } else {
-                $message = 'An error occured trying to fetch data.';
+                dd('An error occured trying to fetch data.');
             }
 
             return view('chooseroom')->with(compact('book', 'bookinfo2', 'bookinfo3'));

@@ -138,19 +138,20 @@
                             </div>
 
                             <div class="col mt-5">
-                                <h5><b>Base Price :</b> @php
+                                <h5><b>Base Price : php</b> @php
                                     $price = DB::table('room_descriptions')->where('room_name', $book->room_suite_name)->first();
                                     if($price !== null){
-                                        echo $price->base_price;
+                                        echo number_format($price->base_price, 2);
                                     } else {
                                         $price = DB::table('suite_descriptions')->where('suite_name', $book->room_suite_name)->first();
-                                        echo $price->base_price;
+                                        echo number_format($price->base_price, 2);
                                     }
                                 @endphp</h5>
+                                <h5><b>Rate Discount :</b> php {{number_format($rate_discount = $price->base_price * $book->base_discount, 2)}}</h5>
                                 <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</h5>
                                 <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $book->vat, 2)}} </h5>
                                 <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}} </h5>
-                                <h5><b>Total:</b> php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
 
@@ -214,19 +215,20 @@
                             </div>
 
                             <div class="col mt-5">
-                                <h5><b>Base Price :</b> @php
+                                <h5><b>Base Price : php</b> @php
                                     $price = DB::table('room_descriptions')->where('room_name', $bookinfo2->room_suite_name)->first();
                                     if($price !== null){
-                                        echo $price->base_price;
+                                        echo number_format($price->base_price, 2);
                                     } else {
                                         $price = DB::table('suite_descriptions')->where('suite_name', $bookinfo2->room_suite_name)->first();
-                                        echo $price->base_price;
+                                        echo number_format($price->base_price, 2);
                                     }
                                 @endphp</h5>
+                                <h5><b>Rate Discount :</b> php {{number_format($rate_discount = $price->base_price * $bookinfo2->base_discount, 2)}}</h5>
                                 <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $bookinfo2->city_tax, 2)}}</h5>
                                 <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $bookinfo2->vat, 2)}} </h5>
                                 <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $bookinfo2->service_rate, 2)}} </h5>
-                                <h5><b>Total:</b> php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
 
@@ -289,19 +291,20 @@
                             </div>
 
                             <div class="col mt-5">
-                                <h5><b>Base Price :</b> @php
+                                <h5><b>Base Price : php</b> @php
                                     $price = DB::table('room_descriptions')->where('room_name', $bookinfo3->room_suite_name)->first();
                                     if($price !== null){
-                                        echo $price->base_price;
+                                        echo number_format($price->base_price, 2);
                                     } else {
                                         $price = DB::table('suite_descriptions')->where('suite_name', $bookinfo3->room_suite_name)->first();
-                                        echo $price->base_price;
+                                        echo number_format($price->base_price, 2);
                                     }
                                 @endphp</h5>
+                                <h5><b>Rate Discount :</b> php {{number_format($rate_discount = $price->base_price * $bookinfo3->base_discount, 2)}}</h5>
                                 <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $bookinfo3->city_tax, 2)}}</h5>
                                 <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $bookinfo3->vat, 2)}} </h5>
                                 <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $bookinfo3->service_rate, 2)}} </h5>
-                                <h5><b>Total:</b> php {{number_format($total = $price->base_price + $vat + $service_charge + $city_tax, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
 
