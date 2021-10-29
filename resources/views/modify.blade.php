@@ -5,22 +5,30 @@
     <div class="container-fluid mt-4">
 
         <div class="container pt-0 mb-3 text-center">
+
             <h1 class="fw-bold"> Modify Reservation</h1>
         </div>
 
         <div class="infotab px-1 py-3 text-dark ">
             <div class="row mt-2">
 
-                <div class="col-3 text-center">
-                    <h4 class="fw-bold">Reservation Number</h4>
-                    <h5>{{$book->confirmation_number}} </h5>
-                </div>
+                @if (!isset($review))
+                    <div class="col-3 text-center">
+                        <h4 class="fw-bold">Reservation Number</h4>
+                        <h5>{{$book->confirmation_number}} </h5>
+                    </div>
+                @endif
+
 
                 <div class="col">
                     <h4 class="fw-bold">Arrival/Departure</h4>
+                    @if (!isset($review))
                     <h5>{{date('m/d/y', strtotime($book->arrival_date))}} - {{date('m/d/y', strtotime($book->departure_date))}} </h5>
+                    @else
+                    <h5>{{date('m/d/y', strtotime(session('CheckIn')))}} - {{date('m/d/y', strtotime(session('CheckOut')))}} </h5>
+                    @endif
                 </div>
-
+                @if (!isset($review))
                 <div class="col-1 text-center">
                     <h4 class="fw-bold">Adult</h4>
                     <h5>5</h5>
@@ -30,17 +38,24 @@
                     <h4 class="fw-bold">Children</h4>
                     <h5>5</h5>
                 </div>
-
+                @endif
                 <div class="col  text-center">
                     <h4 class="fw-bold">Subtotal</h4>
+                    @if (!isset($review))
                     <h5>php {{number_format($book->ctotal_price, 2)}}</h5>
+                    @else
+                    <h5>php {{number_format(session('totalrate') + session('totalrate2') + session('totalrate3'))}}</h5>
+                    @endif
                 </div>
 
+
                 <div class="col ">
+                    @if (!isset($review))
                     <div class="px-5">
                         <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">More
                             Information</button>
                     </div>
+                    @endif
 
                 </div>
 
@@ -52,7 +67,7 @@
 
     <div class="container p-4 my-5 bg-light">
 
-
+        @if (!isset($review))
         <div class=" text-dark ">
             <h2 class="px-5 py-3 fw-bold"> Guest Information</h2>
             <div class="row px-5 py-3">
@@ -96,7 +111,7 @@
             </div>
         </div>
 
-
+        @endif
         <hr class="mx-5 mt-4 mb-4 p-1">
 
         <h2 class="px-5 py-3 fw-bold text-center  text-dark  "> Room Information </h2>
@@ -114,6 +129,7 @@
                     <div class="card-body">
 
                         <div class="row">
+                            @if (!isset($review))
                             @php
                                 $image = DB::table('gallery_albums')
                                 ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
@@ -121,8 +137,19 @@
                                 ->first();
                                 $image = $image->photo_name;
                             @endphp
+                            @else
+                                @php
+                                    $image = DB::table('gallery_albums')
+                                    ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                    ->where('album_name', session('roomtype'))
+                                    ->first();
+                                    $image = $image->photo_name;
+                                @endphp
+                            @endif
 
                             <div class="col"><img src="{{asset('images/'.$image)}}" class="img-thumbnail"></div>
+
+                            @if (!isset($review))
                             <div class="col mt-5">
 
                                 <h5><b>Room Name : </b>{{$book->room_suite_name}}</h5>
@@ -136,7 +163,23 @@
                                     }
                                 @endphp </h5>
                             </div>
+                            @else
+                            <div class="col mt-5">
 
+                                <h5><b>Room Name : </b>{{session('roomtype')}}</h5>
+                                <h5><b>Bed :</b> {{session('bed')}}</h5>
+                                <h5><b>Rate Applied:</b> {{session('ratetype')}} </h5>
+                                <h5><b>Promo Applied:</b> @php
+                                    if(session('PromoCode') === null || session('PromoCode') == '') {
+                                        echo 'N/A';
+                                    } else {
+                                        echo session('PromoCode');
+                                    }
+                                @endphp </h5>
+                            </div>
+                            @endif
+
+                            @if (!isset($review))
                             <div class="col mt-5">
                                 <h5><b>Base Price : php</b> @php
                                     $price = DB::table('room_descriptions')->where('room_name', $book->room_suite_name)->first();
@@ -154,7 +197,28 @@
                                 <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
+                            @else
+                            <div class="col mt-5">
+                                <h5><b>Base Price : php</b> @php
+                                    $price = DB::table('room_descriptions')->where('room_name', session('roomtype'))->first();
+                                    if($price !== null){
+                                        echo number_format($price->base_price, 2);
+                                    } else {
+                                        $price = DB::table('suite_descriptions')->where('suite_name', session('roomtype'))->first();
+                                        echo number_format($price->base_price, 2);
+                                    }
+                                    $book = DB::table('rate_descriptions')->where('rate_name', session('ratetype'))->first();
+                                @endphp</h5>
+                                <h5><b>Rate Discount :</b> php {{number_format($rate_discount = $price->base_price * $book->base_discount, 2)}}</h5>
+                                <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</h5>
+                                <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $book->vat, 2)}} </h5>
+                                <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
+                            </div>
+                            @endif
+
+                            @if (!isset($review))
                             <div class="col mt-5">
                                 {{-- PS: FIX THE FREAKIN BACK BUTTON!!! --}}
                                 <a href="{{'roomtab/'.$book->room_suite_name}}"><button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
@@ -168,6 +232,7 @@
                                     <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
                                 </form>
                             </div>
+                            @endif
 
                         </div>
 
@@ -175,7 +240,7 @@
                 </div>
             </div>
 
-            @if ($bookinfo2->room_suite_name !== null || $bookinfo2->room_suite_name != '')
+            @if ((isset($bookinfo2) && $bookinfo2->room_suite_name !== null || $bookinfo2->room_suite_name != '') || session('roomtype2'))
 
 
             <div class="card">
@@ -190,6 +255,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionid">
                     <div class="card-body">
                         <div class="row">
+                            @if (!isset($review))
                             @php
                                 $image = DB::table('gallery_albums')
                                 ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
@@ -197,9 +263,18 @@
                                 ->first();
                                 $image = $image->photo_name;
                             @endphp
+                            @else
+                                @php
+                                    $image = DB::table('gallery_albums')
+                                    ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                    ->where('album_name', session('roomtype2'))
+                                    ->first();
+                                    $image = $image->photo_name;
+                                @endphp
+                            @endif
                             <div class="col"><img src="{{asset('images/'.$image)}}" class="img-thumbnail"></div>
 
-
+                            @if (!isset($review))
                             <div class="col mt-5">
 
                                 <h5><b>Room Name :</b> {{$bookinfo2->room_suite_name}}</h5>
@@ -213,7 +288,23 @@
                                     }
                                 @endphp </h5>
                             </div>
+                            @else
+                            <div class="col mt-5">
 
+                                <h5><b>Room Name : </b>{{session('roomtype2')}}</h5>
+                                <h5><b>Bed :</b> {{session('bed2')}}</h5>
+                                <h5><b>Rate Applied:</b> {{session('ratetype2')}} </h5>
+                                <h5><b>Promo Applied:</b> @php
+                                    if(session('PromoCode') === null || session('PromoCode') == '') {
+                                        echo 'N/A';
+                                    } else {
+                                        echo session('PromoCode');
+                                    }
+                                @endphp </h5>
+                            </div>
+                            @endif
+
+                            @if (!isset($review))
                             <div class="col mt-5">
                                 <h5><b>Base Price : php</b> @php
                                     $price = DB::table('room_descriptions')->where('room_name', $bookinfo2->room_suite_name)->first();
@@ -231,7 +322,28 @@
                                 <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
+                            @else
+                            <div class="col mt-5">
+                                <h5><b>Base Price : php</b> @php
+                                    $price = DB::table('room_descriptions')->where('room_name', session('roomtype2'))->first();
+                                    if($price !== null){
+                                        echo number_format($price->base_price, 2);
+                                    } else {
+                                        $price = DB::table('suite_descriptions')->where('suite_name', session('roomtype2'))->first();
+                                        echo number_format($price->base_price, 2);
+                                    }
+                                    $book = DB::table('rate_descriptions')->where('rate_name', session('ratetype'))->first();
+                                @endphp</h5>
+                                <h5><b>Rate Discount :</b> php {{number_format($rate_discount = $price->base_price * $book->base_discount, 2)}}</h5>
+                                <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</h5>
+                                <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $book->vat, 2)}} </h5>
+                                <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
+                            </div>
+                            @endif
+
+                            @if (!isset($review))
                             <div class="col mt-5">
                                 <a href="{{'roomtab/'.$book->room_suite_name}}"><button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
                                     Info</button></a>
@@ -244,6 +356,7 @@
                                     <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
                                 </form>
                             </div>
+                            @endif
 
                         </div>
 
@@ -253,7 +366,7 @@
 
             @endif
 
-            @if ($bookinfo3->room_suite_name !== null || $bookinfo3->room_suite_name != '')
+            @if ((isset($bookinfo3) && $bookinfo3->room_suite_name !== null || $bookinfo3->room_suite_name != '') || session('roomtype3'))
             <div class="card">
                 <div class="card-header" id="headingThree">
                     <h5 class="mb-0">
@@ -266,6 +379,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionid">
                     <div class="card-body">
                         <div class="row">
+                            @if (!isset($review))
                             @php
                                 $image = DB::table('gallery_albums')
                                 ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
@@ -273,9 +387,19 @@
                                 ->first();
                                 $image = $image->photo_name;
                             @endphp
+                            @else
+                            @php
+                                    $image = DB::table('gallery_albums')
+                                    ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                    ->where('album_name', session('roomtype3'))
+                                    ->first();
+                                    $image = $image->photo_name;
+                                @endphp
+                            @endif
+
                             <div class="col"><img src="{{asset('images/'.$image)}}" class="img-thumbnail"></div>
 
-
+                            @if (!isset($review))
                             <div class="col mt-5">
 
                                 <h5><b>Room Name :</b> {{$bookinfo3->room_suite_name}}</h5>
@@ -289,7 +413,24 @@
                                     }
                                 @endphp </h5>
                             </div>
+                            @else
+                            <div class="col mt-5">
 
+                                <h5><b>Room Name : </b>{{session('roomtype3')}}</h5>
+                                <h5><b>Bed :</b> {{session('bed3')}}</h5>
+                                <h5><b>Rate Applied:</b> {{session('ratetype3')}} </h5>
+                                <h5><b>Promo Applied:</b> @php
+                                    if(session('PromoCode') === null || session('PromoCode') == '') {
+                                        echo 'N/A';
+                                    } else {
+                                        echo session('PromoCode');
+                                    }
+                                @endphp </h5>
+                            </div>
+                            @endif
+
+
+                            @if (!isset($review))
                             <div class="col mt-5">
                                 <h5><b>Base Price : php</b> @php
                                     $price = DB::table('room_descriptions')->where('room_name', $bookinfo3->room_suite_name)->first();
@@ -307,7 +448,28 @@
                                 <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
                             </div>
+                            @else
+                            <div class="col mt-5">
+                                <h5><b>Base Price : php</b> @php
+                                    $price = DB::table('room_descriptions')->where('room_name', session('roomtype3'))->first();
+                                    if($price !== null){
+                                        echo number_format($price->base_price, 2);
+                                    } else {
+                                        $price = DB::table('suite_descriptions')->where('suite_name', session('roomtype3'))->first();
+                                        echo number_format($price->base_price, 2);
+                                    }
+                                    $book = DB::table('rate_descriptions')->where('rate_name', session('ratetype'))->first();
+                                @endphp</h5>
+                                <h5><b>Rate Discount :</b> php {{number_format($rate_discount = $price->base_price * $book->base_discount, 2)}}</h5>
+                                <h5><b>City Tax :</b> php {{number_format($city_tax = $price->base_price * $book->city_tax, 2)}}</h5>
+                                <h5><b>Vat:</b> php {{number_format($vat = $price->base_price * $book->vat, 2)}} </h5>
+                                <h5><b>Service Charge:</b> php {{number_format($service_charge = $price->base_price * $book->service_rate, 2)}} </h5>
+                                <h5><b>Total:</b> php {{number_format($total = ($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax, 2)}} </h5>
 
+                            </div>
+                            @endif
+
+                            @if (!isset($review))
                             <div class="col mt-5">
                                 <a href="{{'roomtab/'.$book->room_suite_name}}"><button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Room
                                     Info</button></a>
@@ -320,6 +482,7 @@
                                     <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Change Room</button>
                                 </form>
                             </div>
+                            @endif
 
                         </div>
                     </div>
@@ -327,14 +490,32 @@
             </div>
             @endif
         </div>
+        @if (!isset($review))
         <div class="row">
-            <div class="col">
-                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Cancel Reservation</button>
-            </div>
-            <div class="col">
+            <form action="/modify" method="POST">
+                @csrf
+                <div class="col">
+
+                    <input type="text" name="cancel" value="cancel" hidden>
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Cancel Reservation</button>
+                </div>
+            </form>
+            <div class="col" hidden>
                 <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Submit Modification</button>
             </div>
         </div>
+        @else
+        <div class="row">
+            <form action="/chooseroom" method="POST">
+                @csrf
+                <div class="col">
+
+                    <input type="text" name="proceed" value="proceed" hidden>
+                    <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Proceed</button>
+                </div>
+            </form>
+        </div>
+        @endif
 
     </div>
 

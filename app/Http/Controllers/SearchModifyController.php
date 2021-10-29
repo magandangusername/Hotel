@@ -36,6 +36,7 @@ class SearchModifyController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'confirmation_number' => 'required|integer',
             'email' => 'required'
@@ -78,8 +79,8 @@ class SearchModifyController extends Controller
             ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
             ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
 
-            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-
+            ->where('reservation_tables.confirmation_number', $data['confirmation_number'])
+            ->whereNull('reservation_tables.cancelled_on')
             // ->where('reservation_tables.user_id', session('uid'))
             ->where('guest_informations.email', $data['email'])
 
@@ -93,7 +94,8 @@ class SearchModifyController extends Controller
                 ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
                 ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
 
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                ->where('reservation_tables.confirmation_number', $data['confirmation_number'])
+                ->whereNull('reservation_tables.cancelled_on')
                 // ->where('reservation_tables.user_id', session('uid'))
                 // ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->where('users.email', $data['email'])
@@ -102,7 +104,7 @@ class SearchModifyController extends Controller
 
 
         // $gbook = DB::table('reservation_tables')->where('guest_code', $gid)->where('confirmation_number', $data['confirmation_number'])->count();
-        if($book->confirmation_number !== null) {
+        if($book !== null) {
             Session::put('confirmation_number', $data['confirmation_number']);
             Session::put('uid', $book->user_id);
             Session::put('gid', $book->guest_code);

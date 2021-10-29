@@ -48,6 +48,10 @@ class ChooseRoomController extends Controller
         reminder if there is something wrong: check the operators
         */
 
+        if($request->input('proceed') == 'proceed'){
+            return redirect('/bookinfo');
+        }
+
         $request->validate([
             'bed' => 'required',
             'room_type' => 'required',
@@ -213,7 +217,9 @@ class ChooseRoomController extends Controller
                 Session::put('roomchecker2', $roomchecker2);
             }
             if(session('RoomCount') == session('room')) {
-                return redirect('/bookinfo');
+                // return redirect('/bookinfo');
+                $review = 'review';
+                return view('modify')->with(compact('review'));
             }
 
 

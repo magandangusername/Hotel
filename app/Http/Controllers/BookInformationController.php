@@ -260,6 +260,9 @@ class BookInformationController extends Controller
         // $paymentcode = DB::table('orders')->max('id');
 
 
+
+
+
         if(Auth::check() != true) {
             $guestinformation = DB::table('guest_informations')->insert([
                 'guest_code' => $guestcode,
@@ -274,6 +277,19 @@ class BookInformationController extends Controller
 
             ]);
         }
+
+        $payment = DB::table('payment_informations')->count();
+        $payment = 'PC-0'.($payment + 1);
+
+        $paymentinfo = DB::table('payment_informations')->insert([
+            'payment_code' => $payment,
+            'payment_type' => 'card',
+            'card_number' => $request->input('cardnum'),
+            'card_holder_name' => $request->input('cardname'),
+            'expiration' => $request->input('cardexprm').'/'.$request->input('cardexpry')
+
+
+        ]);
 
         $headcount = DB::table('head_counts')->insert([
             'adult' => $adult,
@@ -420,6 +436,16 @@ class BookInformationController extends Controller
         //     'success',
         //     'confirmation_number'
         // ]);
+        Session::forget([
+            'roomtype1',
+            'roomtype2',
+            'roomtype3',
+            'RoomCount',
+            'totalrate',
+            'totalrate2',
+            'totalrate3'
+
+        ]);
 
         // dd(session()->all());
 
