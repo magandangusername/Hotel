@@ -219,7 +219,9 @@ class ChooseRoomController extends Controller
             if(session('RoomCount') == session('room')) {
                 // return redirect('/bookinfo');
                 $review = 'review';
-                return view('modify')->with(compact('review'));
+                $bookinfo2 = null;
+                $bookinfo3 = null;
+                return view('modify')->with(compact('review', 'bookinfo2', 'bookinfo3'));
             }
 
 
