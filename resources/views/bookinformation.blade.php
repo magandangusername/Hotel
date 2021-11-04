@@ -61,10 +61,11 @@
         </div>
     </div>
 </section>
-<form action="bookinfo" method="post" class="require-validation"
+{{-- <form action="bookinfo" method="post" class="require-validation"
 data-cc-on-file="false"
 data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
-id="payment-form">
+id="payment-form"> --}}
+<form action="bookinfo" method="post">
     @csrf
     <div class="containercheckuser">
         <div class="titlechecks">
@@ -132,7 +133,7 @@ id="payment-form">
 
 
 
-                <div class="container">
+                <!--<div class="container">
                     {{-- <h1>Stripe Payment Page - HackTheStuff</h1> --}}
                     <div class="row">
                        <div class="col-md-6 col-md-offset-3">
@@ -160,7 +161,6 @@ id="payment-form">
                                    data-cc-on-file="false"
                                    data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                                    id="payment-form"> --}}
-                                   @csrf
                                    <div class='form-row row'>
                                       <div class='col-xs-12 form-group required'>
                                          <label class='control-label'>Name on Card</label> <input
@@ -193,9 +193,9 @@ id="payment-form">
                                    </div>
                                    <div class='form-row row'>
                                       <div class='col-md-12 error form-group hide'>
-                                         {{-- <div class='alert-danger alert'>Please correct the errors and try
+                                         <div class='alert-danger alert'>Please correct the errors and try
                                             again.
-                                         </div> --}}
+                                         </div>
                                       </div>
                                    </div>
                                    {{-- <div class="row">
@@ -208,7 +208,7 @@ id="payment-form">
                           </div>
                        </div>
                     </div>
-                 </div>
+                 </div> -->
 
 
 
@@ -239,8 +239,11 @@ id="payment-form">
 
         <div class="row ">
             <div class="buttwo">
-                <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
-                <button onclick="checkbox()" type="submit"  name="checkout" class="btn btn-primary"> Proceed to payment </button>
+                {{-- <form action="/bookinfo" method="post">
+                    <input type="text" name='review' value='review' hidden>
+                    <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
+                </form> --}}
+                <button onclick="checkbox()" type="submit"  name="checkout" class="btn btn-primary"> Proceed </button>
             </div>
         </div>
 
