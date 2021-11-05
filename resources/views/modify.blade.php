@@ -2,14 +2,16 @@
 
 @section('content')
 
-    <div class="container-fluid mt-4">
+    <div class="container-fluid">
 
-        <div class="container pt-0 mb-3 text-center">
+        <div class="container pt-0 mb-3 pt-5 text-center">
             @if (!isset($review))
                 <h1 class="fw-bold"> Modify Reservation</h1>
             @else
                 <h1 class="fw-bold"> Review Reservation</h1>
             @endif
+            <hr>
+
         </div>
 
         <div class="infotab px-1 py-3 text-dark ">
@@ -71,7 +73,7 @@
     </div>
 
 
-    <div class="container p-4 my-5 bg-light">
+    <div class="container p-4">
 
         @if (!isset($review))
             <div class=" text-dark ">
@@ -98,7 +100,7 @@
                 </div>
             </div>
 
-            <hr class="mx-5 mt-3 mb-4 p-1">
+            <hr class="mx-5 mt-1 mb-4 p-1">
 
             <h3 class="px-5 py-0 fw-bold  text-dark "> Payment Information </h3>
             <div class="row px-5 py-3  text-dark ">
@@ -642,7 +644,7 @@
                 @endif
 
             @endif
-
+              <hr>
         </div>
         @if (!isset($review))
             <div class="row">
@@ -672,20 +674,20 @@
                     id="payment-form">
                     @csrf
                     <input type="text" name="proceed" value="proceed" hidden>
-                    <div class="container">
+                    <div class="container pt-2 ">
                         {{-- <h1>Stripe Payment Page - HackTheStuff</h1> --}}
                         <div class="row">
-                           <div class="col-md-6 col-md-offset-3">
+                           <div class="col ">
                               <div class="panel panel-default credit-card-box">
                                  {{-- <div class="panel-heading display-table" >
                                     <div class="row display-tr" > --}}
-                                       <h3 class="panel-title display-td" >Payment Details</h3>
+                                       <h3 class="panel-title display-td fw-bold text-center" >Payment Details</h3>
                                        {{-- <div class="display-td" >
                                           <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
                                        </div>
                                     </div>
                                  </div> --}}
-                                 <div class="panel-body">
+                                 <div class="panel-body mx-5 px-5">
                                     @if (Session::has('success'))
                                     <div class="alert alert-success text-center">
                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -708,9 +710,13 @@
                                           </div>
                                        </div>
                                        <div class='form-row row'>
-                                          <div class='col-xs-12 form-group card required'>
+                                          <div class='col-xs-12 form-group  required'>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+  <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+</svg>
                                              <label class='control-label'>Card Number</label> <input
-                                                autocomplete='off' class='form-control card-number' size='20'
+                                                autocomplete='off' class='form-control card-number' size='4'
                                                 type='text' value="4242424242424242" name="cardnum">
                                           </div>
                                        </div>
@@ -749,9 +755,8 @@
                            </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="col">
-
-
                         <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Proceed</button>
                     </div>
                 </form>

@@ -8,7 +8,7 @@
                     <h1 class="fw-bold text-center pt-5"> Check Availability </h1>
                     <hr class="mx-5 mb-5 p-1">
 
-                    <div class="row mx-5">
+                    <div class="row mx-5 sectioncolor">
 
                         <div class="col-xl-3 col-5">
                             <label for="inputCheckIn" class="col-form-label">Check-In</label>
@@ -75,7 +75,7 @@
 
                     </div>
 
-                    <div class="row mx-5">
+                    <div class="row mx-5 pb-4 sectioncolor">
 
                             <div class="col-4">
                                 <label for="inputpromo" id="promotitle" class="col-form-label">Promotion Code</label>
@@ -89,10 +89,10 @@
 
                     <div class="row mt-4 text-center">
                         <div class="col">
-                            <a href="/search" class="btn btn-primary fw-bold" id="roomcheck">Modify/Cancel</a>
+                            <a href="/search" class="btn btn-outline-dark fw-bold" id="roomcheck">Modify/Cancel</a>
                             <!-- <a href="reservation.php" input type="sumbit" name="checkavail" id="roomcheck" class="btn btn-primary"> Check Availability </a> -->
-                            {{-- <button type="submit" name="checkavail" id="roomcheck" class="btn btn-primary"> Check Availability</button> --}}
-                            <input type="submit" name="checkavail" id="roomcheck" class="btn btn-primary fw-bold" value="Check Availability">
+                            {{-- <button type="submit" name="checkavail" id="roomcheck" class="btn "> Check Availability</button> --}}
+                            <input type="submit" name="checkavail" id="roomcheck" class="btn btn-outline-dark fw-bold" value="Check Availability">
                         </div>
                     </div>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\RoomSuiteController;
 use App\Http\Controllers\PromotionController;
@@ -38,6 +39,7 @@ Route::get('profile', function () {
 
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/userprofile', [ProfileController::class, 'userprofile'])->name('userprofile');
 Route::get('/promos', [PromotionController::class, 'promo'])->name('promo');
 Route::get('/promos/{name}', [PromotionController::class, 'show']);
 Route::get('/roomtab', [RoomSuiteController::class, 'rooms'])->name('roomtab');

@@ -11279,12 +11279,20 @@ textarea.form-control-lg {
   width: 100px;
 }
 
+.footnotecolor {
+  background-color: #f1ceaf;
+}
+
 @media (min-width: 992px) {
   navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 2.5rem;
     padding-left: 2.5rem;
   }
 }
+.navcolor {
+  background-color: #f1ceaf;
+}
+
 body {
   background: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635) no-repeat center center fixed;
   background-size: cover;
@@ -11294,7 +11302,22 @@ body {
 }
 
 .bodyback {
-  background-color: rgba(255, 254, 254, 0.349);
+  background-color: rgba(165, 165, 165, 0.199);
+}
+
+.centerbox {
+  background-color: white;
+}
+
+.sectioncolor {
+  background: #ececec;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .preffer {
@@ -11493,4 +11516,16 @@ crop images * {
 }
 #RoomModalGallery.custom .carousel-indicators li.active {
   background: white;
+}
+
+.bordercontainer {
+  border-radius: 25px;
+  border-style: solid;
+  border-width: thick;
+}
+
+.roomshowcase {
+  background: url(/images/roomshowcase.jpg?b5326b5a65097b6e23d17bf19d5c79c6);
+  background-size: cover;
+  height: 390px;
 }

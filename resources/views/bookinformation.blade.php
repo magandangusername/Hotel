@@ -2,35 +2,11 @@
 
 @section('content')
 
-<style type="text/css">
-    .panel-title {
-    display: inline;
-    font-weight: bold;
-    }
-    .display-table {
-    display: table;
-    }
-    .display-tr {
-    display: table-row;
-    }
-    .display-td {
-    display: table-cell;
-    vertical-align: middle;
-    width: 61%;
-    }
- </style>
 
-<section id="forms">
-    <div class="checkout">
-        <div class="titlecheck">
-            <a href="modifyreservation.php" input type="button" id="backmod" class="btn btn-primary"> Back </a>
-            <h1 class="modifhye">Checkout</h1>
-        </div>
-    </div>
-</section>
 
-<section id="usereditss">
-    <div class="containerchecks">
+    <div class="container">
+    <h1 class="text-center fw-bold pt-5">Checkout</h1>
+
         <div class="row g-2 justify-content-center">
 
             <div class="col-auto">
@@ -60,202 +36,117 @@
             </div>
         </div>
     </div>
-</section>
-{{-- <form action="bookinfo" method="post" class="require-validation"
-data-cc-on-file="false"
-data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
-id="payment-form"> --}}
+
+<hr>
+
+
+{{-- <form action="bookinfo" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form"> --}}
 <form action="bookinfo" method="post">
     @csrf
-    <div class="containercheckuser">
-        <div class="titlechecks">
-            <div class="row g-3" id="whitey">
+
+    <div class="container px-5">
+
                 @guest
 
-
-                <h1 class="personals">Personal Information</h1>
-                <section id="wowo">
-                    <div class="form-group form-inline">
-                        <label>Title</label>
-                        <select name="name_with_initials" id="" required>
-                            <option selected="selected" value="Mr.">Mr.</option>
-                            <option value="Mrs.">Mrs.</option>
-                            <option value="Miss">Miss</option>
-                        </select>
-                    </div>
+                <div class="container my-5">
+                 <h1 class="fw-bold">Personal Information</h1>
 
 
-                    <div class="col-md-5 ">
-                        <label for="first"> First Name:</label>
-                        <input type="text" class="form-control" id="firstname" name="fn" required>
-                    </div>
 
-                    <div class="col-md-5 ">
-                        <label for="last">Last Name:</label>
-                        <input type="text" class="form-control" id="lastname" name="ln" required>
-                    </div>
+                       <div class="form-group">
+                            <label>Title</label>
+                            <select name="name_with_initials" id="" required>
+                                <option selected="selected" value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Miss">Miss</option>
+                            </select>
+                        </div>
+                        <div class="row my-2">
+
+                        <div class="col">
+
+                            <label for="first"> First Name:</label>
+                            <input type="text" class="form-control" id="firstname" name="fn" required>
+
+                            <label for="last">Last Name:</label>
+                            <input type="text" class="form-control" id="lastname" name="ln" required>
+                        </div>
+
+                        <div class="col">
+                            <label for="email">Email Address:</label>
+                            <input type="text" class="form-control" id="firste" name="email" required>
+
+                            <label for="reemail">Re-Type Email Address:</label>
+                            <input type="text" class="form-control" id="firste" required>
+                        </div>
 
 
-                    <div class="col-md-5 ">
-                        <label for="email">Email Address:</label>
-                        <input type="text" class="form-control-plaintext" id="firste" name="email" required>
-                    </div>
 
+                        </div>
 
-                    <div class="col-md-5 ">
-                        <label for="reemail">Re-Type Email Address:</label>
-                        <input type="text" class="form-control-plaintext" id="firste" required>
-                    </div>
-
-                </section>
+                </div>
                 <hr />
-                <section id="wowo1">
-                    <h1 class="personals">Address</h1>
-
-                    <div class="col-md-6  ">
-                        <label for="first"> Address:</label>
-                        <input type="text" class="form-control-plaintext" id="first" name='address' required>
-                    </div>
-                    <div class="col-md-5  ">
-                        <label for="email">City:</label>
-                        <input type="text" class="form-control" id="email" name='city' required>
-                    </div>
 
 
-                    <div class="col-md-6 ">
-                        <label for="last">Mobile Number:</label>
-                        <input type="text" class="form-control" id="last" name='mobilenum' required>
-                    </div>
-                </section>
 
+                <div class="container my-4">
+                    <h1 class="fw-bold">Address</h1>
+                    <div class="row my-3">
+                        <div class="col-md-6">
+                            <label for="first"> Address:</label>
+                            <input type="text" class="form-control" id="first" name='address' required>
+                            <label for="email">City:</label>
+                            <input type="text" class="form-control" id="email" name='city' required>
+                        </div>
+
+
+                        <div class="col-md-6 ">
+                            <label for="last">Mobile Number:</label>
+                            <input type="text" class="form-control" id="last" name='mobilenum' required>
+                        </div>
+                   </div>
+            </div>
+                <hr>
                 @endguest
 
+            <div class ="row my-3">
+                <div class="col">
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
+                <label for="vehicle1"> I accept <a href="">terms and conditions </a> </label><br>
+                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" required>
+                <label for="vehicle2"> I have read and accept the <a href="">Privacy and Cancellation Policies</a>  </label><br>
+                </div>
+            </div>
 
 
 
-                <!--<div class="container">
-                    {{-- <h1>Stripe Payment Page - HackTheStuff</h1> --}}
-                    <div class="row">
-                       <div class="col-md-6 col-md-offset-3">
-                          <div class="panel panel-default credit-card-box">
-                             {{-- <div class="panel-heading display-table" >
-                                <div class="row display-tr" > --}}
-                                   <h3 class="panel-title display-td" >Payment Details</h3>
-                                   {{-- <div class="display-td" >
-                                      <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
-                                   </div>
-                                </div>
-                             </div> --}}
-                             <div class="panel-body">
-                                @if (Session::has('success'))
-                                <div class="alert alert-success text-center">
-                                   <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                   <p>{{ Session::get('success') }}</p>
-                                </div>
-                                @endif
-                                {{-- <form
-                                   role="form"
-                                   action="{{ route('stripe.post') }}"
-                                   method="post"
-                                   class="require-validation"
-                                   data-cc-on-file="false"
-                                   data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
-                                   id="payment-form"> --}}
-                                   <div class='form-row row'>
-                                      <div class='col-xs-12 form-group required'>
-                                         <label class='control-label'>Name on Card</label> <input
-                                            class='form-control' size='4' type='text' value="pp" name="cardname">
-                                      </div>
-                                   </div>
-                                   <div class='form-row row'>
-                                      <div class='col-xs-12 form-group card required'>
-                                         <label class='control-label'>Card Number</label> <input
-                                            autocomplete='off' class='form-control card-number' size='20'
-                                            type='text' value="4242424242424242" name="cardnum">
-                                      </div>
-                                   </div>
-                                   <div class='form-row row'>
-                                      <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                         <label class='control-label'>CVC</label> <input autocomplete='off'
-                                            class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                            type='text' value="123" name="cardcvc">
-                                      </div>
-                                      <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                         <label class='control-label'>Expiration Month</label> <input
-                                            class='form-control card-expiry-month' placeholder='MM' size='2'
-                                            type='text' value="12" name="cardexprm">
-                                      </div>
-                                      <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                         <label class='control-label'>Expiration Year</label> <input
-                                            class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                            type='text' value="22" name="cardexpry">
-                                      </div>
-                                   </div>
-                                   <div class='form-row row'>
-                                      <div class='col-md-12 error form-group hide'>
-                                         <div class='alert-danger alert'>Please correct the errors and try
-                                            again.
-                                         </div>
-                                      </div>
-                                   </div>
-                                   {{-- <div class="row">
-                                      <div class="col-xs-12">
-                                         <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
-                                      </div>
-                                   </div> --}}
-                                {{-- </form> --}}
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div> -->
 
+    <div class="row pb-5  text-center">
 
-
+        <div class="col">
+            <div id="forms">
+                        <a href="modifyreservation.php" input type="button" id="backmod" class="btn btn-outline-dark fw-bold"> Back </a>
+            <!-- {{-- <form action="/bookinfo" method="post">
+                    <input type="text" name='review' value='review' hidden>
+                    <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
+                </form> --}} -->
+                <button onclick="checkbox()" type="submit"  name="checkout" class="btn btn-outline-dark fw-bold"> Proceed </button>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 
     </div>
 
-    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
-    <label for="vehicle1"> I have a pen</label><br>
-    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" required>
-    <label for="vehicle2"> I have pineapple</label><br>
 
 
-    <section id="twobutt">
 
 
-        <div class="row ">
-            <div class="buttwo">
-                {{-- <form action="/bookinfo" method="post">
-                    <input type="text" name='review' value='review' hidden>
-                    <button type="submit"  name="review" class="btn btn-primary"> Review Reservation </button>
-                </form> --}}
-                <button onclick="checkbox()" type="submit"  name="checkout" class="btn btn-primary"> Proceed </button>
-            </div>
-        </div>
 
-    </section>
+
+
 </form>
 
 
-
-<!--
-SKYE GAWA KA EMAIL RETYPE VALIDATION!!!!!!!!!!!!!!!!!!!!!!
-
--->
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">

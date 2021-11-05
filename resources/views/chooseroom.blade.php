@@ -115,7 +115,7 @@
         @endphp
         @foreach ($rates as $rateinfo)
 
-            <div class="container mt-5">
+            <div class="container mt-5 pb-3 sectioncolor">
                 <div class="row mx-3 p-5">
                     <div class="col">
                         <h2 class="fw-bold"> {{ $rateinfo->rate_name }} </h2>
@@ -244,7 +244,7 @@
                                                         }
                                                     @endphp
 
-                                                    <div class="row text-center">
+                                                    <div class="row">
                                                         <div class="col col-sm-6" data-toggle="modal"
                                                             data-target="#ImgModal{{ $photonum }}">
                                                             <img class="w-100"
@@ -252,17 +252,14 @@
                                                                 alt="First slide">
                                                         </div>
                                                         <div class="col mt-2 col-sm6 ">
-                                                            <h3 class="fw-bold">{{ $result->room_suite_name }}
-                                                            </h3>
-                                                            <p class="my-3"> {{ $short_desc }}</p>
-                                                            <div class="row mx-5 px-5">
-                                                                <div class="col">
-                                                                    <li>{{ $room_size }} sqm</li>
-                                                                    {{-- <li>Amenity 5</li>
-                                                                    <li>Amenity 6</li> --}}
-                                                                </div>
+                                                            <h2 class="fw-bold text-center">{{ $result->room_suite_name }}
+                                                            </h2>
+                                                            <p class="my-3 text-center"> {{ $short_desc }}</p>
+                                                            <div class="row mt-5 mx-3">
+
                                                                 @if ($roominfo->a1 != '')
                                                                     <div class="col">
+                                                                     <li>{{ $room_size }} sqm</li>
                                                                         <li>{{ $roominfo->a1 }}</li>
                                                                 @endif
                                                                 @if ($roominfo->a2 != '')
@@ -300,7 +297,7 @@
     </div>
     </div>
 
-    <div class="row mt-3 px-5">
+    <div class="row mt-3 px-5 text-center">
         <div class="col">
             <h2 class="fw-bold">{{ $baseprice }}<h2>
                     <h5><a href="" data-toggle="modal" data-target="#PBDeluxe{{ $photonum }}{{ $ratenum }}">Price
@@ -311,7 +308,7 @@
     <hr class="mx-5 mb-2 p-1">
 
     <div class="row mx-5 mt-1 px-5">
-        <div class="col">
+        <div class="col text-center">
             <!-- radio button -->
             @php
                 $beds = \App\Models\room_status::where('room_suite_bed', 'like', 'King Bed')
@@ -323,7 +320,7 @@
                 // echo $beds;
             @endphp
             @if ($beds > 0)
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline text-center">
                     <input class="form-check-input" type="radio" name="bed" id="inlineRadio1" value="King Bed"
                         @php
                             if (isset($room) && $room <= 1) {
@@ -359,7 +356,7 @@
 
             @endphp
             @if ($beds > 0)
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline text-center">
                     <input class="form-check-input" type="radio" name="bed" id="inlineRadio2" value="Queen Bed"
                         @php
                             if (isset($room) && $room == 1) {
@@ -404,10 +401,10 @@
 
         @endphp
 
-        <div class="row mt-3">
+        <div class="row mt-3 text-center">
             <div class="col">
                 @if ($available == 0)
-                    <button id="butbut" class="btn btn-primary" disabled>ROOM
+                    <button class="btn btn-primary" disabled>ROOM
                         UNAVAILABLE</button>
                 @elseif (isset($book) && $book !== null)
                     <button type="submit" name="chooseroom" class="btn btn-primary">Select</button>
@@ -496,21 +493,22 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold">Price Breakdown</h5>
+                    <h3 class="modal-title fw-bold">Price Breakdown</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body fw-bold">
 
-                    <h5>Room Type: {{ $type }}</h5>
-                    <h5>Rate Type: {{ $rateinfo->rate_name }}</h5>
-                    <h5>Room Total: PHP {{ number_format($baseprice, 2) }}</h5>
-                    <h5>Rate Discount: PHP -{{ number_format($base_discount, 2) }}</h5>
-                    <h5>Vat: PHP {{ number_format($vat, 2) }}</h5>
-                    <h5>Service: PHP {{ number_format($service_rate, 2) }}</h5>
-                    <h5>City Tax: PHP {{ number_format($city_tax, 2) }}</h5>
-                    <h5>Total: PHP {{ number_format($totalprice, 2) }}</h5>
+                    <h5 class="fw-bold">Room Type: {{ $type }}</h5>
+                    <h5 class="fw-bold">Rate Type: {{ $rateinfo->rate_name }}</h5>
+                    <hr>
+                    <h5 class="fw-bold">Room Total: PHP {{ number_format($baseprice, 2) }}</h5>
+                    <h5 class="fw-bold">Rate Discount: PHP -{{ number_format($base_discount, 2) }}</h5>
+                    <h5 class="fw-bold">Vat: PHP {{ number_format($vat, 2) }}</h5>
+                    <h5 class="fw-bold">Service: PHP {{ number_format($service_rate, 2) }}</h5>
+                    <h5 class="fw-bold">City Tax: PHP {{ number_format($city_tax, 2) }}</h5>
+                    <h5 class="fw-bold">Total: PHP {{ number_format($totalprice, 2) }}</h5>
 
 
                 </div>
