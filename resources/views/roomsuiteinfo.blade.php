@@ -37,10 +37,34 @@
                         aria-label="Slide 4"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('images/place1.jpg') }}" class="d-block w-100" alt="...">
+                    @php
+                        $photos = DB::table('gallery_photos')
+                            ->join('gallery_albums as a', 'gallery_photos.album_id', '=', 'a.album_id')
+                            ->where('a.album_name', '=', $roominfo->suite_name)
+                            ->get();
+                        if ($roominfo->suite_name === null) {
+                            $photos = DB::table('gallery_photos')
+                            ->join('gallery_albums as a', 'gallery_photos.album_id', '=', 'a.album_id')
+                            ->where('a.album_name', '=', $roominfo->room_name)
+                            ->get();
+                        }
+                        $photonum  = 1;
+                    @endphp
+                    @foreach ($photos as $photo)
+                    <div class="carousel-item @php
+                        if($photonum == 1){
+                            echo 'active';
+                        }
+                    @endphp">
+                        <img src="{{ asset('images/'.$photo->photo_name) }}" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item">
+                    @php
+                        $photonum += 1;
+                    @endphp
+                    @endforeach
+
+
+                    {{-- <div class="carousel-item">
                         <img src="{{ asset('images/place2.jpg') }}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
@@ -48,7 +72,7 @@
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('images/place5.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
+                    </div> --}}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
@@ -73,7 +97,7 @@
 
 
 
-    <!-- <section id="slider">
+    {{-- <section id="slider">
         <div class="col mx-auto d-block">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -113,7 +137,7 @@
                 </button>
             </div>
         </div>
-    </section> -->
+    </section> --}}
 
 
 
