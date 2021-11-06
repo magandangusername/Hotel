@@ -7,7 +7,7 @@
     <div class="container">
     <h1 class="text-center fw-bold pt-5">Checkout</h1>
 
-        <div class="row g-2 justify-content-center">
+        <div class="row g-2 justify-content-center fw-bold mt-3">
 
             <div class="col-auto">
                 <p class="label">Your Stay: {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckOut'))) }}</p>

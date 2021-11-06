@@ -23,35 +23,8 @@
     <!---------------------------------rooms------------------------------->
 
 
-    <div class="container-fluid sectioncolor p-0 m-0">
-        <div class="row  sectioncolor">
+    <div class="container ">
 
-            {{-- <div class="col mt-5 text-center">
-                <div class="row pt-5">
-                    <div class="col">
-                        <h1 class="fw-bold">this is a text</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <p class="abouts1"> this is a text</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <form method="POST" action="">
-                            <a href="" class="text-decoration-none btn btn-light fw-bold">Learn More</a>
-                            <a href="" class="btn btn-light fw-bold" name="booknow"> Book Now</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <img src="" class="img-thumbnail">
-            </div> --}}
-
-        </div>
         <div class="row">
             {{-- @foreach ($rooms as $room)
                 <div class="col">
@@ -77,11 +50,11 @@
             @if ($rows % 2 ==1)
                 <!-- ODD -->
 
-                    <div class="container mt-3 px-5 pb-5">
-                    <div class="row  sectioncolor">
+                    <div class="container  my-5">
+                    <div class="row sectioncolor">
 
                         <div class="col mt-5 text-center">
-                        <div class="row pt-5">
+                        <div class="row py-3">
                             <div class="col">
                             <h1 class="fw-bold">{{ $room->room_name }}</h1>
                             </div>
@@ -102,7 +75,7 @@
                         </div>
 
                         <div class="col">
-                        <img src="{{ asset('images/'.$room->image_name) }}"  class="img-thumbnail">
+                        <img src="{{ asset('images/'.$room->image_name) }}"  class="img-fluid">
                         </div>
 
                     </div>
@@ -111,13 +84,13 @@
 
             @if ($rows % 2 == 0)
                 <!-- EVEN -->
-                    <div class="container mt-3 px-5 text-center">
+                    <div class="container text-center my-5">
                     <div class="row sectioncolor">
-                        <div class="col">
-                        <img src="{{ asset('images/'.$room->image_name) }}" class="img-thumbnail">
+                        <div class="col flex-end">
+                        <img src="{{ asset('images/'.$room->image_name) }}" class="img-fluid">
                         </div>
                         <div class="col mt-5 text-center">
-                        <div class="row pt-5">
+                        <div class="row py-3">
                             <div class="col">
                             <h1 class="fw-bold">{{ $room->room_name }}</h1>
                             </div>

@@ -2,7 +2,9 @@
 
 @section('content')
     <!--------------------------------slider------------------------------->
+
     <div class="container-fluid m-0 p-0">
+
     <section id="slider">
         <div class="col mx-auto d-block">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
