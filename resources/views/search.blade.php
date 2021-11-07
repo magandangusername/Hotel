@@ -3,40 +3,33 @@
 @section('content')
     <form action="/search" method='POST'>
         @csrf
-        <section id="all">
-            <section id="search">
-                <div class="container">
+                <div class="container ">
                     <div class="row">
 
-                        <div class="col-md-4">
-                            <h1>Modify Reservation</h1>
+                        <div class="col text-center py-5">
+                            <h1 class="fw-bold">Modify Reservation</h1>
                         </div>
-
-
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-5">
-
-                                <p class="searchlabels">Search by confirmation number</p>
-                                <p class="searchlabel"> Confirmation number:</p>
-                                <div class="col">
-                                    <input pattern="[0-9]+" type="text" id="searching" class="form-control " name="confirmation_number">
-                                </div>
-
-                                <p class="searchlabel">Email:</p>
-
-                                <div class="col">
-                                    <input type="email" id="searching" class="form-control " name="email">
-                                </div>
-                                <div class="col">
-                                    <button type='submit' class="btn btn-info" id="buttsearch">Search</button>
-                                </div>
-                            </div>
-                        </div>
-
 
                     </div>
+
+                    <div class="row sectioncolor mx-5">
+                            <div class="col"></div>
+                            <div class="col d-flex flex-column px-5 py-5 my-5">
+
+                                <p class="searchlabel fw-bold"> Reservation Number:</p>
+                                <input pattern="[0-9]+" type="text" id="searching" class="form-control " name="confirmation_number">
+
+                                <p class="searchlabel mt-3">Email:</p>
+                                <input type="email" id="searching" class="form-control " name="email">
+
+                                <div class="row mx-5 my-5">
+                                    <button type='submit' class="btn btn-dark fw-bold">Search</button>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+
+                        </div>
+
                 </div>
-            </section>
-        </section>
     </form>
 @endsection

@@ -442,7 +442,6 @@
 
                         <div class="carousel-inner">
                             @php
-                            dd($result->room_suite_name);
                                 $photos = DB::table('gallery_photos')
                                     ->join('gallery_albums as a', 'gallery_photos.album_id', '=', 'a.album_id')
                                     ->where('a.album_name', '=', $result->room_suite_name)

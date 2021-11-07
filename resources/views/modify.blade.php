@@ -14,8 +14,8 @@
 
         </div>
 
-        <div class="infotab px-1 py-3 text-dark ">
-            <div class="row mt-2">
+        <div class="infotab  mx-5 px-1 py-3 text-dark">
+            <div class="row">
 
                 @if (!isset($review))
                     <div class="col-3 text-center">
@@ -710,9 +710,9 @@
                                        <div class='form-row row'>
                                           <div class='col-xs-12 form-group  required'>
                                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
-  <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
-</svg>
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+                                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+                                          </svg>
                                              <label class='control-label'>Card Number</label> <input
                                                 autocomplete='off' class='form-control card-number' size='4'
                                                 type='text' value="4242424242424242" name="cardnum">
@@ -754,8 +754,8 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Proceed</button>
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-outline-dark fw-bold" style="margin-top: 2em;">Checkout</button>
                     </div>
                 </form>
             </div>
