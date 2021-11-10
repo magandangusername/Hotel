@@ -105,7 +105,7 @@ class ProfileController extends Controller
 
             $charge = \Stripe\Charge::create([
                 'amount' => 1000,
-                'currency' => 'usd',
+                'currency' => 'php',
                 'customer' => $customer->id,
             ]);
 
@@ -140,8 +140,12 @@ class ProfileController extends Controller
 
             $charge = \Stripe\Charge::create([
                 'amount' => 1000,
-                'currency' => 'usd',
+                'currency' => 'php',
                 'customer' => $customer->id,
+            ]);
+
+            $re = \Stripe\Refund::create([
+                "charge" => $charge->id
             ]);
 
             // $charge = Stripe\Charge::create ([
@@ -166,8 +170,8 @@ class ProfileController extends Controller
                 'expiration_month' => $request->input('expiration_month'),
                 'expiration_year' => $request->input('expiration_year'),
                 'cvc' => $request->input('cvc'),
-                'charge_id' => $customer->id
-                // 'charge_id' => $charge->id
+                'charge_id' => $charge->id,
+                'customer_id' => $customer->id
 
             ]);
 

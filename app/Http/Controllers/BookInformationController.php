@@ -248,7 +248,7 @@ class BookInformationController extends Controller
             Session::flash('success', 'Payment successful!');
 
 
-            if(!($request->input('savedpayment') == 'savedpayment') || !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')){
+            if(!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')){
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
                     'payment_type' => 'card',
