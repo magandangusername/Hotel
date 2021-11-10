@@ -200,7 +200,8 @@ class BookInformationController extends Controller
             $payment = 'PC-0'.($payment + 1);
 
             $detector = new CardDetect\Detector();
-            $card = '4242424242424242';
+            $card = str_replace(' ', '', $request->input('card_number'));
+            $cardtype = $detector->detect($card);
 
             // dd($detector->detect($card));
             // echo $detector->detect($card); //Visa
@@ -247,11 +248,14 @@ class BookInformationController extends Controller
 
             Session::flash('success', 'Payment successful!');
 
+            $detector = new CardDetect\Detector();
+            $card = str_replace(' ', '', $request->input('card_number'));
+            $cardtype = $detector->detect($card);
 
             if(!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')){
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
-                    'payment_type' => 'card',
+                    'payment_type' => $cardtype,
                     'card_number' => $request->input('cardnum'),
                     'card_holder_name' => $request->input('cardname'),
                     'expiration_month' => $request->input('cardexprm'),
@@ -264,7 +268,7 @@ class BookInformationController extends Controller
             } elseif($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
-                    'payment_type' => 'card',
+                    'payment_type' => $cardtype,
                     'card_number' => $request->input('cardnum'),
                     'card_holder_name' => $request->input('cardname'),
                     'expiration_month' => $request->input('cardexprm'),
