@@ -52,12 +52,20 @@ CREATE TABLE guest_information (
 
 
 CREATE TABLE modification_request (
-    midc varchar(255),
+    -- midc varchar(255),
+    -- confirmation_number varchar(255),
+    -- request_on datetime,
+    -- approval_status tinyint(1),
+    -- approved_on varchar(255),
+    -- PRIMARY KEY (midc)
+    id int not null AUTO_INCREMENT
     confirmation_number varchar(255),
+    update_code varchar(255),
     request_on datetime,
-    approval_status tinyint(1),
-    approved_on varchar(255),
-    PRIMARY KEY (midc)
+    approval_status tinyint(255),
+    approved_at datetime,
+    denied_at datetime
+    PRIMARY KEY (id)
 );
 
 
@@ -66,7 +74,11 @@ CREATE TABLE payment_information (
     payment_type varchar(255),
     card_number varchar(255),
     card_holder_name varchar(255),
-    expiration varchar(255),
+    expiration_month varchar(255),
+    expiration_year varchar(255),
+    cvc varchar(255),
+    charge_id varchar(255),
+    customer_id varchar(255),
     PRIMARY KEY (payment_code)
 );
 
@@ -110,6 +122,7 @@ CREATE TABLE reservation_table (
     guest_code varchar(255),
     rr_code varchar(255),
     promotion_code varchar(255),
+    booked_at datetime,
     computed_price_id int,
     modified_on datetime,
     cancelled_on datetime,
@@ -219,6 +232,52 @@ CREATE TABLE computed (
     PRIMARY KEY (id)
 );
 
+
+CREATE TABLE cancellations (
+    id int not null AUTO_INCREMENT
+    confirmation_number varchar(255),
+    request_on datetime,
+    reason varchar,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE reservation_update (
+    id int not null AUTO_INCREMENT
+    arrival_date date,
+    departure_date date,
+    updated_room1 varchar(255),
+    updated_room2 varchar(255),
+    updated_room3 varchar(255),
+    updated_rate1 varchar(255),
+    updated_rate2 varchar(255),
+    updated_rate3 varchar(255),
+    fname_update varchar(255),
+    lname_update varchar(255),
+    address_update varchar(255),
+    city_update varchar(255),
+    mobile_num_update varchar(255),
+    email varchar(255),
+    updated_total varchar(255)
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE reservation_log (
+    guest_code varchar(255),
+    payment_information varchar(255),
+    rr_code varchar(255),
+    arrival_date date,
+    departure_date date,
+    promotion_code datetime,
+    log_status varchar(255),
+    booked_at datetime
+    end_at datetime
+);
+
+
+
+
+
 INSERT INTO amenities(amenities_number, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 VALUES
 ('DA-1', 'King-size bed or queen size bed', 'Free local landline calls', 'High-quality toiletries', 'Hairdryer', 'Coffee and tea-maker', 'Marble bathroom with bathtub and walk-in shower', '', '', '', ''),
@@ -233,10 +292,10 @@ VALUES
 ('GC-020', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-020');
 
 
-INSERT INTO payment_information(payment_code, payment_type, card_number, card_holder_name, expiration)
+INSERT INTO payment_information(payment_code, payment_type, card_number, card_holder_name, expiration_month, expiration_year)
 VALUES
-('PC-010', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05/21'),
-('PC-020', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06/21');
+('PC-010', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05', '21'),
+('PC-020', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06', '21');
 
 
 INSERT INTO promotion_description(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name, album_id)
@@ -419,10 +478,10 @@ VALUES
 -- ('GC-02', 'Mr', 'John Mark', 'Chumbingco', 'Brgy Kapugian, 333 Blk, 21 LT, MVP St', 'Pasig', 'Chumnatics@gmail.com', 'PC-02');
 
 
-INSERT INTO payment_informations(payment_code, payment_type, card_number, card_holder_name, expiration)
+INSERT INTO payment_informations(payment_code, payment_type, card_number, card_holder_name, expiration_month, expiration_year)
 VALUES
-('PC-01', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05/21'),
-('PC-02', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06/21');
+('PC-01', 'Visa', '4000 0600 0000 0006', 'Chumnatics Blu Andrei', '05', '21'),
+('PC-02', 'Paymaya', '4111 1111 1111 1111', 'Bordadora', '06', '21');
 
 
 INSERT INTO promotion_descriptions(promotion_code, promotion_name, promotion_short_description, promotion_long_description, terms_conditions1, terms_conditions2, terms_conditions3, promotion_start, promotion_end, overall_cut, image_name, album_id)

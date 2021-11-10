@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "mcred/detect-credit-card-type": "^0.1.0",
         "stripe/stripe-php": "^7.97"
     },
     "require-dev": {

@@ -18,7 +18,11 @@ class CreatePaymentInformationsTable extends Migration
             $table->string('payment_type');
             $table->string('card_number');
             $table->string('card_holder_name');
-            $table->string('expiration');
+            $table->string('expiration_month');
+            $table->string('expiration_year');
+            $table->string('cvc');
+            $table->string('charge_id')->nullable();
+            $table->string('customer_id')->nullable();
             $table->timestamps();
         });
     }

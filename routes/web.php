@@ -40,6 +40,7 @@ Route::get('profile', function () {
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/userprofile', [ProfileController::class, 'userprofile'])->name('userprofile');
+Route::post('/userprofile', [ProfileController::class, 'updateprofile'])->name('updateprofile');
 Route::get('/promos', [PromotionController::class, 'promo'])->name('promo');
 Route::get('/promos/{name}', [PromotionController::class, 'show']);
 Route::get('/roomtab', [RoomSuiteController::class, 'rooms'])->name('roomtab');

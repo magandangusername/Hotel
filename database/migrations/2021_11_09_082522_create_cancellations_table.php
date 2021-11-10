@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModificationRequestsTable extends Migration
+class CreateCancellationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateModificationRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('modification_requests', function (Blueprint $table) {
-            $table->string('midc')->primary();
+        Schema::create('cancellations', function (Blueprint $table) {
+            $table->id();
             $table->string('confirmation_number');
-            $table->string('update_code');
             $table->dateTime('request_on');
-            $table->tinyInteger('approval_status');
-            $table->dateTime('approved_at');
-            $table->dateTime('denied_at');
+            $table->string('reason');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateModificationRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modification_requests');
+        Schema::dropIfExists('cancellations');
     }
 }

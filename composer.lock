@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bf827ef0e82cc994ff0200ecebb4d62",
+    "content-hash": "54015af1bc3b56eb2d3c4104a352a717",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1577,6 +1577,52 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "mcred/detect-credit-card-type",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcred/detect-credit-card-type.git",
+                "reference": "33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcred/detect-credit-card-type/zipball/33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e",
+                "reference": "33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "^0.4.4",
+                "phpab/phpab": "^0.1.0",
+                "phpunit/phpunit": "^6.1",
+                "theseer/autoload": "^1.24"
+            },
+            "bin": [
+                "card-detect"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CardDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Derek Smart",
+                    "email": "derek@grindaga.com"
+                }
+            ],
+            "description": "Utility to determine credit card type by PAN",
+            "support": {
+                "issues": "https://github.com/mcred/detect-credit-card-type/issues",
+                "source": "https://github.com/mcred/detect-credit-card-type/tree/master"
+            },
+            "time": "2017-10-24T16:52:21+00:00"
         },
         {
             "name": "monolog/monolog",

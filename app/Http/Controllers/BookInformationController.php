@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\BookCompleteMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use CardDetect;
 use Stripe;
 
 
@@ -27,6 +28,27 @@ class BookInformationController extends Controller
         //     }
 
         // }
+        if (session('RoomCount') >= 1) {
+            $totalrate = floatval(session('totalrate'));
+            if (session('RoomCount') >= 2) {
+                $totalrate += floatval(session('totalrate2'));
+                if (session('RoomCount') == 3) {
+                    $totalrate += floatval(session('totalrate3'));
+                }
+            }
+        }
+        Session::put('overallprice', $totalrate);
+
+        if(Auth::check()){
+            $review = 'review';
+            $profile = DB::table('users')
+            ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+            ->where('users.id', Auth::user()->id)
+            ->first();
+            $bookinfo2 = null;
+            $bookinfo3 = null;
+            return view('modify')->with(compact('review', 'bookinfo2', 'bookinfo3', 'profile'));
+        }
         return view('bookinformation');
     }
 
@@ -174,15 +196,75 @@ class BookInformationController extends Controller
             ->where('status', 0)
             ->first();
 
+            $payment = DB::table('payment_informations')->count();
+            $payment = 'PC-0'.($payment + 1);
+
+            $detector = new CardDetect\Detector();
+            $card = '4242424242424242';
+
+            // dd($detector->detect($card));
+            // echo $detector->detect($card); //Visa
+
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create ([
-                "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                "currency" => "php",
-                "source" => $request->stripeToken,
-                "description" => "Book down payment"
-            ]);
+            if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
+                $customer = \Stripe\Customer::create([
+                    'source' => 'tok_'.strtolower($detector->detect($card)),
+                    'email' => Auth::user()->email,
+                ]);
+                $charge = \Stripe\Charge::create([
+                    'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                    'currency' => 'php',
+                    'customer' => $customer->id,
+                ]);
+
+                $user = DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['payment_code' => $payment]);
+            }elseif ($request->input('savedpayment') == 'savedpayment') {
+                $profile = DB::table('users')
+                    ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+                    ->where('users.id', Auth::user()->id)
+                    ->first();
+                    // dd($request->input('cardcvc').' '. $profile->cvc);
+                if($request->input('cardcvc') == $profile->cvc){
+                    $charge = Stripe\Charge::create ([
+                        "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                        "currency" => "php",
+                        "customer" => $profile->customer_id,
+                        "description" => "Book down payment"
+                    ]);
+                }else{
+                    return redirect('/bookinfo?error=CVC is incorrect');
+                }
+            }else {
+                $charge = Stripe\Charge::create ([
+                    "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                    "currency" => "php",
+                    "source" => $request->stripeToken,
+                    "description" => "Book down payment"
+                ]);
+            }
 
             Session::flash('success', 'Payment successful!');
+
+
+            if(!($request->input('savedpayment') == 'savedpayment')){
+                $paymentinfo = DB::table('payment_informations')->insert([
+                    'payment_code' => $payment,
+                    'payment_type' => 'card',
+                    'card_number' => $request->input('cardnum'),
+                    'card_holder_name' => $request->input('cardname'),
+                    'expiration_month' => $request->input('cardexprm'),
+                    'expiration_year' => $request->input('cardexpry'),
+                    'CVC' => $request->input('cardcvc'),
+                    'charge_id' => $charge->id,
+                    'customer_id' => $customer->id
+
+                ]);
+            }
+
+
+
 
             if ($roomnum != null) {
                 $roomnum = $roomnum->room_number;
@@ -192,7 +274,7 @@ class BookInformationController extends Controller
                     ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
 
             } else {
-                echo "ERROR1: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+                echo "ERROR1: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
                 exit;
             }
 
@@ -209,7 +291,7 @@ class BookInformationController extends Controller
                     $roomnum2 = $roomnum2->room_number;
 
                 } else {
-                    echo "ERROR2: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+                    echo "ERROR2: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
                     exit;
                 }
 
@@ -232,7 +314,7 @@ class BookInformationController extends Controller
                     $roomnum3 = $roomnum3->room_number;
 
                 } else {
-                    echo "ERROR3: One of the rooms became unavailable before you submitted your reservation. Please check the availability of the rooms again.";
+                    echo "ERROR3: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
                     exit;
                 }
                 $roomstatus = DB::table('room_statuses')
@@ -267,23 +349,14 @@ class BookInformationController extends Controller
                     'city' => $city,
                     'email' => $email,
                     'mobile_num' => $mobilenum,
-                    'payment_code' => $paymentcode
+                    'payment_code' => $payment
 
                 ]);
             }
 
-            $payment = DB::table('payment_informations')->count();
-            $payment = 'PC-0'.($payment + 1);
-
-            $paymentinfo = DB::table('payment_informations')->insert([
-                'payment_code' => $payment,
-                'payment_type' => 'card',
-                'card_number' => $request->input('cardnum'),
-                'card_holder_name' => $request->input('cardname'),
-                'expiration' => $request->input('cardexprm').'/'.$request->input('cardexpry')
 
 
-            ]);
+
 
             $headcount = DB::table('head_counts')->insert([
                 'adult' => $adult,
@@ -482,6 +555,7 @@ class BookInformationController extends Controller
 
             }
             $review = 'review';
+
             $bookinfo2 = null;
             $bookinfo3 = null;
             return view('modify')->with(compact('review', 'bookinfo2', 'bookinfo3'));

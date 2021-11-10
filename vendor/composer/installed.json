@@ -2167,6 +2167,55 @@
             "install-path": "../league/mime-type-detection"
         },
         {
+            "name": "mcred/detect-credit-card-type",
+            "version": "0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcred/detect-credit-card-type.git",
+                "reference": "33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcred/detect-credit-card-type/zipball/33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e",
+                "reference": "33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "^0.4.4",
+                "phpab/phpab": "^0.1.0",
+                "phpunit/phpunit": "^6.1",
+                "theseer/autoload": "^1.24"
+            },
+            "time": "2017-10-24T16:52:21+00:00",
+            "bin": [
+                "card-detect"
+            ],
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "CardDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Derek Smart",
+                    "email": "derek@grindaga.com"
+                }
+            ],
+            "description": "Utility to determine credit card type by PAN",
+            "support": {
+                "issues": "https://github.com/mcred/detect-credit-card-type/issues",
+                "source": "https://github.com/mcred/detect-credit-card-type/tree/master"
+            },
+            "install-path": "../mcred/detect-credit-card-type"
+        },
+        {
             "name": "mockery/mockery",
             "version": "1.4.3",
             "version_normalized": "1.4.3.0",

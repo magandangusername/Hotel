@@ -168,6 +168,7 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         'C' => 
         array (
             'Cron\\' => 5,
+            'CardDetect\\' => 11,
             'Carbon\\' => 7,
         ),
         'B' => 
@@ -502,6 +503,10 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'CardDetect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mcred/detect-credit-card-type/src',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -546,8 +551,11 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
+        'App\\Http\\Controllers\\ModifyReservationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ModifyReservationController.php',
+        'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\PromotionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PromotionController.php',
         'App\\Http\\Controllers\\RoomSuiteController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoomSuiteController.php',
+        'App\\Http\\Controllers\\SearchModifyController' => __DIR__ . '/../..' . '/app/Http/Controllers/SearchModifyController.php',
         'App\\Http\\Controllers\\StripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/StripeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -558,7 +566,9 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\BookCompleteMail' => __DIR__ . '/../..' . '/app/Mail/BookCompleteMail.php',
         'App\\Models\\Amenities' => __DIR__ . '/../..' . '/app/Models/Amenities.php',
+        'App\\Models\\Cancellations' => __DIR__ . '/../..' . '/app/Models/Cancellations.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\cancellation_requests' => __DIR__ . '/../..' . '/app/Models/cancellation_requests.php',
         'App\\Models\\computed' => __DIR__ . '/../..' . '/app/Models/computed.php',
@@ -571,7 +581,9 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         'App\\Models\\payment_information' => __DIR__ . '/../..' . '/app/Models/payment_information.php',
         'App\\Models\\promotion_description' => __DIR__ . '/../..' . '/app/Models/promotion_description.php',
         'App\\Models\\rate_description' => __DIR__ . '/../..' . '/app/Models/rate_description.php',
+        'App\\Models\\reservation_log' => __DIR__ . '/../..' . '/app/Models/reservation_log.php',
         'App\\Models\\reservation_table' => __DIR__ . '/../..' . '/app/Models/reservation_table.php',
+        'App\\Models\\reservation_update' => __DIR__ . '/../..' . '/app/Models/reservation_update.php',
         'App\\Models\\reserved_rooms' => __DIR__ . '/../..' . '/app/Models/reserved_rooms.php',
         'App\\Models\\room_description' => __DIR__ . '/../..' . '/app/Models/room_description.php',
         'App\\Models\\room_status' => __DIR__ . '/../..' . '/app/Models/room_status.php',
@@ -673,6 +685,7 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'CardDetect\\Detector' => __DIR__ . '/..' . '/mcred/detect-credit-card-type/src/Detector.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -1358,6 +1371,7 @@ class ComposerStaticInitfbb0d0c25faaba83b194a972eb8dbcc5
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
+        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd67154f6a964887ebac723a9744e9f0c38a50a27',
+        'reference' => '9f1e534557bc982cf0934c35e9e2ddf0b27f06ac',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -400,7 +400,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd67154f6a964887ebac723a9744e9f0c38a50a27',
+            'reference' => '9f1e534557bc982cf0934c35e9e2ddf0b27f06ac',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -473,6 +473,15 @@
             'install_path' => __DIR__ . '/../league/mime-type-detection',
             'aliases' => array(),
             'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
+            'dev_requirement' => false,
+        ),
+        'mcred/detect-credit-card-type' => array(
+            'pretty_version' => '0.1.0',
+            'version' => '0.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mcred/detect-credit-card-type',
+            'aliases' => array(),
+            'reference' => '33bb3c5ce83ddb8eb0fb9e7f445b59bb3342e86e',
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(
