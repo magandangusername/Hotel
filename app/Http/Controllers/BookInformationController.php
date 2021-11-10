@@ -248,7 +248,7 @@ class BookInformationController extends Controller
             Session::flash('success', 'Payment successful!');
 
 
-            if(!($request->input('savedpayment') == 'savedpayment')){
+            if(!($request->input('savedpayment') == 'savedpayment') || !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')){
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
                     'payment_type' => 'card',
@@ -257,8 +257,20 @@ class BookInformationController extends Controller
                     'expiration_month' => $request->input('cardexprm'),
                     'expiration_year' => $request->input('cardexpry'),
                     'CVC' => $request->input('cardcvc'),
-                    'charge_id' => $charge->id,
-                    'customer_id' => $customer->id
+                    'charge_id' => $charge->id
+                    // 'customer_id' => $customer->id
+
+                ]);
+            } elseif($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
+                $paymentinfo = DB::table('payment_informations')->insert([
+                    'payment_code' => $payment,
+                    'payment_type' => 'card',
+                    'card_number' => $request->input('cardnum'),
+                    'card_holder_name' => $request->input('cardname'),
+                    'expiration_month' => $request->input('cardexprm'),
+                    'expiration_year' => $request->input('cardexpry'),
+                    'CVC' => $request->input('cardcvc'),
+                    'charge_id' => $charge->id
 
                 ]);
             }
