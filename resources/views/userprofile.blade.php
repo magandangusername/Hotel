@@ -293,6 +293,12 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <div class='form-row row'>
+                                    <div class='col-md-12 error form-group hide'>
+                                       <div class='alert text-danger'>
+                                       </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         @if (isset($updatepayment) && $updatepayment)

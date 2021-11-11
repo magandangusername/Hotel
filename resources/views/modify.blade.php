@@ -79,23 +79,66 @@
             <div class=" text-dark ">
                 <h2 class="px-5 py-3 fw-bold"> Guest Information</h2>
                 <div class="row px-5 py-3">
-
-                    <div class="col-5">
-                        <h5><b>Name : </b>{{ $book->first_name }} {{ $book->last_name }}</h5>
-                        <h5><b>Email Address : </b>{{ $book->email }}</h5>
-                        <h5><b>Mobile Number : </b> {{ $book->mobile_num }}</h5>
-                    </div>
+                    @if (!isset($editguest))
 
 
-                    <div class="col-5">
-                        <h5><b>Address : </b>{{ $book->address }}</h5>
-                        <h5><b>City : </b>{{ $book->city }}</h5>
-                    </div>
 
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Edit Guest
-                            Info</button>
-                    </div>
+                        <div class="col-5">
+                            <h5><b>Name : </b>{{ $book->first_name }} {{ $book->last_name }}</h5>
+                            <h5><b>Email Address : </b>{{ $book->email }}</h5>
+                            <h5><b>Mobile Number : </b> {{ $book->mobile_num }}</h5>
+                        </div>
+
+
+                        <div class="col-5">
+                            <h5><b>Address : </b>{{ $book->address }}</h5>
+                            <h5><b>City : </b>{{ $book->city }}</h5>
+                        </div>
+                        <form action="" method="post">
+                            @csrf
+                            <div class="col">
+                                <input type="text" name="editguestinfo" value="editguestinfo" hidden>
+                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Edit Guest
+                                    Info</button>
+                            </div>
+                        </form>
+
+                    @else
+                        <form action="" method="post">
+                            @csrf
+                            <div class="col-5">
+                                <h5><b>Name : </b>
+                                    <input placeholder="First Name" type="text" name="first_name"
+                                        value="{{ $book->first_name }}">
+                                    <input placeholder="Last Name" type="text" name="last_name"
+                                        value="{{ $book->last_name }}">
+                                </h5>
+                                <h5><b>Email Address : </b>
+                                    <input placeholder="email" type="email" name="email" value="{{ $book->email }}">
+                                </h5>
+                                <h5><b>Mobile Number : </b>
+                                    <input placeholder="Phone" type="text" name="mobile_num"
+                                        value="{{ $book->mobile_num }}">
+                                </h5>
+                            </div>
+
+
+                            <div class="col-5">
+                                <h5><b>Address : </b>
+                                    <input placeholder="address" type="text" name="address" value="{{ $book->address }}">
+                                </h5>
+                                <h5><b>City : </b><input placeholder="city" type="text" name="city"
+                                        value="{{ $book->city }}"></h5>
+                            </div>
+
+                            <div class="col">
+                                <input type="text" name="submitguestinfo" value="submitguestinfo" hidden>
+                                <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Submit
+                                    Edit</button>
+                            </div>
+                        </form>
+
+                    @endif
 
                 </div>
             </div>
@@ -106,12 +149,12 @@
             <div class="row px-5 py-3  text-dark ">
 
                 <div class="col-5">
-                    <h5><b>Cardholder Name :</b> Jo*****</h5>
-                    <h5><b>Card Number :</b> 4********</h5>
+                    <h5><b>Cardholder Name :</b> {{ $book->card_holder_name }}</h5>
+                    <h5><b>Card Number :</b> {{ substr_replace($book->card_number, '**** **** **** ', 0, -4) }}</h5>
                 </div>
 
                 <div class="col-5">
-                    <h5><b>Expiry Date : </b> 21/02</h5>
+                    <h5><b>Expiry Date : </b> {{ $book->expiration_month }}/{{ $book->expiration_year }}</h5>
                     <h5><b>CVV : </b> ***</h5>
                 </div>
 
@@ -742,6 +785,12 @@
                                                         type='text' value="22" name="cardexpry">
                                                 </div>
                                             </div>
+                                            <div class='form-row row'>
+                                                <div class='col-md-12 error form-group hide'>
+                                                    <div class='alert text-danger'>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             {{-- <div class='form-row row'>
                                           <div class='col-md-12 error form-group hide'>
                                              <div class='alert-danger alert'>Please correct the errors and try
@@ -823,6 +872,12 @@
                                                             class='form-control card-expiry-year' placeholder='YYYY' size='4'
                                                             type='text' value="22" name="cardexpry">
                                                     </div>
+                                                    <div class='form-row row'>
+                                                        <div class='col-md-12 error form-group hide'>
+                                                            <div class='alert text-danger'>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -857,7 +912,8 @@
                                                 @endif
                                                 <div class='form-row row'>
                                                     <div class='col-xs-12 form-group required'>
-                                                        <label class='control-label'>Name on Card</label> <h4 class="fw-bold">{{$profile->card_holder_name}}</h4>
+                                                        <label class='control-label'>Name on Card</label>
+                                                        <h4 class="fw-bold">{{ $profile->card_holder_name }}</h4>
                                                     </div>
                                                 </div>
                                                 <div class='form-row row'>
@@ -869,7 +925,8 @@
                                                             <path
                                                                 d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
                                                         </svg>
-                                                        <label class='control-label'>Card Number</label> <h4 class="fw-bold">
+                                                        <label class='control-label'>Card Number</label>
+                                                        <h4 class="fw-bold">
                                                             {{ substr_replace($profile->card_number, '**** **** **** ', 0, -4) }}
                                                         </h4>
                                                     </div>
@@ -877,14 +934,22 @@
                                                 <div class='form-row row'>
                                                     <div class='col-xs-12 col-md-4 form-group cvc required'>
                                                         <label class='control-label'>CVC</label> <input autocomplete='off'
-                                                        class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'
-                                                        name="cardcvc">
+                                                            class='form-control card-cvc' placeholder='ex. 311' size='4'
+                                                            type='text' name="cardcvc">
                                                     </div>
                                                     <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                                        <label class='control-label'>Expiration Month</label> <h4 class="fw-bold">{{$profile->expiration_month}}</h4>
+                                                        <label class='control-label'>Expiration Month</label>
+                                                        <h4 class="fw-bold">{{ $profile->expiration_month }}</h4>
                                                     </div>
                                                     <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                                        <label class='control-label'>Expiration Year</label> <h4 class="fw-bold">{{$profile->expiration_year}}</h4>
+                                                        <label class='control-label'>Expiration Year</label>
+                                                        <h4 class="fw-bold">{{ $profile->expiration_year }}</h4>
+                                                    </div>
+                                                    <div class='form-row row'>
+                                                        <div class='col-md-12 error form-group hide'>
+                                                            <div class='alert text-danger'>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -897,9 +962,9 @@
                                 <input type="text" name="savedpayment" value="savedpayment" hidden>
                                 <button type="submit" class="btn btn-outline-dark fw-bold"
                                     style="margin-top: 2em;">Checkout</button>
-                                    @if(isset($_GET['error']))
-                                        <p class="alert alert-danger" >{{$_GET['error']}}</p>
-                                    @endif
+                                @if (isset($_GET['error']))
+                                    <p class="alert alert-danger">{{ $_GET['error'] }}</p>
+                                @endif
                             </div>
                         </form>
 
