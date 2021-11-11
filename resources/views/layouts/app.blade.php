@@ -110,11 +110,6 @@
             </div>
         </nav>
 
-
-
-
-
-
         <div class="container centerbox p-0">
 
             @yield('content')

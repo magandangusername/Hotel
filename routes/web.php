@@ -1,5 +1,24 @@
 <?php
 
+
+use App\Http\Controllers\AdminAccController;
+use App\Http\Controllers\AdminGuestAccController;
+use App\Http\Controllers\AdminLogController;
+use App\Http\Controllers\AdminPaymentInfoController;
+use App\Http\Controllers\AdminGuestInfoController;
+use App\Http\Controllers\AdminCancellationsController;
+use App\Http\Controllers\AdminReservationsController;
+use App\Http\Controllers\AdminModificationsController;
+use App\Http\Controllers\AdminRoomAddController;
+use App\Http\Controllers\AdminSuiteAddController;
+use App\Http\Controllers\AdminRateAddController;
+use App\Http\Controllers\AdminPromotionAddController;
+use App\Http\Controllers\AdminAmenityAddController;
+use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AdminRegisterController;
+use App\Http\Controllers\AdminResetPasswordController;
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
@@ -15,6 +34,7 @@ use App\Http\Controllers\SearchModifyController;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,10 +68,39 @@ Route::get('/suitestab', [RoomSuiteController::class, 'suites'])->name('suitesta
 Route::get('/roomtab/{name}', [RoomSuiteController::class, 'roominfo']);
 Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
 
+Route::get('/admin', [DashboardController::class, 'DashboardController' ])->name('dashboard');
+Route::get('/adminreservation', [AdminReservationsController::class, 'index' ])->name('adminreservation');
+Route::get('/admincancellation', [AdminCancellationsController::class, 'index' ])->name('admincancellation');
+Route::get('/adminmodification', [AdminModificationsController::class, 'index' ])->name('adminmodification');
+Route::get('/adminaddroom', [AdminRoomAddController::class, 'index' ])->name('adminroom');
+Route::get('/adminaddsuite', [AdminSuiteAddController::class, 'index' ])->name('adminsuite');
+Route::get('/adminaddamenity', [AdminAmenityAddController::class, 'index' ])->name('adminamenity');
+Route::get('/adminaddrate', [AdminRateAddController::class, 'index' ])->name('adminrate');
+Route::get('/adminaddpromotion', [AdminPromotionAddController::class, 'index' ])->name('adminpromotion');
+Route::get('/adminguestinfo', [AdminGuestInfoController::class, 'index' ])->name('adminguestinfo');
+Route::get('/adminpaymentinfo', [AdminPaymentInfoController::class, 'index' ])->name('adminguestpayment');
+Route::get('/adminlog', [AdminLogController::class, 'index' ])->name('adminlog');
+Route::get('/adminguestacc', [AdminGuestAccController::class, 'index' ])->name('adminguestacc');
+Route::get('/adminacc', [AdminAccController::class, 'index' ])->name('adminacc');
+
+Route::get('/adminlogin', [AdminLoginController::class, 'index' ])->name('adminlogin');
+Route::get('/adminregister', [AdminRegisterController::class, 'index' ])->name('adminregister');
+Route::get('/adminresetpass', [AdminResetPasswordController::class, 'index' ])->name('adminresetpass');
+
 Route::resource('/book', BookController::class);
 Route::resource('/chooseroom', ChooseRoomController::class);
 Route::resource('/bookinfo', BookInformationController::class);
 Route::resource('/search', SearchModifyController::class);
+
+
+
+
+
+
+
+
+
+
 
 Route::get('stripe', [StripeController::class, 'stripe'])->middleware('verified');
 Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post')->middleware('verified');
@@ -60,6 +109,8 @@ Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.pos
 //Route::get('/promos/{code}', [PromotionController::class, 'promocode']);
 
 Auth::routes(['verify' => true]);
+
+
 
 // Route::view('/complete', 'confdisplay');
 
