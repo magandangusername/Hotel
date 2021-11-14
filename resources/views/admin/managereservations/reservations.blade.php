@@ -21,7 +21,7 @@
                             <th>Room/s Selected</th>
                             <th>Booked At</th>
                             <th>Promotion Applied</th>
-                            <th>Remaining Balance</th>
+                            <th>Status</th>
                             <th>Adult</th>
                             <th>Children</th>
                             <th>Payment Type</th>
@@ -183,7 +183,73 @@
             </div>
         </div>
 
+        <div class="card my-5 ">
+                            <div class="row p-3">
+                                <h4>Reservation Number: 2313131411</h4>
+                                <p>Nights: 5</p>
+                                <div class="col">
 
+                                        <ul class="list-group my-4">
+                                            <li class="list-group-item bg-dark text-light"><h5>Room 1</h5> </li>
+                                            <li class="list-group-item"><b>Rate:</b> John Mark</li>
+                                            <li class="list-group-item"><b>Adult:</b> 5</li>
+                                            <li class="list-group-item"><b>Children:</b> 3</li>
+                                            <li class="list-group-item"><b>Room Charge:</b> 19,000</li>
+                                            <li class="list-group-item"><b>Vat:</b> 20</li>
+                                            <li class="list-group-item"><b>Service:</b> 30</li>
+                                            <li class="list-group-item"><b>City Tax:</b> 50</li>
+                                            <li class="list-group-item"><b>Subtotal :</b> 20</li>
+                                            <li class="list-group-item"><b>Promotion Discount:</b> -20k</li>
+                                            <li class="list-group-item"><b>Rate Discount:</b> -10k</li>
+                                            <li class="list-group-item"><b>Total :</b> 10,000</li>
+                                        </ul>
+
+                                </div>
+
+                                <div class="col">
+                                    <ul class="list-group my-4">
+                                        <li class="list-group-item bg-dark text-light"><h5>Room 2</h5> </li>
+                                        <li class="list-group-item"><b>Rate:</b> John Mark</li>
+                                        <li class="list-group-item"><b>Adult:</b> 5</li>
+                                        <li class="list-group-item"><b>Children:</b> 3</li>
+                                        <li class="list-group-item"><b>Room Charge:</b> 19,000</li>
+                                        <li class="list-group-item"><b>Vat:</b> 20</li>
+                                        <li class="list-group-item"><b>Service:</b> 30</li>
+                                        <li class="list-group-item"><b>City Tax:</b> 50</li>
+                                        <li class="list-group-item"><b>Subtotal :</b> 20</li>
+                                        <li class="list-group-item"><b>Promotion Discount:</b> -20k</li>
+                                        <li class="list-group-item"><b>Rate Discount:</b> -10k</li>
+                                        <li class="list-group-item"><b>Total :</b> 10,000</li>
+                                    </ul>
+
+                                </div>
+
+                                <div class="col">
+                                    <ul class="list-group my-4">
+                                        <li class="list-group-item bg-dark text-light"><h5>Room 3</h5> </li>
+                                        <li class="list-group-item"><b>Rate:</b> John Mark</li>
+                                        <li class="list-group-item"><b>Adult:</b> 5</li>
+                                        <li class="list-group-item"><b>Children:</b> 3</li>
+                                        <li class="list-group-item"><b>Room Charge:</b> 19,000</li>
+                                        <li class="list-group-item"><b>Vat:</b> 20</li>
+                                        <li class="list-group-item"><b>Service:</b> 30</li>
+                                        <li class="list-group-item"><b>City Tax:</b> 50</li>
+                                        <li class="list-group-item"><b>Subtotal :</b> 20</li>
+                                        <li class="list-group-item"><b>Promotion Discount:</b> -20k</li>
+                                        <li class="list-group-item"><b>Rate Discount:</b> -10k</li>
+                                        <li class="list-group-item"><b>Total :</b> 10,000</li>
+                                    </ul>
+
+                                </div>
+                                <div class="row mx-5">
+                                    <h5><b>To pay: </b> 5,000 PHP</h5>
+                                <h5><b>Total: </b> 10,000 PHP</h5>
+                                </div>
+
+
+                            </div>
+
+                        </div>
 
     </div>
 

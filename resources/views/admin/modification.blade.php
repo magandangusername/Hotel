@@ -1,59 +1,3 @@
-<!--
-{{-- @if (session()->exists('confirmation_number')) --}}
-
-<p>Booked Successfully! Welcome to Mondstadt!</p>
-<p>Reservation Number: {{session('confirmation_number')}}</p>
-<p>total price: PHP {{number_format(session('overallprice'), 2)}}</p>
-<p>downpayment: PHP {{number_format(session('overallprice') * 0.5, 2)}}</p>
-<p>Follow Up Payment: PHP {{number_format(session('overallprice') * 0.5, 2)}}</p>
-
-<hr>
-
-<p>- Proceed to the desk after arrival</p>
-<p>- Present your Reservation Number and Valid Id to confirm your identity </p>
-<p>- After confirming your reservation please provide the follow up payment </p>
-
-<p> ************************************** </p>
-<h5>Cancellation Policy</h5>
-<hr>
-<p> Cancellation must be done 48 hours prior to your arrival doing so will not result of any charge </p>
-<p> Cancellation after the given duration or failing to show will cause a one night fee via your Payment Method </p>
-
-
-{{--
-@else
-
-<h1>An error occured reloading the page.</h1>
-
-@endif
-@php
-    Session::forget([
-            'CheckIn',
-            'CheckOut',
-            'RoomCount',
-            'AdultCount',
-            'ChildCount',
-            'PromoCode',
-            'room',
-            'roomchecker',
-            'roomchecker2',
-            'roomtype2',
-            'ratetype2',
-            'bedcheckerq',
-            'bedcheckerk',
-            'roomtype',
-            'ratetype',
-            'bed',
-            'totalrate',
-            'overallprice',
-            'success',
-            'confirmation_number'
-        ]);
-@endphp --}}
-@endsection -->
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -171,9 +115,6 @@
 
 </head>
 <body style="background-color:#F4F4F4;">
-
-{{-- @if (session()->exists('confirmation_number')) --}}
-
     <center>
 
         <!--[if gte mso 9]><table width="600" cellpadding="0" cellspacing="0"><tr><td><![endif]-->
@@ -184,8 +125,7 @@
                     <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
                         <tr>
                             <td style="background-color:#FFFFFF;color:#000000;padding:20px 50px; text-align: center;">
-                            <link rel="icon" href="{{ asset('images/logomondstadt.png') }}">
-
+                                <img src="https://via.placeholder.com/250x70" width="160" />
                             </td>
                         </tr>
                     </table>
@@ -197,11 +137,11 @@
                                     <tbody>
                                         <tr>
                                             <td style="padding:15px 0;">
-                                                <span style="font-family: Arial,sans-serif; font-size: 25px; font-weight: bold; line-height:30px;">Reservation Number: {{session('confirmation_number')}}</span>
+                                                <span style="font-family: Arial,sans-serif; font-size: 25px; font-weight: bold; line-height:30px;">Reservation Number: 2012192831</span>
                                                 <br>
                                                 <span style="font-family: Arial,sans-serif; font-size: 18px; font-weight: bold; line-height:30px;">Welcome to Mondstadt!</span>
                                                 <br>
-                                                <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">You are now booked! Do take note of your reservation number it will be used during your arrival
+                                                <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">Your modification has been approved!
                                                     <br>
                                                     <br>
                                                     <span style="text-decoration: none; color: #000000;"><b>Arrival Date:</b> 01/10/11</span>
@@ -344,21 +284,24 @@
                                                 <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"></span>
                                             </td>
                                             <td style="padding:15px 0; text-align: right;">
+
+
+                                                <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">Refunded:</span>
+                                                <br>
+                                                <span style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">₱ 0.00</span>
+                                                <br>
                                                 <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">Deposited:</span>
                                                 <br>
-                                                <span style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">PHP {{number_format(session('overallprice') * 0.5, 2)}}</span>
+                                                <span style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">₱ 0.00</span>
                                                 <br>
-                                                <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">To Pay:</span>
-                                                <br>
-                                                <span style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">PHP {{number_format(session('overallprice') * 0.5, 2)}}</span>
-                                                <br>
+
                                                 <span style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">Total:</span>
                                                 <br>
-                                                <span style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">PHP {{number_format(session('overallprice'), 2)}}</span>
+                                                <span style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">₱ 0.00</span>
 
                                             </td>
                                             <td>
-                                                asdsada
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -379,37 +322,7 @@
                 </td>
             </tr>
         </table>
+        <!--[if gte mso 9]></td></tr></table><![endif]-->
     </center>
-
-    @else
-
-<h1>An error occured reloading the page.</h1>
-
-@endif
-
-@php
-    Session::forget([
-            'CheckIn',
-            'CheckOut',
-            'RoomCount',
-            'AdultCount',
-            'ChildCount',
-            'PromoCode',
-            'room',
-            'roomchecker',
-            'roomchecker2',
-            'roomtype2',
-            'ratetype2',
-            'bedcheckerq',
-            'bedcheckerk',
-            'roomtype',
-            'ratetype',
-            'bed',
-            'totalrate',
-            'overallprice',
-            'success',
-            'confirmation_number'
-        ]);
-@endphp --}}
 </body>
 </html>
