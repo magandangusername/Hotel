@@ -606,9 +606,15 @@
                                     @php
                                         $image = DB::table('gallery_albums')
                                             ->leftJoin('gallery_photos', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
-                                            ->where('album_name', session('roomtype3'))
+                                            ->where('album_name', $bookinfo3->room_suite_name)
                                             ->first();
-                                        $image = $image->photo_name;
+                                        if($image !== null){
+                                            $image = $image->photo_name;
+                                        } else {
+                                            $image = 'logo.png';
+                                        }
+
+
                                     @endphp
 
                                     <div class="col"><img src="{{ asset('images/' . $image) }}"
@@ -617,14 +623,14 @@
 
                                     <div class="col mt-5">
 
-                                        <h5><b>Room Name : </b>{{ session('roomtype3') }}</h5>
-                                        <h5><b>Bed :</b> {{ session('bed3') }}</h5>
-                                        <h5><b>Rate Applied:</b> {{ session('ratetype3') }} </h5>
+                                        <h5><b>Room Name : </b>{{ $bookinfo3->room_suite_name }}</h5>
+                                        <h5><b>Bed :</b> {{ $bookinfo3->room_suite_bed }}</h5>
+                                        <h5><b>Rate Applied:</b> {{ $bookinfo3->rate_name }} </h5>
                                         <h5><b>Promo Applied:</b> @php
-                                            if (session('PromoCode') === null || session('PromoCode') == '') {
+                                            if ($bookinfo3->promotion_code === null || $bookinfo3->promotion_code == '') {
                                                 echo 'N/A';
                                             } else {
-                                                echo session('PromoCode');
+                                                echo $bookinfo3->promotion_code;
                                             }
                                         @endphp </h5>
                                     </div>
@@ -634,19 +640,19 @@
                                     <div class="col mt-5">
                                         <h5><b>Base Price : php</b> @php
                                             $price = DB::table('room_descriptions')
-                                                ->where('room_name', session('roomtype3'))
+                                                ->where('room_name', $bookinfo3->room_suite_name)
                                                 ->first();
                                             if ($price !== null) {
                                                 echo number_format($price->base_price, 2);
                                             } else {
                                                 $price = DB::table('suite_descriptions')
-                                                    ->where('suite_name', session('roomtype3'))
+                                                    ->where('suite_name', $bookinfo3->room_suite_name)
                                                     ->first();
                                                 echo number_format($price->base_price, 2);
                                             }
-                                            $book = DB::table('rate_descriptions')
-                                                ->where('rate_name', session('ratetype'))
-                                                ->first();
+                                            // $book = DB::table('rate_descriptions')
+                                            //     ->where('rate_name', $bookinfo3->rate_name)
+                                            //     ->first();
                                         @endphp</h5>
                                         <h5><b>Rate Discount :</b> php
                                             -{{ number_format($rate_discount = $price->base_price * $book->base_discount, 2) }}

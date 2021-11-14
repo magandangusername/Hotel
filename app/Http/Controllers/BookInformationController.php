@@ -201,7 +201,12 @@ class BookInformationController extends Controller
 
             $detector = new CardDetect\Detector();
             $card = str_replace(' ', '', $request->input('card_number'));
+
             $cardtype = $detector->detect($card);
+            if($cardtype == 'Invalid Card'){
+                $cardtype = 'mastercard';
+            }
+            $cardtoken = strtolower($cardtype);
 
             // dd($detector->detect($card));
             // echo $detector->detect($card); //Visa
@@ -209,7 +214,7 @@ class BookInformationController extends Controller
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
                 $customer = \Stripe\Customer::create([
-                    'source' => 'tok_'.strtolower($detector->detect($card)),
+                    'source' => 'tok_'.$cardtoken,
                     'email' => Auth::user()->email,
                 ]);
                 $charge = \Stripe\Charge::create([

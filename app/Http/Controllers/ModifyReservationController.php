@@ -133,6 +133,7 @@ class ModifyReservationController extends Controller
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
+                // dd($bookinfo2);
             // }
 
             // dd($bookinfo->adult, $bookinfo2->adult, $bookinfo3->adult);

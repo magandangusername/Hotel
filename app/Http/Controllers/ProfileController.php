@@ -113,6 +113,9 @@ class ProfileController extends Controller
             $detector = new CardDetect\Detector();
             $card = str_replace(' ', '', $request->input('card_number'));
             $cardtype = $detector->detect($card);
+            if ($cardtype == 'Invalid Card') {
+                $cardtype = 'Unknown Card';
+            }
 
 
             $updateprofile = DB::table('users')
@@ -170,6 +173,9 @@ class ProfileController extends Controller
 
             $detector = new CardDetect\Detector();
             $cardtype = $detector->detect($request->input('card_number'));
+            if ($cardtype == 'Invalid Card') {
+                $cardtype = 'Unknown Card';
+            }
 
             $paymentinfo = DB::table('payment_informations')->insert([
                 'payment_code' => $payment,

@@ -69,23 +69,25 @@ Route::get('/roomtab/{name}', [RoomSuiteController::class, 'roominfo']);
 Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
 
 Route::get('/admin', [DashboardController::class, 'DashboardController' ])->name('dashboard');
-Route::get('/adminreservation', [AdminReservationsController::class, 'index' ])->name('adminreservation');
-Route::get('/admincancellation', [AdminCancellationsController::class, 'index' ])->name('admincancellation');
-Route::get('/adminmodification', [AdminModificationsController::class, 'index' ])->name('adminmodification');
-Route::get('/adminaddroom', [AdminRoomAddController::class, 'index' ])->name('adminroom');
-Route::get('/adminaddsuite', [AdminSuiteAddController::class, 'index' ])->name('adminsuite');
-Route::get('/adminaddamenity', [AdminAmenityAddController::class, 'index' ])->name('adminamenity');
-Route::get('/adminaddrate', [AdminRateAddController::class, 'index' ])->name('adminrate');
-Route::get('/adminaddpromotion', [AdminPromotionAddController::class, 'index' ])->name('adminpromotion');
-Route::get('/adminguestinfo', [AdminGuestInfoController::class, 'index' ])->name('adminguestinfo');
-Route::get('/adminpaymentinfo', [AdminPaymentInfoController::class, 'index' ])->name('adminguestpayment');
-Route::get('/adminlog', [AdminLogController::class, 'index' ])->name('adminlog');
-Route::get('/adminguestacc', [AdminGuestAccController::class, 'index' ])->name('adminguestacc');
-Route::get('/adminacc', [AdminAccController::class, 'index' ])->name('adminacc');
+Route::get('/admin/reservation', [AdminReservationsController::class, 'index' ])->name('adminreservation');
+Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation' ])->name('admineditreservation');
 
-Route::get('/adminlogin', [AdminLoginController::class, 'index' ])->name('adminlogin');
-Route::get('/adminregister', [AdminRegisterController::class, 'index' ])->name('adminregister');
-Route::get('/adminresetpass', [AdminResetPasswordController::class, 'index' ])->name('adminresetpass');
+Route::get('/admin/cancellation', [AdminCancellationsController::class, 'index' ])->name('admincancellation');
+Route::get('/admin/modification', [AdminModificationsController::class, 'index' ])->name('adminmodification');
+Route::get('/admin/addroom', [AdminRoomAddController::class, 'index' ])->name('adminroom');
+Route::get('/admin/addsuite', [AdminSuiteAddController::class, 'index' ])->name('adminsuite');
+Route::get('/admin/addamenity', [AdminAmenityAddController::class, 'index' ])->name('adminamenity');
+Route::get('/admin/addrate', [AdminRateAddController::class, 'index' ])->name('adminrate');
+Route::get('/admin/addpromotion', [AdminPromotionAddController::class, 'index' ])->name('adminpromotion');
+Route::get('/admin/guestinfo', [AdminGuestInfoController::class, 'index' ])->name('adminguestinfo');
+Route::get('/admin/paymentinfo', [AdminPaymentInfoController::class, 'index' ])->name('adminguestpayment');
+Route::get('/admin/log', [AdminLogController::class, 'index' ])->name('adminlog');
+Route::get('/admin/guestacc', [AdminGuestAccController::class, 'index' ])->name('adminguestacc');
+Route::get('/admin/acc', [AdminAccController::class, 'index' ])->name('adminacc');
+
+Route::get('/admin/login', [AdminLoginController::class, 'index' ])->name('adminlogin');
+Route::get('/admin/register', [AdminRegisterController::class, 'index' ])->name('adminregister');
+Route::get('/admin/resetpass', [AdminResetPasswordController::class, 'index' ])->name('adminresetpass');
 
 Route::resource('/book', BookController::class);
 Route::resource('/chooseroom', ChooseRoomController::class);
