@@ -76,39 +76,43 @@
 
     <!-----service------>
         <div class="container sectioncolor">
-            <div class="row">
+            <Hr>
+            <div class="row my-2">
+                <h2 class="fw-bold my-2"> What's New </h2>
                 <div class="col">
                     <div class="card text-dark">
                         <img src="{{ asset('images/experiences.png') }}" class="card-img" alt="...">
                         <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
-                            <h5 class="card-title fw-bold">Cancellation and Privacy Policy</h5>
-                            <p class="card-text">A disclosure on our Cancellation and Privacy Policy</p>
+                            <h5 class="card-title fw-bold">Promo New!</h5>
+                            <p class="card-text">This is new </p>
                             <a href="#!" class="btn btn-outline-dark">See More</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col">
-                    <div class="card bg-dark text-dark">
-                            <img src="{{ asset('images/service.jpg') }}" class="card-img" alt="...">
+                    <div class="card text-dark">
+                        <img src="{{ asset('images/experiences.png') }}" class="card-img" alt="...">
                         <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
-                            <h5 class="card-title fw-bold mb-4">Careers</h5>
-                            <p class="card-text">We're hiring! See our open positions and contact us for an interview</p>
+                            <h5 class="card-title fw-bold">Promo New!</h5>
+                            <p class="card-text">This is new </p>
                             <a href="#!" class="btn btn-outline-dark">See More</a>
                         </div>
                     </div>
                 </div>
 
+
                 <div class="col">
-                <div class="card bg-dark text-dark">
-                        <img src="{{ asset('images/maintains.png') }}" class="card-img" alt="...">
+                    <div class="card text-dark">
+                        <img src="{{ asset('images/experiences.png') }}" class="card-img" alt="...">
                         <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
-                            <h5 class="card-title fw-bold">Frequently Asked Questions</h5>
-                            <p class="card-text">List of frequently asked questions by our guests</p>
+                            <h5 class="card-title fw-bold">Promo New!</h5>
+                            <p class="card-text">This is new </p>
                             <a href="#!" class="btn btn-outline-dark">See More</a>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
