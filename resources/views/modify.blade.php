@@ -709,6 +709,28 @@
                             Reservation</button>
                     </div>
                 </form>
+                @if (isset($appealsubmitted))
+                    <div class="alert alert-success text-center">
+                        <p>Cancellation appeal has been submitted. Please wait for our response, thank you.</p>
+                    </div>
+                @endif
+
+                @if (isset($invalidcancellation))
+                <form action="/modify" method="POST">
+                    @csrf
+                    <div class="col">
+                        <div class="alert alert-danger text-center">
+                            <p>Your cancellation has passed the 24 hours mark before your arrival.</p>
+                            <p>Please input your cancellation appeal below for approval, we will get back to you as soon as possible.</p>
+                        </div>
+                        <input type="text" name="reason" placeholder="Cancellation request reason">
+                        <input type="text" name="cancelappeal" value="cancelappeal" hidden>
+                        <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Submit Appeal</button>
+                    </div>
+                </form>
+                @endif
+
+
                 <div class="col" hidden>
                     <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">Submit
                         Modification</button>

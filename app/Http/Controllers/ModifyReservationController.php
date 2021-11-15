@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CancellationMail;
 use App\Models\guest_information;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\BillingPortal\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ModifyReservationController extends Controller
 {
@@ -254,50 +257,91 @@ class ModifyReservationController extends Controller
         }
 
         if($request->input('cancel') == 'cancel'){
-            $cancel = DB::table('reservation_tables')
-            ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-            ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
+            $reservation = DB::table('reservation_tables')
+            ->where('confirmation_number', session('confirmation_number'))
+            ->first();
+            $to = \Carbon\Carbon::createFromFormat('Y-m-d', date("Y-m-d", strtotime($reservation->arrival_date)));
+            $from = \Carbon\Carbon::createFromFormat('Y-m-d', date("Y-m-d", strtotime('now')));
+            $diff_in_hours = $to->diffInHours($from);
+            // print_r($diff_in_hours);// Output: 6
 
-            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-            ->where('reservation_tables.user_id', session('uid'))
-            ->orWhere('reservation_tables.guest_code', session('gid'))
-            ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'reservation_tables.cancelled_on' => Carbon::now()]);
+            // dd($reservation->arrival_date.' - '.date("Y-m-d", strtotime('now')).' = '.$diff_in_hours.' hours');
 
-            $cancel = DB::table('reservation_tables')
-            ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-            ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
-            ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
-            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-            ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
+            if ($diff_in_hours <= 24) {
+                $invalidcancellation = true;
+                return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'invalidcancellation'));
+            } else {
+                $cancel = DB::table('reservation_tables')
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
 
-            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-            ->where('reservation_tables.user_id', session('uid'))
-            ->orWhere('reservation_tables.guest_code', session('gid'))
-            ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                ->where('reservation_tables.user_id', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
+                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'reservation_tables.cancelled_on' => Carbon::now()]);
 
-            $cancel = DB::table('reservation_tables')
-            ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-            ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
-            ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
-            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-            ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+                $cancel = DB::table('reservation_tables')
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+                ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
 
-            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-            ->where('reservation_tables.user_id', session('uid'))
-            ->orWhere('reservation_tables.guest_code', session('gid'))
-            ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                ->where('reservation_tables.user_id', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
+                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+
+                $cancel = DB::table('reservation_tables')
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
+                ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+
+                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                ->where('reservation_tables.user_id', session('uid'))
+                ->orWhere('reservation_tables.guest_code', session('gid'))
+                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+
+                $name = $book->first_name.' '.$book->last_name;
+                $amount = number_format($book->ctotal_price / 2, 2);
+                Mail::to($book->email)->send(new CancellationMail($name, $amount));
 
 
-            return redirect('/');
+                return redirect('/');
+
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+        if($request->input('cancelappeal') == 'cancelappeal'){
+            $paymentinfo = DB::table('payment_informations')->insert([
+                'confirmation_number' => session('confirmation_number'),
+                'request_on' => date("Y-m-d H:s:i", strtotime('now')),
+                'reason' => $request->input('reason')
+
+            ]);
+
+            $appealsubmitted = true;
+            return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'appealsubmitted'));
         }
 
         if($request->input('editguestinfo') == 'editguestinfo'){
@@ -386,8 +430,11 @@ class ModifyReservationController extends Controller
                 $total = (($price->base_price - $rate_discount) + $vat + $service_charge + $city_tax) * $nights;
 
 
+
+
                 // dd('(('.$base_price.' - '.$rate_discount.')'.' + '.$city_tax.' + '.$vat.' + '.$service_charge.' * '.$nights.') = '.$total);
                 // dd('('.$price->ctotal_price.' - '.$total.') + '.$request->input('total_rate'). ' = '.($price->ctotal_price - $total) + $request->input('total_rate'));
+
 
                 $bookinfo = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
@@ -402,6 +449,7 @@ class ModifyReservationController extends Controller
                 ->where('reservation_tables.user_id', session('uid'))
                 ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
+
 
                 // dd(($price->ctotal_price - $total) + $request->input('total_rate'));
 
@@ -593,6 +641,7 @@ class ModifyReservationController extends Controller
                 'rr_code' => 'required',
                 'rate_name' => 'required'
             ]);
+
             $request->session()->put('confirmation_number', $request->input('confirmation_number'));
             $request->session()->put('room_num', $request->input('room_num'));
             $request->session()->put('rr_code', $request->input('rr_code'));

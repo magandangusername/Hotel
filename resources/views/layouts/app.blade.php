@@ -40,6 +40,7 @@
 </head>
 
 <body onload="calendar()">
+
     <div class="container-fluid m-0 p-0 bodyback">
         <nav class="navbar navbar-expand-lg navbar-light navcolor px-5 py-3">
             <a class="navbar-brand fw-bold" href="#">Mondstadt Hotel <span class=""><img
@@ -109,6 +110,12 @@
                 </ul>
             </div>
         </nav>
+
+        {{-- announcement --}}
+        <div class="alert alert-danger text-center">
+            <p>In progress: Please report any bugs or errors. Thank you<a href="#" class="close" data-dismiss="alert"
+                aria-label="close">×</a></p>
+        </div>
 
         <div class="container centerbox p-0">
 

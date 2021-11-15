@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreatePromotionDescriptionsTable extends Migration
 {
@@ -26,7 +27,8 @@ class CreatePromotionDescriptionsTable extends Migration
             $table->float('overall_cut');
             $table->string('image_name')->collation('utf8_unicode_ci');
             $table->integer('album_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

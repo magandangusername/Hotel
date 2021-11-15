@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateReservedRoomsTable extends Migration
@@ -27,7 +28,8 @@ class CreateReservedRoomsTable extends Migration
             $table->integer('head_count_id1');
             $table->integer('head_count_id2')->nullable();
             $table->integer('head_count_id3')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

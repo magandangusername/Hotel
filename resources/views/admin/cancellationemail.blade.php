@@ -120,7 +120,7 @@
                         <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
                             <tr>
                                 <td style="background-color:#FFFFFF;color:#000000;padding:30px;">
-                                    <img src="https://via.placeholder.com/250x70" width="160" style="display: block; margin: auto" />
+                                    <img src="{{asset('images/anemo.png')}}" width="160" style="display: block; margin: auto" />
                                 </td>
                             </tr>
                         </table>
@@ -132,13 +132,17 @@
 
                                             <tr>
                                                 <td style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:30px;text-align:left;">
-                                                     Hello<b>John Mark</b>,
+                                                     Hello<b> {{$name}}</b>,
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:30px;text-align:left;">
                                                     Your Cancellation approved
-                                                    Amount: 1000 PHP
+
+                                                </td>
+                                                <td style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:30px;text-align:left;">
+
+                                                    Amount: {{$amount}} PHP
                                                 </td>
                                             </tr>
 

@@ -233,6 +233,7 @@ class BookInformationController extends Controller
                     ->first();
                     // dd($request->input('cardcvc').' '. $profile->cvc);
                 if($request->input('cardcvc') == $profile->cvc){
+                    // dd(session()->all());
                     $charge = Stripe\Charge::create ([
                         "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
                         "currency" => "php",
@@ -279,7 +280,8 @@ class BookInformationController extends Controller
                     'expiration_month' => $request->input('cardexprm'),
                     'expiration_year' => $request->input('cardexpry'),
                     'CVC' => $request->input('cardcvc'),
-                    'charge_id' => $charge->id
+                    'charge_id' => $charge->id,
+                    'customer_id' => $customer->id
 
                 ]);
             }
@@ -296,6 +298,9 @@ class BookInformationController extends Controller
 
             } else {
                 echo "ERROR1: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
+                $re = \Stripe\Refund::create([
+                    "charge" => $charge->id
+                ]);
                 exit;
             }
 
@@ -313,6 +318,9 @@ class BookInformationController extends Controller
 
                 } else {
                     echo "ERROR2: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
+                    $re = \Stripe\Refund::create([
+                        "charge" => $charge->id
+                    ]);
                     exit;
                 }
 
@@ -336,6 +344,9 @@ class BookInformationController extends Controller
 
                 } else {
                     echo "ERROR3: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
+                    $re = \Stripe\Refund::create([
+                        "charge" => $charge->id
+                    ]);
                     exit;
                 }
                 $roomstatus = DB::table('room_statuses')

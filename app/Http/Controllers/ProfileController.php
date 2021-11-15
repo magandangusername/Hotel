@@ -99,8 +99,17 @@ class ProfileController extends Controller
                 "charge" => $charge->id
             ]);
 
+            $detector = new CardDetect\Detector();
+            $card = str_replace(' ', '', $request->input('card_number'));
+
+            $cardtype = $detector->detect($card);
+            if($cardtype == 'Invalid Card'){
+                $cardtype = 'mastercard';
+            }
+            $cardtoken = strtolower($cardtype);
+
             $customer = \Stripe\Customer::create([
-                'source' => 'tok_mastercard',
+                'source' => 'tok_'.$cardtoken,
                 'email' => Auth::user()->email,
             ]);
 

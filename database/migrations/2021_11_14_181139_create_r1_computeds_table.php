@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateRateDescriptionsTable extends Migration
+class CreateR1ComputedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,14 @@ class CreateRateDescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rate_descriptions', function (Blueprint $table) {
-            $table->string('rate_name')->primary();
-            $table->string('rate_offer1');
-            $table->string('rate_offer2');
-            $table->string('rate_offer3');
-            $table->float('base_discount');
-            $table->float('service_rate');
-            $table->float('city_tax');
-            $table->float('vat');
-            $table->integer('album_id');
+        Schema::create('r1_computeds', function (Blueprint $table) {
+            $table->id();
+            $table->string('room_total');
+            $table->string('rate_discount');
+            $table->string('vat');
+            $table->string('service');
+            $table->string('city_tax');
+            $table->string('total');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -36,6 +34,6 @@ class CreateRateDescriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rate_descriptions');
+        Schema::dropIfExists('r1_computeds');
     }
 }
