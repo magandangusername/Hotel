@@ -18,7 +18,14 @@ class IndexController extends Controller
         $date = date("Y-m-d h:i:sa");
         $roomtype = room_status::distinct('room_suite_name')->limit(3)->get();
         $promos = promotion_description::where('promotion_start', '<=', $date)->where('promotion_end', '>=', $date)->limit(3)->get();
-        return view('index')->with(compact('roomtype','promos'));
+
+        $newpromos = DB::table('promotion_descriptions')
+        ->orderByRaw('promotion_start DESC')
+        ->where('promotion_start', '<=', $date)
+        ->where('promotion_end', '>=', $date)
+        ->get();
+
+        return view('index')->with(compact('roomtype','promos','newpromos'));
     }
 
     /**
