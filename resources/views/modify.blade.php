@@ -58,12 +58,12 @@
 
 
                 <div class="col ">
-                    @if (!isset($review))
+                    {{-- @if (!isset($review))
                         <div class="px-5">
                             <button type="submit" class="btn btn-primary fw-bold" style="margin-top: 2em;">More
                                 Information</button>
                         </div>
-                    @endif
+                    @endif --}}
 
                 </div>
 
