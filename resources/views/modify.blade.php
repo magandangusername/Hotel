@@ -47,7 +47,7 @@
                     </div>
                 @endif
                 <div class="col  text-center">
-                    <h4 class="fw-bold">Subtotal</h4>
+                    <h4 class="fw-bold">Total</h4>
                     @if (!isset($review))
                         <h5>php {{ number_format($book->ctotal_price, 2) }}</h5>
                     @else
@@ -779,7 +779,7 @@
                                             <div class='form-row row'>
                                                 <div class='col-6 form-group required'>
                                                     <label class='control-label'>Name on Card</label> <input
-                                                        class='form-control' size='4' type='text' value="pp" name="cardname">
+                                                        class='form-control' size='4' type='text' value="" name="cardname">
                                                 </div>
                                             </div>
                                             <div class='form-row row'>
@@ -793,24 +793,24 @@
                                                     </svg>
                                                     <label class='control-label'>Card Number</label> <input autocomplete='off'
                                                         class='form-control card-number' size='4' type='text'
-                                                        value="4242424242424242" name="cardnum">
+                                                        value="" name="cardnum">
                                                 </div>
                                             </div>
                                             <div class='form-row row'>
                                                 <div class='col-2  form-group cvc required'>
                                                     <label class='control-label'>CVC</label> <input autocomplete='off'
                                                         class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'
-                                                        value="123" name="cardcvc">
+                                                        value="" name="cardcvc">
                                                 </div>
                                                 <div class='col-2  form-group expiration required'>
                                                     <label class='control-label'>Expiration Month</label> <input
                                                         class='form-control card-expiry-month' placeholder='MM' size='2'
-                                                        type='text' value="12" name="cardexprm">
+                                                        type='text' value="" name="cardexprm">
                                                 </div>
                                                 <div class='col-2  form-group expiration required'>
                                                     <label class='control-label'>Expiration Year</label> <input
                                                         class='form-control card-expiry-year' placeholder='YYYY' size='2'
-                                                        type='text' value="22" name="cardexpry">
+                                                        type='text' value="" name="cardexpry">
                                                 </div>
                                             </div>
                                             <div class='form-row row'>
@@ -866,7 +866,7 @@
                                                 <div class='form-row row'>
                                                     <div class='col-xs-12 form-group required'>
                                                         <label class='control-label'>Name on Card</label> <input
-                                                            class='form-control' size='4' type='text' value="pp"
+                                                            class='form-control' size='4' type='text' value=""
                                                             name="cardname">
                                                     </div>
                                                 </div>
@@ -881,24 +881,24 @@
                                                         </svg>
                                                         <label class='control-label'>Card Number</label> <input
                                                             autocomplete='off' class='form-control card-number' size='4'
-                                                            type='text' value="4242424242424242" name="cardnum">
+                                                            type='text' value="" name="cardnum">
                                                     </div>
                                                 </div>
                                                 <div class='form-row row'>
                                                     <div class='col-xs-12 col-md-4 form-group cvc required'>
                                                         <label class='control-label'>CVC</label> <input autocomplete='off'
                                                             class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                                            type='text' value="123" name="cardcvc">
+                                                            type='text' value="" name="cardcvc">
                                                     </div>
                                                     <div class='col-xs-12 col-md-4 form-group expiration required'>
                                                         <label class='control-label'>Expiration Month</label> <input
                                                             class='form-control card-expiry-month' placeholder='MM' size='2'
-                                                            type='text' value="12" name="cardexprm">
+                                                            type='text' value="" name="cardexprm">
                                                     </div>
                                                     <div class='col-xs-12 col-md-4 form-group expiration required'>
                                                         <label class='control-label'>Expiration Year</label> <input
                                                             class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                                            type='text' value="22" name="cardexpry">
+                                                            type='text' value="" name="cardexpry">
                                                     </div>
                                                     <div class='form-row row'>
                                                         <div class='col-md-12 error form-group hide'>
