@@ -24,7 +24,7 @@
                     <tr>
                         <td>21303182471</td>
                         <td>01/10/21</td>
-                        <td>Too Dumb</td>
+                        <td>Payment Problem</td>
 
 
                         <td>
@@ -35,7 +35,7 @@
                     <tr>
                         <td>21303182471</td>
                         <td>01/10/21</td>
-                        <td>My wife left me</td>
+                        <td>Urgent Matter</td>
 
                         <td>
                             <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
