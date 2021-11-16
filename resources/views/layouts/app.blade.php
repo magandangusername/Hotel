@@ -112,10 +112,10 @@
         </nav>
 
         {{-- announcement --}}
-        <div class="alert alert-danger text-center m-0 fw-bold">
+        {{-- <div class="alert alert-danger text-center m-0 fw-bold">
             <p>In progress: Please report any bugs or errors. Thank you<a href="#" class="fw-bold" data-dismiss="alert"
                 aria-label="close">×</a></p>
-        </div>
+        </div> --}}
 
 
         <div class="container centerbox p-0">

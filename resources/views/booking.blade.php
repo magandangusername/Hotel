@@ -120,22 +120,25 @@
                     <hr class="mx-5 p-1">
 
                 <div class="row mx-5">
-                    <div class="col p-1">
 
-                            <div class="jumbotron text-white jumbotron-image shadow preffer text-center">
-                            <h2 class="fw-bold p-4">
-                                Executive Suite
-                            </h2>
-                            <p class="mb-4">
-                                With its fancy interior and
-                            </p>
-                            <a href="" class="btn btn-primary m-5">View More</a>
-                            </div>
+                    @foreach ($newpromos as $newpromo)
+                        <div class="col p-1">
+
+                                <div class="jumbotron text-white jumbotron-image shadow preffer text-center">
+                                <h2 class="fw-bold p-4">
+                                    {{ $newpromo->promotion_name }}
+                                </h2>
+                                <p class="mb-4">
+                                    {{ $newpromo->promotion_short_description }}
+                                </p>
+                                <a href="{{ route('promo') }}/{{ $newpromo->promotion_name }}" class="btn btn-primary m-5">View More</a>
+                                </div>
 
 
-                    </div>
+                        </div>
+                    @endforeach
 
-                    <div class="col p-1">
+                    {{-- <div class="col p-1">
 
                             <div class="jumbotron text-white jumbotron-image shadow preffer text-center">
                             <h2 class="fw-bold p-4">
@@ -159,7 +162,7 @@
                             </p>
                             <a href="" class="btn btn-primary m-5">View More</a>
                             </div>
-                    </div>
+                    </div> --}}
 
 
 

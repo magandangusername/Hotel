@@ -8,6 +8,7 @@ use App\Rules\PromoValidDuration;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -24,7 +25,14 @@ class BookController extends Controller
             }
 
         }
-        return view('booking');
+        $date = date("Y-m-d h:i:sa");
+        $newpromos = DB::table('promotion_descriptions')
+        ->orderByRaw('promotion_start DESC')
+        ->where('promotion_start', '<=', $date)
+        ->where('promotion_end', '>=', $date)
+        ->get();
+
+        return view('booking')->with(compact('newpromos'));
     }
     public function book()
     {
