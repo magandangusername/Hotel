@@ -70,19 +70,19 @@
                                         ->where('reservation_tables.confirmation_number', $reservation->confirmation_number)
                                         ->first();
                                 @endphp
-                                    @if ($reservation->room_suite_name != null)
+                                    @if ($reservation->room_suite_name !== null)
                                         {{ $reservation->room_suite_name }}
                                     @endif
-                                    @if ($room2->room_suite_name != null)
-                                        @if ($reservation->room_suite_name != null)
+                                    @if ($room2->room_suite_name !== null)
+                                        @if ($reservation->room_suite_name !== null)
                                             , {{ $room2->room_suite_name }}
                                         @else
                                             {{ $room2->room_suite_name }}
                                         @endif
 
                                     @endif
-                                    @if ($room3->room_suite_name != null)
-                                        @if ($reservation->room_suite_name != null || $room2->room_suite_name != null)
+                                    @if ($room3->room_suite_name !== null)
+                                        @if ($reservation->room_suite_name !== null || $room2->room_suite_name !== null)
                                             , {{ $room3->room_suite_name }}
                                         @else
                                             {{ $room3->room_suite_name }}

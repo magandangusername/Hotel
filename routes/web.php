@@ -20,7 +20,7 @@ use App\Http\Controllers\AdminResetPasswordController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PoliciesController;
 use App\Http\Controllers\ReservationPoliciesController;
-use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AboutusController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -74,7 +74,7 @@ Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
 Route::get('/hotelfaq', [FaqController::class, 'index'])->name('faq');
 Route::get('/hotelpolicies', [PoliciesController::class, 'index'])->name('policies');
 Route::get('/reservationpolicy', [ReservationPoliciesController::class, 'index'])->name('reservationpolicies');
-Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
+Route::get('/aboutus', [AboutusController::class, 'index'])->name('aboutus');
 
 
 
