@@ -52,7 +52,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="justify-content-center collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav " style=" font-size: 110%;">
+                <ul class="navbar-nav" style="font-size: 120%;">
                     <li class="nav-item active">
                         <a class="nav-link " href="{{ route('index') }}">Overview</a>
                     </li>
@@ -112,10 +112,11 @@
         </nav>
 
         {{-- announcement --}}
-        <div class="alert alert-danger text-center">
-            <p>In progress: Please report any bugs or errors. Thank you<a href="#" class="close" data-dismiss="alert"
+        <div class="alert alert-danger text-center m-0 fw-bold">
+            <p>In progress: Please report any bugs or errors. Thank you<a href="#" class="fw-bold" data-dismiss="alert"
                 aria-label="close">×</a></p>
         </div>
+
 
         <div class="container centerbox p-0">
 
@@ -137,16 +138,19 @@
                         <h5 class="text-uppercase">Links</h5>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#!" class="text-dark">About Us</a>
+                                <a href="{{ route('aboutus') }}" class="text-dark">About Us</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-dark">Privacy and Cancellation Policies</a>
+                                <a href="{{ route('policies') }}" class="text-dark">Hotel Policies</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-dark">Contact Us</a>
+                                <a href="{{ route('aboutus') }}" class="text-dark">Contact Us</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-dark ">Frequently Asked Questions </a>
+                                <a href="{{ route('faq') }}" class="text-dark ">Frequently Asked Questions </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('reservationpolicies') }}" class="text-dark ">Modification/Cancellation Policy </a>
                             </li>
                         </ul>
                     </div>

@@ -8,16 +8,16 @@
         ->get(['room_suite_name']);
     @endphp
 
-    <div class="container m-0 p-0">
+    <div class="container-fluid  p-0">
         <h1 class="fw-bold ps-5 pt-5">Rooms & Rates</h1>
         <hr class="mx-5 mb-2 p-1">
 
-        <div class="container m-0 p-0">
-            <div class="infotab m-5 px-3 text-dark ">
+        <div class="container p-0">
+            <div class="infotab text-dark p-3">
                 <div class="row">
 
 
-                    <div class="col">
+                    <div class="col text-center">
                         <h4 class="fw-bold">Arrival/Departure</h4>
                         <h5>
                             @if (isset($book) && $book !== null)
@@ -100,7 +100,7 @@
         </div>
         @if (!isset($book))
             @if (session('RoomCount') > 1)
-                <div class="containerish">
+                <div class="ps-5 mt-4">
                     <h1>Room {{ $room }} out of {{ session('RoomCount') }}</h1>
                 </div>
             @endif
@@ -125,7 +125,7 @@
                     </div>
                     <div class="col">
                         <h2 class="fw-bold"> Policies </h2>
-                        <p>Must cancel prior to 4:00PM one day before arrival to avoid a one night room charge plus
+                        <p>Must cancel 24 hours prior to your arrival to avoid a one night room charge plus
                             surcharge.
                         </p>
                         <p class="policies">Reservation must be guaranteed with credit card at time of booking.Room
@@ -197,6 +197,7 @@
                                         if (isset($newpromototal)) {
                                             $totalrate = $newpromototal;
                                         } else {
+
                                             $totalrate = $totalprice;
                                         }
 
@@ -421,7 +422,7 @@
 
                 @else
 
-                    <button type="submit" name="chooseroom" id="butbut" class="btn btn-primary">Select Room</button>
+                    <button type="submit" name="chooseroom" id="butbut" class="btn btn-dark">Select Room</button>
 
                 @endif
             </div>

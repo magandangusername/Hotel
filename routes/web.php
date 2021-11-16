@@ -17,6 +17,10 @@ use App\Http\Controllers\AdminAmenityAddController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\AdminResetPasswordController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PoliciesController;
+use App\Http\Controllers\ReservationPoliciesController;
+use App\Http\Controllers\AboutUsController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -67,6 +71,12 @@ Route::get('/roomtab', [RoomSuiteController::class, 'rooms'])->name('roomtab');
 Route::get('/suitestab', [RoomSuiteController::class, 'suites'])->name('suitestab');
 Route::get('/roomtab/{name}', [RoomSuiteController::class, 'roominfo']);
 Route::get('/suitestab/{name}', [RoomSuiteController::class, 'suiteinfo']);
+Route::get('/hotelfaq', [FaqController::class, 'index'])->name('faq');
+Route::get('/hotelpolicies', [PoliciesController::class, 'index'])->name('policies');
+Route::get('/reservationpolicy', [ReservationPoliciesController::class, 'index'])->name('reservationpolicies');
+Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
+
+
 
 Route::get('/admin', [DashboardController::class, 'DashboardController' ])->name('dashboard');
 Route::get('/admin/reservation', [AdminReservationsController::class, 'index' ])->name('adminreservation');

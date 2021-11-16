@@ -25,10 +25,10 @@
                 @endif
 
 
-                <div class="col">
+                <div class="col text-center">
                     <h4 class="fw-bold">Arrival/Departure</h4>
                     @if (!isset($review))
-                        <h5>{{ date('m/d/y', strtotime($book->arrival_date)) }} -
+                        <h5 class="m-5">{{ date('m/d/y', strtotime($book->arrival_date)) }} -
                             {{ date('m/d/y', strtotime($book->departure_date)) }} </h5>
                     @else
                         <h5>{{ date('m/d/y', strtotime(session('CheckIn'))) }} -
@@ -747,18 +747,18 @@
                         <input type="text" name="proceed" value="proceed" hidden>
                         <div class="container pt-2 ">
                             {{-- <h1>Stripe Payment Page - HackTheStuff</h1> --}}
-                            <div class="row">
+                            <div class="row ">
                                 <div class="col ">
                                     <div class="panel panel-default credit-card-box">
                                         {{-- <div class="panel-heading display-table" >
                                     <div class="row display-tr" > --}}
-                                        <h3 class="panel-title display-td fw-bold text-center">Payment Details</h3>
+                                        <h3 class="panel-title display-td fw-bold">Payment Details</h3>
                                         {{-- <div class="display-td" >
                                           <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
                                        </div>
                                     </div>
                                  </div> --}}
-                                        <div class="panel-body mx-5 px-5">
+                                        <div class="panel-body  px-5">
                                             @if (Session::has('success'))
                                                 <div class="alert alert-success text-center">
                                                     <a href="#" class="close" data-dismiss="alert"
@@ -777,13 +777,13 @@
 
 
                                             <div class='form-row row'>
-                                                <div class='col-xs-12 form-group required'>
+                                                <div class='col-6 form-group required'>
                                                     <label class='control-label'>Name on Card</label> <input
                                                         class='form-control' size='4' type='text' value="pp" name="cardname">
                                                 </div>
                                             </div>
                                             <div class='form-row row'>
-                                                <div class='col-xs-12 form-group  required'>
+                                                <div class='col-6 form-group  required'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
                                                         <path
@@ -797,19 +797,19 @@
                                                 </div>
                                             </div>
                                             <div class='form-row row'>
-                                                <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                                <div class='col-2  form-group cvc required'>
                                                     <label class='control-label'>CVC</label> <input autocomplete='off'
                                                         class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'
                                                         value="123" name="cardcvc">
                                                 </div>
-                                                <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                                <div class='col-2  form-group expiration required'>
                                                     <label class='control-label'>Expiration Month</label> <input
                                                         class='form-control card-expiry-month' placeholder='MM' size='2'
                                                         type='text' value="12" name="cardexprm">
                                                 </div>
-                                                <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                                <div class='col-2  form-group expiration required'>
                                                     <label class='control-label'>Expiration Year</label> <input
-                                                        class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                                        class='form-control card-expiry-year' placeholder='YYYY' size='2'
                                                         type='text' value="22" name="cardexpry">
                                                 </div>
                                             </div>
@@ -854,7 +854,7 @@
                                 <div class="row">
                                     <div class="col ">
                                         <div class="panel panel-default credit-card-box">
-                                            <h3 class="panel-title display-td fw-bold text-center">Payment Details</h3>
+                                            <h3 class="panel-title display-td fw-bold">Payment Details</h3>
                                             <div class="panel-body mx-5 px-5">
                                                 @if (Session::has('success'))
                                                     <div class="alert alert-success text-center">
@@ -929,10 +929,10 @@
                                 <div class="row">
                                     <div class="col ">
                                         <div class="panel panel-default credit-card-box">
-                                            <h3 class="panel-title display-td fw-bold text-center">Payment Details</h3>
+                                            <h3 class="panel-title display-td fw-bold">Payment Details</h3>
                                             <div class="panel-body mx-5 px-5">
                                                 @if (Session::has('success'))
-                                                    <div class="alert alert-success text-center">
+                                                    <div class="alert alert-success">
                                                         <a href="#" class="close" data-dismiss="alert"
                                                             aria-label="close">×</a>
                                                         <p>{{ Session::get('success') }}</p>
@@ -960,16 +960,16 @@
                                                     </div>
                                                 </div>
                                                 <div class='form-row row'>
-                                                    <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                                    <div class='col-2 form-group cvc required'>
                                                         <label class='control-label'>CVC</label> <input autocomplete='off'
-                                                            class='form-control card-cvc' placeholder='ex. 311' size='4'
+                                                            class='form-control card-cvc' placeholder='ex. 311' size='3'
                                                             type='text' name="cardcvc">
                                                     </div>
-                                                    <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                                    <div class='col-2 form-group expiration required'>
                                                         <label class='control-label'>Expiration Month</label>
                                                         <h4 class="fw-bold">{{ $profile->expiration_month }}</h4>
                                                     </div>
-                                                    <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                                    <div class='col-2 form-group expiration required'>
                                                         <label class='control-label'>Expiration Year</label>
                                                         <h4 class="fw-bold">{{ $profile->expiration_year }}</h4>
                                                     </div>

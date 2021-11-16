@@ -5,11 +5,11 @@
 
 
     <div class="container">
-        <h1 class="text-center fw-bold pt-5">Checkout</h1>
+        <h1 class="text-center fw-bold pt-5"><u>Checkout</u></h1>
 
-        <div class="row g-2 justify-content-center fw-bold mt-3">
+        <div class="row g-2 justify-content-center mt-3">
 
-            <div class="col-auto">
+            <div class="col-auto" style="font-size: 110%;">
                 <p class="label">Your Stay:
                     {{ date('M d, Y', strtotime(session('CheckIn'))) . ' - ' . date('M d, Y', strtotime(session('CheckOut'))) }}
                 </p>
@@ -20,7 +20,7 @@
             <div class="col-auto" hidden>
                 <p class="label">children</p>
             </div>
-            <div class="col-auto">
+            <div class="col-auto" style="font-size: 110%;">
                 <p class="label">Total rate: @php
                     if (session('RoomCount') >= 1) {
                         $totalrate = floatval(session('totalrate'));
@@ -113,9 +113,9 @@
             <div class="row my-3">
                 <div class="col">
                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
-                    <label for="vehicle1"> I accept <a href="">terms and conditions </a> </label><br>
+                    <label for="vehicle1"> I accept <a href="{{ route('reservationpolicies') }}">Reservation Policies</a> </label><br>
                     <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" required>
-                    <label for="vehicle2"> I have read and accept the <a href="">Privacy and Cancellation Policies</a>
+                    <label for="vehicle2"> I have read and accept the <a href="{{ route('policies') }}">Hotel Policies</a>
                     </label><br>
                 </div>
             </div>

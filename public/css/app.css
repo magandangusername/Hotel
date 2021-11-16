@@ -11320,6 +11320,13 @@ body {
      object-fit: cover;
 }
 
+.jumbotron-image {
+  background: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .preffer {
   background: url(/images/backgroundimage.jpg?0de115df0ba16c5e3f82dca24fd92635);
 }

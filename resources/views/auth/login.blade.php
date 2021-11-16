@@ -4,13 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
+        <div class="row p-4 m-4 fw-bold text-center" style="font-size:150%"><b>Login</b></div>
+            <div class="card">
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -53,7 +52,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-dark">
                                     {{ __('Login') }}
                                 </button>
 
@@ -64,9 +63,13 @@
                                 @endif
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
+            <div class="row p-5 m-5"></div>
+            <div class="row p-4 m-4"></div>
+
         </div>
     </div>
 </div>

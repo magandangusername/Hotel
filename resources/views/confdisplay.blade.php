@@ -392,7 +392,7 @@
 
                                         </td>
                                         <td>
-                                            asdsada
+
                                         </td>
                                     </tr>
                                 </tbody>

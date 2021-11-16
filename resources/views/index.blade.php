@@ -81,12 +81,12 @@
                 <h2 class="fw-bold my-2"> What's New </h2>
                 @foreach ($newpromos as $newpromo)
                 <div class="col">
-                    <div class="card text-dark">
+                    <div class="card text-dark ">
                         <img src="{{ asset('images/'.$newpromo->image_name) }}" class="card-img" alt="...">
-                        <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.349);">
-                            <h5 class="card-title fw-bold">{{ $newpromo->promotion_name }}</h5>
-                            <p class="card-text">{{ $newpromo->promotion_short_description }} </p>
-                            <a href="{{ route('promo') }}/{{ $newpromo->promotion_name }}" class="btn btn-outline-dark">See More</a>
+                        <div class="card-img-overlay" style="background-color: rgba(255, 254, 254, 0.60);">
+                            <h5 class="card-title fw-bold mt-4" style="font-size:120%">{{ $newpromo->promotion_name }}</h5>
+                            <p class="card-body" style="font-size:100%">{{ $newpromo->promotion_short_description }} </p>
+                            <a href="{{ route('promo') }}/{{ $newpromo->promotion_name }}" class="btn btn-dark">See More</a>
                         </div>
                     </div>
                 </div>
