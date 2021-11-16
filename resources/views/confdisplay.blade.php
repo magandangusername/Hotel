@@ -130,6 +130,72 @@
 </head>
 
 <body style="background-color:#F4F4F4;">
+    @php
+        $message = '';
+        $book = '';
+        $bookinfo = '';
+        $bookinfo2 = '';
+        $bookinfo3 = '';
+            $book = DB::table('reservation_tables')
+            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+            ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
+            ->where('reservation_tables.confirmation_number', $confirmation_number)
+
+            ->first();
+            $user = false;
+            if($book->first_name === null) {
+                $book = DB::table('reservation_tables')
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
+                ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
+                ->where('reservation_tables.confirmation_number', $confirmation_number)
+                ->first();
+                $user = true;
+
+
+            }
+            // dd($book);
+                // This is the saddest code ive ever done
+                if ($book->r2 != null || $book->r2 != "") {
+                    $bookinfo2 = DB::table('reservation_tables')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
+                    ->where('reservation_tables.confirmation_number', $confirmation_number)
+                    ->first();
+                } else {
+                    $bookinfo2 = null;
+                }
+
+                if ($book->r3 != null || $book->r3 != "") {
+                    $bookinfo3 = DB::table('reservation_tables')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+
+                    ->where('reservation_tables.confirmation_number', $confirmation_number)
+                    ->first();
+                } else {
+                    $bookinfo3 = null;
+                }
+
+    @endphp
 
 {{-- @if (session()->exists('confirmation_number')) --}}
 
@@ -172,10 +238,10 @@
                                                 <br>
                                                 <br>
                                                 <span style="text-decoration: none; color: #000000;"><b>Arrival
-                                                        Date:</b> 01/10/11</span>
+                                                        Date:</b> {{date("m/d/Y", strtotime($book->arrival_date))}}</span>
                                                 <br>
                                                 <span style="text-decoration: none; color: #000000;"><b>Departure
-                                                        Date:</b> 01/10/11</span>
+                                                        Date:</b> {{date("m/d/Y", strtotime($book->departure_date))}}</span>
                                                 <br>
                                                 <br>
                                                 <span
@@ -211,7 +277,7 @@
                                         <td style="padding-top:15px; text-align: right;">
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px; color: #000000;">
-                                                Jonh Mark
+                                                {{$book->first_name}} {{$book->last_name}}
                                             </span>
                                         </td>
                                     </tr>
@@ -225,7 +291,7 @@
                                         <td style="text-align: right;">
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px; color: #000000;">
-                                                JonhMark@email.com
+                                                {{$book->email}}
                                             </span>
                                         </td>
                                     </tr>
@@ -239,9 +305,25 @@
                                         <td style="padding-bottom: 15px; text-align: right;">
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px; color: #000000;">
-                                                0929 666 6666
+                                                {{$book->mobile_num}}
                                             </span>
                                         </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 15px;">
+                                            <span
+                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px; color: #000000;">
+                                                <b>Nights:</b>
+                                            </span>
+                                        </td>
+                                        <td style="padding-bottom: 15px; text-align: right;">
+                                            <span
+                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px; color: #000000;">
+                                                {{$nights = (new DateTime(date('Y-m-d', strtotime($book->arrival_date))))->diff(new DateTime(date('Y-m-d', strtotime($book->departure_date))))->days;}}
+                                            </span>
+                                        </td>
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -258,106 +340,201 @@
                                     <tr>
                                         <td style="padding:15px 0;">
                                             <span
-                                                style="font-family: Arial,sans-serif; font-size: 20px; font-weight: bold; line-height:30px;">Standard
-                                                Room</span>
+                                                style="font-family: Arial,sans-serif; font-size: 20px; font-weight: bold; line-height:30px;">{{ $book->room_suite_name }}</span>
                                             <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Nights:</b>
-                                                5</span>
-                                            <br>
+
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate:</b>
-                                                Breakfast</span>
+                                                {{ $book->rate_name }}</span>
 
                                         </td>
+
                                         <td style="padding:15px 0; text-align: right;">
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Room
-                                                    Charge: </b>₱ 750.00 </span>
+                                                    Charge: </b>₱ @php
+                                                    $price = DB::table('room_descriptions')
+                                                        ->where('room_name', $book->room_suite_name)
+                                                        ->first();
+                                                    if ($price !== null) {
+                                                        echo number_format($price->base_price, 2);
+                                                    } else {
+                                                        $price = DB::table('suite_descriptions')
+                                                            ->where('suite_name', $book->room_suite_name)
+                                                            ->first();
+                                                        echo number_format($price->base_price, 2);
+                                                    }
+                                                    $promotiondiscount = DB::table('promotion_descriptions')
+                                                    ->where('promotion_code', $book->promotion_code)
+                                                    ->first();
+                                                @endphp </span>
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Extra
-                                                    Charge: </b>₱ 50.00 </span>
+                                                    Charge: </b>₱ {{ number_format($service_charge = $price->base_price * $book->service_rate, 2) }} </span>
+                                            <br>
+                                            <span
+                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate Discoount: </b>₱ -@php
+                                                    $rate_discount = $price->base_price * $book->base_discount;
+                                                    if($promotiondiscount !== null){
+                                                        $promo_discount = $price->base_price * $promotiondiscount->overall_cut;
+                                                    } else {
+                                                        $promo_discount = 0;
+                                                    }
+                                                    echo number_format($rate_discount + $promo_discount, 2)
+
+                                                @endphp </span>
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Tax:
-                                                </b>₱ 10.00 </span>
+                                                </b>₱ @php
+                                                    $city_tax = $price->base_price * $book->city_tax;
+                                                    $vat = $price->base_price * $book->vat;
+                                                    echo number_format($city_tax + $vat, 2);
+                                                @endphp </span>
                                             <br>
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 18px; font-weight: bold; line-height:30px;">₱
-                                                1,500.00</span>
+                                                {{ number_format($total = (($price->base_price - ($rate_discount + $promo_discount)) + $vat + $service_charge + $city_tax)* $nights, 2) }}</span>
                                         </td>
                                     </tr>
-                                    <!--  -->
-                                    <tr>
-                                        <td style="padding:15px 0;">
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 20px; font-weight: bold; line-height:30px;">Standard
-                                                Room</span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Nights:</b>
-                                                5</span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate:</b>
-                                                Breakfast</span>
 
-                                        </td>
-                                        <td style="padding:15px 0; text-align: right;">
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Room
-                                                    Charge: </b>₱ 750.00 </span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Extra
-                                                    Charge: </b>₱ 50.00 </span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Tax:
-                                                </b>₱ 10.00 </span>
-                                            <br>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 18px; font-weight: bold; line-height:30px;">₱
-                                                1,500.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:15px 0;">
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 20px; font-weight: bold; line-height:30px;">Standard
-                                                Room</span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Nights:</b>
-                                                5</span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate:</b>
-                                                Breakfast</span>
 
-                                        </td>
-                                        <td style="padding:15px 0; text-align: right;">
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Room
-                                                    Charge: </b>₱ 750.00 </span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Extra
-                                                    Charge: </b>₱ 50.00 </span>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Tax:
-                                                </b>₱ 10.00 </span>
-                                            <br>
-                                            <br>
-                                            <span
-                                                style="font-family: Arial,sans-serif; font-size: 18px; font-weight: bold; line-height:30px;">₱
-                                                1,500.00</span>
-                                    </tr>
-                                    <!--  -->
+                                    {{-- room 2 --}}
+                                    @if ($bookinfo2 !== null)
+                                        <tr>
+                                            <td style="padding:15px 0;">
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 20px; font-weight: bold; line-height:30px;">{{ $bookinfo2->room_suite_name }}</span>
+                                                <br>
+
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate:</b>
+                                                    {{ $bookinfo2->rate_name }}</span>
+
+                                            </td>
+
+                                            <td style="padding:15px 0; text-align: right;">
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Room
+                                                        Charge: </b>₱ @php
+                                                        $price = DB::table('room_descriptions')
+                                                            ->where('room_name', $bookinfo2->room_suite_name)
+                                                            ->first();
+                                                        if ($price !== null) {
+                                                            echo number_format($price->base_price, 2);
+                                                        } else {
+                                                            $price = DB::table('suite_descriptions')
+                                                                ->where('suite_name', $bookinfo2->room_suite_name)
+                                                                ->first();
+                                                            echo number_format($price->base_price, 2);
+                                                        }
+                                                        $promotiondiscount = DB::table('promotion_descriptions')
+                                                        ->where('promotion_code', $bookinfo2->promotion_code)
+                                                        ->first();
+                                                    @endphp </span>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Extra
+                                                        Charge: </b>₱ {{ number_format($service_charge = $price->base_price * $bookinfo2->service_rate, 2) }} </span>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate Discoount: </b>₱ -@php
+                                                        $rate_discount = $price->base_price * $bookinfo2->base_discount;
+                                                        if($promotiondiscount !== null){
+                                                            $promo_discount = $price->base_price * $promotiondiscount->overall_cut;
+                                                        } else {
+                                                            $promo_discount = 0;
+                                                        }
+                                                        echo number_format($rate_discount + $promo_discount, 2)
+
+                                                    @endphp </span>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Tax:
+                                                    </b>₱ @php
+                                                        $city_tax = $price->base_price * $bookinfo2->city_tax;
+                                                        $vat = $price->base_price * $bookinfo2->vat;
+                                                        echo number_format($city_tax + $vat, 2);
+                                                    @endphp </span>
+                                                <br>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 18px; font-weight: bold; line-height:30px;">₱
+                                                    {{ number_format($total = (($price->base_price - ($rate_discount + $promo_discount)) + $vat + $service_charge + $city_tax)* $nights, 2) }}</span>
+                                            </td>
+                                        </tr>
+
+                                    @endif
+
+
+
+                                    {{-- room 3 --}}
+                                    @if ($bookinfo3 !== null)
+                                        <tr>
+                                            <td style="padding:15px 0;">
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 20px; font-weight: bold; line-height:30px;">{{ $bookinfo3->room_suite_name }}</span>
+                                                <br>
+
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate:</b>
+                                                    {{ $bookinfo3->rate_name }}</span>
+
+                                            </td>
+
+                                            <td style="padding:15px 0; text-align: right;">
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Room
+                                                        Charge: </b>₱ @php
+                                                        $price = DB::table('room_descriptions')
+                                                            ->where('room_name', $bookinfo3->room_suite_name)
+                                                            ->first();
+                                                        if ($price !== null) {
+                                                            echo number_format($price->base_price, 2);
+                                                        } else {
+                                                            $price = DB::table('suite_descriptions')
+                                                                ->where('suite_name', $bookinfo3->room_suite_name)
+                                                                ->first();
+                                                            echo number_format($price->base_price, 2);
+                                                        }
+                                                        $promotiondiscount = DB::table('promotion_descriptions')
+                                                        ->where('promotion_code', $bookinfo3->promotion_code)
+                                                        ->first();
+                                                    @endphp </span>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Extra
+                                                        Charge: </b>₱ {{ number_format($service_charge = $price->base_price * $bookinfo3->service_rate, 2) }} </span>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Rate Discoount: </b>₱ -@php
+                                                        $rate_discount = $price->base_price * $bookinfo3->base_discount;
+                                                        if($promotiondiscount !== null){
+                                                            $promo_discount = $price->base_price * $promotiondiscount->overall_cut;
+                                                        } else {
+                                                            $promo_discount = 0;
+                                                        }
+                                                        echo number_format($rate_discount + $promo_discount, 2)
+
+                                                    @endphp </span>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;"><b>Tax:
+                                                    </b>₱ @php
+                                                        $city_tax = $price->base_price * $bookinfo3->city_tax;
+                                                        $vat = $price->base_price * $bookinfo3->vat;
+                                                        echo number_format($city_tax + $vat, 2);
+                                                    @endphp </span>
+                                                <br>
+                                                <br>
+                                                <span
+                                                    style="font-family: Arial,sans-serif; font-size: 18px; font-weight: bold; line-height:30px;">₱
+                                                    {{ number_format($total = (($price->base_price - ($rate_discount + $promo_discount)) + $vat + $service_charge + $city_tax)* $nights, 2) }}</span>
+                                            </td>
+                                        </tr>
+                                    @endif
 
                                     <tr>
                                         <td style="padding:15px 0;">

@@ -12,14 +12,16 @@ class BookCompleteMail extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
+    public $confirmation_number;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $confirmation_number)
     {
         $this->details = $details;
+        $this->confirmation_number = $confirmation_number;
     }
 
     /**

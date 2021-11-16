@@ -11,6 +11,7 @@ use Stripe\BillingPortal\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Stripe;
 
 class ModifyReservationController extends Controller
 {
@@ -271,6 +272,13 @@ class ModifyReservationController extends Controller
                 $invalidcancellation = true;
                 return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'invalidcancellation'));
             } else {
+
+                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                $re = \Stripe\Refund::create([
+                    "charge" => $book->charge_id
+                ]);
+
+
                 $cancel = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
@@ -313,9 +321,12 @@ class ModifyReservationController extends Controller
                 ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
 
+
                 $name = $book->first_name.' '.$book->last_name;
                 $amount = number_format($book->ctotal_price / 2, 2);
                 Mail::to($book->email)->send(new CancellationMail($name, $amount));
+
+
 
 
                 return redirect('/');

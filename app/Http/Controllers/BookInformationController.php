@@ -505,9 +505,9 @@ class BookInformationController extends Controller
             ];
 
             if(Auth::check()) {
-                Mail::to(Auth::user()->email)->send(new BookCompleteMail($details));
+                Mail::to(Auth::user()->email)->send(new BookCompleteMail($details, $confirmation_number));
             } else {
-                Mail::to(session('email'))->send(new BookCompleteMail($details));
+                Mail::to(session('email'))->send(new BookCompleteMail($details, $confirmation_number));
             }
 
 
@@ -549,7 +549,7 @@ class BookInformationController extends Controller
             // dd(session()->all());
 
             // return redirect('/bookinfo');
-            return view('confdisplay');
+            return view('confdisplay')->with(compact('confirmation_number'));
         } else {
             if(Auth::check() != true) {
                 $request->validate([

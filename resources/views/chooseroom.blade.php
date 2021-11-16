@@ -243,13 +243,18 @@
                                                                 ->where('suite_descriptions.suite_name', '=', $result->room_suite_name)
                                                                 ->first();
                                                         }
+
+                                                        $photos = DB::table('gallery_photos')
+                                                            ->join('gallery_albums as a', 'gallery_photos.album_id', '=', 'a.album_id')
+                                                            ->where('a.album_name', '=', $result->room_suite_name)
+                                                            ->first();
                                                     @endphp
 
                                                     <div class="row">
                                                         <div class="col col-sm-6" data-toggle="modal"
                                                             data-target="#ImgModal{{ $photonum }}">
                                                             <img class="w-100"
-                                                                src="{{ asset('images/deluxee1.jpg') }}"
+                                                                src="{{ asset('images/'.$photos->photo_name) }}"
                                                                 alt="First slide">
                                                         </div>
                                                         <div class="col mt-2 col-sm6 ">
