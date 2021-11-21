@@ -7,7 +7,9 @@
 
     <div class="card my-5">
         <div class="card-header">
-
+            @if (isset($_GET['success']))
+                <p class="alert alert-success">{{ $_GET['success'] }}</p>
+            @endif
             <h2>Cancellations </h2>
         </div>
         <div class="card-body">
@@ -21,27 +23,31 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>21303182471</td>
-                        <td>01/10/21</td>
-                        <td>Payment Problem</td>
+                    @foreach ($cancellations as $cancellation)
+                        <tr>
+                            <td>{{$cancellation->confirmation_number}}</td>
+                            <td>{{date('m/d/Y', strtotime($cancellation->request_on))}}</td>
+                            <td>Payment Problem</td>
 
 
-                        <td>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>21303182471</td>
-                        <td>01/10/21</td>
-                        <td>Urgent Matter</td>
+                            <td>
+                                <form action="/admin/cancellation" method="post">
+                                    @csrf
+                                    <input type="text" name="id" value="{{$cancellation->id}}" hidden>
+                                    <input type="text" name="deny" value="deny" hidden>
+                                    <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
+                                </form>
+                                <form action="/admin/cancellation" method="post">
+                                    @csrf
+                                    <input type="text" name="id" value="{{$cancellation->id}}" hidden>
+                                    <input type="text" name="approve" value="approve" hidden>
+                                    <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
+                                </form>
+                            </td>
+                        </tr>
 
-                        <td>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
-                        </td>
-                    </tr>
+                    @endforeach
+
 
                 </tbody>
 

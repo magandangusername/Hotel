@@ -83,6 +83,8 @@ Route::get('/admin/reservation', [AdminReservationsController::class, 'index' ])
 Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation' ])->name('admineditreservation');
 
 Route::get('/admin/cancellation', [AdminCancellationsController::class, 'index' ])->name('admincancellation');
+Route::post('/admin/cancellation', [AdminCancellationsController::class, 'approvedeny' ])->name('admineditcancellation');
+
 Route::get('/admin/modification', [AdminModificationsController::class, 'index' ])->name('adminmodification');
 Route::get('/admin/addroom', [AdminRoomAddController::class, 'index' ])->name('adminroom');
 Route::get('/admin/addsuite', [AdminSuiteAddController::class, 'index' ])->name('adminsuite');

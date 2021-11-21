@@ -344,10 +344,10 @@ class ModifyReservationController extends Controller
         }
 
         if($request->input('cancelappeal') == 'cancelappeal'){
-            $paymentinfo = DB::table('Cancellations')->insert([
+            $paymentinfo = DB::table('cancellation_requests')->insert([
                 'confirmation_number' => session('confirmation_number'),
-                'request_on' => date("Y-m-d H:s:i", strtotime('now')),
-                'reason' => $request->input('reason')
+                'reason' => $request->input('reason'),
+                'approval_status' => 'pending'
 
             ]);
 

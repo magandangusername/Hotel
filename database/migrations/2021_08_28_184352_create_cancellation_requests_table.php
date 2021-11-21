@@ -15,12 +15,12 @@ class CreateCancellationRequestsTable extends Migration
     public function up()
     {
         Schema::create('cancellation_requests', function (Blueprint $table) {
-            $table->string('crqc')->primary();
+            $table->id();
             $table->string('confirmation_number');
-            $table->dateTime('request_on');
-            $table->tinyInteger('approval_status');
-            $table->dateTime('approved_on');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('request_on')->default(\DB::raw('CURRENT_TIMESTAMP'));;
+            $table->string('reason')->nullable();
+            $table->string('approval_status')->nullable();
+            $table->dateTime('approved_denied_on')->nullable();
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 
         });
