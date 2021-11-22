@@ -27,57 +27,43 @@
                 </thead>
 
                 <tbody>
-                    <tr>
+                    @foreach ($rooms as $room)
 
-                        <td>Standard Room</td>
-                        <td>This room is cool and long</td>
-                        <td>And its also short</td>
-                        <td>1M SQM</td>
-                        <td>1T USD</td>
-                        <td>King,Queen</td>
 
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>Set 1</td>
-                        <td>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
-                        </td>
+                        <tr>
 
-                    </tr>
-                    <tr>
+                            <td>Standard Room</td>
+                            <td>This room is cool and long</td>
+                            <td>And its also short</td>
+                            <td>1M SQM</td>
+                            <td>1T USD</td>
+                            <td>King,Queen</td>
+                            @php
+                                $photos = DB::table('gallery_photos')
+                                ->leftJoin('gallery_albums', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                ->leftJoin('room_descriptions', 'room_descriptions.album_id', '=', 'gallery_albums.album_id')
+                                ->where('room_descriptions.room_name', $room->room_name)
+                                ->limit(3)
+                                ->get();
+                                dd($photos);
+                            @endphp
+                            <td>
+                                <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
+                            </td>
+                            <td>
+                                <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
+                            </td>
+                            <td>
+                                <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
+                            </td>
+                            <td>Set 1</td>
+                            <td>
+                                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
+                            </td>
 
-                        <td>Standard Room</td>
-                        <td>This room is cool and long</td>
-                        <td>And its also short</td>
-                        <td>1M SQM</td>
-                        <td>1T USD</td>
-                        <td>King,Queen</td>
-
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>Set 1</td>
-
-                        <td>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
-                        </td>
-
-                    </tr>
+                        </tr>
+                    @endforeach
                 </tbody>
 
             </table>

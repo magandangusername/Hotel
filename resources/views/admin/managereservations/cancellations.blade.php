@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{$cancellation->confirmation_number}}</td>
                             <td>{{date('m/d/Y', strtotime($cancellation->request_on))}}</td>
-                            <td>Payment Problem</td>
+                            <td>{{$cancellation->reason}}</td>
 
 
                             <td>
@@ -41,6 +41,7 @@
                                     @csrf
                                     <input type="text" name="id" value="{{$cancellation->id}}" hidden>
                                     <input type="text" name="approve" value="approve" hidden>
+                                    <input type="text" name="confirmation_number" value="{{$cancellation->confirmation_number}}" hidden>
                                     <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
                                 </form>
                             </td>
