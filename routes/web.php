@@ -87,6 +87,8 @@ Route::post('/admin/cancellation', [AdminCancellationsController::class, 'approv
 
 Route::get('/admin/modification', [AdminModificationsController::class, 'index' ])->name('adminmodification');
 Route::get('/admin/addroom', [AdminRoomAddController::class, 'index' ])->name('adminroom');
+Route::post('/admin/addroom', [AdminRoomAddController::class, 'modifyrooms' ])->name('admineditroom');
+
 Route::get('/admin/addsuite', [AdminSuiteAddController::class, 'index' ])->name('adminsuite');
 Route::get('/admin/addamenity', [AdminAmenityAddController::class, 'index' ])->name('adminamenity');
 Route::get('/admin/addrate', [AdminRateAddController::class, 'index' ])->name('adminrate');

@@ -16,7 +16,7 @@ class AdminAccController extends Controller
         return view('admin/manageaccounts/manageadmin');
 
         } else{
-            dd('You do not have permission to do access this.');
+            dd('You do not have permission to access this.');
         }
 
     }
