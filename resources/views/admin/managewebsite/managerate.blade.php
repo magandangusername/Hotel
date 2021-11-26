@@ -37,8 +37,6 @@
                         <th>City Tax</th>
                         <th>Vat</th>
                         <th>Image 1</th>
-                        <th>Image 2</th>
-                        <th>Image 3</th>
                     </tr>
                 </thead>
 
@@ -59,17 +57,11 @@
                                 ->leftJoin('gallery_albums', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
                                 ->leftJoin('rate_descriptions', 'rate_descriptions.album_id', '=', 'gallery_albums.album_id')
                                 ->where('rate_descriptions.rate_name', $rate->rate_name)
-                                ->limit(3)
+                                ->limit(1)
                                 ->get();
                             @endphp
                             <td>
                                 <image src="{{asset('images/'.$photos[0]->photo_name)}}" width="100" height="100"></image>
-                            </td>
-                            <td>
-                                <image src="{{asset('images/'.$photos[1]->photo_name)}}" width="100" height="100"></image>
-                            </td>
-                            <td>
-                                <image src="{{asset('images/'.$photos[2]->photo_name)}}" width="100" height="100"></image>
                             </td>
 
                             <td>
@@ -158,10 +150,6 @@
                         <div class="col">
                             <b>Image 1</b>
                             <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
-                            <b>Image 2</b>
-                            <input type="file" name="image2" accept="image/png, image/gif, image/jpeg" />
-                            <b>Image 3</b>
-                            <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
 
                         </div>
 
@@ -227,10 +215,6 @@
                         <div class="col">
                             <b>Image 1</b>
                             <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
-                            <b>Image 2</b>
-                            <input type="file" name="image2" accept="image/png, image/gif, image/jpeg" />
-                            <b>Image 3</b>
-                            <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
 
                         </div>
 
