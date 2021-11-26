@@ -117,7 +117,7 @@ class AdminPromotionAddController extends Controller
                 'overall_cut' => 'required',
                 'promotion_start' => 'required',
                 'promotion_end' => 'required',
-                'image3' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
+                'image_name' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
 
             ]);
 
