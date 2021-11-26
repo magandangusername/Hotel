@@ -93,7 +93,10 @@ class AdminPromotionAddController extends Controller
                 'promotion_short_description' => $request->input('promotion_short_description'),
                 'overall_cut' => $request->input('overall_cut')/100,
                 'promotion_start' => $request->input('promotion_start'),
-                'promotion_end' => $request->input('promotion_end')
+                'promotion_end' => $request->input('promotion_end'),
+                'terms_conditions1' => $request->input('terms_conditions1'),
+                'terms_conditions2' => $request->input('terms_conditions2'),
+                'terms_conditions3' => $request->input('terms_conditions3')
             ]);
 
             return redirect(route('adminpromotion').'?success=Amenity '.$request->input('submitedit').' has been edited.');
@@ -138,6 +141,23 @@ class AdminPromotionAddController extends Controller
                 'promotion_start' => $request->input('promotion_start'),
                 'promotion_end' => $request->input('promotion_end'),
                 'image_name' => $fileNameToStore
+            ]);
+
+            DB::table('gallery_albums')
+            ->insert([
+                'album_name' => $request->input('promotion_name')
+            ]);
+
+            $album_id = DB::table('gallery_albums')
+            ->where('album_name', $request->input('promotion_name'))
+            ->first();
+
+            $album_id = $album_id->album_id;
+
+            DB::table('gallery_photos')
+            ->insert([
+                'photo_name' => $fileNameToStore,
+                'album_id' => $album_id
             ]);
 
             return redirect('admin/addamenity?success=Amenity '.$request->input('amenityid').' has been created.');

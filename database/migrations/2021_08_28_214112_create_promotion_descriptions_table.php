@@ -17,11 +17,11 @@ class CreatePromotionDescriptionsTable extends Migration
         Schema::create('promotion_descriptions', function (Blueprint $table) {
             $table->string('promotion_code')->primary();
             $table->string('promotion_name');
-            $table->string('promotion_short_description');
-            $table->string('promotion_long_description');
-            $table->string('terms_conditions1');
-            $table->string('terms_conditions2');
-            $table->string('terms_conditions3');
+            $table->string('promotion_short_description')->nullable();
+            $table->string('promotion_long_description')->nullable();
+            $table->string('terms_conditions1')->nullable();
+            $table->string('terms_conditions2')->nullable();
+            $table->string('terms_conditions3')->nullable();
             $table->dateTime('promotion_start');
             $table->dateTime('promotion_end');
             $table->float('overall_cut');

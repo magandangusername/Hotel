@@ -34,12 +34,13 @@
                         <th>Long Description</th>
                         <th>Short Description</th>
                         <th>Promotion Discount</th>
-                        <th>Promotion Start</th>
-                        <th>Promotion End</th>
-                        <th>Promotion Image</th>
                         <th>T&C1</th>
                         <th>T&C2</th>
                         <th>T&C3</th>
+                        <th>Promotion Start</th>
+                        <th>Promotion End</th>
+                        <th>Promotion Image</th>
+
                         <th></th>
 
 
@@ -55,6 +56,9 @@
                             <td>{{$promotion->promotion_long_description}}</td>
                             <td>{{$promotion->promotion_short_description}}</td>
                             <td>{{$promotion->overall_cut * 100}}%</td>
+                            <td>{{$promotion->terms_conditions1}}</td>
+                            <td>{{$promotion->terms_conditions2}}</td>
+                            <td>{{$promotion->terms_conditions3}}</td>
                             <td>{{date('m/d/Y', strtotime($promotion->promotion_start))}}</td>
                             <td>{{date('m/d/Y', strtotime($promotion->promotion_end))}}</td>
                             <td>
@@ -143,6 +147,27 @@
                     </div>
 
                     <div class="row my-2">
+                        <div class="col-2">
+                           <b>T&C1</b>
+                            <textarea rows="4" cols="80" name="terms_conditions1">{{$editpromo->terms_conditions1}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-2">
+                           <b>T&C2</b>
+                            <textarea rows="4" cols="80" name="terms_conditions2">{{$editpromo->terms_conditions2}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-2">
+                           <b>T&C3</b>
+                            <textarea rows="4" cols="80" name="terms_conditions3">{{$editpromo->terms_conditions3}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
                         <div class="col">
                             <b>Promotion Image</b>
                             <div class="form-group">
@@ -215,21 +240,21 @@
                     <div class="row my-2">
                         <div class="col-2">
                            <b>T&C1</b>
-                            <textarea rows="4" cols="80" name="termsandcondition1"></textarea>
+                            <textarea rows="4" cols="80" name="terms_conditions1"></textarea>
                         </div>
                     </div>
 
                     <div class="row my-2">
                         <div class="col-2">
                            <b>T&C2</b>
-                            <textarea rows="4" cols="80" name="termsandcondition2"></textarea>
+                            <textarea rows="4" cols="80" name="terms_conditions2"></textarea>
                         </div>
                     </div>
 
                     <div class="row my-2">
                         <div class="col-2">
                            <b>T&C3</b>
-                            <textarea rows="4" cols="80" name="termsandcondition3"></textarea>
+                            <textarea rows="4" cols="80" name="terms_conditions3"></textarea>
                         </div>
                     </div>
 
