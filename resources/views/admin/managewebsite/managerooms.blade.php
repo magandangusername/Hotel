@@ -197,35 +197,31 @@
                         <div class="col">
                             <b>Beds</b>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]" @php
+
+                                <!-- <input class="form-check-input" type="number" value="K" id="kingbedrad" name="beds[]" @php
                                     $k = 'K';
                                     $q = 'Q';
                                     if (preg_match("/{$k}/i", $editroom->bed_type)) {
                                         echo 'checked';
                                     }
-                                @endphp>
+                                @endphp> -->
                                 <label class="form-check-label" for="kingbedrad">
                                     King Bed
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]" @php
+
+                                <!-- <input class="form-check-input" type="number" value="Q" id="queenbedrad" name="beds[]" @php
                                     if (preg_match("/{$q}/i", $editroom->bed_type)) {
                                         echo 'checked';
                                     }
-                                @endphp>
+                                @endphp> -->
                                 <label class="form-check-label" for="queenbedrad">
                                     Queen Bed
                                 </label>
                             </div>
 
-                            {{-- chotto matte, wth is this? u didnt tell this bed exists, i dont have time for this --}}
-                            {{-- <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="doublequeenrad">
-                                <label class="form-check-label" for="doublequeenrad">
-                                    Double Queen Bed
-                                </label>
-                            </div> --}}
+
                         </div>
                     </div>
                     <div class="row my-4">
@@ -319,14 +315,20 @@
                     <div class="row my-4">
                         <div class="col">
                             <b>Beds</b>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]">
+                            <div class="form-check mt-3">
+                                <div class="col-1">
+                                <input type="text" class="form-control" id="kingbedcount" name="room_size" >
+                                </div>
                                 <label class="form-check-label" for="kingbedrad">
-                                    King Bed
+                                    King Bed Room
                                 </label>
+
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]">
+                                <div class="col-1">
+                                <input type="text" class="form-control" id="queenbedcount" name="room_size" >
+                                </div>
+
                                 <label class="form-check-label" for="queenbedrad">
                                     Queen Bed
                                 </label>
