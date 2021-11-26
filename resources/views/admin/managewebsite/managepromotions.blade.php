@@ -39,6 +39,7 @@
                         <th>Promotion Image</th>
                         <th>T&C1</th>
                         <th>T&C2</th>
+                        <th>T&C3</th>
                         <th></th>
 
 
