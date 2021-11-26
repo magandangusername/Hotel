@@ -131,17 +131,7 @@ class AdminPromotionAddController extends Controller
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             $request->file('image_name')->move(public_path('/images'), $fileNameToStore);
 
-            DB::table('promotion_descriptions')
-            ->insert([
-                'promotion_code' => $request->input('promotion_code'),
-                'promotion_name' => $request->input('promotion_name'),
-                'promotion_long_description' => $request->input('promotion_long_description'),
-                'promotion_short_description' => $request->input('promotion_short_description'),
-                'overall_cut' => $request->input('overall_cut')/100,
-                'promotion_start' => $request->input('promotion_start'),
-                'promotion_end' => $request->input('promotion_end'),
-                'image_name' => $fileNameToStore
-            ]);
+
 
             DB::table('gallery_albums')
             ->insert([
@@ -160,7 +150,20 @@ class AdminPromotionAddController extends Controller
                 'album_id' => $album_id
             ]);
 
-            return redirect('admin/addamenity?success=Amenity '.$request->input('amenityid').' has been created.');
+            DB::table('promotion_descriptions')
+            ->insert([
+                'promotion_code' => $request->input('promotion_code'),
+                'promotion_name' => $request->input('promotion_name'),
+                'promotion_long_description' => $request->input('promotion_long_description'),
+                'promotion_short_description' => $request->input('promotion_short_description'),
+                'overall_cut' => $request->input('overall_cut')/100,
+                'promotion_start' => $request->input('promotion_start'),
+                'promotion_end' => $request->input('promotion_end'),
+                'image_name' => $fileNameToStore,
+                'album_id' => $album_id
+            ]);
+
+            return redirect('admin/addpromotion?success=Amenity '.$request->input('amenityid').' has been created.');
 
         }
 
