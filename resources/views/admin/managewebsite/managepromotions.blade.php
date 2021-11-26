@@ -37,6 +37,11 @@
                         <th>Promotion Start</th>
                         <th>Promotion End</th>
                         <th>Promotion Image</th>
+                        <th>T&C1</th>
+                        <th>T&C2</th>
+                        <th></th>
+
+
                     </tr>
                 </thead>
 
@@ -162,11 +167,11 @@
                 @csrf
                 <fieldset>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-2">
                             <b>Promotion Name</b>
                             <input type="text" class="form-control" id="promotioname" name="promotion_name">
                         </div>
-                        <div class="col">
+                        <div class="col-2">
                             <b>Promotion Code</b>
                             <input type="text" class="form-control" id="promotioncode" name="promotion_code">
                         </div>
@@ -187,7 +192,7 @@
                     </div>
 
                     <div class="row my-2">
-                        <div class="col">
+                        <div class="col-1">
                             <label for="promotioncode"><b>Promotion Discount</b></label>
                             <input type="number" class="form-control" name="overall_cut" id="discount" placeholder="3%">%
                         </div>
@@ -195,16 +200,31 @@
                     </div>
 
                     <div class="row my-2">
-                        <div class="col">
+                        <div class="col-2">
                             <label for="promotioncode"><b>Promotion Start</b></label>
                             <input type="date" class="form-control" id="arrivalinput" name="promotion_start" value="{{date('Y-m-d')}}">
                         </div>
-                        <div class="col">
+                        <div class="col-2">
                             <label for="promotioncode"><b>Promotion End</b></label>
                             <input type="date" class="form-control" id="arrivalinput" name="promotion_end" value="{{date('Y-m-d')}}">
                         </div>
-
                     </div>
+
+
+                    <div class="row my-2">
+                        <div class="col-2">
+                           <b>T&C1</b>
+                            <textarea rows="4" cols="80" name="termsandcondition1"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-2">
+                           <b>T&C2</b>
+                            <textarea rows="4" cols="80" name="termsandcondition2"></textarea>
+                        </div>
+                    </div>
+
 
                     <div class="row my-2">
                         <div class="col">
