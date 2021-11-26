@@ -225,6 +225,13 @@
                         </div>
                     </div>
 
+                    <div class="row my-2">
+                        <div class="col-2">
+                           <b>T&C3</b>
+                            <textarea rows="4" cols="80" name="termsandcondition3"></textarea>
+                        </div>
+                    </div>
+
 
                     <div class="row my-2">
                         <div class="col">
@@ -243,7 +250,7 @@
 
                     </div>
                     <input type="text" name="submitadd" value="submitadd" hidden>
-                    <button type="submit" class="btn btn-primary mt-2">Add promo</button>
+                    <button type="submit" class="btn btn-dark mt-2">Add promo</button>
                 </fieldset>
             </form>
 
