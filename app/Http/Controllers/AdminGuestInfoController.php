@@ -10,6 +10,7 @@ class AdminGuestInfoController extends Controller
 {
     public function index (){
         $users = DB::table('users')
+        ->where('admin', '!=', 1)
         ->get();
 
         return view('admin/managedata/guestdata')->with(compact('users'));
@@ -17,7 +18,7 @@ class AdminGuestInfoController extends Controller
     }
 
 
-    public function modifyguestacc (){
+    public function modifyguestinfo (){
 
 
         return redirect(route('adminguestacc'));

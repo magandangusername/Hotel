@@ -159,6 +159,9 @@ class AdminPromotionAddController extends Controller
                 'overall_cut' => $request->input('overall_cut')/100,
                 'promotion_start' => $request->input('promotion_start'),
                 'promotion_end' => $request->input('promotion_end'),
+                'terms_conditions1' => $request->input('terms_conditions1'),
+                'terms_conditions2' => $request->input('terms_conditions2'),
+                'terms_conditions3' => $request->input('terms_conditions3'),
                 'image_name' => $fileNameToStore,
                 'album_id' => $album_id
             ]);

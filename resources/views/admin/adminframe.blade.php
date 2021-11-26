@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as: Jonh</div>
+                        <div class="small">Logged in as: {{Auth::user()->first_name}}</div>
                     </div>
                 </nav>
             </div>

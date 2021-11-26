@@ -53,22 +53,30 @@
                             <td>{{date('m/d/Y', strtotime($user->updated_at))}}</td>
                             <td>@php
                                 $reservations = DB::table('reservation_tables')
-                                ->where('guest_code', {{$user->id}})
+                                ->where('user_id', $user->id)
                                 ->where('arrival_date', '>=', date('Y-m-d'))
                                 ->get();
                                 $reservationstotal = DB::table('reservation_tables')
-                                ->where('guest_code', {{$user->id}})
+                                ->where('user_id', $user->id)
                                 ->where('arrival_date', '>=', date('Y-m-d'))
                                 ->count();
                             @endphp @foreach ($reservations as $reservation)
-                                {{$reservation->reservation_number}}&nbsp;
+                                {{$reservation->confirmation_number}}&nbsp;
                             @endforeach</td>
                             <td>{{$reservationstotal}}</td>
 
 
                             <td>
-                                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
+                                <form action="{{route('admineditguestacc')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="deleteguestacc" value="{{$user->id}}" hidden>
+                                    <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
+                                </form>
+                                <form action="{{route('admineditguestacc')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="editguestacc" value="{{$user->id}}" hidden>
+                                    <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
+                                </form>
                             </td>
                         </tr>
 
@@ -78,7 +86,11 @@
                 </tbody>
 
             </table>
-            <button type="submit" class="btn btn-dark mt-2">Add Guest Account</button>
+            <form action="{{route('admineditguestacc')}}" method="post">
+                @csrf
+                <input type="text" name="addguestacc" value="addguestacc" hidden>
+                <button type="submit" class="btn btn-dark">Add Guest Account</button>
+            </form>
 
         </div>
 
@@ -87,39 +99,102 @@
 
     <div class="card my-5 ">
         <div class="card-body">
-
-            <form class="p-5">
-                <fieldset disabled>
-                    <div class="row">
-                        <div class="col-3">
-                            <b>Email</b>
-                            <input type="email" class="form-control" id="inputemail" placeholder="User@email.com">
+            @if (isset($edit))
+                <form class="p-5" method="post" action="{{route('admineditguestacc')}}">
+                    @csrf
+                    <fieldset >
+                        <div class="row">
+                            <div class="col-3">
+                                <b>First Name</b>
+                                <input type="text" class="form-control" id="inputemail" placeholder="First Name"
+                                    name="first_name" value="{{ $edituser->first_name }}" disabled>
+                            </div>
+                            <div class="col-3">
+                                <b>Last Name</b>
+                                <input type="text" class="form-control" id="inputemail" placeholder="Last Name"
+                                    name="last_name" value="{{ $edituser->last_name }}" disabled>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row my-2">
-                        <div class="col-2">
-                            <label for="arrivalinput"><b>Password</b></label>
-                            <input type="text" class="form-control" id="passwordinput">
-                        </div>
-
-                    </div>
-
-                    <div class="row my-2">
-                        <div class="col-2">
-                            <b>Guest Info Code</b>
-                            <input type="number" class="form-control" id="guestinfocode">
-                        </div>
-                        <div class="col-2">
-                            <b>Payment Info Code</b>
-                            <input type="number" class="form-control" id="paymentinfocode">
+                        <div class="row">
+                            <div class="col-3">
+                                <b>Email</b>
+                                <input type="email" class="form-control" id="inputemail" placeholder="User@email.com" name="email" value="{{$edituser->email}}" disabled>
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="row my-2">
+                            <div class="col-2">
+                                <label for="arrivalinput"><b>Password</b></label>
+                                <input type="text" class="form-control" id="passwordinput" name="password">
+                            </div>
 
-                    <button type="submit" class="btn btn-dark mt-2">Update</button>
-                </fieldset>
-            </form>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-2">
+                                <b>Guest Info Code</b>
+                                <input type="number" class="form-control" id="guestinfocode" name="user_id" value="{{$edituser->id}}" disabled>
+                            </div>
+                            <div class="col-2">
+                                <b>Payment Info Code</b>
+                                <input type="number" class="form-control" id="promotion_code" name="promotion_code" value="{{$edituser->payment_code}}" disabled>
+                            </div>
+
+                        </div>
+                        <input type="text" name="submitedit" value="{{$edituser->id}}" hidden>
+                        <button type="submit" class="btn btn-dark mt-2">Update</button>
+                    </fieldset>
+                </form>
+
+            @elseif (isset($add))
+                <form class="p-5" method="post" action="{{route('admineditguestacc')}}">
+                    @csrf
+                    <fieldset >
+                        <div class="row">
+                            <div class="col-3">
+                                <b>First Name</b>
+                                <input type="text" class="form-control" id="inputemail" placeholder="First Name"
+                                    name="first_name" >
+                            </div>
+                            <div class="col-3">
+                                <b>Last Name</b>
+                                <input type="text" class="form-control" id="inputemail" placeholder="Last Name"
+                                    name="last_name" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <b>Email</b>
+                                <input type="email" class="form-control" id="inputemail" placeholder="User@email.com" name="email">
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-2">
+                                <label for="arrivalinput"><b>Password</b></label>
+                                <input type="text" class="form-control" id="passwordinput" name="password">
+                            </div>
+
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-2">
+                                <b>Guest Info Code</b>
+                                <input type="number" class="form-control" id="guestinfocode" name="user_id" disabled>
+                            </div>
+                            <div class="col-2">
+                                <b>Payment Info Code</b>
+                                <input type="number" class="form-control" id="promotion_code" name="promotion_code">
+                            </div>
+
+                        </div>
+                        <input type="text" name="submitadd" value="submitadd" hidden>
+                        <button type="submit" class="btn btn-dark mt-2">Add Account</button>
+                    </fieldset>
+                </form>
+
+            @endif
+
 
         </div>
     </div>

@@ -62,6 +62,55 @@ Route::get('profile', function () {
 })->middleware('verified');
 
 
+Route::middleware('can:accessAdmin')->group(function () {
+    // future adminpanel routes also should belong to the group
+
+
+
+    Route::get('/admin', [DashboardController::class, 'DashboardController'])->name('dashboard');
+
+    Route::get('/admin/reservation', [AdminReservationsController::class, 'index'])->name('adminreservation');
+    Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation'])->name('admineditreservation');
+
+    Route::get('/admin/cancellation', [AdminCancellationsController::class, 'index'])->name('admincancellation');
+    Route::post('/admin/cancellation', [AdminCancellationsController::class, 'approvedeny'])->name('admineditcancellation');
+
+    Route::get('/admin/modification', [AdminModificationsController::class, 'index'])->name('adminmodification');
+
+    Route::get('/admin/addroom', [AdminRoomAddController::class, 'index'])->name('adminroom');
+    Route::post('/admin/addroom', [AdminRoomAddController::class, 'modifyrooms'])->name('admineditroom');
+
+    Route::get('/admin/addsuite', [AdminSuiteAddController::class, 'index'])->name('adminsuite');
+    Route::post('/admin/addsuite', [AdminSuiteAddController::class, 'modifysuites'])->name('admineditsuite');
+
+    Route::get('/admin/addamenity', [AdminAmenityAddController::class, 'index'])->name('adminamenity');
+    Route::post('/admin/addamenity', [AdminAmenityAddController::class, 'modifyamenity'])->name('admineditamenity');
+
+    Route::get('/admin/addrate', [AdminRateAddController::class, 'index'])->name('adminrate');
+    Route::post('/admin/addrate', [AdminRateAddController::class, 'modifyrates'])->name('admineditrate');
+
+    Route::get('/admin/addpromotion', [AdminPromotionAddController::class, 'index'])->name('adminpromotion');
+    Route::post('/admin/addpromotion', [AdminPromotionAddController::class, 'modifypromotion'])->name('admineditpromotion');
+
+    Route::get('/admin/guestinfo', [AdminGuestInfoController::class, 'index'])->name('adminguestinfo');
+    Route::post('/admin/guestinfo', [AdminGuestInfoController::class, 'modifyguestinfo'])->name('admineditguestinfo');
+
+    Route::get('/admin/paymentinfo', [AdminPaymentInfoController::class, 'index'])->name('adminguestpayment');
+    Route::get('/admin/log', [AdminLogController::class, 'index'])->name('adminlog');
+
+    Route::get('/admin/guestacc', [AdminGuestAccController::class, 'index'])->name('adminguestacc');
+    Route::post('/admin/guestacc', [AdminGuestAccController::class, 'modifyguestacc'])->name('admineditguestacc');
+
+
+    Route::get('/admin/acc', [AdminAccController::class, 'index'])->name('adminacc');
+    Route::post('/admin/acc', [AdminAccController::class, 'modifyadminacc'])->name('admineditacc');
+
+    Route::get('/admin/login', [AdminLoginController::class, 'index'])->name('adminlogin');
+    Route::get('/admin/register', [AdminRegisterController::class, 'index'])->name('adminregister');
+    Route::get('/admin/resetpass', [AdminResetPasswordController::class, 'index'])->name('adminresetpass');
+});
+
+
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/userprofile', [ProfileController::class, 'userprofile'])->name('userprofile');
 Route::post('/userprofile', [ProfileController::class, 'updateprofile'])->name('updateprofile');
@@ -78,43 +127,6 @@ Route::get('/aboutus', [AboutusController::class, 'index'])->name('aboutus');
 
 
 
-Route::get('/admin', [DashboardController::class, 'DashboardController' ])->name('dashboard');
-Route::get('/admin/reservation', [AdminReservationsController::class, 'index' ])->name('adminreservation');
-Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation' ])->name('admineditreservation');
-
-Route::get('/admin/cancellation', [AdminCancellationsController::class, 'index' ])->name('admincancellation');
-Route::post('/admin/cancellation', [AdminCancellationsController::class, 'approvedeny' ])->name('admineditcancellation');
-
-Route::get('/admin/modification', [AdminModificationsController::class, 'index' ])->name('adminmodification');
-
-Route::get('/admin/addroom', [AdminRoomAddController::class, 'index' ])->name('adminroom');
-Route::post('/admin/addroom', [AdminRoomAddController::class, 'modifyrooms' ])->name('admineditroom');
-
-Route::get('/admin/addsuite', [AdminSuiteAddController::class, 'index' ])->name('adminsuite');
-Route::post('/admin/addsuite', [AdminSuiteAddController::class, 'modifysuites' ])->name('admineditsuite');
-
-Route::get('/admin/addamenity', [AdminAmenityAddController::class, 'index' ])->name('adminamenity');
-Route::post('/admin/addamenity', [AdminAmenityAddController::class, 'modifyamenity' ])->name('admineditamenity');
-
-Route::get('/admin/addrate', [AdminRateAddController::class, 'index' ])->name('adminrate');
-Route::post('/admin/addrate', [AdminRateAddController::class, 'modifyrates' ])->name('admineditrate');
-
-Route::get('/admin/addpromotion', [AdminPromotionAddController::class, 'index' ])->name('adminpromotion');
-Route::post('/admin/addpromotion', [AdminPromotionAddController::class, 'modifypromotion' ])->name('admineditpromotion');
-
-Route::get('/admin/guestinfo', [AdminGuestInfoController::class, 'index' ])->name('adminguestinfo');
-Route::get('/admin/paymentinfo', [AdminPaymentInfoController::class, 'index' ])->name('adminguestpayment');
-Route::get('/admin/log', [AdminLogController::class, 'index' ])->name('adminlog');
-
-Route::get('/admin/guestacc', [AdminGuestAccController::class, 'index' ])->name('adminguestacc');
-Route::post('/admin/guestacc', [AdminGuestAccController::class, 'modifyguestacc' ])->name('admineditguestacc');
-
-
-Route::get('/admin/acc', [AdminAccController::class, 'index' ])->name('adminacc');
-
-Route::get('/admin/login', [AdminLoginController::class, 'index' ])->name('adminlogin');
-Route::get('/admin/register', [AdminRegisterController::class, 'index' ])->name('adminregister');
-Route::get('/admin/resetpass', [AdminResetPasswordController::class, 'index' ])->name('adminresetpass');
 
 Route::resource('/book', BookController::class);
 Route::resource('/chooseroom', ChooseRoomController::class);
