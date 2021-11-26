@@ -9,6 +9,21 @@
         <div class="card-header">
             <h2>Guest Information </h2>
         </div>
+        @if (isset($_GET['success']))
+            <p class="alert alert-success">{{ $_GET['success'] }}</p>
+        @endif
+        @if (isset($_GET['error']))
+            <p class="alert alert-danger">{{ $_GET['error'] }}</p>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </div>
+        @endif
         <div class="card-body">
             <table id="datatablerr">
                 <thead>

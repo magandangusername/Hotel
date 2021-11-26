@@ -12,9 +12,18 @@
         @if (isset($_GET['success']))
             <p class="alert alert-success">{{ $_GET['success'] }}</p>
         @endif
-        @error('test')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                    @enderror
+        @if (isset($_GET['error']))
+            <p class="alert alert-danger">{{ $_GET['error'] }}</p>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </div>
+        @endif
         <div class="card-body">
             <table id="datatablerr">
                 <thead>
@@ -41,7 +50,7 @@
                             <td>{{$room->room_name}}</td>
                             <td>{{$room->room_long_description}}</td>
                             <td>{{$room->room_short_description}}</td>
-                            <td>{{$room->room_size}}M SQM</td>
+                            <td>{{$room->room_size}} SQM</td>
                             <td>PHP {{number_format($room->base_price, 2)}}</td>
                             @php
                                 $k = 'K';
@@ -131,8 +140,11 @@
                 </tbody>
 
             </table>
-            <button type="button" class="btn btn-dark">Add New Room</button>
-
+            <form action="{{route('admineditroom')}}" method="post">
+                @csrf
+                <input type="text" name="addroom" value="addroom" hidden>
+                <button type="submit" class="btn btn-dark">Add New Room</button>
+            </form>
         </div>
 
 
@@ -140,7 +152,7 @@
 
     <div class="card my-5">
         @if (isset($edit))
-            <form class="p-5" action="/admin/addroom" method="post" enctype=”multipart/form-data”>
+            <form class="p-5" action="/admin/addroom" method="post" enctype="multipart/form-data">
                 @csrf
                 <fieldset>
                     <div class="row">
@@ -185,7 +197,7 @@
                         <div class="col">
                             <b>Beds</b>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="king_bed" @php
+                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]" @php
                                     $k = 'K';
                                     $q = 'Q';
                                     if (preg_match("/{$k}/i", $editroom->bed_type)) {
@@ -197,7 +209,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="queen_bed" @php
+                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]" @php
                                     if (preg_match("/{$q}/i", $editroom->bed_type)) {
                                         echo 'checked';
                                     }
@@ -235,7 +247,7 @@
 
                         </div>
 
-                        {{-- i dont think we need this since we can manually add a room for a specific type anytime --}}
+                        {{-- i dont think this is neccessary since we can manually add a room for a specific type anytime --}}
                         {{-- <div class="col-2">
                             <b>Number of Rooms</b>
                             <input type="text" class="form-control" id="numroominput">
@@ -249,7 +261,7 @@
                             <b>Room Image 1</b>
                             <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
                             <b>Room Image 2</b>
-                            <input type="file" name="test" accept="image/png, image/gif, image/jpeg"/>
+                            <input type="file" name="image2" accept="image/png, image/gif, image/jpeg">
                             <b>Room Image 3</b>
                             <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
                         </div>
@@ -261,7 +273,98 @@
                 </fieldset>
             </form>
 
+        @elseif(isset($add))
+
+            <form class="p-5" action="/admin/addroom" method="post" enctype="multipart/form-data">
+                @csrf
+                <fieldset>
+                    <div class="row">
+                        <div class="col-4">
+                            <b>Room Name</b>
+                            <input type="text" class="form-control" id="roomname" name="room_name" >
+                        </div>
+
+                    </div>
+
+                    <div class="row my-2">
+                        <b>Detailed Description</b>
+
+                        <div class="col">
+                            <textarea rows="4" cols="80" name="room_long_description" ></textarea>
+                        </div>
+
+                        <b>Short Description</b>
+
+                        <div class="col">
+                            <textarea rows="4" cols="60" name="room_short_description" ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+
+                        <div class="col">
+                            <b>Room Size</b>
+                            <input type="text" class="form-control" id="rdiscount" name="room_size" >
+                        </div>
+                        <div class="col">
+                            <b>Base Price</b>
+                            <input type="text" class="form-control" id="servrate" name="base_price" >
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row my-4">
+                        <div class="col">
+                            <b>Beds</b>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]">
+                                <label class="form-check-label" for="kingbedrad">
+                                    King Bed
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]">
+                                <label class="form-check-label" for="queenbedrad">
+                                    Queen Bed
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+
+                        <div class="col-2">
+                            <b>Amenity Code</b>
+                            {{-- something feels wrong here --}}
+                            <select name="amenities_number">
+                                @foreach ($amenities as $amenity)
+                                    <option value="{{$amenity->amenities_number}}" >{{$amenity->amenities_number}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+
+                        <div class="col">
+                            <b>Room Image 1</b>
+                            <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
+                            <b>Room Image 2</b>
+                            <input type="file" name="image2" accept="image/png, image/gif, image/jpeg">
+                            <b>Room Image 3</b>
+                            <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
+                        </div>
+
+                    </div>
+
+                    <input type="text" name="submitadd" value="submitadd" hidden>
+                    <button type="submit" class="btn btn-dark mt-2">Add Room</button>
+                </fieldset>
+            </form>
+
         @endif
+
 
 
     </div>

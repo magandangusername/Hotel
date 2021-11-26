@@ -358,11 +358,12 @@ class BookInformationController extends Controller
 
 
 
-            if (session('promocode') !== null && session('promocode') != '') {
-                $promocode = session('promocode');
+            if (session('PromoCode') !== null && session('PromoCode') != "") {
+                $promocode = session('PromoCode');
             } else {
                 $promocode = '';
             }
+
 
             $paymentcode = '';
             // $paymentcode = DB::table('orders')->max('id');

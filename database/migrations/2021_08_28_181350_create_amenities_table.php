@@ -16,16 +16,16 @@ class CreateAmenitiesTable extends Migration
     {
         Schema::create('amenities', function (Blueprint $table) {
             $table->string('amenities_number')->primary();
-            $table->string('a1');
-            $table->string('a2');
-            $table->string('a3');
-            $table->string('a4');
-            $table->string('a5');
-            $table->string('a6');
-            $table->string('a7');
-            $table->string('a8');
-            $table->string('a9');
-            $table->string('a10');
+            $table->string('a1')->nullable();
+            $table->string('a2')->nullable();
+            $table->string('a3')->nullable();
+            $table->string('a4')->nullable();
+            $table->string('a5')->nullable();
+            $table->string('a6')->nullable();
+            $table->string('a7')->nullable();
+            $table->string('a8')->nullable();
+            $table->string('a9')->nullable();
+            $table->string('a10')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

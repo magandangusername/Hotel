@@ -9,6 +9,21 @@
 
             <h2>Manage Suite </h2>
         </div>
+        @if (isset($_GET['success']))
+            <p class="alert alert-success">{{ $_GET['success'] }}</p>
+        @endif
+        @if (isset($_GET['error']))
+            <p class="alert alert-danger">{{ $_GET['error'] }}</p>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </div>
+        @endif
         <div class="card-body">
             <table id="datatablerr">
                 <thead>
@@ -16,175 +31,293 @@
                         <th>Suite Name</th>
                         <th>Detailed Description</th>
                         <th>Short Description</th>
-                        <th>Suite Size</th>
+                        <th>Room Size</th>
                         <th>Base Price</th>
                         <th>Beds</th>
-                        <th>Suite Image 1</th>
-                        <th>Suite Image 2</th>
-                        <th>Suite Image 3</th>
+                        <th>Room Image 1</th>
+                        <th>Room Image 2</th>
+                        <th>Room Image 3</th>
                         <th>Amenities Set</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
+                    @foreach ($rooms as $room)
 
-                        <td>Standard Room</td>
-                        <td>This room is cool and long</td>
-                        <td>And its also short</td>
-                        <td>1M SQM</td>
-                        <td>1T USD</td>
-                        <td>King,Queen</td>
 
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>Set 1</td>
-                        <td>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
-                        </td>
+                        <tr>
 
-                    </tr>
-                    <tr>
+                            <td>{{$room->suite_name}}</td>
+                            <td>{{$room->suite_long_description}}</td>
+                            <td>{{$room->suite_short_description}}</td>
+                            <td>{{$room->suite_size}} SQM</td>
+                            <td>PHP {{number_format($room->base_price, 2)}}</td>
+                            @php
+                                $k = 'K';
+                                $q = 'Q';
+                                $kq = 'King Bed';
+                                $beds = '';
+                                if (preg_match("/{$k}/i", $room->bed_type)) {
+                                    $beds = $beds . 'King Bed';
+                                }
 
-                        <td>Standard Room</td>
-                        <td>This room is cool and long</td>
-                        <td>And its also short</td>
-                        <td>1M SQM</td>
-                        <td>1T USD</td>
-                        <td>King,Queen</td>
+                                if (preg_match("/{$q}/i", $room->bed_type)) {
+                                    if (preg_match("/{$kq}/i", $beds)) {
+                                        $beds = $beds . ', ';
+                                    }
+                                    $beds = $beds . 'Queen Bed';
+                                }
+                            @endphp
+                            <td>{{$beds}}</td>
+                            @php
+                                $photos = DB::table('gallery_photos')
+                                ->leftJoin('gallery_albums', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
+                                ->leftJoin('suite_descriptions', 'suite_descriptions.album_id', '=', 'gallery_albums.album_id')
+                                ->where('suite_descriptions.suite_name', $room->suite_name)
+                                ->limit(3)
+                                ->get();
+                                // dd($photos);
+                            @endphp
+                            <td>
+                                <image src="{{asset('images/'.$photos[0]->photo_name)}}" alt="No Image" width="100" height="100"></image>
+                            </td>
+                            <td>
+                                <image src="{{asset('images/'.$photos[1]->photo_name)}}" alt="No Image" width="100" height="100"></image>
+                            </td>
+                            <td>
+                                <image src="{{asset('images/'.$photos[2]->photo_name)}}" alt="No Image" width="100" height="100"></image>
+                            </td>
+                            <td>
+                                {{$room->amenities_number}}
+                            </td>
+                            <td>
+                                <form action="{{route('admineditsuite')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="deleteroom" value="{{$room->suite_name}}" hidden>
+                                    <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
+                                </form>
+                                <form action="{{route('admineditsuite')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="editroom" value="{{$room->suite_name}}" hidden>
+                                    <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
+                                </form>
+                            </td>
 
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>
-                            <image src="https://www.jquery-az.com/html/images/banana.jpg" width="100" height="100"></image>
-                        </td>
-                        <td>Set 1</td>
-
-                        <td>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
-                        </td>
-
-                    </tr>
+                        </tr>
+                    @endforeach
                 </tbody>
 
             </table>
-            <button type="button" class="btn btn-dark">Add New Suite</button>
-
+            <form action="{{route('admineditsuite')}}" method="post">
+                @csrf
+                <input type="text" name="addsuite" value="addsuite" hidden>
+                <button type="submit" class="btn btn-dark">Add New Suite</button>
+            </form>
         </div>
 
 
     </div>
 
     <div class="card my-5">
-        <form class="p-5">
-            <fieldset>
-                <div class="row">
-                    <div class="col-4">
-                        <b>Suite Name</b>
-                        <input type="text" class="form-control" id="roomname">
-                    </div>
-
-                </div>
-
-                <div class="row my-2">
-                    <b>Detailed Description</b>
-
-                    <div class="col">
-                        <textarea rows="4" cols="80"></textarea>
-                    </div>
-
-                    <b>Short Description</b>
-
-                    <div class="col">
-                        <textarea rows="4" cols="60"></textarea>
-                    </div>
-                </div>
-
-                <div class="row my-2">
-
-                    <div class="col">
-                        <b>Suite Size</b>
-                        <input type="text" class="form-control" id="rdiscount">
-                    </div>
-                    <div class="col">
-                        <b>Suite Price</b>
-                        <input type="text" class="form-control" id="servrate">
-                    </div>
-
-
-
-                </div>
-
-
-                <div class="row my-4">
-                    <div class="col">
-                        <b>Beds</b>
-                        <div class="form-check">
-                            <input class="form-check-input" tyvpe="checkbox" value="" id="kingbedrad">
-                            <label class="form-check-label" for="kingbedrad">
-                                King Bed
-                            </label>
+        @if (isset($edit))
+            <form class="p-5" action="/admin/addsuite" method="post" enctype="multipart/form-data">
+                @csrf
+                <fieldset>
+                    <div class="row">
+                        <div class="col-4">
+                            <b>Suite Name</b>
+                            <input type="text" class="form-control" id="roomname" name="suite_name" value="{{$editroom->suite_name }}">
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="queenbedrad">
-                            <label class="form-check-label" for="queenbedrad">
-                                Queen Bed
-                            </label>
+
+                    </div>
+
+                    <div class="row my-2">
+                        <b>Detailed Description</b>
+
+                        <div class="col">
+                            <textarea rows="4" cols="80" name="suite_long_description" >{{$editroom->suite_long_description}}</textarea>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="doublequeenrad">
-                            <label class="form-check-label" for="doublequeenrad">
-                                Double Queen Bed
-                            </label>
+
+                        <b>Short Description</b>
+
+                        <div class="col">
+                            <textarea rows="4" cols="60" name="suite_short_description" >{{$editroom->suite_short_description}}</textarea>
                         </div>
                     </div>
-                </div>
-                <div class="row my-4">
 
-                    <div class="col-2">
-                        <b>Amenity Code</b>
-                        <input type="text" class="form-control" id="amenitycode">
+                    <div class="row my-2">
 
-                    </div>
-                    <div class="col-2">
-                        <b>Number of Rooms</b>
-                        <input type="text" class="form-control" id="numroominput">
-
-                    </div>
-
-                </div>
-                <div class="row my-2">
+                        <div class="col">
+                            <b>Room Size</b>
+                            <input type="text" class="form-control" id="rdiscount" name="suite_size" value="{{$editroom->suite_size}}">
+                        </div>
+                        <div class="col">
+                            <b>Base Price</b>
+                            <input type="text" class="form-control" id="servrate" name="base_price" value="{{$editroom->base_price}}">
+                        </div>
 
 
-                    <div class="col">
-                        <b>Suite Image 1</b>
-                        <input type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
-                        <b>Suite Image 2</b>
-                        <input type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
-                        <b>Suite Image 3</b>
-                        <input type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
 
                     </div>
 
-                </div>
+
+                    <div class="row my-4">
+                        <div class="col">
+                            <b>Beds</b>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]" @php
+                                    $k = 'K';
+                                    $q = 'Q';
+                                    if (preg_match("/{$k}/i", $editroom->bed_type)) {
+                                        echo 'checked';
+                                    }
+                                @endphp>
+                                <label class="form-check-label" for="kingbedrad">
+                                    King Bed
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]" @php
+                                    if (preg_match("/{$q}/i", $editroom->bed_type)) {
+                                        echo 'checked';
+                                    }
+                                @endphp>
+                                <label class="form-check-label" for="queenbedrad">
+                                    Queen Bed
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+
+                        <div class="col-2">
+                            <b>Amenity Code</b>
+                            <select name="amenities_number">
+                                @foreach ($amenities as $amenity)
+                                    <option value="{{$amenity->amenities_number}}" @php
+                                        if($editroom->amenities_number === $amenity->amenities_number) {
+                                            echo 'selected';
+                                        }
+                                    @endphp>{{$amenity->amenities_number}}</option>
+                                @endforeach
+                            </select>
 
 
-                <button type="submit" class="btn btn-dark mt-2">Update</button>
-            </fieldset>
-        </form>
+
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+
+                        <div class="col">
+                            <b>Room Image 1</b>
+                            <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
+                            <b>Room Image 2</b>
+                            <input type="file" name="image2" accept="image/png, image/gif, image/jpeg">
+                            <b>Room Image 3</b>
+                            <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
+                        </div>
+
+                    </div>
+
+                    <input type="text" name="submitedit" value="{{$editroom->suite_name}}" hidden>
+                    <button type="submit" class="btn btn-dark mt-2">Update</button>
+                </fieldset>
+            </form>
+
+        @elseif(isset($add))
+
+            <form class="p-5" action="/admin/addsuite" method="post" enctype="multipart/form-data">
+                @csrf
+                <fieldset>
+                    <div class="row">
+                        <div class="col-4">
+                            <b>Suite Name</b>
+                            <input type="text" class="form-control" id="roomname" name="suite_name" >
+                        </div>
+
+                    </div>
+
+                    <div class="row my-2">
+                        <b>Detailed Description</b>
+
+                        <div class="col">
+                            <textarea rows="4" cols="80" name="suite_long_description" ></textarea>
+                        </div>
+
+                        <b>Short Description</b>
+
+                        <div class="col">
+                            <textarea rows="4" cols="60" name="suite_short_description" ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+
+                        <div class="col">
+                            <b>Room Size</b>
+                            <input type="text" class="form-control" id="rdiscount" name="suite_size" >
+                        </div>
+                        <div class="col">
+                            <b>Base Price</b>
+                            <input type="text" class="form-control" id="servrate" name="base_price" >
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row my-4">
+                        <div class="col">
+                            <b>Beds</b>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]">
+                                <label class="form-check-label" for="kingbedrad">
+                                    King Bed
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]">
+                                <label class="form-check-label" for="queenbedrad">
+                                    Queen Bed
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+
+                        <div class="col-2">
+                            <b>Amenity Code</b>
+                            {{-- something feels wrong here --}}
+                            <select name="amenities_number">
+                                @foreach ($amenities as $amenity)
+                                    <option value="{{$amenity->amenities_number}}" >{{$amenity->amenities_number}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+
+                        <div class="col">
+                            <b>Room Image 1</b>
+                            <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
+                            <b>Room Image 2</b>
+                            <input type="file" name="image2" accept="image/png, image/gif, image/jpeg">
+                            <b>Room Image 3</b>
+                            <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
+                        </div>
+
+                    </div>
+
+                    <input type="text" name="submitadd" value="submitadd" hidden>
+                    <button type="submit" class="btn btn-dark mt-2">Add Suite</button>
+                </fieldset>
+            </form>
+
+        @endif
+
+
 
     </div>
 

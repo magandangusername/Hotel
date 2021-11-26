@@ -51,16 +51,16 @@
                         $photonum  = 1;
                     @endphp
                     @foreach ($photos as $photo)
-                    <div class="carousel-item @php
-                        if($photonum == 1){
-                            echo 'active';
-                        }
-                    @endphp">
-                        <img src="{{ asset('images/'.$photo->photo_name) }}" class="d-block w-100" alt="...">
-                    </div>
-                    @php
-                        $photonum += 1;
-                    @endphp
+                        <div class="carousel-item @php
+                            if($photonum == 1){
+                                echo 'active';
+                            }
+                        @endphp">
+                            <img src="{{ asset('images/'.$photo->photo_name) }}" class="d-block w-100" alt="...">
+                        </div>
+                        @php
+                            $photonum += 1;
+                        @endphp
                     @endforeach
 
 
@@ -244,57 +244,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!--- old cold inside the description --->
-<!-- <div class="col" id="standstand">
-                    <p class=""> -->
-                        <!-- @if (isset($roominfo->suite_short_description))
-                            {{$roominfo->suite_short_description}}
-                        @else
-                            {{$roominfo->room_short_description}}
-                        @endif -->
-                    <!-- </p>
-                    <h3 class="stanAmenities">Amenities</h3>
-                    <p class="standesc">
-                        @if (isset($roominfo->suite_long_description))
-                            {{$roominfo->suite_long_description}}
-                        @else
-                            {{$roominfo->room_long_description}}
-                        @endif</p>
-                    @if ($roominfo->a1 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a1 }}</p>
-                    @elseif ($a2 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a2 }}</p>
-                    @elseif ($a3 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a3 }}</p>
-                    @elseif ($a4 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a4 }}</p>
-                    @elseif ($a5 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a5 }}</p>
-                    @elseif ($a6 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a6 }}</p>
-                    @elseif ($a7 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a7 }}</p>
-                    @elseif ($a8 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a8 }}</p>
-                    @elseif ($a9 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a9 }}</p>
-                    @elseif ($a10 != '')
-                        <p class="standesc">&bull; {{ $roominfo->a10 }}</p>
-                    @endif
-
-
-
-                </div> -->
-
-                <!-- {{-- @include('layouts.checkavailability2') --}} -->
