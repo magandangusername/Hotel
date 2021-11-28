@@ -31,37 +31,37 @@
                         <th>Suite Name</th>
                         <th>Detailed Description</th>
                         <th>Short Description</th>
-                        <th>Room Size</th>
+                        <th>Suite Size</th>
                         <th>Base Price</th>
                         <th>Beds</th>
-                        <th>Room Image 1</th>
-                        <th>Room Image 2</th>
-                        <th>Room Image 3</th>
+                        <th>Suite Image 1</th>
+                        <th>Suite Image 2</th>
+                        <th>Suite Image 3</th>
                         <th>Amenities Set</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($rooms as $room)
+                    @foreach ($suites as $suite)
 
 
                         <tr>
 
-                            <td>{{$room->suite_name}}</td>
-                            <td>{{$room->suite_long_description}}</td>
-                            <td>{{$room->suite_short_description}}</td>
-                            <td>{{$room->suite_size}} SQM</td>
-                            <td>PHP {{number_format($room->base_price, 2)}}</td>
+                            <td>{{$suite->suite_name}}</td>
+                            <td>{{$suite->suite_long_description}}</td>
+                            <td>{{$suite->suite_short_description}}</td>
+                            <td>{{$suite->suite_size}} SQM</td>
+                            <td>PHP {{number_format($suite->base_price, 2)}}</td>
                             @php
                                 $k = 'K';
                                 $q = 'Q';
                                 $kq = 'King Bed';
                                 $beds = '';
-                                if (preg_match("/{$k}/i", $room->bed_type)) {
+                                if (preg_match("/{$k}/i", $suite->bed_type)) {
                                     $beds = $beds . 'King Bed';
                                 }
 
-                                if (preg_match("/{$q}/i", $room->bed_type)) {
+                                if (preg_match("/{$q}/i", $suite->bed_type)) {
                                     if (preg_match("/{$kq}/i", $beds)) {
                                         $beds = $beds . ', ';
                                     }
@@ -73,7 +73,7 @@
                                 $photos = DB::table('gallery_photos')
                                 ->leftJoin('gallery_albums', 'gallery_albums.album_id', '=', 'gallery_photos.album_id')
                                 ->leftJoin('suite_descriptions', 'suite_descriptions.album_id', '=', 'gallery_albums.album_id')
-                                ->where('suite_descriptions.suite_name', $room->suite_name)
+                                ->where('suite_descriptions.suite_name', $suite->suite_name)
                                 ->limit(3)
                                 ->get();
                                 // dd($photos);
@@ -88,17 +88,49 @@
                                 <image src="{{asset('images/'.$photos[2]->photo_name)}}" alt="No Image" width="100" height="100"></image>
                             </td>
                             <td>
-                                {{$room->amenities_number}}
+                                {{$suite->amenities_number}}
+                                {{-- @if ($suite->a1 != null || $suite->a1 != "")
+                                    <p> *{{$suite->a1}}</p>
+                                @endif
+                                @if ($suite->a2 != null || $suite->a2 != "")
+                                    <p> *{{$suite->a2}}</p>
+                                @endif
+                                @if ($suite->a3 != null || $suite->a3 != "")
+                                    <p> *{{$suite->a3}}</p>
+                                @endif
+                                @if ($suite->a4 != null || $suite->a4 != "")
+                                    <p> *{{$suite->a4}}</p>
+                                @endif
+                                @if ($suite->a5 != null || $suite->a5 != "")
+                                    <p> *{{$suite->a5}}</p>
+                                @endif
+                                @if ($suite->a6 != null || $suite->a6 != "")
+                                    <p> *{{$suite->a6}}</p>
+                                @endif
+                                @if ($suite->a7 != null || $suite->a7 != "")
+                                    <p> *{{$suite->a7}}</p>
+                                @endif
+                                @if ($suite->a8 != null || $suite->a8 != "")
+                                    <p> *{{$suite->a8}}</p>
+                                @endif
+                                @if ($suite->a9 != null || $suite->a9 != "")
+                                    <p> *{{$suite->a9}}</p>
+                                @endif
+                                @if ($suite->a10 != null || $suite->a10 != "")
+                                    <p> *{{$suite->a10}}</p>
+                                @endif --}}
+
+
                             </td>
                             <td>
-                                <form action="{{route('admineditsuite')}}" method="post">
+                                <form action="/admin/addsuite" method="post">
                                     @csrf
-                                    <input type="text" name="deleteroom" value="{{$room->suite_name}}" hidden>
+                                    <input type="text" name="deletesuite" value="{{$suite->suite_name}}" hidden>
                                     <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
                                 </form>
-                                <form action="{{route('admineditsuite')}}" method="post">
+                                <form action="/admin/addsuite" method="post">
                                     @csrf
-                                    <input type="text" name="editroom" value="{{$room->suite_name}}" hidden>
+                                    <input type="text" name="editsuite" value="{{$suite->suite_name}}" hidden>
                                     <button class="btn btn-outline-dark" type="submit"><i class="fas fa-pen"></i></button>
                                 </form>
                             </td>
@@ -126,7 +158,7 @@
                     <div class="row">
                         <div class="col-4">
                             <b>Suite Name</b>
-                            <input type="text" class="form-control" id="roomname" name="suite_name" value="{{$editroom->suite_name }}">
+                            <input type="text" class="form-control" id="suitename" name="suite_name" value="{{$editsuite->suite_name }}">
                         </div>
 
                     </div>
@@ -135,25 +167,25 @@
                         <b>Detailed Description</b>
 
                         <div class="col">
-                            <textarea rows="4" cols="80" name="suite_long_description" >{{$editroom->suite_long_description}}</textarea>
+                            <textarea rows="4" cols="80" name="suite_long_description" >{{$editsuite->suite_long_description}}</textarea>
                         </div>
 
                         <b>Short Description</b>
 
                         <div class="col">
-                            <textarea rows="4" cols="60" name="suite_short_description" >{{$editroom->suite_short_description}}</textarea>
+                            <textarea rows="4" cols="60" name="suite_short_description" >{{$editsuite->suite_short_description}}</textarea>
                         </div>
                     </div>
 
                     <div class="row my-2">
 
                         <div class="col">
-                            <b>Room Size</b>
-                            <input type="text" class="form-control" id="rdiscount" name="suite_size" value="{{$editroom->suite_size}}">
+                            <b>Suite Size</b>
+                            <input type="text" class="form-control" id="rdiscount" name="suite_size" value="{{$editsuite->suite_size}}">
                         </div>
                         <div class="col">
                             <b>Base Price</b>
-                            <input type="text" class="form-control" id="servrate" name="base_price" value="{{$editroom->base_price}}">
+                            <input type="text" class="form-control" id="servrate" name="base_price" value="{{$editsuite->base_price}}">
                         </div>
 
 
@@ -164,38 +196,73 @@
                     <div class="row my-4">
                         <div class="col">
                             <b>Beds</b>
+                            @php
+                                $kingbeds = DB::table('room_statuses')
+                                ->where('room_suite_name', $editsuite->suite_name)
+                                ->where('room_suite_bed', 'King Bed')
+                                ->count();
+
+                                $queenbeds = DB::table('room_statuses')
+                                ->where('room_suite_name', $editsuite->suite_name)
+                                ->where('room_suite_bed', 'Queen Bed')
+                                ->count();
+                            @endphp
+
+                            <div class="form-check mt-3">
+                                <div class="col-1">
+                                <input type="number" class="form-control" id="kingbedcount" name="King_bed_count" value="{{$kingbeds}}">
+                                </div>
+                                <label class="form-check-label" for="kingbedrad">
+                                    King Bed Suite
+                                </label>
+
+                            </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]" @php
+                                <div class="col-1">
+                                <input type="number" class="form-control" id="queenbedcount" name="Queen_bed_count" value="{{$queenbeds}}">
+                                </div>
+
+                                <label class="form-check-label" for="queenbedrad">
+                                    Queen Bed
+                                </label>
+                            </div>
+                            {{-- <div class="form-check">
+
+                                <!-- <input class="form-check-input" type="number" value="K" id="kingbedrad" name="beds[]" @php
                                     $k = 'K';
                                     $q = 'Q';
-                                    if (preg_match("/{$k}/i", $editroom->bed_type)) {
+                                    if (preg_match("/{$k}/i", $editsuite->bed_type)) {
                                         echo 'checked';
                                     }
-                                @endphp>
+                                @endphp> -->
                                 <label class="form-check-label" for="kingbedrad">
                                     King Bed
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]" @php
-                                    if (preg_match("/{$q}/i", $editroom->bed_type)) {
+
+                                <!-- <input class="form-check-input" type="number" value="Q" id="queenbedrad" name="beds[]" @php
+                                    if (preg_match("/{$q}/i", $editsuite->bed_type)) {
                                         echo 'checked';
                                     }
-                                @endphp>
+                                @endphp> -->
                                 <label class="form-check-label" for="queenbedrad">
                                     Queen Bed
                                 </label>
-                            </div>
+                            </div> --}}
+
+
                         </div>
                     </div>
                     <div class="row my-4">
 
                         <div class="col-2">
                             <b>Amenity Code</b>
+                            {{-- something feels wrong here --}}
                             <select name="amenities_number">
                                 @foreach ($amenities as $amenity)
                                     <option value="{{$amenity->amenities_number}}" @php
-                                        if($editroom->amenities_number === $amenity->amenities_number) {
+                                        if($editsuite->amenities_number === $amenity->amenities_number) {
                                             echo 'selected';
                                         }
                                     @endphp>{{$amenity->amenities_number}}</option>
@@ -203,24 +270,30 @@
                             </select>
 
 
-
                         </div>
+
+                        {{-- i dont think this is neccessary since we can manually add a suite for a specific type anytime --}}
+                        {{-- <div class="col-2">
+                            <b>Number of Suites</b>
+                            <input type="text" class="form-control" id="numsuiteinput">
+
+                        </div> --}}
 
                     </div>
                     <div class="row my-2">
 
                         <div class="col">
-                            <b>Room Image 1</b>
+                            <b>Suite Image 1</b>
                             <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
-                            <b>Room Image 2</b>
+                            <b>Suite Image 2</b>
                             <input type="file" name="image2" accept="image/png, image/gif, image/jpeg">
-                            <b>Room Image 3</b>
+                            <b>Suite Image 3</b>
                             <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
                         </div>
 
                     </div>
 
-                    <input type="text" name="submitedit" value="{{$editroom->suite_name}}" hidden>
+                    <input type="text" name="submitedit" value="{{$editsuite->suite_name}}" hidden>
                     <button type="submit" class="btn btn-dark mt-2">Update</button>
                 </fieldset>
             </form>
@@ -233,7 +306,7 @@
                     <div class="row">
                         <div class="col-4">
                             <b>Suite Name</b>
-                            <input type="text" class="form-control" id="roomname" name="suite_name" >
+                            <input type="text" class="form-control" id="suitename" name="suite_name" >
                         </div>
 
                     </div>
@@ -255,7 +328,7 @@
                     <div class="row my-2">
 
                         <div class="col">
-                            <b>Room Size</b>
+                            <b>Suite Size</b>
                             <input type="text" class="form-control" id="rdiscount" name="suite_size" >
                         </div>
                         <div class="col">
@@ -271,14 +344,20 @@
                     <div class="row my-4">
                         <div class="col">
                             <b>Beds</b>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="K" id="kingbedrad" name="beds[]">
+                            <div class="form-check mt-3">
+                                <div class="col-1">
+                                <input type="number" class="form-control" id="kingbedcount" name="King_bed_count" value=1>
+                                </div>
                                 <label class="form-check-label" for="kingbedrad">
-                                    King Bed
+                                    King Bed Suite
                                 </label>
+
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Q" id="queenbedrad" name="beds[]">
+                                <div class="col-1">
+                                <input type="number" class="form-control" id="queenbedcount" name="Queen_bed_count" value=1>
+                                </div>
+
                                 <label class="form-check-label" for="queenbedrad">
                                     Queen Bed
                                 </label>
@@ -300,11 +379,11 @@
                     <div class="row my-2">
 
                         <div class="col">
-                            <b>Room Image 1</b>
+                            <b>Suite Image 1</b>
                             <input type="file" name="image1" accept="image/png, image/gif, image/jpeg" />
-                            <b>Room Image 2</b>
+                            <b>Suite Image 2</b>
                             <input type="file" name="image2" accept="image/png, image/gif, image/jpeg">
-                            <b>Room Image 3</b>
+                            <b>Suite Image 3</b>
                             <input type="file" name="image3" accept="image/png, image/gif, image/jpeg" />
                         </div>
 

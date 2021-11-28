@@ -592,4 +592,5 @@ VALUES
 
 INSERT INTO users(first_name, last_name, email, email_verified_at, password, address, city, mobile_num, admin, created_at, updated_at)
 VALUES
-('matt', 'perez', 'perez_johnmatthewleonard@plpasig.edu.ph', '2021-10-18 02:02:46', '$2y$10$/qdaMKK6jWfQp4A4Wd4.nObTGPacZLSGcf0hYx3d7koli5YW7xfeq', 'inazuka', 'of wind', 'legends', 1,'2021-10-18 02:02:34', '2021-10-18 02:02:46');
+('matt', 'perez', 'perez_johnmatthewleonard@plpasig.edu.ph', '2021-10-18 02:02:46', '$2y$10$/qdaMKK6jWfQp4A4Wd4.nObTGPacZLSGcf0hYx3d7koli5YW7xfeq', 'inazuka', 'of wind', 'legends', 1,'2021-10-18 02:02:34', '2021-10-18 02:02:46'),
+('Admin', '', 'admin@mondstadthotel.online', '2021-10-18 02:02:46', '$2y$10$nLhhqRFzI.9YTnQzo.2v1OrgCuW655.y1r4/3xyWvrA8bGy2z4tXi', 'inazuka', 'of wind', 'legends', 1,'2021-10-18 02:02:34', '2021-10-18 02:02:46');

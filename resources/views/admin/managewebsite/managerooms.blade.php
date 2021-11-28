@@ -196,7 +196,37 @@
                     <div class="row my-4">
                         <div class="col">
                             <b>Beds</b>
+                            @php
+                                $kingbeds = DB::table('room_statuses')
+                                ->where('room_suite_name', $editroom->room_name)
+                                ->where('room_suite_bed', 'King Bed')
+                                ->count();
+
+                                $queenbeds = DB::table('room_statuses')
+                                ->where('room_suite_name', $editroom->room_name)
+                                ->where('room_suite_bed', 'Queen Bed')
+                                ->count();
+                            @endphp
+
+                            <div class="form-check mt-3">
+                                <div class="col-1">
+                                <input type="number" class="form-control" id="kingbedcount" name="King_bed_count" value="{{$kingbeds}}">
+                                </div>
+                                <label class="form-check-label" for="kingbedrad">
+                                    King Bed Room
+                                </label>
+
+                            </div>
                             <div class="form-check">
+                                <div class="col-1">
+                                <input type="number" class="form-control" id="queenbedcount" name="Queen_bed_count" value="{{$queenbeds}}">
+                                </div>
+
+                                <label class="form-check-label" for="queenbedrad">
+                                    Queen Bed
+                                </label>
+                            </div>
+                            {{-- <div class="form-check">
 
                                 <!-- <input class="form-check-input" type="number" value="K" id="kingbedrad" name="beds[]" @php
                                     $k = 'K';
@@ -219,7 +249,7 @@
                                 <label class="form-check-label" for="queenbedrad">
                                     Queen Bed
                                 </label>
-                            </div>
+                            </div> --}}
 
 
                         </div>
@@ -238,7 +268,6 @@
                                     @endphp>{{$amenity->amenities_number}}</option>
                                 @endforeach
                             </select>
-
 
 
                         </div>
@@ -317,7 +346,7 @@
                             <b>Beds</b>
                             <div class="form-check mt-3">
                                 <div class="col-1">
-                                <input type="text" class="form-control" id="kingbedcount" name="room_size" >
+                                <input type="number" class="form-control" id="kingbedcount" name="King_bed_count" value=1>
                                 </div>
                                 <label class="form-check-label" for="kingbedrad">
                                     King Bed Room
@@ -326,7 +355,7 @@
                             </div>
                             <div class="form-check">
                                 <div class="col-1">
-                                <input type="text" class="form-control" id="queenbedcount" name="room_size" >
+                                <input type="number" class="form-control" id="queenbedcount" name="Queen_bed_count" value=1>
                                 </div>
 
                                 <label class="form-check-label" for="queenbedrad">
