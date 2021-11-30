@@ -125,37 +125,16 @@ Route::get('/hotelpolicies', [PoliciesController::class, 'index'])->name('polici
 Route::get('/reservationpolicy', [ReservationPoliciesController::class, 'index'])->name('reservationpolicies');
 Route::get('/aboutus', [AboutusController::class, 'index'])->name('aboutus');
 
-
-
-
 Route::resource('/book', BookController::class);
 Route::resource('/chooseroom', ChooseRoomController::class);
 Route::resource('/bookinfo', BookInformationController::class);
 Route::resource('/search', SearchModifyController::class);
 
-
-
-
-
-
-
-
-
-
-
 Route::get('stripe', [StripeController::class, 'stripe'])->middleware('verified');
 Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post')->middleware('verified');
 
-//Route::get('/book', [BookController::class, 'index'])->name('avail');
-//Route::get('/promos/{code}', [PromotionController::class, 'promocode']);
-
 Auth::routes(['verify' => true]);
 
-
-
-// Route::view('/complete', 'confdisplay');
-
-// Route::get('/modify', [ModifyReservationController::class, 'index'])->name('modifyreservation');
 Route::resource('/modify', ModifyReservationController::class);
 
 Auth::routes();

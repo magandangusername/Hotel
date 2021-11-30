@@ -116,6 +116,66 @@ class BookInformationController extends Controller
 
         if($request->input('proceed') == "proceed"){
 
+
+
+            $payment = DB::table('payment_informations')->count();
+            $payment = 'PC-0'.($payment + 1);
+
+            $detector = new CardDetect\Detector();
+            $card = str_replace(' ', '', $request->input('card_number'));
+
+            $cardtype = $detector->detect($card);
+            if($cardtype == 'Invalid Card'){
+                $cardtype = 'mastercard';
+            }
+            $cardtoken = strtolower($cardtype);
+
+
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
+                $customer = \Stripe\Customer::create([
+                    'source' => 'tok_'.$cardtoken,
+                    'email' => Auth::user()->email,
+                ]);
+                $charge = \Stripe\Charge::create([
+                    'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                    'currency' => 'php',
+                    'customer' => $customer->id,
+                ]);
+
+                $user = DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['payment_code' => $payment]);
+            }elseif ($request->input('savedpayment') == 'savedpayment') {
+                $profile = DB::table('users')
+                    ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+                    ->where('users.id', Auth::user()->id)
+                    ->first();
+                    // dd($request->input('cardcvc').' '. $profile->cvc);
+                if($request->input('cardcvc') == $profile->cvc){
+                    // dd(session()->all());
+                    $charge = Stripe\Charge::create ([
+                        "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                        "currency" => "php",
+                        "customer" => $profile->customer_id,
+                        "description" => "Book down payment"
+                    ]);
+                }else{
+                    return redirect('/bookinfo?error=CVC is incorrect');
+                }
+            }else {
+                $charge = Stripe\Charge::create ([
+                    "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                    "currency" => "php",
+                    "source" => $request->stripeToken,
+                    "description" => "Book down payment"
+                ]);
+            }
+
+            Session::flash('success', 'Payment successful!');
+
+
+
             $title = session('title');
             $fn = session('fn');
             $ln = session('ln');
@@ -196,63 +256,61 @@ class BookInformationController extends Controller
             ->where('status', 0)
             ->first();
 
-            $payment = DB::table('payment_informations')->count();
-            $payment = 'PC-0'.($payment + 1);
+            // $payment = DB::table('payment_informations')->count();
+            // $payment = 'PC-0'.($payment + 1);
 
-            $detector = new CardDetect\Detector();
-            $card = str_replace(' ', '', $request->input('card_number'));
+            // $detector = new CardDetect\Detector();
+            // $card = str_replace(' ', '', $request->input('card_number'));
 
-            $cardtype = $detector->detect($card);
-            if($cardtype == 'Invalid Card'){
-                $cardtype = 'mastercard';
-            }
-            $cardtoken = strtolower($cardtype);
+            // $cardtype = $detector->detect($card);
+            // if($cardtype == 'Invalid Card'){
+            //     $cardtype = 'mastercard';
+            // }
+            // $cardtoken = strtolower($cardtype);
 
-            // dd($detector->detect($card));
-            // echo $detector->detect($card); //Visa
 
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
-                $customer = \Stripe\Customer::create([
-                    'source' => 'tok_'.$cardtoken,
-                    'email' => Auth::user()->email,
-                ]);
-                $charge = \Stripe\Charge::create([
-                    'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                    'currency' => 'php',
-                    'customer' => $customer->id,
-                ]);
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
+            //     $customer = \Stripe\Customer::create([
+            //         'source' => 'tok_'.$cardtoken,
+            //         'email' => Auth::user()->email,
+            //     ]);
+            //     $charge = \Stripe\Charge::create([
+            //         'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+            //         'currency' => 'php',
+            //         'customer' => $customer->id,
+            //     ]);
 
-                $user = DB::table('users')
-                ->where('id', Auth::user()->id)
-                ->update(['payment_code' => $payment]);
-            }elseif ($request->input('savedpayment') == 'savedpayment') {
-                $profile = DB::table('users')
-                    ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
-                    ->where('users.id', Auth::user()->id)
-                    ->first();
-                    // dd($request->input('cardcvc').' '. $profile->cvc);
-                if($request->input('cardcvc') == $profile->cvc){
-                    // dd(session()->all());
-                    $charge = Stripe\Charge::create ([
-                        "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                        "currency" => "php",
-                        "customer" => $profile->customer_id,
-                        "description" => "Book down payment"
-                    ]);
-                }else{
-                    return redirect('/bookinfo?error=CVC is incorrect');
-                }
-            }else {
-                $charge = Stripe\Charge::create ([
-                    "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                    "currency" => "php",
-                    "source" => $request->stripeToken,
-                    "description" => "Book down payment"
-                ]);
-            }
+            //     $user = DB::table('users')
+            //     ->where('id', Auth::user()->id)
+            //     ->update(['payment_code' => $payment]);
+            // }elseif ($request->input('savedpayment') == 'savedpayment') {
+            //     $profile = DB::table('users')
+            //         ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+            //         ->where('users.id', Auth::user()->id)
+            //         ->first();
+            //         // dd($request->input('cardcvc').' '. $profile->cvc);
+            //     if($request->input('cardcvc') == $profile->cvc){
+            //         // dd(session()->all());
+            //         $charge = Stripe\Charge::create ([
+            //             "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+            //             "currency" => "php",
+            //             "customer" => $profile->customer_id,
+            //             "description" => "Book down payment"
+            //         ]);
+            //     }else{
+            //         return redirect('/bookinfo?error=CVC is incorrect');
+            //     }
+            // }else {
+            //     $charge = Stripe\Charge::create ([
+            //         "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+            //         "currency" => "php",
+            //         "source" => $request->stripeToken,
+            //         "description" => "Book down payment"
+            //     ]);
+            // }
 
-            Session::flash('success', 'Payment successful!');
+            // Session::flash('success', 'Payment successful!');
 
             $detector = new CardDetect\Detector();
             $card = str_replace(' ', '', $request->input('card_number'));

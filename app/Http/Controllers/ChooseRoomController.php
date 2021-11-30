@@ -135,7 +135,7 @@ class ChooseRoomController extends Controller
                     ->count();
 
                     if($checkavailable > 0) {
-                        if($checkavailable <= 2){
+                        if($checkavailable < 2){
                             $roomchecker2 = false;
                             if(session('bed') == 'Queen Bed'){
                                 Session::put('bedcheckerq', false);

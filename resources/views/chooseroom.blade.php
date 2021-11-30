@@ -329,18 +329,38 @@
                 <div class="form-check form-check-inline text-center">
                     <input class="form-check-input" type="radio" name="bed" id="inlineRadio1" value="King Bed"
                         @php
+
+
                             if (isset($room) && $room <= 1) {
                                 // session('bedcheckerk') = true;
                                 Session::put('bedcheckerk', true);
                                 //echo 'yes';
                             }
 
-                            if (session('bedcheckerk') !== null && !session('bedcheckerk') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'King Bed' || session('bed') == 'King Bed')) {
+                            $totalroomcount = DB::table('room_statuses')
+                            ->where('room_suite_name', $result->room_suite_name)
+                            ->where('room_suite_bed', 'King Bed')
+                            ->where('status', 0)
+                            ->count();
+
+                            if($room == 3 && $totalroomcount <= 1){
                                 echo 'disabled';
                                 $k = false;
+
+                            }else
+                            if (session('bedcheckerk') !== null && !session('bedcheckerk') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'King Bed' || session('bed') == 'King Bed')) {
+
+
+                            echo 'disabled';
+                            $k = false;
+
+
+
                             } else {
                                 echo 'checked';
+
                             }
+
                         @endphp>
                     <label class="form-check-label" for="inlineRadio1">King
                         Bed</label>
@@ -370,14 +390,29 @@
                                 Session::put('bedcheckerq', true);
                                 //echo 'yes';
                             }
+                            $totalroomcount = DB::table('room_statuses')
+                                ->where('room_suite_name', $result->room_suite_name)
+                                ->where('room_suite_bed', 'Queen Bed')
+                                ->where('status', 0)
+                                ->count();
+
+                            if($room == 3 && $totalroomcount <= 1){
+                                echo 'disabled';
+                                $q = false;
+
+                            }else
                             if (isset($book) && $book !== null) {
                                 echo 'checked';
                             } elseif (session('bedcheckerq') !== null && !session('bedcheckerq') && ((session('roomtype2') !== null && session('roomtype2') == $result->room_suite_name) || session('roomtype') == $result->room_suite_name) && (session('bed2') == 'Queen Bed' || session('bed') == 'Queen Bed')) {
+
+
                                 echo 'disabled';
                                 $q = false;
                             } else {
                                 echo 'checked';
                             }
+
+
                         @endphp>
                     <label class="form-check-label" for="inlineRadio2">Queen
                         Bed</label>

@@ -84,7 +84,7 @@
                                     @if ($reservation->room_suite_name !== null)
                                         {{ $reservation->room_suite_name }}
                                     @endif
-                                    @if ($room2->room_suite_name !== null)
+                                    @if ($reservation->r2 != '')
                                         @if ($reservation->room_suite_name !== null)
                                             , {{ $room2->room_suite_name }}
                                         @else
@@ -92,7 +92,7 @@
                                         @endif
 
                                     @endif
-                                    @if ($room3->room_suite_name !== null)
+                                    @if ($reservation->r3 != '')
                                         @if ($reservation->room_suite_name !== null || $room2->room_suite_name !== null)
                                             , {{ $room3->room_suite_name }}
                                         @else
@@ -103,11 +103,38 @@
 
                                     {{-- {{$reservation->guest_code}} --}}
                                 </td>
+                                @php
+                                    if ($reservation->r1 == '') {
+                                        $roomadult = 0;
+                                        $roomchild = 0;
+                                    } else {
+                                        $roomadult = $reservation->adult;
+                                        $roomchild = $reservation->child;
+                                    }
+
+
+                                    if ($reservation->r2 == '') {
+                                        $roomadult2 = 0;
+                                        $roomchild2 = 0;
+                                    } else {
+                                        $roomadult2 = $room2->adult;
+                                        $roomchild2 = $room2->child;
+                                    }
+
+                                    if ($reservation->r3 == '') {
+                                        $roomadult3 = 0;
+                                        $roomchild3 = 0;
+                                    } else {
+                                        $roomadult3 = $room3->adult;
+                                        $roomchild3 = $room3->child;
+                                    }
+
+                                @endphp
                                 <td>{{ $reservation->Booked_at }}</td>
                                 <td>{{ $reservation->promotion_code }}</td>
                                 <td>{{ number_format($reservation->ctotal_price / 2, 2) }}</td>
-                                <td>{{ $reservation->adult + $room2->adult + $room3->adult }}</td>
-                                <td>{{ $reservation->child + $room2->child + $room3->child }}</td>
+                                <td>{{ $roomadult + $roomadult2 + $roomadult3 }}</td>
+                                <td>{{ $roomchild + $roomchild2 + $roomchild3 }}</td>
                                 <td>
                                     @if ($reservation->first_name == null || $reservation->first_name == '')
                                         @php
