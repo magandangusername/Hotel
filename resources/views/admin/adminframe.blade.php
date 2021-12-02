@@ -28,7 +28,16 @@
 
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li>
+                            <a class="nav-link dropdown-item" style="color: black" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -41,6 +50,10 @@
                             <a class="nav-link" href="{{ route('dashboard') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Overview
+                            </a>
+                            <a class="nav-link" href="{{ route('roomstatus') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Rooms Status
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage Reservations</div>
                             <a class="nav-link" href="{{ route('adminreservation') }}">

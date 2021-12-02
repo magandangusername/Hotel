@@ -18,7 +18,11 @@ class PromotionController extends Controller
 
         //$promos = promotion_description::all();
         $date = date("Y-m-d h:i:sa");
-        $promos = DB::table('promotion_descriptions')->where('promotion_start', '<=', $date)->where('promotion_end', '>=', $date)->get();
+        $promos = DB::table('promotion_descriptions')
+        ->where('promotion_start', '<=', $date)
+        ->where('promotion_end', '>=', $date)
+        ->orderBy('created_at', 'DESC')
+        ->get();
         //print_r($promos);
         return view('promo')->with('promos', $promos);
 
@@ -59,8 +63,9 @@ class PromotionController extends Controller
         $first = promotion_description::whereNull('promotion_name');
 
         $otherpromos= promotion_description::where('promotion_name', '!=' , $name)
-                ->union($first)->limit(2)
-                ->get();
+            ->inRandomOrder()
+            ->limit(2)
+            ->get();
         return view('promocontent')->with(compact('content', 'otherpromos', 'name'));
 
     }

@@ -17,8 +17,8 @@
                             <th>Reservation Number</th>
                             <th>Guest Code</th>
                             <th>Payment Code</th>
-                            <th>Arrival Date</th>
-                            <th>Departure Date</th>
+                            {{-- <th>Arrival Date</th>
+                            <th>Departure Date</th> --}}
                             <th>Booked at</th>
                             <th>Log Status</th>
                             <th>End At</th>
@@ -26,15 +26,20 @@
                     </thead>
 
                     <tbody>
+                        @foreach ($logs as $log)
+
+
                         <tr>
-                            <td>21303182471</td>
-                            <td>01/10/21</td>
-                            <td>Too Dumb</td>
-                            <td>21303182471</td>
-                            <td>01/10/21</td>
-                            <td>Too Dumb</td>
-                            <td>21303182471</td>
-                            <td>01/10/21</td>
+                            <td>{{$log->reservation_number}}</td>
+                            <td>{{$log->guest_code}}</td>
+                            <td>{{$log->user_id}}</td>
+                            <td>{{$log->payment_code}}</td>
+                            {{-- <td>Too Dumb</td>
+                            <td>21303182471</td> --}}
+
+                            <td>{{$log->Booked_at}}</td>
+                            <td>{{$log->log_status}}</td>
+                            <td>{{$log->end_at}}</td>
 
 
 
@@ -42,20 +47,7 @@
                                 <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>21303182471</td>
-                            <td>01/10/21</td>
-                            <td>My wife left me</td>
-                            <td>21303182471</td>
-                            <td>01/10/21</td>
-                            <td>Too Dumb</td>
-                            <td>21303182471</td>
-                            <td>01/10/21</td>
-
-                            <td>
-                                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
+                        @endforeach
 
                     </tbody>
 

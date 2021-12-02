@@ -40,6 +40,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\AdminRoomStatusController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +70,7 @@ Route::middleware('can:accessAdmin')->group(function () {
 
 
     Route::get('/admin', [DashboardController::class, 'DashboardController'])->name('dashboard');
+    Route::get('/admin/roomstatus', [AdminRoomStatusController::class, 'index'])->name('roomstatus');
 
     Route::get('/admin/reservation', [AdminReservationsController::class, 'index'])->name('adminreservation');
     Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation'])->name('admineditreservation');

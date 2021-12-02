@@ -43,7 +43,7 @@
 
     <div class="container-fluid m-0 p-0 bodyback">
         <nav class="navbar navbar-expand-lg navbar-light navcolor px-5 py-3">
-            <a class="navbar-brand fw-bold" href="#">Mondstadt Hotel <span class=""><img
+            <a class="navbar-brand fw-bold" href="{{route('index')}}">Mondstadt Hotel <span class=""><img
                         src="{{ asset('images/logomondstadt.png') }}" alt="" width="30" height="24"></span></a>
 
 

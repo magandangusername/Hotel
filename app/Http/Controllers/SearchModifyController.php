@@ -103,8 +103,13 @@ class SearchModifyController extends Controller
             }
 
 
+
+
         // $gbook = DB::table('reservation_tables')->where('guest_code', $gid)->where('confirmation_number', $data['confirmation_number'])->count();
         if($book !== null) {
+            if ($book->arrival_date <= date('Y-m-d')) {
+                return redirect(route('search.index').'?error=This reservation is already ongoing.');
+            }
             Session::put('confirmation_number', $data['confirmation_number']);
             Session::put('uid', $book->user_id);
             Session::put('gid', $book->guest_code);
@@ -112,7 +117,7 @@ class SearchModifyController extends Controller
             dd('congrats');
 
         } else {
-
+            return redirect(route('search.index').'?error=Invalid reservation number or email.');
             dd('INVALID CONFIRMATION OR EMAIL');
         }
     }

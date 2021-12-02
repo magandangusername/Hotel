@@ -16,14 +16,14 @@ class CreateReservationLogsTable extends Migration
     {
         Schema::create('reservation_logs', function (Blueprint $table) {
 
+            $table->id('data_id');
+            $table->string('reservation_number');
             $table->string('guest_code');
-            $table->string('payment_information');
-            $table->string('rr_code');
-            $table->date('arrival_date');
-            $table->date('departure_date');
-            $table->string('promotion_code');
+            $table->date('user_id');
+            $table->date('payment_code');
             $table->string('log_status');
-            $table->dateTime('booked_at');
+            $table->string('log_status');
+            $table->dateTime('Booked_at');
             $table->dateTime('end_at');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

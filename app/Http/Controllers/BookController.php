@@ -33,6 +33,7 @@ class BookController extends Controller
         ->limit(3)
         ->get();
 
+
         return view('booking')->with(compact('newpromos'));
     }
     public function book()
