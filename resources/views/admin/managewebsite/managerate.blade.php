@@ -98,11 +98,12 @@
     <div class="card my-5">
         @if (isset($edit))
             <form class="p-5" action="{{route('admineditrate')}}" method="post" enctype="multipart/form-data">
-                <fieldset disabled>
+                @csrf
+                <fieldset>
                     <div class="row">
                         <div class="col-4">
                             <b>Rate Name</b>
-                            <input type="text" class="form-control" id="promotioname" name="rate_name">
+                            <input type="text" class="form-control" id="promotioname" name="rate_name" value="{{$editrate->rate_name}}">
                         </div>
 
                     </div>
@@ -111,15 +112,15 @@
 
                         <div class="col">
                             <b>Rate Offer 1</b>
-                            <input type="text" class="form-control" id="ro1" name="rate_offer1">
+                            <input type="text" class="form-control" id="ro1" name="rate_offer1" value="{{$editrate->rate_offer1}}">
                         </div>
                         <div class="col">
                             <b>Rate Offer 2</b>
-                            <input type="text" class="form-control" id="ro2" name="rate_offer2">
+                            <input type="text" class="form-control" id="ro2" name="rate_offer2" value="{{$editrate->rate_offer2}}">
                         </div>
                         <div class="col">
                             <b>Rate Offer 3</b>
-                            <input type="text" class="form-control" id="ro3" name="rate_offer3">
+                            <input type="text" class="form-control" id="ro3" name="rate_offer3" value="{{$editrate->rate_offer3}}">
                         </div>
 
                     </div>
@@ -128,19 +129,19 @@
 
                         <div class="col">
                             <b>Room Discount</b>
-                            <input type="text" class="form-control" id="rdiscount" name="base_discount">
+                            <input type="text" class="form-control" id="rdiscount" name="base_discount" value="{{$editrate->base_discount * 100}}">
                         </div>
                         <div class="col">
                             <b>Service Rate</b>
-                            <input type="text" class="form-control" id="servrate" name="service_rate">
+                            <input type="text" class="form-control" id="servrate" name="service_rate" value="{{$editrate->service_rate * 100}}">
                         </div>
                         <div class="col">
                             <b>City Tax</b>
-                            <input type="text" class="form-control" id="citytax" name="city_tax">
+                            <input type="text" class="form-control" id="citytax" name="city_tax" value="{{$editrate->city_tax * 100}}">
                         </div>
                         <div class="col">
                             <b>Vat</b>
-                            <input type="text" class="form-control" id="vat" name="vat">
+                            <input type="text" class="form-control" id="vat" name="vat" value="{{$editrate->vat * 100}}">
                         </div>
 
                     </div>
@@ -155,7 +156,7 @@
 
                     </div>
 
-                    <input type="text" name="submitedit" value="{{$editroom->suite_name}}" hidden>
+                    <input type="text" name="submitedit" value="{{$editrate->rate_name}}" hidden>
                     <button type="submit" class="btn btn-dark mt-2">Update</button>
                 </fieldset>
             </form>
@@ -163,7 +164,8 @@
         @elseif (isset($add))
 
             <form class="p-5" action="{{route('admineditrate')}}" method="post" enctype="multipart/form-data">
-                <fieldset disabled>
+                @csrf
+                <fieldset>
                     <div class="row">
                         <div class="col-4">
                             <b>Rate Name</b>
@@ -220,7 +222,7 @@
 
                     </div>
 
-                    <input type="text" name="submitadd" value="{{$editroom->suite_name}}" hidden>
+                    <input type="text" name="submitadd" value="submitadd" hidden>
                     <button type="submit" class="btn btn-dark mt-2">Add Rate</button>
                 </fieldset>
             </form>

@@ -125,7 +125,7 @@
                             <div class="collapse" id="infocollapse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ route('adminguestinfo') }}">Personal Information</a>
-                                    <a class="nav-link" href="{{ route('adminguestpayment') }}">Payment Information</a>
+                                    {{-- <a class="nav-link" href="{{ route('adminguestpayment') }}">Payment Information</a> --}}
                                 </nav>
                             </div>
 

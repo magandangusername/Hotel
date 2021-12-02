@@ -23,10 +23,19 @@ class ProfileController extends Controller
             $active_reservation = DB::table('users')
             ->leftJoin('reservation_tables', 'reservation_tables.user_id', '=', 'users.id')
             ->where('reservation_tables.departure_date', '>', date('Y-m-d'))
+            ->where('users.id', Auth::user()->id)
             ->count();
 
+            $last_reservation = DB::table('users')
+            ->leftJoin('reservation_tables', 'reservation_tables.user_id', '=', 'users.id')
+            ->where('reservation_tables.departure_date', '>', date('Y-m-d'))
+            ->orderByRaw('Booked_at DESC')
+            ->where('users.id', Auth::user()->id)
 
-            return view('userprofile')->with(compact('profile','active_reservation'));
+            ->first();
+
+
+            return view('userprofile')->with(compact('profile','active_reservation','last_reservation'));
 
         }
 
@@ -37,17 +46,28 @@ class ProfileController extends Controller
     public function updateprofile(Request $request)
     {
         $profile = DB::table('users')
-            ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
-            ->where('users.id', Auth::user()->id)
-            ->first();
+        ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+        ->where('users.id', Auth::user()->id)
+        ->first();
+
         $active_reservation = DB::table('users')
         ->leftJoin('reservation_tables', 'reservation_tables.user_id', '=', 'users.id')
         ->where('reservation_tables.departure_date', '<', date('Y-m-d'))
+        ->where('users.id', Auth::user()->id)
         ->count();
+
+        $last_reservation = DB::table('users')
+        ->leftJoin('reservation_tables', 'reservation_tables.user_id', '=', 'users.id')
+        ->where('reservation_tables.departure_date', '<', date('Y-m-d'))
+        ->where('users.id', Auth::user()->id)
+        ->orderByRaw('reservation_tables.Booked_at DESC')
+        ->first();
+
         if ($request->input('editprofile') == 'editprofile') {
             $update = true;
-            return view('userprofile')->with(compact('update','profile', 'active_reservation'));
+            return view('userprofile')->with(compact('update','profile', 'active_reservation', 'last_reservation'));
         }
+
         if ($request->input('updateprofile') == 'updateprofile') {
             $request->validate([
                 'first_name' => 'required',

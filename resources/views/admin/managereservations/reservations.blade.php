@@ -84,7 +84,7 @@
                                     @if ($reservation->room_suite_name !== null)
                                         {{ $reservation->room_suite_name }}
                                     @endif
-                                    @if ($reservation->r2 != '')
+                                    @if ($room2 !== null)
                                         @if ($reservation->room_suite_name !== null)
                                             , {{ $room2->room_suite_name }}
                                         @else
@@ -92,7 +92,7 @@
                                         @endif
 
                                     @endif
-                                    @if ($reservation->r3 != '')
+                                    @if ($room3 !== null)
                                         @if ($reservation->room_suite_name !== null || $room2->room_suite_name !== null)
                                             , {{ $room3->room_suite_name }}
                                         @else
@@ -104,31 +104,27 @@
                                     {{-- {{$reservation->guest_code}} --}}
                                 </td>
                                 @php
-                                    if ($reservation->r1 == '') {
+                                    if ($reservation === null) {
                                         $roomadult = 0;
                                         $roomchild = 0;
                                     } else {
                                         $roomadult = $reservation->adult;
                                         $roomchild = $reservation->child;
                                     }
-
-
-                                    if ($reservation->r2 == '') {
+                                    if ($room2 === null) {
                                         $roomadult2 = 0;
                                         $roomchild2 = 0;
                                     } else {
                                         $roomadult2 = $room2->adult;
                                         $roomchild2 = $room2->child;
                                     }
-
-                                    if ($reservation->r3 == '') {
+                                    if ($room3 === null) {
                                         $roomadult3 = 0;
                                         $roomchild3 = 0;
                                     } else {
                                         $roomadult3 = $room3->adult;
                                         $roomchild3 = $room3->child;
                                     }
-
                                 @endphp
                                 <td>{{ $reservation->Booked_at }}</td>
                                 <td>{{ $reservation->promotion_code }}</td>

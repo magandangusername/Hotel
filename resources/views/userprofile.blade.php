@@ -31,7 +31,11 @@
 
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <p> Last Reservation: N/A </p>
+                                <p> Last Reservation: @if ($active_reservation == 0)
+                                    N/A
+                                @else
+                                    {{$last_reservation->confirmation_number}}
+                                @endif</p>
                             </li>
 
                         </ul>

@@ -95,7 +95,7 @@ Route::middleware('can:accessAdmin')->group(function () {
     Route::get('/admin/guestinfo', [AdminGuestInfoController::class, 'index'])->name('adminguestinfo');
     Route::post('/admin/guestinfo', [AdminGuestInfoController::class, 'modifyguestinfo'])->name('admineditguestinfo');
 
-    Route::get('/admin/paymentinfo', [AdminPaymentInfoController::class, 'index'])->name('adminguestpayment');
+    // Route::get('/admin/paymentinfo', [AdminPaymentInfoController::class, 'index'])->name('adminguestpayment');
     Route::get('/admin/log', [AdminLogController::class, 'index'])->name('adminlog');
 
     Route::get('/admin/guestacc', [AdminGuestAccController::class, 'index'])->name('adminguestacc');

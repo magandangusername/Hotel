@@ -137,11 +137,11 @@
                     <div class="row my-2">
                         <div class="col">
                             <label for="promotioncode"><b>Promotion Start</b></label>
-                            <input type="date" class="form-control" id="arrivalinput" name="promotion_start" value="{{date("Y-m-d", strtotime($editpromo->promotion_start))}}">
+                            <input type="date" class="form-control" id="CheckIn" name="promotion_start" value="{{date("Y-m-d", strtotime($editpromo->promotion_start))}}" onchange="checkcalendarin()">
                         </div>
                         <div class="col">
                             <label for="promotioncode"><b>Promotion End</b></label>
-                            <input type="date" class="form-control" id="arrivalinput" name="promotion_end" value="{{date("Y-m-d", strtotime($editpromo->promotion_end))}}">
+                            <input type="date" class="form-control" id="CheckOut" name="promotion_end" value="{{date("Y-m-d", strtotime($editpromo->promotion_end))}}" onchange="checkcalendarout()">
                         </div>
 
                     </div>
@@ -228,11 +228,11 @@
                     <div class="row my-2">
                         <div class="col-2">
                             <label for="promotioncode"><b>Promotion Start</b></label>
-                            <input type="date" class="form-control" id="arrivalinput" name="promotion_start" value="{{date('Y-m-d')}}">
+                            <input type="date" class="form-control" id="CheckIn" name="promotion_start" value="{{date('Y-m-d')}}" onchange="checkcalendarin()">
                         </div>
                         <div class="col-2">
                             <label for="promotioncode"><b>Promotion End</b></label>
-                            <input type="date" class="form-control" id="arrivalinput" name="promotion_end" value="{{date('Y-m-d')}}">
+                            <input type="date" class="form-control" id="CheckOut" name="promotion_end" value="{{date('Y-m-d', strtotime(Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->addDays(1)))}}" onchange="checkcalendarout()">
                         </div>
                     </div>
 

@@ -30,6 +30,7 @@ class BookController extends Controller
         ->orderByRaw('promotion_start DESC')
         ->where('promotion_start', '<=', $date)
         ->where('promotion_end', '>=', $date)
+        ->limit(3)
         ->get();
 
         return view('booking')->with(compact('newpromos'));

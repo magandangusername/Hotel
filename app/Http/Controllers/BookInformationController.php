@@ -316,6 +316,11 @@ class BookInformationController extends Controller
             $card = str_replace(' ', '', $request->input('card_number'));
             $cardtype = $detector->detect($card);
 
+            $cardtype = $detector->detect($card);
+            if($cardtype == 'Invalid Card'){
+                $cardtype = 'Unknown Card';
+            }
+
             if(!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')){
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,

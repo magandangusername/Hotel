@@ -164,7 +164,12 @@
         <div class="container py-5 sectioncolor">
             <div class="row ps-5">
                 <div class="col">
-                    <h5> {{$roominfo->room_long_description}} </h5>
+                    @if ($roominfo->room_long_description !== null)
+                        <h5> {{$roominfo->room_long_description}} </h5>
+                    @else
+                        <h5> {{$roominfo->suite_long_description}} </h5>
+                    @endif
+
                 </div>
             </div>
             <div class="row ps-5 pt-3">

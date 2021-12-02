@@ -3,7 +3,11 @@
 @section('content')
 
     <div class="container-fluid">
-
+        @if (isset($appealsubmitted))
+            <div class="alert alert-success text-center">
+                <p>Your cancellation appeal has been submitted, please wait for approval via email.</p>
+            </div>
+        @endif
         <div class="container pt-0 mb-3 pt-5 text-center">
             @if (!isset($review))
                 <h1 class="fw-bold"> Modify Reservation</h1>
@@ -709,11 +713,7 @@
                             Reservation</button>
                     </div>
                 </form>
-                @if (isset($appealsubmitted))
-                    <div class="alert alert-success text-center">
-                        <p>Cancellation appeal has been submitted. Please wait for our response, thank you.</p>
-                    </div>
-                @endif
+
 
                 @if (isset($invalidcancellation))
                 <form action="/modify" method="POST">
