@@ -329,7 +329,7 @@ class ModifyReservationController extends Controller
 
 
 
-                return redirect('/');
+                return redirect(route('index').'?success=Your cancellation has been refunded! Please check your email.');
 
 
             }

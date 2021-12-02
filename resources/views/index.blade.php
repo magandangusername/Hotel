@@ -4,6 +4,21 @@
     <!--------------------------------slider------------------------------->
 
     <div class="container-fluid m-0 p-0">
+    @if (isset($_GET['success']))
+        <p class="alert alert-success">{{ $_GET['success'] }}</p>
+    @endif
+    @if (isset($_GET['error']))
+        <p class="alert alert-danger">{{ $_GET['error'] }}</p>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <li>
+                    {{ $error }}
+                </li>
+            @endforeach
+        </div>
+    @endif
 
     <section id="slider">
         <div class="col mx-auto d-block">
