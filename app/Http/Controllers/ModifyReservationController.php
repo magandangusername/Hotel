@@ -260,14 +260,14 @@ class ModifyReservationController extends Controller
                 ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
                 ->where('confirmation_number', session('confirmation_number'))
                 ->first();
-                if($reservation->first_name === null){
-                    $reservation = DB::table('reservation_tables')
-                        ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                        ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
-                        ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                        ->where('confirmation_number', session('confirmation_number'))
-                        ->first();
-                }
+            if ($reservation->first_name === null) {
+                $reservation = DB::table('reservation_tables')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->where('confirmation_number', session('confirmation_number'))
+                    ->first();
+            }
             $to = \Carbon\Carbon::createFromFormat('Y-m-d', date("Y-m-d", strtotime($reservation->arrival_date)));
             $from = \Carbon\Carbon::createFromFormat('Y-m-d', date("Y-m-d", strtotime('now')));
             $diff_in_hours = $to->diffInHours($from);
@@ -468,6 +468,9 @@ class ModifyReservationController extends Controller
                     ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
 
+
+
+                    // if you are thinking about refunding the excess downpayment, dont. let the physical hotel do it
 
                 // dd(($price->ctotal_price - $total) + $request->input('total_rate'));
 

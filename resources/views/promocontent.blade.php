@@ -79,7 +79,7 @@
                                 <form action="" method="POST">
                                     <a href="{{ route('promo') }}/{{ $promo->promotion_name }}"
                                         class="text-decoration-none btn btn-light btn-outline-dark fw-bold" id="learnbutton">Learn More</a>
-                                    <a href="{{ route('book.index') }}/{{ $promo->promotion_code }}"
+                                    <a href="{{ route('book.index') }}?promocode={{ $promo->promotion_code }}"
                                         class="text-decoration-none btn btn-light btn-outline-dark fw-bold" id="learnbutton">Book Now</a>
                                 </form>
                             </div>

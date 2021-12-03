@@ -151,13 +151,13 @@
                                 </td>
 
                                 <td>
-                                    <form action="/admin/reservation" method="post">
+                                    {{-- <form action="/admin/reservation" method="post">
                                         @csrf
                                         <input type="text" name='deletereservation'
                                             value='{{ $reservation->confirmation_number }}' hidden>
                                         <button class="btn btn-outline-dark" type="submit"><i
                                                 class="fas fa-trash"></i></button>
-                                    </form>
+                                    </form> --}}
                                     <form action="/admin/reservation" method="post">
                                         @csrf
                                         <input type="text" name='editreservation'
