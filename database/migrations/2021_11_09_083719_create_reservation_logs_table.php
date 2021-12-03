@@ -22,7 +22,6 @@ class CreateReservationLogsTable extends Migration
             $table->date('user_id');
             $table->date('payment_code');
             $table->string('log_status');
-            $table->string('log_status');
             $table->dateTime('Booked_at');
             $table->dateTime('end_at');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

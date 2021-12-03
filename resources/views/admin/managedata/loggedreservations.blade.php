@@ -16,6 +16,7 @@
                         <tr class="text-light bg-dark">
                             <th>Reservation Number</th>
                             <th>Guest Code</th>
+                            <th>User ID</th>
                             <th>Payment Code</th>
                             {{-- <th>Arrival Date</th>
                             <th>Departure Date</th> --}}

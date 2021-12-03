@@ -30,41 +30,41 @@ class ModifyReservationController extends Controller
         $bookinfo2 = '';
         $bookinfo3 = '';
         // dd(session('uid').' '.session('gid'));
-        if(session('uid') !== null || session('gid') !== null){
+        if (session('uid') !== null || session('gid') !== null) {
             // dd('meron '.session('uid'));
             $book = DB::table('reservation_tables')
-            // ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-            // ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
-            // ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
-            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-            ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
-
-
-            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-
-            // ->where('reservation_tables.user_id', session('uid'))
-            ->where('reservation_tables.guest_code', session('gid'))
-
-            ->first();
-            $user = false;
-            if($book->first_name === null) {
-
-                $book = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                // ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
                 ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                // ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+                // ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
                 ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
                 ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
-                ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
+                ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
+
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
+
+                // ->where('reservation_tables.user_id', session('uid'))
+                ->where('reservation_tables.guest_code', session('gid'))
+
                 ->first();
+            $user = false;
+            if ($book->first_name === null) {
+
+                $book = DB::table('reservation_tables')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
+                    ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
+
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->first();
                 $user = true;
             }
 
@@ -86,9 +86,9 @@ class ModifyReservationController extends Controller
 
 
 
-                // This is the saddest code ive ever done
+            // This is the saddest code ive ever done
 
-                $bookinfo = DB::table('reservation_tables')
+            $bookinfo = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -106,7 +106,7 @@ class ModifyReservationController extends Controller
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
 
-                $bookinfo2 = DB::table('reservation_tables')
+            $bookinfo2 = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -122,7 +122,7 @@ class ModifyReservationController extends Controller
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
 
-                $bookinfo3 = DB::table('reservation_tables')
+            $bookinfo3 = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -137,7 +137,7 @@ class ModifyReservationController extends Controller
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
-                // dd($bookinfo2);
+            // dd($bookinfo2);
             // }
 
             // dd($bookinfo->adult, $bookinfo2->adult, $bookinfo3->adult);
@@ -179,35 +179,35 @@ class ModifyReservationController extends Controller
         $bookinfo = '';
         $bookinfo2 = '';
         $bookinfo3 = '';
-        if(session('uid') !== null || session('gid') !== null){
+        if (session('uid') !== null || session('gid') !== null) {
             $book = DB::table('reservation_tables')
-            ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-            ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-            ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
-            ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-            ->where('reservation_tables.guest_code', session('gid'))
-
-            ->first();
-            $user = false;
-            if($book->first_name === null) {
-                $book = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
                 ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
                 ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
                 ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
-                ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
+                ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
+                ->where('reservation_tables.guest_code', session('gid'))
+
                 ->first();
+            $user = false;
+            if ($book->first_name === null) {
+                $book = DB::table('reservation_tables')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
+                    ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->first();
                 $user = true;
             }
-                // This is the saddest code ive ever done
-                $bookinfo = DB::table('reservation_tables')
+            // This is the saddest code ive ever done
+            $bookinfo = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -225,7 +225,7 @@ class ModifyReservationController extends Controller
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
 
-                $bookinfo2 = DB::table('reservation_tables')
+            $bookinfo2 = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -240,7 +240,7 @@ class ModifyReservationController extends Controller
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
 
-                $bookinfo3 = DB::table('reservation_tables')
+            $bookinfo3 = DB::table('reservation_tables')
                 ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                 ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -257,10 +257,22 @@ class ModifyReservationController extends Controller
                 ->first();
         }
 
-        if($request->input('cancel') == 'cancel'){
+        if ($request->input('cancel') == 'cancel') {
             $reservation = DB::table('reservation_tables')
-            ->where('confirmation_number', session('confirmation_number'))
-            ->first();
+                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                // ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
+                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                ->where('confirmation_number', session('confirmation_number'))
+                ->first();
+                if($reservation->first_name === null){
+                    $reservation = DB::table('reservation_tables')
+                        ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                        ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
+                        ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                        ->where('confirmation_number', session('confirmation_number'))
+                        ->first();
+                }
             $to = \Carbon\Carbon::createFromFormat('Y-m-d', date("Y-m-d", strtotime($reservation->arrival_date)));
             $from = \Carbon\Carbon::createFromFormat('Y-m-d', date("Y-m-d", strtotime('now')));
             $diff_in_hours = $to->diffInHours($from);
@@ -273,77 +285,75 @@ class ModifyReservationController extends Controller
                 return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'invalidcancellation'));
             } else {
 
+                dd($reservation->charge_id);
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $re = \Stripe\Refund::create([
-                    "charge" => $book->charge_id
+                    "amount" => number_format($reservation->ctotal_price / 2, 2, '.', '') * 100,
+                    // "customer" => $reservation->customer_id,
+                    "charge" => $reservation->charge_id
                 ]);
 
+                // $refund = \Stripe\Refund::create([
+
+                //     "charge" => $book->charge_id
+                // ]);
+
 
                 $cancel = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
 
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'reservation_tables.cancelled_on' => Carbon::now()]);
-
-                $cancel = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
-
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
+                    ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'reservation_tables.cancelled_on' => Carbon::now()]);
 
                 $cancel = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
 
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
+                    ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
+
+                $cancel = DB::table('reservation_tables')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
+                    ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '']);
 
 
-                $name = $book->first_name.' '.$book->last_name;
+                $name = $book->first_name . ' ' . $book->last_name;
                 $amount = number_format($book->ctotal_price / 2, 2);
                 Mail::to($book->email)->send(new CancellationMail($name, $amount));
 
 
 
 
-                return redirect(route('index').'?success=Your cancellation has been refunded! Please check your email.');
-
-
+                return redirect(route('index') . '?success=Your cancellation has been refunded! Please check your email.');
             }
-
-
-
-
-
-
-
-
         }
 
-        if($request->input('cancelappeal') == 'cancelappeal'){
+        if ($request->input('cancelappeal') == 'cancelappeal') {
             $paymentinfo = DB::table('cancellation_requests')->insert([
                 'confirmation_number' => session('confirmation_number'),
                 'reason' => $request->input('reason'),
@@ -355,34 +365,36 @@ class ModifyReservationController extends Controller
             return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'appealsubmitted'));
         }
 
-        if($request->input('editguestinfo') == 'editguestinfo'){
+        if ($request->input('editguestinfo') == 'editguestinfo') {
             $editguest = true;
             return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'editguest'));
         }
 
-        if($request->input('submitguestinfo') == 'submitguestinfo'){
-            if($user){
+        if ($request->input('submitguestinfo') == 'submitguestinfo') {
+            if ($user) {
                 $edit = DB::table('users')
                     ->where('id', session('uid'))
-                    ->update(['first_name' => $request->input('first_name'),
-                    'first_name' => $request->input('first_name'),
-                    'last_name' => $request->input('last_name'),
-                    'email' => $request->input('email'),
-                    'mobile_num' => $request->input('mobile_num'),
-                    'address' => $request->input('address'),
-                    'city' => $request->input('city'),
-                ]);
+                    ->update([
+                        'first_name' => $request->input('first_name'),
+                        'first_name' => $request->input('first_name'),
+                        'last_name' => $request->input('last_name'),
+                        'email' => $request->input('email'),
+                        'mobile_num' => $request->input('mobile_num'),
+                        'address' => $request->input('address'),
+                        'city' => $request->input('city'),
+                    ]);
             } else {
                 $edit = DB::table('guest_informations')
                     ->where('guest_code', session('gid'))
-                    ->update(['first_name' => $request->input('first_name'),
-                    'first_name' => $request->input('first_name'),
-                    'last_name' => $request->input('last_name'),
-                    'email' => $request->input('email'),
-                    'mobile_num' => $request->input('mobile_num'),
-                    'address' => $request->input('address'),
-                    'city' => $request->input('city'),
-                ]);
+                    ->update([
+                        'first_name' => $request->input('first_name'),
+                        'first_name' => $request->input('first_name'),
+                        'last_name' => $request->input('last_name'),
+                        'email' => $request->input('email'),
+                        'mobile_num' => $request->input('mobile_num'),
+                        'address' => $request->input('address'),
+                        'city' => $request->input('city'),
+                    ]);
             }
 
             return redirect('/modify');
@@ -397,26 +409,10 @@ class ModifyReservationController extends Controller
                 'total_rate' => 'required'
             ]);
 
-            if(session('room_num') == 'r1'){
+            if (session('room_num') == 'r1') {
 
                 //finds and edit the old room
                 $price = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
-                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
-
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->first();
-
-                if ($price->base_price === null) {
-                    $price = DB::table('reservation_tables')
                     ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                     ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -424,12 +420,28 @@ class ModifyReservationController extends Controller
                     ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
                     ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
                     ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
-                    ->leftJoin('suite_descriptions', 'room_statuses.room_suite_name', '=', 'suite_descriptions.suite_name')
+                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
 
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
                     ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->first();
+
+                if ($price->base_price === null) {
+                    $price = DB::table('reservation_tables')
+                        ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                        ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                        ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                        ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                        ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                        ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                        ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
+                        ->leftJoin('suite_descriptions', 'room_statuses.room_suite_name', '=', 'suite_descriptions.suite_name')
+
+                        ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                        ->where('reservation_tables.user_id', session('uid'))
+                        ->orWhere('reservation_tables.guest_code', session('gid'))
+                        ->first();
                 }
 
                 $base_price = $price->base_price;
@@ -448,61 +460,42 @@ class ModifyReservationController extends Controller
 
 
                 $bookinfo = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id1', '=', 'head_counts.id')
 
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
+                    ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
 
 
                 // dd(($price->ctotal_price - $total) + $request->input('total_rate'));
 
                 //updates the new room
                 $roomnum = DB::table('room_statuses')
-                ->where('room_suite_name', $request->input('room_type'))
-                ->where('room_suite_bed', $request->input('bed'))
-                ->where('status', 0)
-                ->first();
+                    ->where('room_suite_name', $request->input('room_type'))
+                    ->where('room_suite_bed', $request->input('bed'))
+                    ->where('status', 0)
+                    ->first();
 
                 $roomnum = $roomnum->room_number;
 
                 $roomstatus = DB::table('room_statuses')
-                ->where('room_number', $roomnum)
-                ->update(['status' => 1, 'confirmation_number' => session('confirmation_number')]);
+                    ->where('room_number', $roomnum)
+                    ->update(['status' => 1, 'confirmation_number' => session('confirmation_number')]);
 
                 $reserved_rooms = DB::table('reserved_rooms')
-                ->where('rr_code', session('rr_code'))
-                ->update(['r1' => $roomnum, 'rate1' => $request->input('rate_type')]);
-
-
-
-            } else if(session('room_num') == 'r2'){
+                    ->where('rr_code', session('rr_code'))
+                    ->update(['r1' => $roomnum, 'rate1' => $request->input('rate_type')]);
+            } else if (session('room_num') == 'r2') {
 
                 //finds and edit the old room
                 $price = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
-                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
-
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->first();
-
-                if ($price->base_price === null) {
-                    $price = DB::table('reservation_tables')
                     ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                     ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -510,12 +503,28 @@ class ModifyReservationController extends Controller
                     ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
                     ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
                     ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
-                    ->leftJoin('suite_descriptions', 'room_statuses.room_suite_name', '=', 'suite_descriptions.suite_name')
+                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
 
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
                     ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->first();
+
+                if ($price->base_price === null) {
+                    $price = DB::table('reservation_tables')
+                        ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                        ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                        ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                        ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+                        ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
+                        ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                        ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
+                        ->leftJoin('suite_descriptions', 'room_statuses.room_suite_name', '=', 'suite_descriptions.suite_name')
+
+                        ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                        ->where('reservation_tables.user_id', session('uid'))
+                        ->orWhere('reservation_tables.guest_code', session('gid'))
+                        ->first();
                 }
 
                 $base_price = $price->base_price;
@@ -529,57 +538,39 @@ class ModifyReservationController extends Controller
 
 
                 $bookinfo = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r2', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate2', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
 
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
+                    ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
 
                 //updates the new room
                 $roomnum = DB::table('room_statuses')
-                ->where('room_suite_name', $request->input('room_type'))
-                ->where('room_suite_bed', $request->input('bed'))
-                ->where('status', 0)
-                ->first();
+                    ->where('room_suite_name', $request->input('room_type'))
+                    ->where('room_suite_bed', $request->input('bed'))
+                    ->where('status', 0)
+                    ->first();
 
                 $roomnum = $roomnum->room_number;
 
                 $roomstatus = DB::table('room_statuses')
-                ->where('room_number', $roomnum)
-                ->update(['status' => 1, 'confirmation_number' => session('confirmation_number')]);
+                    ->where('room_number', $roomnum)
+                    ->update(['status' => 1, 'confirmation_number' => session('confirmation_number')]);
 
                 $reserved_rooms = DB::table('reserved_rooms')
-                ->where('rr_code', session('rr_code'))
-                ->update(['r2' => $roomnum, 'rate2' => $request->input('rate_type')]);
-
-
-            } else if(session('room_num') == 'r3'){
+                    ->where('rr_code', session('rr_code'))
+                    ->update(['r2' => $roomnum, 'rate2' => $request->input('rate_type')]);
+            } else if (session('room_num') == 'r3') {
 
                 //finds and edit the old room
                 $price = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
-                ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
-
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->first();
-
-                if ($price->base_price === null) {
-                    $price = DB::table('reservation_tables')
                     ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                     ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -587,12 +578,28 @@ class ModifyReservationController extends Controller
                     ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
                     ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
                     ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
-                    ->leftJoin('suite_descriptions', 'room_statuses.room_suite_name', '=', 'suite_descriptions.suite_name')
+                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
 
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
                     ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->first();
+
+                if ($price->base_price === null) {
+                    $price = DB::table('reservation_tables')
+                        ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                        ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                        ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                        ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
+                        ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
+                        ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                        ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+                        ->leftJoin('suite_descriptions', 'room_statuses.room_suite_name', '=', 'suite_descriptions.suite_name')
+
+                        ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                        ->where('reservation_tables.user_id', session('uid'))
+                        ->orWhere('reservation_tables.guest_code', session('gid'))
+                        ->first();
                 }
 
                 $base_price = $price->base_price;
@@ -605,37 +612,35 @@ class ModifyReservationController extends Controller
 
 
                 $bookinfo = DB::table('reservation_tables')
-                ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
+                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
+                    ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                    ->leftJoin('room_statuses', 'reserved_rooms.r3', '=', 'room_statuses.room_number')
+                    ->leftJoin('rate_descriptions', 'reserved_rooms.rate3', '=', 'rate_descriptions.rate_name')
+                    ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                    ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
 
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
+                    ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                    ->where('reservation_tables.user_id', session('uid'))
+                    ->orWhere('reservation_tables.guest_code', session('gid'))
+                    ->update(['room_statuses.status' => 0, 'room_statuses.confirmation_number' => '', 'computeds.ctotal_price' => ($price->ctotal_price - $total) + $request->input('total_rate')]);
 
                 //updates the new room
                 $roomnum = DB::table('room_statuses')
-                ->where('room_suite_name', $request->input('room_type'))
-                ->where('room_suite_bed', $request->input('bed'))
-                ->where('status', 0)
-                ->first();
+                    ->where('room_suite_name', $request->input('room_type'))
+                    ->where('room_suite_bed', $request->input('bed'))
+                    ->where('status', 0)
+                    ->first();
 
                 $roomnum = $roomnum->room_number;
 
                 $roomstatus = DB::table('room_statuses')
-                ->where('room_number', $roomnum)
-                ->update(['status' => 1, 'confirmation_number' => session('confirmation_number')]);
+                    ->where('room_number', $roomnum)
+                    ->update(['status' => 1, 'confirmation_number' => session('confirmation_number')]);
 
                 $reserved_rooms = DB::table('reserved_rooms')
-                ->where('rr_code', session('rr_code'))
-                ->update(['r3' => $roomnum, 'rate3' => $request->input('rate_type')]);
-
-
+                    ->where('rr_code', session('rr_code'))
+                    ->update(['r3' => $roomnum, 'rate3' => $request->input('rate_type')]);
             } else {
                 dd("ERROR: Please try again later.");
             }
@@ -644,7 +649,6 @@ class ModifyReservationController extends Controller
 
 
             return redirect('/modify');
-
         } else {
             $request->validate([
                 'confirmation_number' => 'required',
@@ -658,32 +662,32 @@ class ModifyReservationController extends Controller
             $request->session()->put('rr_code', $request->input('rr_code'));
             $request->session()->put('rate_name', $request->input('rr_code'));
 
-            if(session('uid') !== null || session('gid')){
+            if (session('uid') !== null || session('gid')) {
                 $book = DB::table('reservation_tables')
-                ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
-                ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
-                ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
-                ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
-                ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
-                ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
-                ->first();
-
-                if($book->first_name === null) {
-                    $book = DB::table('reservation_tables')
-                    ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                    ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
                     ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
                     ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
                     ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
                     ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
                     ->orWhere('reservation_tables.guest_code', session('gid'))
                     ->first();
+
+                if ($book->first_name === null) {
+                    $book = DB::table('reservation_tables')
+                        ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
+                        ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+                        ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+                        ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+                        ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
+                        ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
+                        ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
+                        ->where('reservation_tables.confirmation_number', session('confirmation_number'))
+                        ->where('reservation_tables.user_id', session('uid'))
+                        ->orWhere('reservation_tables.guest_code', session('gid'))
+                        ->first();
                 }
 
                 $bookinfo2 = DB::table('reservation_tables')
@@ -702,7 +706,7 @@ class ModifyReservationController extends Controller
                     ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                     ->first();
 
-                    $bookinfo3 = DB::table('reservation_tables')
+                $bookinfo3 = DB::table('reservation_tables')
                     ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
                     ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -717,16 +721,12 @@ class ModifyReservationController extends Controller
                     ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                     ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                     ->first();
-
-
-
             } else {
                 dd('An error occured trying to fetch data.');
             }
 
             return view('chooseroom')->with(compact('book', 'bookinfo2', 'bookinfo3'));
         }
-
     }
 
     /**

@@ -39,12 +39,12 @@ class BookInformationController extends Controller
         }
         Session::put('overallprice', $totalrate);
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $review = 'review';
             $profile = DB::table('users')
-            ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
-            ->where('users.id', Auth::user()->id)
-            ->first();
+                ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+                ->where('users.id', Auth::user()->id)
+                ->first();
             $bookinfo2 = null;
             $bookinfo3 = null;
             return view('modify')->with(compact('review', 'bookinfo2', 'bookinfo3', 'profile'));
@@ -86,7 +86,7 @@ class BookInformationController extends Controller
         // Session::put('downpayment', number_format(session('downpayment'), 2, '.', ''));
         // Session::put('totalprice', session('downpayment') * 2);
         // dd(number_format(session('overallprice') * 0.5, 2));
-// dd(number_format(session('overallprice') / 2, 2, '.', '') * 100);
+        // dd(number_format(session('overallprice') / 2, 2, '.', '') * 100);
         // dd(number_format(100 * session('downpayment'), 2, '.', ''));
 
 
@@ -114,18 +114,18 @@ class BookInformationController extends Controller
 
 
 
-        if($request->input('proceed') == "proceed"){
+        if ($request->input('proceed') == "proceed") {
 
 
 
             $payment = DB::table('payment_informations')->count();
-            $payment = 'PC-0'.($payment + 1);
+            $payment = 'PC-0' . ($payment + 1);
 
             $detector = new CardDetect\Detector();
             $card = str_replace(' ', '', $request->input('card_number'));
 
             $cardtype = $detector->detect($card);
-            if($cardtype == 'Invalid Card'){
+            if ($cardtype == 'Invalid Card') {
                 $cardtype = 'mastercard';
             }
             $cardtoken = strtolower($cardtype);
@@ -134,7 +134,7 @@ class BookInformationController extends Controller
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
                 $customer = \Stripe\Customer::create([
-                    'source' => 'tok_'.$cardtoken,
+                    'source' => 'tok_' . $cardtoken,
                     'email' => Auth::user()->email,
                 ]);
                 $charge = \Stripe\Charge::create([
@@ -144,32 +144,42 @@ class BookInformationController extends Controller
                 ]);
 
                 $user = DB::table('users')
-                ->where('id', Auth::user()->id)
-                ->update(['payment_code' => $payment]);
-            }elseif ($request->input('savedpayment') == 'savedpayment') {
+                    ->where('id', Auth::user()->id)
+                    ->update(['payment_code' => $payment]);
+            } elseif ($request->input('savedpayment') == 'savedpayment') {
                 $profile = DB::table('users')
                     ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
                     ->where('users.id', Auth::user()->id)
                     ->first();
-                    // dd($request->input('cardcvc').' '. $profile->cvc);
-                if($request->input('cardcvc') == $profile->cvc){
+                // dd($request->input('cardcvc').' '. $profile->cvc);
+                if ($request->input('cardcvc') == $profile->cvc) {
                     // dd(session()->all());
-                    $charge = Stripe\Charge::create ([
+                    $charge = Stripe\Charge::create([
                         "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
                         "currency" => "php",
                         "customer" => $profile->customer_id,
                         "description" => "Book down payment"
                     ]);
-                }else{
+                } else {
                     return redirect('/bookinfo?error=CVC is incorrect');
                 }
-            }else {
-                $charge = Stripe\Charge::create ([
-                    "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                    "currency" => "php",
-                    "source" => $request->stripeToken,
-                    "description" => "Book down payment"
+            } else {
+                // $charge = Stripe\Charge::create([
+                //     "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                //     "currency" => "php",
+                //     "source" => $request->stripeToken,
+                //     "description" => "Book down payment"
+                // ]);
+                $customer = \Stripe\Customer::create([
+                    'source' => 'tok_' . $cardtoken,
+                    'email' => session('email'),
                 ]);
+                $charge = \Stripe\Charge::create([
+                    'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                    'currency' => 'php',
+                    'customer' => $customer->id,
+                ]);
+
             }
 
             Session::flash('success', 'Payment successful!');
@@ -204,6 +214,21 @@ class BookInformationController extends Controller
 
             $totalc = DB::table('reservation_tables')->select('confirmation_number')->count();
             $confirmation_number = strval(date('Ymd')) . strval($totalc + 1);
+
+
+            while(true){
+                $checkrrtables = DB::table('reservation_tables')
+                ->where('confirmation_number', $confirmation_number)
+                ->count();
+                if($checkrrtables != 0){
+                    $totalc++;
+                    $confirmation_number = strval(date('Ymd')) . strval($totalc + 1);
+                } else {
+                    $confirmation_number = strval(date('Ymd')) . strval($totalc + 1);
+                    break;
+                }
+            }
+
             $arrival = session('CheckIn');
             $departure = session('CheckOut');
             $adult = session('AdultCount');
@@ -219,8 +244,8 @@ class BookInformationController extends Controller
                 $adult2 = session('AdultCount2');
                 $child2 = session('ChildCount2');
                 if (session('RoomCount') == 3) {
-                $adult3 = session('AdultCount3');
-                $child3 = session('ChildCount3');
+                    $adult3 = session('AdultCount3');
+                    $child3 = session('ChildCount3');
                 }
             }
 
@@ -251,10 +276,10 @@ class BookInformationController extends Controller
             }
 
             $roomnum = DB::table('room_statuses')
-            ->where('room_suite_name', $roomsuitename)
-            ->where('room_suite_bed', $roomsuitebed)
-            ->where('status', 0)
-            ->first();
+                ->where('room_suite_name', $roomsuitename)
+                ->where('room_suite_bed', $roomsuitebed)
+                ->where('status', 0)
+                ->first();
 
             // $payment = DB::table('payment_informations')->count();
             // $payment = 'PC-0'.($payment + 1);
@@ -317,11 +342,11 @@ class BookInformationController extends Controller
             $cardtype = $detector->detect($card);
 
             $cardtype = $detector->detect($card);
-            if($cardtype == 'Invalid Card'){
+            if ($cardtype == 'Invalid Card') {
                 $cardtype = 'Unknown Card';
             }
 
-            if(!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')){
+            if (!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')) {
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
                     'payment_type' => $cardtype,
@@ -330,11 +355,11 @@ class BookInformationController extends Controller
                     'expiration_month' => $request->input('cardexprm'),
                     'expiration_year' => $request->input('cardexpry'),
                     'CVC' => $request->input('cardcvc'),
-                    'charge_id' => $charge->id
-                    // 'customer_id' => $customer->id
+                    'charge_id' => $charge->id,
+                    'customer_id' => $customer->id
 
                 ]);
-            } elseif($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
+            } elseif ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
                     'payment_type' => $cardtype,
@@ -358,7 +383,6 @@ class BookInformationController extends Controller
                 $roomstatus = DB::table('room_statuses')
                     ->where('room_number', $roomnum)
                     ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
-
             } else {
                 echo "ERROR1: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
                 $re = \Stripe\Refund::create([
@@ -371,14 +395,13 @@ class BookInformationController extends Controller
 
             if ($roomsuitename2 != '') {
                 $roomnum2 = DB::table('room_statuses')
-                ->where('room_suite_name', $roomsuitename2)
-                ->where('room_suite_bed', $roomsuitebed2)
-                ->where('status', 0)
-                ->first();
+                    ->where('room_suite_name', $roomsuitename2)
+                    ->where('room_suite_bed', $roomsuitebed2)
+                    ->where('status', 0)
+                    ->first();
 
                 if ($roomnum2 != null) {
                     $roomnum2 = $roomnum2->room_number;
-
                 } else {
                     echo "ERROR2: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
                     $re = \Stripe\Refund::create([
@@ -390,21 +413,19 @@ class BookInformationController extends Controller
                 $roomstatus = DB::table('room_statuses')
                     ->where('room_number', $roomnum2)
                     ->update(['status' => 1, 'confirmation_number' => $confirmation_number]);
-
             } else {
                 $roomnum2 = '';
             }
 
             if ($roomsuitename3 != '') {
                 $roomnum3 = DB::table('room_statuses')
-                ->where('room_suite_name', $roomsuitename3)
-                ->where('room_suite_bed', $roomsuitebed3)
-                ->where('status', 0)
-                ->first();
+                    ->where('room_suite_name', $roomsuitename3)
+                    ->where('room_suite_bed', $roomsuitebed3)
+                    ->where('status', 0)
+                    ->first();
 
                 if ($roomnum3 != null) {
                     $roomnum3 = $roomnum3->room_number;
-
                 } else {
                     echo "ERROR3: One of the rooms became unavailable right before you submitted your reservation. Please check the availability of the rooms again.";
                     $re = \Stripe\Refund::create([
@@ -435,7 +456,7 @@ class BookInformationController extends Controller
 
 
 
-            if(Auth::check() != true) {
+            if (Auth::check() != true) {
                 $guestinformation = DB::table('guest_informations')->insert([
                     'guest_code' => $guestcode,
                     'title' => $title,
@@ -464,7 +485,7 @@ class BookInformationController extends Controller
             // dd($headcount);
             $headcount2 = null;
             $headcount3 = null;
-            if(session('RoomCount') >= 2){
+            if (session('RoomCount') >= 2) {
                 $headcount2 = DB::table('head_counts')->insert([
                     'adult' => $adult2,
                     'child' => $child2
@@ -473,7 +494,7 @@ class BookInformationController extends Controller
                 $headcount2 = DB::table('head_counts')->max('id');
                 // $headcount2 = $headcount->id;
             }
-            if(session('RoomCount') >= 3){
+            if (session('RoomCount') >= 3) {
                 $headcount3 = DB::table('head_counts')->insert([
                     'adult' => $adult3,
                     'child' => $child3
@@ -506,7 +527,7 @@ class BookInformationController extends Controller
             $id = DB::table('computeds')->max('id');
 
 
-            if(Auth::check()) {
+            if (Auth::check()) {
                 $reservationinfo = DB::table('reservation_tables')->insert([
                     'confirmation_number' => $confirmation_number,
                     'arrival_date' => $arrival,
@@ -517,8 +538,7 @@ class BookInformationController extends Controller
                     'promotion_code' => $promocode,
                     'computed_price_id' => $id
                 ]);
-            }
-            else {
+            } else {
                 $reservationinfo = DB::table('reservation_tables')->insert([
                     'confirmation_number' => $confirmation_number,
                     'arrival_date' => $arrival,
@@ -568,7 +588,7 @@ class BookInformationController extends Controller
                 'body' => 'im under the water'
             ];
 
-            if(Auth::check()) {
+            if (Auth::check()) {
                 Mail::to(Auth::user()->email)->send(new BookCompleteMail($details, $confirmation_number));
             } else {
                 Mail::to(session('email'))->send(new BookCompleteMail($details, $confirmation_number));
@@ -615,7 +635,7 @@ class BookInformationController extends Controller
             // return redirect('/bookinfo');
             return view('confdisplay')->with(compact('confirmation_number'));
         } else {
-            if(Auth::check() != true) {
+            if (Auth::check() != true) {
                 $request->validate([
                     'name_with_initials' => 'required',
                     'fn' => 'required',
@@ -643,12 +663,6 @@ class BookInformationController extends Controller
                 Session::put('address', $data['address']);
                 Session::put('city', $data['city']);
                 Session::put('mobilenum', $data['mobilenum']);
-
-
-
-
-
-
             }
             $review = 'review';
 
@@ -656,8 +670,6 @@ class BookInformationController extends Controller
             $bookinfo3 = null;
             return view('modify')->with(compact('review', 'bookinfo2', 'bookinfo3'));
         }
-
-
     }
 
     /**

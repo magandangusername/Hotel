@@ -591,6 +591,7 @@
             </td>
         </tr>
     </table>
+    <button onClick="window.print()">Print this page</button>
 </center>
 
 @else
