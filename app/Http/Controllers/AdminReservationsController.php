@@ -20,6 +20,7 @@ class AdminReservationsController extends Controller
         ->leftJoin('guest_informations', 'reservation_tables.guest_code', '=', 'guest_informations.guest_code')
         ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
         ->leftJoin('payment_informations', 'guest_informations.payment_code', '=', 'payment_informations.payment_code')
+        ->whereNull('reservation_tables.cancelled_on')
         // ->leftJoin('users', 'reservation_tables.user_id', '=', 'users.id')
         ->get();
         // ->first();

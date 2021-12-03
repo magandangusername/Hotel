@@ -59,12 +59,13 @@ class ModifyReservationController extends Controller
                     ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
                     ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
                     ->leftJoin('computeds', 'reservation_tables.computed_price_id', '=', 'computeds.id')
-                    ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
+                    // ->leftJoin('room_descriptions', 'room_statuses.room_suite_name', '=', 'room_descriptions.room_name')
                     ->leftJoin('payment_informations', 'users.payment_code', '=', 'payment_informations.payment_code')
 
                     ->where('reservation_tables.confirmation_number', session('confirmation_number'))
                     ->where('reservation_tables.user_id', session('uid'))
                     ->first();
+
                 $user = true;
             }
 
@@ -100,8 +101,6 @@ class ModifyReservationController extends Controller
 
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
@@ -116,8 +115,6 @@ class ModifyReservationController extends Controller
                 ->leftJoin('head_counts', 'reserved_rooms.head_count_id2', '=', 'head_counts.id')
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
@@ -132,8 +129,6 @@ class ModifyReservationController extends Controller
                 ->leftJoin('head_counts', 'reserved_rooms.head_count_id3', '=', 'head_counts.id')
 
                 ->where('reservation_tables.confirmation_number', session('confirmation_number'))
-                ->where('reservation_tables.user_id', session('uid'))
-                ->orWhere('reservation_tables.guest_code', session('gid'))
                 ->orWhere('reserved_rooms.head_count_id2', 'head_counts.id')
                 ->orWhere('reserved_rooms.head_count_id3', 'head_counts.id')
                 ->first();
@@ -285,7 +280,7 @@ class ModifyReservationController extends Controller
                 return view('modify')->with(compact('message', 'book', 'bookinfo', 'bookinfo2', 'bookinfo3', 'user', 'invalidcancellation'));
             } else {
 
-                dd($reservation->charge_id);
+                // dd($reservation->charge_id);
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $re = \Stripe\Refund::create([
                     "amount" => number_format($reservation->ctotal_price / 2, 2, '.', '') * 100,
