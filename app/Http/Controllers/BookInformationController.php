@@ -355,7 +355,7 @@ class BookInformationController extends Controller
                     'expiration_month' => $request->input('cardexprm'),
                     'expiration_year' => $request->input('cardexpry'),
                     'CVC' => $request->input('cardcvc'),
-                    'charge_id' => $charge->id,
+                    // 'charge_id' => $charge->id,
                     'customer_id' => $customer->id
 
                 ]);
@@ -368,7 +368,7 @@ class BookInformationController extends Controller
                     'expiration_month' => $request->input('cardexprm'),
                     'expiration_year' => $request->input('cardexpry'),
                     'CVC' => $request->input('cardcvc'),
-                    'charge_id' => $charge->id,
+                    // 'charge_id' => $charge->id,
                     'customer_id' => $customer->id
 
                 ]);
@@ -543,7 +543,8 @@ class BookInformationController extends Controller
                     'booked_at' => date('Y-m-d h:i:s'),
                     'rr_code' => $rr_code,
                     'promotion_code' => $promocode,
-                    'computed_price_id' => $id
+                    'computed_price_id' => $id,
+                    'charge_id' => $charge->id
                 ]);
             } else {
                 $reservationinfo = DB::table('reservation_tables')->insert([
@@ -554,7 +555,8 @@ class BookInformationController extends Controller
                     'booked_at' => date('Y-m-d h:i:s'),
                     'rr_code' => $rr_code,
                     'promotion_code' => $promocode,
-                    'computed_price_id' => $id
+                    'computed_price_id' => $id,
+                    'charge_id' => $charge->id
                 ]);
             }
 
