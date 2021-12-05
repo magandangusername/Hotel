@@ -395,7 +395,7 @@ class ModifyReservationController extends Controller
             return redirect('/modify');
         }
 
-
+        // changing rooms
         if ($request->input('total_rate') !== null) {
             $request->validate([
                 'bed' => 'required',
@@ -470,7 +470,7 @@ class ModifyReservationController extends Controller
 
 
 
-                    // if you are thinking about refunding the excess downpayment, dont. let the physical hotel do it
+                    // if you are thinking about refunding the excess downpayment or even adding more, dont. let the physical hotel deal with it
 
                 // dd(($price->ctotal_price - $total) + $request->input('total_rate'));
 

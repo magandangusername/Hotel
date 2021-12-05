@@ -372,14 +372,15 @@ class BookInformationController extends Controller
                     'customer_id' => $customer->id
 
                 ]);
-            } elseif ($request->input('savedpayment') == 'savedpayment') {
-                $paymentinfo = DB::table('payment_informations')
-                ->where('payment_code', $profile->payment_code)
-                ->update([
-                    'charge_id' => $charge->id
-
-                ]);
             }
+            // elseif ($request->input('savedpayment') == 'savedpayment') {
+            //     $paymentinfo = DB::table('payment_informations')
+            //     ->where('payment_code', $profile->payment_code)
+            //     ->update([
+            //         'charge_id' => $charge->id
+
+            //     ]);
+            // }
 
 
 

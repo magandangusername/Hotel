@@ -71,6 +71,7 @@ Route::middleware('can:accessAdmin')->group(function () {
 
     Route::get('/admin', [DashboardController::class, 'DashboardController'])->name('dashboard');
     Route::get('/admin/roomstatus', [AdminRoomStatusController::class, 'index'])->name('roomstatus');
+    Route::post('/admin/roomstatus', [AdminRoomStatusController::class, 'editstatus'])->name('editroomstatus');
 
     Route::get('/admin/reservation', [AdminReservationsController::class, 'index'])->name('adminreservation');
     Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation'])->name('admineditreservation');
