@@ -13,6 +13,10 @@ class ProfileController extends Controller
 {
     public function userprofile()
     {
+        if(Auth::check() && !Auth::user()->verified) {
+
+            return redirect('/email/verify');
+        }
         if(Auth::check()) {
             // dd(Auth::user()->first_name);
             $profile = DB::table('users')

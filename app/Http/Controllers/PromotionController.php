@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\promotion_description;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PromotionController extends Controller
@@ -15,6 +16,10 @@ class PromotionController extends Controller
      */
     public function promo()
     {
+        if(Auth::check() && !Auth::user()->verified) {
+
+            return redirect('/email/verify');
+        }
 
         //$promos = promotion_description::all();
         $date = date("Y-m-d h:i:sa");

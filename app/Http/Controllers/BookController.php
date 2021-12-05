@@ -20,8 +20,9 @@ class BookController extends Controller
     public function index()
     {
         if(Auth::check()){
-            if (Auth::user()->hasVerifiedEmail() != true) {
-                return view('notverified');
+            if(Auth::check() && !Auth::user()->verified) {
+
+                return redirect('/email/verify');
             }
 
         }

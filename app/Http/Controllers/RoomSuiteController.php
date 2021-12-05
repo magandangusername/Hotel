@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\room_description;
 use App\Models\suite_description;
 use App\Models\gallery_photos;
+use Illuminate\Support\Facades\Auth;
 
 class RoomSuiteController extends Controller
 {
@@ -16,12 +17,20 @@ class RoomSuiteController extends Controller
      */
     public function rooms()
     {
+        if(Auth::check() && !Auth::user()->verified) {
+
+            return redirect('/email/verify');
+        }
         $rooms = room_description::get();
         return view('roomtab')->with(compact('rooms'));
     }
 
     public function suites()
     {
+        if(Auth::check() && !Auth::user()->verified) {
+
+            return redirect('/email/verify');
+        }
         $suites = suite_description::get();
         return view('suitestab')->with(compact('suites'));
     }

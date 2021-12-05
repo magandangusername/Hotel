@@ -126,6 +126,9 @@ trait AuthenticatesUsers
     protected function authenticated(Request $request, $user)
     {
         //
+        if($user->verified==false) {
+            return redirect('/email/verify');
+        }
     }
 
     /**

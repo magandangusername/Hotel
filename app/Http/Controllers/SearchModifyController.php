@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SearchModifyController extends Controller
@@ -15,6 +16,10 @@ class SearchModifyController extends Controller
      */
     public function index()
     {
+        if(Auth::check() && !Auth::user()->verified) {
+
+            return redirect('/email/verify');
+        }
         return view('search');
     }
 

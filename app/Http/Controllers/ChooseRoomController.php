@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -15,6 +16,10 @@ class ChooseRoomController extends Controller
      */
     public function index()
     {
+        if(Auth::check() && !Auth::user()->verified) {
+
+            return redirect('/email/verify');
+        }
         // $rates = DB::table('rate_descriptions')->get();
         // $roomtype = DB::table('room_statuses')->distinct()->get(['room_suite_name']);
         // echo 'FUUUUUUU';
