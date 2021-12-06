@@ -27,6 +27,7 @@
                                 <th>Reservation Number</th>
                                 <th>Room/Suite Name</th>
                                 <th>Bed</th>
+                                <th>Reservation Status</th>
                             </tr>
                         </thead>
 
@@ -40,8 +41,9 @@
                                     <td>{{ $status->confirmation_number }}</td>
                                     <td>{{ $status->room_suite_name }}</td>
                                     <td>{{ $status->room_suite_bed }}</td>
+                                    <td>{{ $status->reservation_status }}</td>
 
-                                    @if ($status->status == 1)
+                                    @if ($status->status == 1 && $status->reservation_status == 'Ongoing')
                                         <td>
                                             <form action="{{route('editroomstatus')}}" method="post">
                                                 @csrf
@@ -311,10 +313,12 @@
                     @endforeach
 
                 </select>
+                Reason:
+                <input type="text" name="reason">
                 <input type="text" name="roomnum" value="{{$roomnum}}" hidden>
                 <input type="text" name="updateroom" value="{{$editstatus->room_number}}" hidden>
                 <input type="text" name="confirmation_number" value="{{ $editstatus->confirmation_number }}" hidden>
-                <button type="submit" class="btn btn-primary mt-2">Change Room</button>
+                <button type="submit" class="btn btn-primary mt-2">Transfer Room</button>
 
                 {{-- <input type="text" name="totalsubtotal" value="{{$totalnopromo}}" hidden>
         <input type="text" name="totalsubtotal2" value="{{$totalnopromo2}}" hidden>

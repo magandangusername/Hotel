@@ -15,7 +15,7 @@ class CreateR2ComputedsTable extends Migration
     public function up()
     {
         Schema::create('r2_computeds', function (Blueprint $table) {
-            $table->id();
+            $table->id('r1_computeds_id');
             $table->string('room_total');
             $table->string('rate_discount');
             $table->string('vat');

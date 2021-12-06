@@ -68,6 +68,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Modifications
                             </a>
+                            <a class="nav-link" href="{{ route('adminroomtransfers') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Room Transfers
+                            </a>
 
                             <div class="sb-sidenav-menu-heading">Manage Website</div>
 
@@ -104,6 +108,11 @@
                                     <a class="nav-link" href="{{ route('adminrate') }}">Rates</a>
                                 </nav>
                             </div>
+
+                            <a class="nav-link" href="{{ route('adminmanagerequests') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Manage Requests
+                            </a>
 
                             <div class="sb-sidenav-menu-heading">Manage Accounts</div>
                             <a class="nav-link" href="{{ route('adminguestacc') }}">

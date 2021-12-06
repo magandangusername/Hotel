@@ -39,6 +39,8 @@ use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminRoomTransfersController;
+use App\Http\Controllers\AdminRequestsController;
 
 use App\Http\Controllers\AdminRoomStatusController;
 
@@ -72,6 +74,11 @@ Route::middleware('can:accessAdmin')->group(function () {
     Route::get('/admin', [DashboardController::class, 'DashboardController'])->name('dashboard');
     Route::get('/admin/roomstatus', [AdminRoomStatusController::class, 'index'])->name('roomstatus');
     Route::post('/admin/roomstatus', [AdminRoomStatusController::class, 'editstatus'])->name('editroomstatus');
+
+    Route::get('/admin/roomtransfers', [AdminRoomTransfersController::class, 'index'])->name('adminroomtransfers');
+
+    Route::get('/admin/addrequests', [AdminRequestsController::class, 'index'])->name('adminmanagerequests');
+    Route::post('/admin/addrequests', [AdminRequestsController::class, 'modifyrequests'])->name('adminmanagerequests');
 
     Route::get('/admin/reservation', [AdminReservationsController::class, 'index'])->name('adminreservation');
     Route::post('/admin/reservation', [AdminReservationsController::class, 'editreservation'])->name('admineditreservation');

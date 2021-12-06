@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-class CreateR1ComputedsTable extends Migration
+class CreateTransfersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,13 @@ class CreateR1ComputedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('r1_computeds', function (Blueprint $table) {
-            $table->id('r1_computeds_id');
-            $table->string('room_total');
-            $table->string('rate_discount');
-            $table->string('vat');
-            $table->string('service');
-            $table->string('city_tax');
-            $table->string('total');
+        Schema::create('transfers', function (Blueprint $table) {
+            $table->id('transfer_id');
+            $table->dateTime('transfer_date')->nullable();
+            $table->string('previous_room')->nullable();
+            $table->string('transferred_room')->nullable();
+            $table->string('confirmation_number')->nullable();
+            $table->string('reason')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -34,6 +33,6 @@ class CreateR1ComputedsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r1_computeds');
+        Schema::dropIfExists('transfers');
     }
 }

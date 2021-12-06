@@ -23,6 +23,10 @@ class CreateReservationTablesTable extends Migration
             $table->string('promotion_code');
             $table->dateTime('Booked_at');
             $table->integer('computed_price_id');
+            $table->string('payment_status')->default('Deposited');
+            $table->string('reservation_status')->default('Upcoming');
+            $table->integer('request_id')->nullable();
+            $table->integer('transfer_id')->nullable();
             $table->string('charge_id')->nullable();
             $table->dateTime('modified_on')->nullable();
             $table->dateTime('cancelled_on')->nullable();

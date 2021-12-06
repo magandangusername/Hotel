@@ -216,7 +216,6 @@ class ProfileController extends Controller
                 'expiration_month' => $request->input('expiration_month'),
                 'expiration_year' => $request->input('expiration_year'),
                 'cvc' => $request->input('cvc'),
-                'charge_id' => $charge->id,
                 'customer_id' => $customer->id
 
             ]);

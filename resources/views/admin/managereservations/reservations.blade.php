@@ -32,7 +32,8 @@
                             <th>Room/s Selected</th>
                             <th>Booked At</th>
                             <th>Promotion Applied</th>
-                            <th>Status</th>
+                            <th>Payment Status</th>
+                            <th>Reservation Status</th>
                             <th>Adult</th>
                             <th>Children</th>
                             <th>Payment Type</th>
@@ -129,7 +130,8 @@
                                 @endphp
                                 <td>{{ $reservation->Booked_at }}</td>
                                 <td>{{ $reservation->promotion_code }}</td>
-                                <td>{{ number_format($reservation->ctotal_price / 2, 2) }}</td>
+                                <td>{{ $reservation->payment_status }}</td>
+                                <td>{{ $reservation->reservation_status }}</td>
                                 <td>{{ $roomadult + $roomadult2 + $roomadult3 }}</td>
                                 <td>{{ $roomchild + $roomchild2 + $roomchild3 }}</td>
                                 <td>
@@ -152,13 +154,16 @@
                                 </td>
 
                                 <td>
-                                    {{-- <form action="/admin/reservation" method="post">
-                                        @csrf
-                                        <input type="text" name='deletereservation'
-                                            value='{{ $reservation->confirmation_number }}' hidden>
-                                        <button class="btn btn-outline-dark" type="submit"><i
-                                                class="fas fa-trash"></i></button>
-                                    </form> --}}
+                                    @if ($reservation->payment_status != 'Fulfilled')
+                                        <form action="/admin/reservation" method="post">
+                                            @csrf
+                                            <input type="text" name='checkedin'
+                                                value='{{ $reservation->confirmation_number }}' hidden>
+                                            <button class="btn btn-outline-dark" type="submit"><i
+                                                    class="fas fa-check"></i></button>
+                                        </form>
+                                    @endif
+
                                     <form action="/admin/reservation" method="post">
                                         @csrf
                                         <input type="text" name='editreservation'

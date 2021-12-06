@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Rules\PromoValidDuration;
+use Carbon\Carbon;
 use DateTime;
 
 class AdminReservationsController extends Controller
@@ -242,6 +243,33 @@ class AdminReservationsController extends Controller
 
             // return view('admin/managereservations/reservations')->with(compact('reservations','editreserve','room','roominfo2','roominfo3'));
             return redirect('admin/reservation?success=modified reservation successfuly');
+
+        }
+
+
+        if ($request->input('checkedin') !== null) {
+
+            $room = DB::table('reservation_tables')
+            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+            ->leftJoin('head_counts as hc1', 'reserved_rooms.head_count_id1', '=', 'hc1.id')
+            ->leftJoin('computeds', 'computeds.id', '=', 'reservation_tables.computed_price_id')
+            ->leftJoin('room_statuses', 'reserved_rooms.r1', '=', 'room_statuses.room_number')
+            ->leftJoin('rate_descriptions', 'reserved_rooms.rate1', '=', 'rate_descriptions.rate_name')
+            ->where('reservation_tables.confirmation_number', $request->input('checkedin'))
+            ->first();
+
+            DB::table('computeds')
+            ->where('id', $room->id)
+            ->update([
+                'fullfilled_on' => Carbon::now()->toDateTimeString()
+            ]);
+
+            DB::table('reservation_tables')
+            ->where('confirmation_number', $room->confirmation_number)
+            ->update([
+                'payment_status' => 'Fulfilled',
+                'reservation_status' => 'Ongoing'
+            ]);
 
         }
 

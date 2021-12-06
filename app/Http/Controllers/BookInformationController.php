@@ -33,6 +33,7 @@ class BookInformationController extends Controller
                 }
             }
         }
+
         Session::put('overallprice', $totalrate);
 
         if (Auth::check()) {
@@ -170,6 +171,7 @@ class BookInformationController extends Controller
                     'source' => 'tok_' . $cardtoken,
                     'email' => session('email'),
                 ]);
+
                 $charge = \Stripe\Charge::create([
                     'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
                     'currency' => 'php',
@@ -525,7 +527,9 @@ class BookInformationController extends Controller
             ]);
 
             $computed = DB::table('computeds')->insert([
-                'ctotal_price' => session('overallprice')
+                'ctotal_price' => session('overallprice'),
+                'deposited_price' => session('overallprice') / 2,
+                'deposited_on' => date('Y-m-d H:m:s')
             ]);
 
             $id = DB::table('computeds')->max('id');

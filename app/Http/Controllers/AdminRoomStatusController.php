@@ -8,20 +8,27 @@ use Illuminate\Support\Facades\DB;
 
 class AdminRoomStatusController extends Controller
 {
-    public function index (){
+    public function index()
+    {
         $statuses = DB::table('room_statuses')
-        ->get();
+            ->leftJoin('reservation_tables', 'room_statuses.confirmation_number', '=', 'reservation_tables.confirmation_number')
+            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
+
+            ->get();
 
 
         return view('admin/roomstatus')->with(compact('statuses'));
-
     }
 
-    public function editstatus (Request $request){
+    public function editstatus(Request $request)
+    {
         $statuses = DB::table('room_statuses')
-        ->get();
+            ->leftJoin('reservation_tables', 'room_statuses.confirmation_number', '=', 'reservation_tables.confirmation_number')
+            ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
 
-        if($request->input('editroomstatus') !== null){
+            ->get();
+
+        if ($request->input('editroomstatus') !== null) {
 
             // $request->validate([
             //     'room_name' => 'required',
@@ -37,8 +44,8 @@ class AdminRoomStatusController extends Controller
             // ]);
 
             $rooms = DB::table('room_statuses')
-            ->where('status', 0)
-            ->get();
+                ->where('status', 0)
+                ->get();
 
             $editstatus = DB::table('reservation_tables')
                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -50,9 +57,9 @@ class AdminRoomStatusController extends Controller
                 ->where('reserved_rooms.r1', $request->input('roomnumber'))
                 ->first();
 
-                $roomnum = 1;
-                if ($editstatus === null) {
-                    $editstatus = DB::table('reservation_tables')
+            $roomnum = 1;
+            if ($editstatus === null) {
+                $editstatus = DB::table('reservation_tables')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
                     ->leftJoin('head_counts as hc1', 'reserved_rooms.head_count_id1', '=', 'hc1.id')
                     ->leftJoin('computeds', 'computeds.id', '=', 'reservation_tables.computed_price_id')
@@ -62,10 +69,10 @@ class AdminRoomStatusController extends Controller
                     ->where('reserved_rooms.r2', $request->input('roomnumber'))
                     ->first();
 
-                    $roomnum = 2;
-                }
-                if ($editstatus === null) {
-                    $editstatus = DB::table('reservation_tables')
+                $roomnum = 2;
+            }
+            if ($editstatus === null) {
+                $editstatus = DB::table('reservation_tables')
                     ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
                     ->leftJoin('head_counts as hc1', 'reserved_rooms.head_count_id1', '=', 'hc1.id')
                     ->leftJoin('computeds', 'computeds.id', '=', 'reservation_tables.computed_price_id')
@@ -75,20 +82,19 @@ class AdminRoomStatusController extends Controller
                     ->where('reserved_rooms.r3', $request->input('roomnumber'))
                     ->first();
 
-                    $roomnum = 3;
-                }
+                $roomnum = 3;
+            }
 
             return view('admin/roomstatus')->with(compact('statuses', 'editstatus', 'rooms', 'roomnum'));
-
-
-
         }
 
 
-        if($request->input('updateroom') !== null){
+        if ($request->input('updateroom') !== null) {
 
 
-            if($request->input('roomnum') == 1){
+
+
+            if ($request->input('roomnum') == 1) {
 
 
                 //finds and edit the old room
@@ -154,7 +160,7 @@ class AdminRoomStatusController extends Controller
 
 
 
-                    // if you are thinking about refunding the excess downpayment or even adding more, dont. let the physical hotel deal with it
+                // if you are thinking about refunding the excess downpayment or even adding more, dont. let the physical hotel deal with it
 
                 // dd(($price->ctotal_price - $total) + $request->input('total_rate'));
 
@@ -179,8 +185,23 @@ class AdminRoomStatusController extends Controller
                 //         'r1' => $roomnum
                 //     ]);
 
+                DB::table('transfers')
+                    ->insert([
+                        'transfer_date' => date('Y-m-d H:i:s'),
+                        'previous_room' => $request->input('updateroom'),
+                        'transferred_room' => $request->input('room'),
+                        'confirmation_number' => $request->input('confirmation_number'),
+                        'reason' => $request->input('reason')
+                    ]);
+                $transfer_id = DB::table('transfers')
+                    ->max('transfer_id');
 
-            }elseif($request->input('roomnum') == 2){
+                DB::table('reservation_tables')
+                    ->update([
+                        'transfer_id' => $transfer_id
+                    ]);
+
+            } elseif ($request->input('roomnum') == 2) {
 
 
                 //finds and edit the old room
@@ -247,8 +268,23 @@ class AdminRoomStatusController extends Controller
                         'confirmation_number' => $request->input('confirmation_number')
                     ]);
 
+                DB::table('transfers')
+                    ->insert([
+                        'transfer_date' => date('Y-m-d H:i:s'),
+                        'previous_room' => $request->input('updateroom'),
+                        'transferred_room' => $request->input('room'),
+                        'confirmation_number' => $request->input('confirmation_number'),
+                        'reason' => $request->input('reason')
+                    ]);
 
-            }elseif($request->input('roomnum') == 3){
+                $transfer_id = DB::table('transfers')
+                    ->max('transfer_id');
+
+                DB::table('reservation_tables')
+                    ->update([
+                        'transfer_id' => $transfer_id
+                    ]);
+            } elseif ($request->input('roomnum') == 3) {
 
 
                 //finds and edit the old room
@@ -316,6 +352,22 @@ class AdminRoomStatusController extends Controller
                     ]);
 
 
+                DB::table('transfers')
+                    ->insert([
+                        'transfer_date' => date('Y-m-d H:i:s'),
+                        'previous_room' => $request->input('updateroom'),
+                        'transferred_room' => $request->input('room'),
+                        'confirmation_number' => $request->input('confirmation_number'),
+                        'reason' => $request->input('reason')
+                    ]);
+
+                $transfer_id = DB::table('transfers')
+                    ->max('transfer_id');
+
+                DB::table('reservation_tables')
+                    ->update([
+                        'transfer_id' => $transfer_id
+                    ]);
             }
 
 
@@ -324,6 +376,5 @@ class AdminRoomStatusController extends Controller
 
 
         return view('admin/roomstatus')->with(compact('statuses'));
-
     }
 }
