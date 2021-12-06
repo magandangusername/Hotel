@@ -19,13 +19,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        if(Auth::check()){
-            if(Auth::check() && !Auth::user()->verified) {
 
-                return redirect('/email/verify');
-            }
-
-        }
         $date = date("Y-m-d h:i:sa");
         $newpromos = DB::table('promotion_descriptions')
         ->orderByRaw('promotion_start DESC')

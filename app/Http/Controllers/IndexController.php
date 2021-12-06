@@ -16,10 +16,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
+
         $date = date("Y-m-d h:i:sa");
         $roomtype = DB::table('room_statuses')->select('room_suite_name')->distinct('room_suite_name')->inRandomOrder()->limit(3)->get();
         $promos = promotion_description::where('promotion_start', '<=', $date)->where('promotion_end', '>=', $date)->inRandomOrder()->limit(3)->get();

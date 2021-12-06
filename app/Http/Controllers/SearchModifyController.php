@@ -16,10 +16,8 @@ class SearchModifyController extends Controller
      */
     public function index()
     {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
+
         return view('search');
     }
 

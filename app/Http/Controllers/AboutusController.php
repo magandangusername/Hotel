@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AboutusController extends Controller
 {
     public function index() {
-        if(Auth::check() && !Auth::user()->verified) {
-            return redirect('/email/verify');
-        }
+
 
         return view('aboutus');
     }

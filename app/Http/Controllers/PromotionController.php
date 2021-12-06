@@ -16,10 +16,8 @@ class PromotionController extends Controller
      */
     public function promo()
     {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
+
 
         //$promos = promotion_description::all();
         $date = date("Y-m-d h:i:sa");

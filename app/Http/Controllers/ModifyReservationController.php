@@ -24,10 +24,8 @@ class ModifyReservationController extends Controller
     public function index()
     {
 
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
+
         $message = '';
         $book = '';
         $bookinfo = '';

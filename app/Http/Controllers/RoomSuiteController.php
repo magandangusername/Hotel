@@ -17,10 +17,8 @@ class RoomSuiteController extends Controller
      */
     public function rooms()
     {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
+
         $rooms = room_description::get();
         return view('roomtab')->with(compact('rooms'));
     }

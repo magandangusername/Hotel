@@ -22,10 +22,7 @@ class BookInformationController extends Controller
      */
     public function index()
     {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
 
         if (session('RoomCount') >= 1) {
             $totalrate = floatval(session('totalrate'));

@@ -47,7 +47,8 @@
                                 <td>{{ date('m/d/Y', strtotime($reservation->arrival_date)) }}</td>
                                 <td>{{ date('m/d/Y', strtotime($reservation->departure_date)) }}</td>
                                 <td>
-                                    @if ($reservation->first_name == null || $reservation->first_name == '')
+
+                                    @if ($reservation->first_name === null)
                                         @php
                                             $name = DB::table('reservation_tables')
                                                 ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
@@ -58,7 +59,7 @@
                                                 ->where('reservation_tables.confirmation_number', $reservation->confirmation_number)
                                                 ->first();
                                         @endphp
-                                        {{ $name->first_name }} {{ $name->last_name }}
+                                        {{$name->first_name }} {{ $name->last_name }}
                                     @else
                                         {{ $reservation->first_name }} {{ $reservation->last_name }}
                                     @endif

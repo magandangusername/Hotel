@@ -16,10 +16,7 @@ class ChooseRoomController extends Controller
      */
     public function index()
     {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
         // $rates = DB::table('rate_descriptions')->get();
         // $roomtype = DB::table('room_statuses')->distinct()->get(['room_suite_name']);
         // echo 'FUUUUUUU';

@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class PoliciesController extends Controller
 {
     public function index() {
-        if(Auth::check() && !Auth::user()->verified) {
 
-            return redirect('/email/verify');
-        }
+
 
         return view('policies');
     }
