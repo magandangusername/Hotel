@@ -550,7 +550,12 @@
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">PHP
-                                                {{ number_format(session('overallprice') * 0.5, 2) }}</span>
+                                                @if (session('adminreservation'))
+                                                    0.00</span>
+                                                @else
+                                                    {{ number_format(session('overallprice') * 0.5, 2) }}</span>
+                                                @endif
+
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">To
@@ -558,7 +563,12 @@
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 28px; font-weight: bold; line-height:30px;">PHP
-                                                {{ number_format(session('overallprice') * 0.5, 2) }}</span>
+                                                @if (session('adminreservation'))
+                                                    {{ number_format(session('overallprice'), 2) }}</span>
+                                                @else
+                                                    {{ number_format(session('overallprice') * 0.5, 2) }}</span>
+                                                @endif
+
                                             <br>
                                             <span
                                                 style="font-family: Arial,sans-serif; font-size: 14px; line-height:25px;">Total:</span>

@@ -13,6 +13,9 @@ class ProfileController extends Controller
 {
     public function userprofile()
     {
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
 
         if(Auth::check()) {

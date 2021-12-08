@@ -22,6 +22,9 @@ class BookInformationController extends Controller
      */
     public function index()
     {
+        if (Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
 
         if (session('RoomCount') >= 1) {
@@ -118,71 +121,72 @@ class BookInformationController extends Controller
             $payment = DB::table('payment_informations')->count();
             $payment = 'PC-0' . ($payment + 1);
 
-            $detector = new CardDetect\Detector();
-            $card = str_replace(' ', '', $request->input('card_number'));
-
-            $cardtype = $detector->detect($card);
-            if ($cardtype == 'Invalid Card') {
-                $cardtype = 'mastercard';
-            }
-            $cardtoken = strtolower($cardtype);
+            if (!session('adminreservation')) {
 
 
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
-                $customer = \Stripe\Customer::create([
-                    'source' => 'tok_' . $cardtoken,
-                    'email' => Auth::user()->email,
-                ]);
-                $charge = \Stripe\Charge::create([
-                    'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                    'currency' => 'php',
-                    'customer' => $customer->id,
-                ]);
+                $detector = new CardDetect\Detector();
+                $card = str_replace(' ', '', $request->input('card_number'));
 
-                $user = DB::table('users')
-                    ->where('id', Auth::user()->id)
-                    ->update(['payment_code' => $payment]);
-            } elseif ($request->input('savedpayment') == 'savedpayment') {
-                $profile = DB::table('users')
-                    ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
-                    ->where('users.id', Auth::user()->id)
-                    ->first();
-                // dd($request->input('cardcvc').' '. $profile->cvc);
-                if ($request->input('cardcvc') == $profile->cvc) {
-                    // dd(session()->all());
-                    $charge = Stripe\Charge::create([
-                        "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                        "currency" => "php",
-                        "customer" => $profile->customer_id,
-                        "description" => "Book down payment"
-                    ]);
-                } else {
-                    return redirect('/bookinfo?error=CVC is incorrect');
+                $cardtype = $detector->detect($card);
+                if ($cardtype == 'Invalid Card') {
+                    $cardtype = 'mastercard';
                 }
-            } else {
-                // $charge = Stripe\Charge::create([
-                //     "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                //     "currency" => "php",
-                //     "source" => $request->stripeToken,
-                //     "description" => "Book down payment"
-                // ]);
-                $customer = \Stripe\Customer::create([
-                    'source' => 'tok_' . $cardtoken,
-                    'email' => session('email'),
-                ]);
+                $cardtoken = strtolower($cardtype);
 
-                $charge = \Stripe\Charge::create([
-                    'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
-                    'currency' => 'php',
-                    'customer' => $customer->id,
-                ]);
 
+                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                if ($request->input('addpaymenttoprofile') == 'addpaymenttoprofile') {
+                    $customer = \Stripe\Customer::create([
+                        'source' => 'tok_' . $cardtoken,
+                        'email' => Auth::user()->email,
+                    ]);
+                    $charge = \Stripe\Charge::create([
+                        'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                        'currency' => 'php',
+                        'customer' => $customer->id,
+                    ]);
+
+                    $user = DB::table('users')
+                        ->where('id', Auth::user()->id)
+                        ->update(['payment_code' => $payment]);
+                } elseif ($request->input('savedpayment') == 'savedpayment') {
+                    $profile = DB::table('users')
+                        ->leftJoin('payment_informations', 'payment_informations.payment_code', '=', 'users.payment_code')
+                        ->where('users.id', Auth::user()->id)
+                        ->first();
+                    // dd($request->input('cardcvc').' '. $profile->cvc);
+                    if ($request->input('cardcvc') == $profile->cvc) {
+                        // dd(session()->all());
+                        $charge = Stripe\Charge::create([
+                            "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                            "currency" => "php",
+                            "customer" => $profile->customer_id,
+                            "description" => "Book down payment"
+                        ]);
+                    } else {
+                        return redirect('/bookinfo?error=CVC is incorrect');
+                    }
+                } else {
+                    // $charge = Stripe\Charge::create([
+                    //     "amount" => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                    //     "currency" => "php",
+                    //     "source" => $request->stripeToken,
+                    //     "description" => "Book down payment"
+                    // ]);
+                    $customer = \Stripe\Customer::create([
+                        'source' => 'tok_' . $cardtoken,
+                        'email' => session('email'),
+                    ]);
+
+                    $charge = \Stripe\Charge::create([
+                        'amount' => number_format(session('overallprice') / 2, 2, '.', '') * 100,
+                        'currency' => 'php',
+                        'customer' => $customer->id,
+                    ]);
+                }
+
+                Session::flash('success', 'Payment successful!');
             }
-
-            Session::flash('success', 'Payment successful!');
-
-
 
             $title = session('title');
             $fn = session('fn');
@@ -214,11 +218,11 @@ class BookInformationController extends Controller
             $confirmation_number = strval(date('Ymd')) . strval($totalc + 1);
 
 
-            while(true){
+            while (true) {
                 $checkrrtables = DB::table('reservation_tables')
-                ->where('confirmation_number', $confirmation_number)
-                ->count();
-                if($checkrrtables != 0){
+                    ->where('confirmation_number', $confirmation_number)
+                    ->count();
+                if ($checkrrtables != 0) {
                     $totalc++;
                     $confirmation_number = strval(date('Ymd')) . strval($totalc + 1);
                 } else {
@@ -344,7 +348,9 @@ class BookInformationController extends Controller
                 $cardtype = 'Unknown Card';
             }
 
-            if (!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')) {
+            if (session('adminreservation')) {
+                # code...
+            }elseif (!($request->input('savedpayment') == 'savedpayment') && !($request->input('addpaymenttoprofile') == 'addpaymenttoprofile')) {
                 $paymentinfo = DB::table('payment_informations')->insert([
                     'payment_code' => $payment,
                     'payment_type' => $cardtype,
@@ -461,8 +467,7 @@ class BookInformationController extends Controller
 
 
 
-
-            if (Auth::check() != true) {
+            if (Auth::check() != true || session('adminreservation')) {
                 $guestinformation = DB::table('guest_informations')->insert([
                     'guest_code' => $guestcode,
                     'title' => $title,
@@ -526,28 +531,22 @@ class BookInformationController extends Controller
                 'head_count_id3' => $headcount3
             ]);
 
-            $computed = DB::table('computeds')->insert([
-                'ctotal_price' => session('overallprice'),
-                'deposited_price' => session('overallprice') / 2,
-                'deposited_on' => date('Y-m-d H:m:s')
-            ]);
+            if (!session('adminreservation')) {
+                $computed = DB::table('computeds')->insert([
+                    'ctotal_price' => session('overallprice'),
+                    'deposited_price' => session('overallprice') / 2,
+                    'deposited_on' => date('Y-m-d H:m:s')
+                ]);
+            } else {
+                $computed = DB::table('computeds')->insert([
+                    'ctotal_price' => session('overallprice'),
+                    'deposited_price' => 0
+                ]);
+            }
 
             $id = DB::table('computeds')->max('id');
 
-
-            if (Auth::check()) {
-                $reservationinfo = DB::table('reservation_tables')->insert([
-                    'confirmation_number' => $confirmation_number,
-                    'arrival_date' => $arrival,
-                    'departure_date' => $departure,
-                    'user_id' => Auth::user()->id,
-                    'booked_at' => date('Y-m-d h:i:s'),
-                    'rr_code' => $rr_code,
-                    'promotion_code' => $promocode,
-                    'computed_price_id' => $id,
-                    'charge_id' => $charge->id
-                ]);
-            } else {
+            if (session('adminreservation')) {
                 $reservationinfo = DB::table('reservation_tables')->insert([
                     'confirmation_number' => $confirmation_number,
                     'arrival_date' => $arrival,
@@ -557,8 +556,34 @@ class BookInformationController extends Controller
                     'rr_code' => $rr_code,
                     'promotion_code' => $promocode,
                     'computed_price_id' => $id,
-                    'charge_id' => $charge->id
+                    'payment_status' => 'Unpaid'
                 ]);
+            }else {
+                if (Auth::check()) {
+                    $reservationinfo = DB::table('reservation_tables')->insert([
+                        'confirmation_number' => $confirmation_number,
+                        'arrival_date' => $arrival,
+                        'departure_date' => $departure,
+                        'user_id' => Auth::user()->id,
+                        'booked_at' => date('Y-m-d h:i:s'),
+                        'rr_code' => $rr_code,
+                        'promotion_code' => $promocode,
+                        'computed_price_id' => $id,
+                        'charge_id' => $charge->id
+                    ]);
+                } else {
+                    $reservationinfo = DB::table('reservation_tables')->insert([
+                        'confirmation_number' => $confirmation_number,
+                        'arrival_date' => $arrival,
+                        'departure_date' => $departure,
+                        'guest_code' => $guestcode,
+                        'booked_at' => date('Y-m-d h:i:s'),
+                        'rr_code' => $rr_code,
+                        'promotion_code' => $promocode,
+                        'computed_price_id' => $id,
+                        'charge_id' => $charge->id
+                    ]);
+                }
             }
 
 
@@ -597,8 +622,10 @@ class BookInformationController extends Controller
                 'title' => 'hallo',
                 'body' => 'im under the water'
             ];
-
-            if (Auth::check()) {
+            if(session('adminreservation')){
+                Mail::to(session('email'))->send(new BookCompleteMail($details, $confirmation_number));
+            }
+            elseif (Auth::check()) {
                 Mail::to(Auth::user()->email)->send(new BookCompleteMail($details, $confirmation_number));
             } else {
                 Mail::to(session('email'))->send(new BookCompleteMail($details, $confirmation_number));

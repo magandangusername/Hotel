@@ -16,6 +16,10 @@ class IndexController extends Controller
      */
     public function index()
     {
+        // dd(Auth::user()->email_verified_at);
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
 
         $date = date("Y-m-d h:i:sa");

@@ -25,7 +25,7 @@
 
 
                 <div class="col px-xl-5  px-lg-5 px-md-3">
-                    <label for="inputRoom" class="col-form-label">Room</label>
+                    <label for="inputRoom" class="col-form-label">Rooms</label>
                     <input class="form-control-num" type="number" name="RoomCount" id="roomcount" value="1" min="1" max="3"
                         onchange="rooms(this.value)">
                 </div>

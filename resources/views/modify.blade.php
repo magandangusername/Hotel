@@ -149,6 +149,7 @@
 
             <hr class="mx-5 mt-1 mb-4 p-1">
 
+
             <h3 class="px-5 py-0 fw-bold  text-dark "> Payment Information </h3>
             <div class="row px-5 py-3  text-dark ">
 
@@ -845,7 +846,15 @@
                     </form>
 
                 @else
-                    @if (Auth::user()->payment_code == null || Auth::user()->payment_code == '')
+                    @if (session('adminreservation'))
+                        <form role="form" action="/bookinfo" method="post" id="payment-form">
+                                @csrf
+                            <input type="text" name="proceed" value="proceed" hidden>
+                            <button type="submit" class="btn btn-outline-dark fw-bold"
+                                        style="margin-top: 2em;">Checkout</button>
+                        </form>
+
+                    @elseif (Auth::user()->payment_code == null || Auth::user()->payment_code == '')
                         <form role="form" action="/bookinfo" method="post" class="require-validation" data-cc-on-file="false"
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                             @csrf

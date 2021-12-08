@@ -16,6 +16,9 @@ class ChooseRoomController extends Controller
      */
     public function index()
     {
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
         // $rates = DB::table('rate_descriptions')->get();
         // $roomtype = DB::table('room_statuses')->distinct()->get(['room_suite_name']);
@@ -220,10 +223,6 @@ class ChooseRoomController extends Controller
             }
             if(session('RoomCount') == session('room')) {
                 return redirect('/bookinfo');
-                // $review = 'review';
-                // $bookinfo2 = null;
-                // $bookinfo3 = null;
-                // return view('modify')->with(compact('review', 'bookinfo2', 'bookinfo3'));
             }
 
 
@@ -245,7 +244,6 @@ class ChooseRoomController extends Controller
     public function show($id)
     {
         //
-        echo 'rip';
     }
 
     /**
@@ -269,7 +267,6 @@ class ChooseRoomController extends Controller
     public function update(Request $request, $id)
     {
         //
-        echo 'check mate';
     }
 
     /**

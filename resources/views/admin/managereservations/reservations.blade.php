@@ -60,7 +60,7 @@
                                                 ->where('reservation_tables.confirmation_number', $reservation->confirmation_number)
                                                 ->first();
                                         @endphp
-                                        {{$name->first_name }} {{ $name->last_name }}
+                                        {{ $name->first_name }} {{ $name->last_name }}
                                     @else
                                         {{ $reservation->first_name }} {{ $reservation->last_name }}
                                     @endif
@@ -155,7 +155,7 @@
 
                                 <td>
                                     @if ($reservation->payment_status != 'Fulfilled')
-                                        <form action="/admin/reservation" method="post">
+                                        <form action="{{ route('adminreservation') }}" method="post">
                                             @csrf
                                             <input type="text" name='checkedin'
                                                 value='{{ $reservation->confirmation_number }}' hidden>
@@ -164,7 +164,7 @@
                                         </form>
                                     @endif
 
-                                    <form action="/admin/reservation" method="post">
+                                    <form action="{{ route('adminreservation') }}" method="post">
                                         @csrf
                                         <input type="text" name='editreservation'
                                             value='{{ $reservation->confirmation_number }}' hidden>
@@ -178,6 +178,11 @@
                     </tbody>
 
                 </table>
+                <form action="{{ route('adminreservation') }}" method="post">
+                    @csrf
+                    <input type="text" name="addreservation" value="addreservation" hidden>
+                    <button type="submit" class="btn btn-dark">Add Reservation</button>
+                </form>
 
             </div>
 
@@ -193,7 +198,7 @@
         @endif
 
         @if (isset($editreserve))
-            <form action="/admin/reservation" class="p-5" method="POST">
+            <form action="{{ route('adminreservation') }}" class="p-5" method="POST">
                 <div class="card my-5 " id="edit">
                     <div class="card-body">
 
@@ -439,7 +444,363 @@
                 <input type="text" name="totalsubtotal2" value="{{$totalnopromo2}}" hidden>
                 <input type="text" name="totalsubtotal3" value="{{$totalnopromo3}}" hidden> --}}
             </form>
+
+        @elseif (isset($addreserve))
+            <form action="/book?test=test" class="p-5" method="POST">
+                <div class="card my-5 " id="edit">
+                    <div class="card-body">
+
+                        @csrf
+                        <fieldset>
+                            {{-- <div class="row">
+                                <div class="col">
+                                    <label for="inputreservationumber"><b>Reservation Number</b></label>
+                                    <input type="text" class="form-control" id="reservationumber"
+                                        placeholder="Enter Reservation Number" name="confirmation_number"
+                                        value="{{ $room->confirmation_number }}" disabled>
+                                </div>
+                            </div> --}}
+
+                            <div class="row my-2">
+                                <div class="col">
+                                    <label for="arrivalinput"><b>Arrival Date</b></label>
+                                    <input type="date" class="form-control" id="CheckIn" name="CheckIn"
+                                        onchange="checkcalendarin(); checkcalendar()">
+                                </div>
+                                <div class="col">
+                                    <label for="departureinput"><b>Departure Date</b></label>
+                                    <input type="date" class="form-control" id="CheckOut" name="CheckOut"
+                                        onchange="checkcalendarout(); checkcalendar()">
+                                </div>
+                            </div>
+
+                            <div class="row my-2">
+                                <div class="col">
+                                    <label for="promotioncode"><b>Promotion Code</b></label>
+                                    <input type="number" class="form-control" id="promotioncode"
+                                        placeholder="Enter Promotion Code" name="PromoCode">
+                                </div>
+
+                            </div>
+
+                            <div class="col px-xl-5  px-lg-5 px-md-3">
+                                <label for="inputRoom" class="col-form-label">Rooms</label>
+                                <input class="form-control-num" type="number" name="RoomCount" id="roomcount" value="1" min="1" max="3"
+                                    onchange="rooms(this.value)">
+                            </div>
+
+                            <div class="col">
+
+                                <label for="inputAdult" class="col-form-label">Adult</label>
+                                <input class="form-control-num" type="number" name="AdultCount" id="adultcount" value="1" min="1">
+
+                                <div id="adultcount2l" hidden>
+                                    <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
+                                    <input class="form-control-nam1" type="number" name="AdultCount2" id="adultcount2" value="1"
+                                        min="1">
+                                </div>
+                                <div id="adultcount2i" hidden></div>
+
+                                <div id="adultcount3l" hidden>
+                                    <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
+                                    <input class="form-control-nam1" type="number" name="AdultCount3" id="adultcount3" value="1"
+                                        min="1">
+                                </div>
+                                <div id="adultcount3i" hidden></div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <label for="inputChild" class="col-form-label">Child</label>
+                                <input class="form-control-num" type="number" name="ChildCount" id="childadult" value="0" min="0">
+
+
+                                <div id="childadult2l" hidden>
+                                    <label for="inputChild" class="col-form-label">Child</label>
+                                    <input class="form-control-nam" type="number" name="ChildCount2" id="childadult2" value="0" min="0">
+                                </div>
+                                <div id="childadult2i" hidden></div>
+
+                                <div id="childadult3l" hidden>
+                                    <label for="inputChild" class="col-form-label">Child</label>
+                                    <input class="form-control-nam" type="number" name="ChildCount3" id="childadult3" value="0" min="0">
+                                </div>
+                                <div id="childadult3i" hidden></div>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <select name="name_with_initials" id="" required>
+                                    <option selected="selected" value="Mr.">Mr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Miss">Miss</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+
+                                <label for="first"> First Name:</label>
+                                <input type="text" class="form-control" id="firstname" name="fn" required>
+
+                                <label for="last">Last Name:</label>
+                                <input type="text" class="form-control" id="lastname" name="ln" required>
+                            </div>
+                            <div class="col">
+                                <label for="email">Email Address:</label>
+                                <input type="text" class="form-control" id="firste" name="email" required>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-6">
+                                    <label for="first"> Address:</label>
+                                    <input type="text" class="form-control" id="first" name='address' required>
+                                    <label for="email">City:</label>
+                                    <input type="text" class="form-control" id="email" name='city' required>
+                                </div>
+
+
+                                <div class="col-md-6 ">
+                                    <label for="last">Mobile Number:</label>
+                                    <input type="text" class="form-control" id="last" name='mobilenum' required>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="adminreservation" value="adminreservation" hidden>
+
+                            <button type="submit" class="btn btn-primary mt-2">Get rooms</button>
+
+                        </fieldset>
+
+
+                    </div>
+                </div>
+
+                <div class="card my-5 ">
+                    <div class="row p-3">
+                        {{-- <h4>Reservation Number: </h4> --}}
+                        <p id="nights">Nights:
+                            {{-- {{ $nights = (new DateTime(date('Y-m-d', strtotime($room->arrival_date))))->diff(new DateTime(date('Y-m-d', strtotime($room->departure_date))))->days }} --}}
+                        </p>
+
+
+                        {{-- @if ($room->r1 != '' || $room->r1 != null)
+                            <div class="col">
+
+                                <ul class="list-group my-4">
+                                    <li class="list-group-item bg-dark text-light">
+                                        <h5>Room 1</h5>
+                                    </li>
+                                    <li class="list-group-item"><b>Rate:</b> {{ $room->rate_name }}</li>
+                                    <li class="list-group-item"><b>Adult:</b> {{ $room->adult }}</li>
+                                    <li class="list-group-item"><b>Children:</b> {{ $room->child }}</li>
+                                    <li class="list-group-item"><b>Room Charge:</b> @php
+                                        $price = DB::table('room_descriptions')
+                                            ->where('room_name', $room->room_suite_name)
+                                            ->first();
+                                        if ($price !== null) {
+                                            echo number_format($price->base_price, 2);
+                                        } else {
+                                            $price = DB::table('suite_descriptions')
+                                                ->where('suite_name', $room->room_suite_name)
+                                                ->first();
+                                            echo number_format($price->base_price, 2);
+                                        }
+                                    @endphp</li>
+                                    <li class="list-group-item"><b>Vat:</b>
+                                        {{ number_format($vat = $price->base_price * $room->vat, 2) }}</li>
+                                    <li class="list-group-item"><b>Service:</b>
+                                        {{ number_format($service_charge = $price->base_price * $room->service_rate, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>City Tax:</b>
+                                        {{ number_format($city_tax = $price->base_price * $room->city_tax, 2) }}</li>
+                                    <li class="list-group-item"><b>Subtotal :</b>
+                                        {{ number_format($subtotal = $price->base_price + $vat + $service_charge + $city_tax, 2) }}
+                                    </li>
+                                    @php
+                                        if ($room->promotion_code != '' || $room->promotion_code != null) {
+                                            $promodiscount = DB::table('promotion_descriptions')
+                                                ->where('promotion_code', $room->promotion_code)
+                                                ->first();
+                                            $promodiscount = $promodiscount->overall_cut;
+                                        } else {
+                                            $promodiscount = 0;
+                                        }
+                                    @endphp
+                                    <li class="list-group-item"><b>Promotion Discount:</b>
+                                        -{{ number_format($promo = $price->base_price * $promodiscount, 2) }}</li>
+                                    <li class="list-group-item"><b>Rate Discount:</b>
+                                        -{{ number_format($rate_discount = $price->base_price * $room->base_discount, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>Total :</b>
+                                        {{ number_format($total = ($subtotal - ($rate_discount + $promo)) * $nights, 2) }}
+                                        @php
+                                            $totalnopromo = $subtotal - $rate_discount;
+                                        @endphp
+                                    </li>
+                                </ul>
+
+                            </div>
+                        @endif
+
+                        @if ($room->r2 != '' || $room->r2 != null)
+                            <div class="col">
+                                <ul class="list-group my-4">
+                                    <li class="list-group-item bg-dark text-light">
+                                        <h5>Room 2</h5>
+                                    </li>
+                                    <li class="list-group-item"><b>Rate:</b> {{ $roominfo2->rate_name }}</li>
+                                    <li class="list-group-item"><b>Adult:</b> {{ $roominfo2->adult }}</li>
+                                    <li class="list-group-item"><b>Children:</b> {{ $roominfo2->child }}</li>
+                                    <li class="list-group-item"><b>Room Charge:</b> @php
+                                        $price = DB::table('room_descriptions')
+                                            ->where('room_name', $roominfo2->room_suite_name)
+                                            ->first();
+                                        if ($price !== null) {
+                                            echo number_format($price->base_price, 2);
+                                        } else {
+                                            $price = DB::table('suite_descriptions')
+                                                ->where('suite_name', $roominfo2->room_suite_name)
+                                                ->first();
+                                            echo number_format($price->base_price, 2);
+                                        }
+                                    @endphp</li>
+                                    <li class="list-group-item"><b>Vat:</b>
+                                        {{ number_format($vat = $price->base_price * $roominfo2->vat, 2) }}</li>
+                                    <li class="list-group-item"><b>Service:</b>
+                                        {{ number_format($service_charge = $price->base_price * $roominfo2->service_rate, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>City Tax:</b>
+                                        {{ number_format($city_tax = $price->base_price * $roominfo2->city_tax, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>Subtotal :</b>
+                                        {{ number_format($subtotal = $price->base_price + $vat + $service_charge + $city_tax, 2) }}
+                                    </li>
+                                    @php
+                                        if ($room->promotion_code != '' || $room->promotion_code != null) {
+                                            $promodiscount = DB::table('promotion_descriptions')
+                                                ->where('promotion_code', $room->promotion_code)
+                                                ->first();
+                                            $promodiscount = $promodiscount->overall_cut;
+                                        } else {
+                                            $promodiscount = 0;
+                                        }
+                                    @endphp
+                                    <li class="list-group-item"><b>Promotion Discount:</b>
+                                        -{{ number_format($promo = $price->base_price * $promodiscount, 2) }}</li>
+                                    <li class="list-group-item"><b>Rate Discount:</b>
+                                        -{{ number_format($rate_discount = $price->base_price * $roominfo2->base_discount, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>Total :</b>
+                                        {{ number_format($total2 = ($subtotal - ($rate_discount + $promo)) * $nights, 2) }}
+                                        @php
+                                            $totalnopromo2 = $subtotal - $rate_discount;
+                                        @endphp
+                                    </li>
+                                </ul>
+
+                            </div>
+                        @endif
+
+                        @if ($room->r3 != '' || $room->r3 != null)
+                            <div class="col">
+                                <ul class="list-group my-4">
+                                    <li class="list-group-item bg-dark text-light">
+                                        <h5>Room 3</h5>
+                                    </li>
+                                    <li class="list-group-item"><b>Rate:</b> {{ $roominfo3->rate_name }}</li>
+                                    <li class="list-group-item"><b>Adult:</b> {{ $roominfo3->adult }}</li>
+                                    <li class="list-group-item"><b>Children:</b> {{ $roominfo3->child }}</li>
+                                    <li class="list-group-item"><b>Room Charge:</b> @php
+                                        $price = DB::table('room_descriptions')
+                                            ->where('room_name', $roominfo3->room_suite_name)
+                                            ->first();
+                                        if ($price !== null) {
+                                            echo number_format($price->base_price, 2);
+                                        } else {
+                                            $price = DB::table('suite_descriptions')
+                                                ->where('suite_name', $roominfo3->room_suite_name)
+                                                ->first();
+                                            echo number_format($price->base_price, 2);
+                                        }
+                                    @endphp</li>
+                                    <li class="list-group-item"><b>Vat:</b>
+                                        {{ number_format($vat = $price->base_price * $roominfo3->vat, 2) }}</li>
+                                    <li class="list-group-item"><b>Service:</b>
+                                        {{ number_format($service_charge = $price->base_price * $roominfo3->service_rate, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>City Tax:</b>
+                                        {{ number_format($city_tax = $price->base_price * $roominfo3->city_tax, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>Subtotal :</b>
+                                        {{ number_format($subtotal = $price->base_price + $vat + $service_charge + $city_tax, 2) }}
+                                    </li>
+                                    @php
+                                        if ($room->promotion_code != '' || $room->promotion_code != null) {
+                                            $promodiscount = DB::table('promotion_descriptions')
+                                                ->where('promotion_code', $room->promotion_code)
+                                                ->first();
+                                            $promodiscount = $promodiscount->overall_cut;
+                                        } else {
+                                            $promodiscount = 0;
+                                        }
+                                    @endphp
+                                    <li class="list-group-item"><b>Promotion Discount:</b>
+                                        -{{ number_format($promo = $price->base_price * $promodiscount, 2) }}</li>
+                                    <li class="list-group-item"><b>Rate Discount:</b>
+                                        -{{ number_format($rate_discount = $price->base_price * $roominfo3->base_discount, 2) }}
+                                    </li>
+                                    <li class="list-group-item"><b>Total :</b>
+                                        {{ number_format($total3 = ($subtotal - ($rate_discount + $promo)) * $nights, 2) }}
+                                        @php
+                                            $totalnopromo3 = $subtotal - $rate_discount;
+                                        @endphp
+                                    </li>
+                                </ul>
+
+                            </div>
+                        @endif
+                        <div class="row mx-5">
+                            <h5><b>To pay: </b> {{ number_format(($total + $total2 + $total3) / 2, 2) }}</h5>
+                            <h5><b>Total: </b> {{ number_format($total + $total2 + $total3, 2) }}</h5>
+                        </div> --}}
+
+                        {{-- <button type="submit" class="btn btn-primary mt-2">Room 1</button>
+                        <button type="submit" class="btn btn-primary mt-2">Room 2</button>
+                        <button type="submit" class="btn btn-primary mt-2">Room 3</button> --}}
+                    </div>
+
+                </div>
+
+                {{-- <input type="text" name="totalsubtotal" value="{{$totalnopromo}}" hidden>
+                <input type="text" name="totalsubtotal2" value="{{$totalnopromo2}}" hidden>
+                <input type="text" name="totalsubtotal3" value="{{$totalnopromo3}}" hidden> --}}
+                <button type="submit" class="btn btn-primary mt-2">Create Reservation</button>
+            </form>
         @endif
     </div>
+
+    <script>
+        checkcalendar = function() {
+            var checkin = document.getElementById("CheckIn");
+            var checkout = document.getElementById("CheckOut");
+            var checkinval = checkin.value;
+            var checkoutval = checkout.value;
+
+            var date1 = new Date(checkinval);
+            var date2 = new Date(checkoutval);
+
+            // To calculate the time difference of two dates
+            var Difference_In_Time = date2.getTime() - date1.getTime();
+
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+
+            var nights = document.getElementById("nights");
+            var nightsval = nights.innerHTML = "Nights: " + Difference_In_Days;
+
+
+        }
+    </script>
 
 @endsection

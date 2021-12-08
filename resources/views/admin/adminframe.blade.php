@@ -14,7 +14,7 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed" onload="calendar(); checkcalendar()">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="{{ route('dashboard') }}">Admin Panel</a>

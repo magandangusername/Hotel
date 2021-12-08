@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class ReservationPoliciesController extends Controller
 {
     public function index() {
-
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
         return view('reservationpolicies');
     }

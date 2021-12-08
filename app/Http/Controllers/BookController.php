@@ -19,6 +19,9 @@ class BookController extends Controller
      */
     public function index()
     {
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
         $date = date("Y-m-d h:i:sa");
         $newpromos = DB::table('promotion_descriptions')
@@ -53,6 +56,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $date1 = date("Y-m-d", strtotime('now'.'- 1 days'));
         $date2 = date("Y-m-d", strtotime('now'));
 
@@ -67,7 +72,14 @@ class BookController extends Controller
             'ChildCount2' => 'required|integer|min:0',
             'AdultCount3' => 'required|integer|min:1',
             'ChildCount3' => 'required|integer|min:0',
-            'PromoCode' => ['nullable', new PromoValidDuration]
+            'PromoCode' => ['nullable', new PromoValidDuration],
+            'name_with_initials' => 'required',
+            'fn' => 'required',
+            'ln' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'mobilenum' => 'required'
 
         ]);
 
@@ -111,8 +123,23 @@ class BookController extends Controller
         $request->session()->put('PromoCode', $data['PromoCode']);
 
         // echo session('AdultCountRoom3');
-        // dd("GOOD");
+        // dd(session()->all());
+
         // echo "validation successful! ".session('AdultCountRoom3');
+
+
+        if($request->input('adminreservation') !== null){
+            $data = $request->input();
+            Session::put('title', $data['name_with_initials']);
+            Session::put('fn', $data['fn']);
+            Session::put('ln', $data['ln']);
+            Session::put('email', $data['email']);
+            Session::put('address', $data['address']);
+            Session::put('city', $data['city']);
+            Session::put('mobilenum', $data['mobilenum']);
+            Session::put('adminreservation', true);
+
+        }
 
         // return view('booking')->with('message', $message);
         return redirect('/chooseroom');

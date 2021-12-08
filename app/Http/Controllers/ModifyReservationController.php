@@ -24,6 +24,10 @@ class ModifyReservationController extends Controller
     public function index()
     {
 
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
+
 
 
         $message = '';

@@ -273,6 +273,11 @@ class AdminReservationsController extends Controller
 
         }
 
+        if ($request->input('addreservation') !== null) {
+            $addreserve = true;
+            return view('admin/managereservations/reservations')->with(compact('reservations','addreserve'));
+        }
+
         return redirect('admin/reservation');
 
 

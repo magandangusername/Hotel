@@ -17,7 +17,9 @@ class RoomSuiteController extends Controller
      */
     public function rooms()
     {
-
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
         $rooms = room_description::get();
         return view('roomtab')->with(compact('rooms'));
@@ -25,9 +27,8 @@ class RoomSuiteController extends Controller
 
     public function suites()
     {
-        if(Auth::check() && !Auth::user()->verified) {
-
-            return redirect('/email/verify');
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
         }
         $suites = suite_description::get();
         return view('suitestab')->with(compact('suites'));

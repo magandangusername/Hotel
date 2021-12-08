@@ -16,6 +16,9 @@ class PromotionController extends Controller
      */
     public function promo()
     {
+        if(Auth::check() && !Auth::user()->email_verified_at) {
+            return view('auth.verify');
+        }
 
 
 
