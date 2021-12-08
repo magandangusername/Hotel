@@ -62,26 +62,44 @@ class BookController extends Controller
         $date2 = date("Y-m-d", strtotime('now'));
 
         $message = "validation failed";
-        $request->validate([
-            'CheckIn' => "required|date|after:".$date1,
-            'CheckOut' => 'required|date|after:'.$date2,
-            'RoomCount' => 'required|integer|min:1|max:3',
-            'AdultCount' => 'required|integer|min:1',
-            'ChildCount' => 'required|integer|min:0',
-            'AdultCount2' => 'required|integer|min:1',
-            'ChildCount2' => 'required|integer|min:0',
-            'AdultCount3' => 'required|integer|min:1',
-            'ChildCount3' => 'required|integer|min:0',
-            'PromoCode' => ['nullable', new PromoValidDuration],
-            'name_with_initials' => 'required',
-            'fn' => 'required',
-            'ln' => 'required',
-            'email' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'mobilenum' => 'required'
+        if(!session('adminreservation')){
+            $request->validate([
+                'CheckIn' => "required|date|after:".$date1,
+                'CheckOut' => 'required|date|after:'.$date2,
+                'RoomCount' => 'required|integer|min:1|max:3',
+                'AdultCount' => 'required|integer|min:1',
+                'ChildCount' => 'required|integer|min:0',
+                'AdultCount2' => 'required|integer|min:1',
+                'ChildCount2' => 'required|integer|min:0',
+                'AdultCount3' => 'required|integer|min:1',
+                'ChildCount3' => 'required|integer|min:0',
+                'PromoCode' => ['nullable', new PromoValidDuration]
 
-        ]);
+            ]);
+
+        } else{
+            $request->validate([
+                'CheckIn' => "required|date|after:".$date1,
+                'CheckOut' => 'required|date|after:'.$date2,
+                'RoomCount' => 'required|integer|min:1|max:3',
+                'AdultCount' => 'required|integer|min:1',
+                'ChildCount' => 'required|integer|min:0',
+                'AdultCount2' => 'required|integer|min:1',
+                'ChildCount2' => 'required|integer|min:0',
+                'AdultCount3' => 'required|integer|min:1',
+                'ChildCount3' => 'required|integer|min:0',
+                'PromoCode' => ['nullable', new PromoValidDuration],
+                'name_with_initials' => 'required',
+                'fn' => 'required',
+                'ln' => 'required',
+                'email' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'mobilenum' => 'required'
+
+            ]);
+        }
+
 
 
 
