@@ -37,6 +37,7 @@
                             <th>Adult</th>
                             <th>Children</th>
                             <th>Payment Type</th>
+                            <th>Checked in on</th>
                         </tr>
                     </thead>
 
@@ -152,7 +153,7 @@
                                         {{ $reservation->payment_type }}
                                     @endif
                                 </td>
-
+                                <td>{{ $reservation->fullfilled_on }}</td>
                                 <td>
                                     @if ($reservation->payment_status != 'Fulfilled')
                                         <form action="{{ route('adminreservation') }}" method="post">
