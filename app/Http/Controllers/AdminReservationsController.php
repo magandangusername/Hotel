@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\DB;
 use App\Rules\PromoValidDuration;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Support\Facades\Session;
 
 class AdminReservationsController extends Controller
 {
     public function index (){
+        Session::forget(['adminreservation']);
         $reservations = DB::table('reservation_tables')
         ->leftJoin('reserved_rooms', 'reservation_tables.rr_code', '=', 'reserved_rooms.rr_code')
         ->leftJoin('head_counts as hc1', 'reserved_rooms.head_count_id1', '=', 'hc1.id')
@@ -261,7 +263,8 @@ class AdminReservationsController extends Controller
             DB::table('computeds')
             ->where('id', $room->id)
             ->update([
-                'fullfilled_on' => Carbon::now()->toDateTimeString()
+                'fullfilled_on' => Carbon::now()->toDateTimeString(),
+                'deposited_price' => $room->ctotal_price
             ]);
 
             DB::table('reservation_tables')

@@ -431,8 +431,10 @@
                             </div>
                         @endif
                         <div class="row mx-5">
-                            <h5><b>To pay: </b> {{ number_format(($total + $total2 + $total3) / 2, 2) }}</h5>
-                            <h5><b>Total: </b> {{ number_format($total + $total2 + $total3, 2) }}</h5>
+                            {{-- <h5><b>To pay: </b> {{ number_format(($total + $total2 + $total3) / 2, 2) }}</h5>
+                            <h5><b>Total: </b> {{ number_format($total + $total2 + $total3, 2) }}</h5> --}}
+                            <h5><b>To pay: </b> {{ number_format($room->ctotal_price - $room->deposited_price, 2) }}</h5>
+                            <h5><b>Total: </b> {{ number_format($room->ctotal_price, 2) }}</h5>
                         </div>
 
 

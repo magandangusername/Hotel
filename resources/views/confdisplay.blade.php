@@ -609,9 +609,7 @@
 <h1>An error occured reloading the page.</h1>
 
 @endif
-@php
-    Session::forget(['adminreservation']);
-@endphp
+
 {{--
 @php
     Session::forget(['CheckIn', 'CheckOut', 'RoomCount', 'AdultCount', 'ChildCount', 'PromoCode', 'room', 'roomchecker', 'roomchecker2', 'roomtype2', 'ratetype2', 'bedcheckerq', 'bedcheckerk', 'roomtype', 'ratetype', 'bed', 'totalrate', 'overallprice', 'success', 'confirmation_number']);
