@@ -465,20 +465,20 @@
                             </div> --}}
 
                             <div class="row my-2">
-                                <div class="col">
+                                <div class="col-2">
                                     <label for="arrivalinput"><b>Arrival Date</b></label>
                                     <input type="date" class="form-control" id="CheckIn" name="CheckIn"
                                         onchange="checkcalendarin(); checkcalendar()">
                                 </div>
-                                <div class="col">
+                                <div class="col-2">
                                     <label for="departureinput"><b>Departure Date</b></label>
                                     <input type="date" class="form-control" id="CheckOut" name="CheckOut"
                                         onchange="checkcalendarout(); checkcalendar()">
                                 </div>
                             </div>
 
-                            <div class="row my-2">
-                                <div class="col">
+                            <div class="row my-3">
+                                <div class="col-4">
                                     <label for="promotioncode"><b>Promotion Code</b></label>
                                     <input type="number" class="form-control" id="promotioncode"
                                         placeholder="Enter Promotion Code" name="PromoCode">
@@ -486,26 +486,29 @@
 
                             </div>
 
-                            <div class="col px-xl-5  px-lg-5 px-md-3">
-                                <label for="inputRoom" class="col-form-label">Rooms</label>
+                            <div class="row my-4">
+
+                            <div class="col-2">
+                                <label for="inputRoom"><b>Rooms</b></label>
                                 <input class="form-control-num" type="number" name="RoomCount" id="roomcount" value="1" min="1" max="3"
                                     onchange="rooms(this.value)">
                             </div>
 
-                            <div class="col">
 
-                                <label for="inputAdult" class="col-form-label">Adult</label>
+                            <div class="col-2">
+
+                                <label for="inputAdult" class="col-form-label"><b>Adult</b></label>
                                 <input class="form-control-num" type="number" name="AdultCount" id="adultcount" value="1" min="1">
 
                                 <div id="adultcount2l" hidden>
-                                    <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
+                                    <label for="inputAdult" id="adultcount2" class="col-form-label"><b>Adult</b></label>
                                     <input class="form-control-nam1" type="number" name="AdultCount2" id="adultcount2" value="1"
                                         min="1">
                                 </div>
                                 <div id="adultcount2i" hidden></div>
 
                                 <div id="adultcount3l" hidden>
-                                    <label for="inputAdult" id="adultcount2" class="col-form-label">Adult</label>
+                                    <label for="inputAdult" id="adultcount2" class="col-form-label"><b>Adult</b></label>
                                     <input class="form-control-nam1" type="number" name="AdultCount3" id="adultcount3" value="1"
                                         min="1">
                                 </div>
@@ -513,27 +516,29 @@
 
                             </div>
 
-                            <div class="col">
+                            <div class="col-2">
 
-                                <label for="inputChild" class="col-form-label">Child</label>
+                                <label for="inputChild" class="col-form-label"><b>Child</b></label>
                                 <input class="form-control-num" type="number" name="ChildCount" id="childadult" value="0" min="0">
 
 
                                 <div id="childadult2l" hidden>
-                                    <label for="inputChild" class="col-form-label">Child</label>
+                                    <label for="inputChild" class="col-form-label"><b>Child</b></label>
                                     <input class="form-control-nam" type="number" name="ChildCount2" id="childadult2" value="0" min="0">
                                 </div>
                                 <div id="childadult2i" hidden></div>
 
                                 <div id="childadult3l" hidden>
-                                    <label for="inputChild" class="col-form-label">Child</label>
+                                    <label for="inputChild" class="col-form-label"><b>Child</b></label>
                                     <input class="form-control-nam" type="number" name="ChildCount3" id="childadult3" value="0" min="0">
                                 </div>
                                 <div id="childadult3i" hidden></div>
 
                             </div>
-                            <div class="form-group">
-                                <label>Title</label>
+
+                            </div>
+                            <div class="form-group my-3">
+                                <label class="fw-bold">Title</label>
                                 <select name="name_with_initials" id="" required>
                                     <option selected="selected" value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
@@ -541,36 +546,39 @@
                                 </select>
                             </div>
 
-                            <div class="col">
-
-                                <label for="first"> First Name:</label>
-                                <input type="text" class="form-control" id="firstname" name="fn" required>
-
-                                <label for="last">Last Name:</label>
-                                <input type="text" class="form-control" id="lastname" name="ln" required>
-                            </div>
-                            <div class="col">
-                                <label for="email">Email Address:</label>
-                                <input type="text" class="form-control" id="firste" name="email" required>
-                            </div>
-                            <div class="row my-3">
-                                <div class="col-md-6">
-                                    <label for="first"> Address:</label>
-                                    <input type="text" class="form-control" id="first" name='address' required>
-                                    <label for="email">City:</label>
-                                    <input type="text" class="form-control" id="email" name='city' required>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="first"><b>First Name:</b></label>
+                                    <input type="text" class="form-control my-2" id="firstname" name="fn" required>
                                 </div>
 
-
-                                <div class="col-md-6 ">
-                                    <label for="last">Mobile Number:</label>
-                                    <input type="text" class="form-control" id="last" name='mobilenum' required>
+                                <div class="col-4">
+                                    <label for="last"><b>Last Name:</b></label>
+                                    <input type="text" class="form-control my-2" id="lastname" name="ln" required>
                                 </div>
+
                             </div>
+                            <div class="col-3">
+                                <label for="email"><b>Email Address:</b></label>
+                                <input type="text" class="form-control my-2" id="firste" name="email" required>
+                            </div>
+                            <div class="col-3">
+                                <label for="first"> <b>Address:</b></label>
+                                <input type="text" class="form-control" id="first" name='address' required>
+                            </div>
+                            <div class="col-2">
+                                <label for="email"><b>City:</b></label>
+                                <input type="text" class="form-control" id="email" name='city' required>
+                            </div>
+                            <div class="col-3">
+                                <label for="last"><b>Mobile Number:</b></label>
+                                <input type="text" class="form-control" id="last" name='mobilenum' required>
+                            </div>
+
 
                             <input type="hidden" name="adminreservation" value="adminreservation" hidden>
 
-                            <button type="submit" class="btn btn-primary mt-2">Get rooms</button>
+                            <button type="submit" class="btn btn-dark my-3">Get rooms</button>
 
                         </fieldset>
 
@@ -777,7 +785,7 @@
                 {{-- <input type="text" name="totalsubtotal" value="{{$totalnopromo}}" hidden>
                 <input type="text" name="totalsubtotal2" value="{{$totalnopromo2}}" hidden>
                 <input type="text" name="totalsubtotal3" value="{{$totalnopromo3}}" hidden> --}}
-                <button type="submit" class="btn btn-primary mt-2">Create Reservation</button>
+                <button type="submit" class="btn btn-dark mt-2">Create Reservation</button>
             </form>
         @endif
     </div>

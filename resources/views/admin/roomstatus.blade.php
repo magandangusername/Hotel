@@ -307,18 +307,37 @@
 
                 </div>
 
-                <select name="room" >
-                    @foreach ($rooms as $room)
-                        <option value="{{$room->room_number}}">{{$room->room_number}}</option>
-                    @endforeach
+            <div class="card">
+                <h4 class="ps-4 pt-4"> Room Transfer </h4>
 
-                </select>
-                Reason:
-                <input type="text" name="reason">
+                <div class="row mx-4 mt-2 mb-3">
+                    <div class="row">
+                        <div class="col">
+                        <label for="room"><b>Available Rooms</b></label>
+
+                            <select name="room" >
+                                @foreach ($rooms as $room)
+                                    <option value="{{$room->room_number}}">{{$room->room_number}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <label for="reason"> <b>Reason for Transfer</b></label>
+
+                        <textarea id="" name="reason" rows="4" cols="50">
+                        </textarea>
+
+                    </div>
+
+
+                </div>
+            </div>
                 <input type="text" name="roomnum" value="{{$roomnum}}" hidden>
                 <input type="text" name="updateroom" value="{{$editstatus->room_number}}" hidden>
                 <input type="text" name="confirmation_number" value="{{ $editstatus->confirmation_number }}" hidden>
-                <button type="submit" class="btn btn-primary mt-2">Transfer Room</button>
+                <button type="submit" class="btn btn-dark mt-2">Transfer Room</button>
 
                 {{-- <input type="text" name="totalsubtotal" value="{{$totalnopromo}}" hidden>
         <input type="text" name="totalsubtotal2" value="{{$totalnopromo2}}" hidden>

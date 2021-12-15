@@ -168,32 +168,68 @@
                 @csrf
                 <fieldset>
                     <div class="row">
-                        <div class="col-2">
-                            <select name="confirmation_number">
-                                @foreach ($reservations as $reservation)
-                                    <option value="{{ $reservation->confirmation_number }}">
-                                        {{ $reservation->confirmation_number }}</option>
-                                @endforeach
-                            </select>
+
+                            <div class="row my-3">
+                                <div class="col">
+                                    <label class="fw-bold"> Reservation Number </label>
+                                    <select name="confirmation_number">
+                                        @foreach ($reservations as $reservation)
+                                            <option value="{{ $reservation->confirmation_number }}">
+                                                {{ $reservation->confirmation_number }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <label for="inputreservationumber"><b>Requests</b></label>
-                            <input type="text" name="rql1" class="form-control my-1" id="amenity1" placeholder="Request 1"
-                                required>
-                            <input type="text" name="rql2" class="form-control my-1" id="amenity2" placeholder="Request 2">
-                            <input type="text" name="rql3" class="form-control my-1" id="amenity3" placeholder="Request 3">
-                            <input type="text" name="rql4" class="form-control my-1" id="amenity4" placeholder="Request 4">
-                            <input type="text" name="rql5" class="form-control my-1" id="amenity5" placeholder="Request 5">
-                            <input type="text" name="rql6" class="form-control my-1" id="amenity6" placeholder="Request 6">
-                            <input type="text" name="rql7" class="form-control my-1" id="amenity7" placeholder="Request 7">
-                            <input type="text" name="rql8" class="form-control my-1" id="amenity8" placeholder="Request 8">
-                            <input type="text" name="rql9" class="form-control my-1" id="amenity9" placeholder="Request 9">
-                            <input type="text" name="rql10" class="form-control my-1" id="amenity10"
-                                placeholder="Request 10">
-                            <input type="number" name="request_charge" class="form-control my-1" id="amenity10" value=0
-                                min=0 placeholder="Request Charge">
-                        </div>
+                            <div class="row my-2">
+
+                                <div class="col">
+                                    <input type="text" name="rql1" class="form-control my-1"  placeholder="Request 1"required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="rql2" class="form-control my-1"  placeholder="Request 2">
+                                </div>
+                                <div class="col">
+                                     <input type="text" name="rql3" class="form-control my-1"  placeholder="Request 3">
+                                </div>
+                                <div class="col">
+                                     <input type="text" name="rql4" class="form-control my-1"  placeholder="Request 4">
+                                </div>
+                                <div class="col">
+                                      <input type="text" name="rql5" class="form-control my-1"  placeholder="Request 5">
+                                </div>
+
+                            </div>
+
+                            <div class="row my-2">
+
+                                <div class="col">
+                                    <input type="text" name="rql6" class="form-control my-1"  placeholder="Request 6">
+                                </div>
+                                <div class="col">
+                                 <input type="text" name="rql7" class="form-control my-1"  placeholder="Request 7">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="rql8" class="form-control my-1"  placeholder="Request 8">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="rql9" class="form-control my-1"  placeholder="Request 9">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="rql10" class="form-control my-1"  placeholder="Request 10">
+                                </div>
+
+                            </div>
+                            <label class="fw-bold my-2"> Request Total Charge </label>
+                            <div class="col-3"> <input type="number" name="request_charge" class="form-control my-1"
+                                min=0 placeholder="₱0.00"></div>
+
+
                     </div>
                     <input type="hidden" name="submitadd" value="submitadd" hidden>
-                    <button type="submit" class="btn btn-dark mt-2">Add Requests</button>
+                    <button type="submit" class="btn btn-dark my-3">Add Requests</button>
                 </fieldset>
             </form>
 

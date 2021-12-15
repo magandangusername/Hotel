@@ -52,7 +52,7 @@
                                 Overview
                             </a>
                             <a class="nav-link" href="{{ route('roomstatus') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                                 Rooms Status
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage Reservations</div>
@@ -69,7 +69,7 @@
                                 Modifications
                             </a>
                             <a class="nav-link" href="{{ route('adminroomtransfers') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-door-open"></i></div>
                                 Room Transfers
                             </a>
 
@@ -110,7 +110,7 @@
                             </div>
 
                             <a class="nav-link" href="{{ route('adminmanagerequests') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-edit"></i></div>
                                 Manage Requests
                             </a>
 
