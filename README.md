@@ -1,31 +1,31 @@
 # Hotel
 Hotel Reservation System
 
+This is the source code of our website called __Mondstadt Hotel__. It is an Online Hotel Reservation System that which mainly focusing on booking. What our website does is generate available rooms, promotions, and rates for the customer or client to interact with. This website is made using a web framework called *Laravel* and also used a design framework called *Bootstrap* and an online processing payment gateway called *Stripe*.
 
 
-git bash installation commands:
+Our Website is able to:
 
-1. install vscode and git bash
-2. add/set/create the folder u want to use for our files in vscode workspace
-3. type: git config --global user.name "your name here"
-4. then type: git config --global user.email "your email here"
-5. then type: git init
-6. then type: git branch -M main
-7. then type: git remote add origin https://github.com/magandangusername/hotel.git
-8. then type: git pull origin main
-9. note on step no. 8, this will ask you to sign up with github, just sign it up.
+**Client Side**
+* Book a room(s)
+* Modify a reservation
+* Provide payment method (Credit/Debit Card Only)
+* Register/Login (Optional)
+* Email Receipt
 
-for pushing:
+**Server Side**
+* Create/Modify rooms
+* Create/Modify promotions
+* Create/Modify price rates
+* Create/Modify an account
+* See account list
+* Modify reservation
+* Create a reservation for a customer/client (can be used for onsite booking)
+* Logs for past reservations
 
-1. type: git add .
-2. then type: git commit -m "your message"
-3. then type: git push -u origin main
 
-if you have done the installation commands before and want to pull:
+Here is the documentation of our creation of this project
+https://drive.google.com/drive/folders/1nW_qj_-47bpCqVv0LCy1EYV2YQlLzTbv
 
-1. just type: git pull
 
-HARD RESET: if everything messes up or displays error and you dont know what to do anymore, just reset everything and force pull from our github repository (WARNING: this will reset all changes you have made and follows what the github repository contains)
-
-1. type: git fetch --all
-2. then type: git reset --hard origin/main
+The website is currently not deployed online due to financial problems
